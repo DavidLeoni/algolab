@@ -14,20 +14,24 @@
     #algolab-toc {
         position: fixed;
         top: 100px; 
-        left: -40px; 
+        left: -55px; 
         background: rgba(255, 255, 255, 0);
         
         height: 80%;
         width: 200px; 
         padding: 20px; 
         z-index: 10;
-        overflow-y: scroll;
-        margin-left:10px;
+        overflow-y: scroll;        
             /* font-size: 50%; */
     }
     
+    
+    .algolab-chapter-link {
+        font-size:150%;
+    }    
+    
     .algolab-title {
-        font-size:180%; 
+        font-size:250%; 
         font-weight:bold        
     }    
         

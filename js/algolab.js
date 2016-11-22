@@ -45,9 +45,19 @@ var algolab = {
     init : function(){
 
        var toc = $("<div>").attr("id", "algolab-toc");              
-       var back = $("<a>").attr("href","index.html").text("Back to Algolab");
-       var nav = $("<div>").attr("id", "algolab-nav").append(back);
-        
+       var back = $("<a>").attr("href","index.html#Chapters").text("Back to Chapters");       
+       var title = $("<span>")
+                    .css("font-weight","bold")
+                    .css("font-size":"120%")
+                    .text($(".algolab-title").text());
+       
+       var nav = $("<div>").attr("id", "algolab-nav")
+       .append(title)
+       .append("<br>")
+       .append("<br>")
+       .append(back);
+              
+       
        algolab.hideCellStartingWith("%%HTML");
        algolab.hideCellStartingWith("import algolab");      
        
