@@ -1,29 +1,4 @@
-<!--
-HTML code to create the sidebar, menu and independent popup window.
--->
-<style>
-    #algolab-toc {
-        position: fixed;
-        top: 100px; 
-        left: -40px; 
-        background: white;
-        height: 80%;
-        width: 200px; 
-        padding: 20px; 
-        z-index: 10;
-        overflow-y: scroll;
-    }
-    #algolab-toc ul {
-         list-style-type: none;    
-        margin-left: 15px;
-    }
-    #notebook-container {
-                            box-shadow : none;
-                            -web-kit-box-shadow: none;
-                        }
-    
-</style>
-<script>
+
 function showthis(url) {
     window.open(url, "pres", "toolbar=yes,scrollbars=yes,resizable=yes,top=10,left=400,width=500,height=500");
     return(false);
@@ -45,9 +20,10 @@ var algolab = {
             $("#algolab-toc").css("background","rgba(255, 255, 255, 0)");
         }
     },
-    init : function(){       
+    init : function(){
        algolab.hideCellStartingWith("%%HTML");
        algolab.hideCellStartingWith("import algolab");
+       algolab.hideCellStartingWith("algolab.init()");
        algolab.resize();
     }, 
     hideCellStartingWith : function(text){
@@ -93,5 +69,3 @@ $("body").on("mousemove",function(event) {
 });
 
 $(document).ready(algolab.init);
-
-</script>

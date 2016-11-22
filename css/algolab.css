@@ -1,0 +1,21 @@
+  
+     #algolab-toc {
+        position: fixed;
+        top: 100px; 
+        left: -40px; 
+        background: white;
+        height: 80%;
+        width: 200px; 
+        padding: 20px; 
+        z-index: 10;
+        overflow-y: scroll;
+    }
+    #algolab-toc ul {                                                                                                                                                                           
+        list-style-type: none;                                                                                                                                                                 
+        margin-left: 15px;
+    }
+    #notebook-container {
+        box-shadow : none;
+	-web-kit-box-shadow: none;
+    }
+    
