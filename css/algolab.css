@@ -9,13 +9,41 @@
         padding: 20px; 
         z-index: 10;
         overflow-y: scroll;
+            /* font-size: 50%; */
     }
+    
     #algolab-toc ul {                                                                                                                                                                           
         list-style-type: none;                                                                                                                                                                 
-        margin-left: 15px;
+        margin-left: 5px;
     }
+    
+    #algolab-toc li {        
+         padding-left: 3px;
+    }    
+    
+    #algolab-toc .h1 {
+        font-size:110%; 
+        
+    }
+    
+    #algolab-toc .h2 {
+        font-size:100%; 
+        padding-left:15px;
+    }
+
+    #algolab-toc .h3 {
+        font-size:100%; 
+        padding-left:25px;
+    }
+    
+    
+    
     #notebook-container {
         box-shadow : none;
 	-web-kit-box-shadow: none;
     }
     
+
+    #algolab-toc .toc-active {
+        background: rgba(168, 254, 255, 0.32);
+    }
