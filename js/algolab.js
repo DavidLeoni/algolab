@@ -31,12 +31,11 @@ var algolab = {
                 'anchorName': function(i, heading, prefix) { //custom function for anchor name
                     return prefix+i;
                 },
-                'headerText': function(i, heading, $heading) { //custom function building the header-item text
-                    console.log("$heading.text()=",$heading.text());
+                'headerText': function(i, heading, $heading) { //custom function building the header-item text                  
                     return $heading.text().replace("¶","");
                 },
                 'itemClass': function(i, heading, $heading, prefix) { // custom function for item class
-                return $heading[0].tagName.toLowerCase();
+                    return $heading[0].tagName.toLowerCase();
                 }                
             }
             
@@ -44,9 +43,28 @@ var algolab = {
         }
     },
     init : function(){
+
+       var toc = $("<div>").attr("id", "algolab-toc");              
+       var back = $("<a>").attr("href","index.html").text("Back to Algolab");
+       var nav = $("<div>").attr("id", "algolab-nav").append(back);
+        
        algolab.hideCellStartingWith("%%HTML");
-       algolab.hideCellStartingWith("import algolab");
-       algolab.hideCellStartingWith("algolab.init()");
+       algolab.hideCellStartingWith("import algolab");      
+       
+       algolab.hideCellStartingWith("algolab.init()"); 
+              
+       if ($("#algolab-toc").length === 0){
+           $("body").append(toc);       
+       } else {
+           $("#algolab-toc").replaceWith(toc);
+       }
+       
+       if ($("#algolab-nav").length === 0){
+           $("body").append(nav);       
+       } else {
+           $("#algolab-nav").replaceWith(nav);
+       }              
+       
        algolab.resize();
     }, 
     hideCellStartingWith : function(text){
@@ -57,7 +75,6 @@ var algolab = {
 }
 
 $( window ).resize(function() {
-    console.log("Resizing window !");
     algolab.resize();
 });
 

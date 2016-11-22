@@ -10,22 +10,23 @@ def run(testcase):
 def init():
     css = open("./css/algolab.css", "r").read()
 
-    toc = open("./js/toc.js", "r").read()
+    tocjs = open("./js/toc.js", "r").read()
 
     js = open("./js/algolab.js", "r").read()
-
     
 
+    ret = "<style>\n" 
+    ret += css
+    ret += "\n </style>\n"
+    
+    ret +="\n"
+    
+    ret += "<script>\n"
+    ret += "\n"
+    ret += tocjs
+    ret += "\n"
+    ret += js
+    ret += "\n</script>\n"
 
-    html = "<style>\n" 
-    html += css
-    html += "\n </style>\n"
-    html += "<script>\n"
-    html += "\n"
-    html += toc
-    html += "\n"
-    html += js
-    html += "\n</script>\n"
-
-    return  HTML(html)
+    return  HTML(ret)
 
