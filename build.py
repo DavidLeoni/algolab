@@ -23,6 +23,17 @@ def clean(dirpath):
         except OSError:
             os.remove(filepath)
 
+
+def generate_pdf():
+    log("Generating PDFs ...")
+
+    os.mkdir("target/pdf/")
+
+    for file in os.listdir("target/"):
+        if file.endswith(".html"):        
+            call(["wkhtmltopdf", "--minimum-font-size", "18", "target/" + str(file), "target/pdf/" + str(file).replace("html", "pdf")])
+
+
 print
 
 clean("target/")
@@ -37,6 +48,8 @@ log("Copying other files ...")
 shutil.copytree("img/", "target/img/")
 shutil.copytree("js/", "target/js/")
 shutil.copytree("css/", "target/css/")
+
+generate_pdf()
 
 log("Done.")
 

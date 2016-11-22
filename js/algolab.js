@@ -42,6 +42,12 @@ var algolab = {
             $('#algolab-toc').toc(tocParams);
         }
     },
+    hideCellStartingWith : function(text){
+        $('.border-box-sizing .code_cell pre').filter(function() { 
+                return $(this).text().indexOf(text) === 0; 
+            }).parents('div .cell .input').hide();        
+    },
+    
     init : function(){
 
        var toc = $("<div>").attr("id", "algolab-toc");              
@@ -90,11 +96,6 @@ var algolab = {
        }              
        
        algolab.resize();
-    }, 
-    hideCellStartingWith : function(text){
-        $('.border-box-sizing .code_cell pre').filter(function() { 
-                return $(this).text().indexOf(text) === 0; 
-            }).parents('div .cell').hide();        
     }
 }
 
