@@ -11761,19 +11761,7 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">algolab</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">algolab</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -11784,7 +11772,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <style>
@@ -11814,6 +11802,13 @@ div#notebook {
         overflow-y: scroll;        
             /* font-size: 50%; */
     }
+
+    
+    
+    code {
+        background-color:rgb(245, 249, 249) !important;
+    }
+    
     
     .algolab-nav-item {
         font-weight:bold;
@@ -11839,7 +11834,7 @@ div#notebook {
         border-left: 5px solid #dfb5b4;
         padding: 1.5em;
         font-weight:bold;
-        margin-bottom:15px;
+        margin-bottom:10px;
     }    
         
     
@@ -11849,7 +11844,7 @@ div#notebook {
         color: #000;        
         padding: 1.5em;
         font-weight:bold;
-        margin-bottom:15px;
+        margin-bottom:10px;
     }
     
     
@@ -12100,7 +12095,7 @@ $(document).ready(algolab.init);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
@@ -12139,7 +12134,7 @@ $(document).ready(algolab.init);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
@@ -12171,7 +12166,7 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Implementation">Implementation<a class="anchor-link" href="#Implementation">&#182;</a></h1><h2 id="Implement-swap">Implement <code>swap</code><a class="anchor-link" href="#Implement-swap">&#182;</a></h2><p>Try to code and test the <code>swap</code> function from <a href="http://disi.unitn.it/~montreso/sp/slides/03-analisi.pdf" target="_blank">selection sort (slide 29 theory)</a>:</p>
+<h1 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h1><h2 id="Implement-swap">Implement <code>swap</code><a class="anchor-link" href="#Implement-swap">&#182;</a></h2><p>Try to code and test the <code>swap</code> function from <a href="http://disi.unitn.it/~montreso/sp/slides/03-analisi.pdf" target="_blank">selection sort (slide 29 theory)</a>:</p>
 <p><img src="img/swap.png"/></p>
 <ul>
 <li>Use the following skeleton to code it</li>
@@ -12183,7 +12178,7 @@ $(document).ready(algolab.init);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12258,7 +12253,7 @@ $(document).ready(algolab.init);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12310,7 +12305,7 @@ $(document).ready(algolab.init);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12367,13 +12362,200 @@ $(document).ready(algolab.init);
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Implement-gap_rec">Implement gap_rec<a class="anchor-link" href="#Implement-gap_rec">&#182;</a></h2><p>Try to code and test the <code>gap</code> function from <a href="http://disi.unitn.it/~montreso/sp/slides/02-recursion.pdf" target="_blank">recursion theory slides (slide 21)</a>:</p>
 <p><img src="img/recursive-gap.png"></p>
-<p>Use the following skeleton to code it and add some test to the provided testcase class.</p>
+<p>Use the following skeleton to code it and add some test to the provided testcase class.To understand what's going on, try copy pasting your solution in <a href="http://pythontutor.com/visualize.html#mode=edit" target="_blank">Python tutor</a> and hit <code>Visualize execution</code> and then <code>Forward</code> to step through the process</p>
 <p>Notice that</p>
 <ul>
 <li>We created a function <code>gap_rec</code> to differentiate it from the iterative one</li>
-<li>for convenience the new function <code>gap_rec(L)</code> only accepts a list, without indexes <code>i</code> and <code>j</code>. This function just calls the other function <code>gap_rec_helper</code> that will actually contain the recursive calls. So your task is to translate the pseudocode of <code>gap</code> into the Python code of <code>gap_rec_helper</code>, which takes as input the array and the indexes as <code>gap</code> does. Adding a helper function is a frequent pattern you can find when programming recursive functions.</li>
-<li>To understand what's going on, try copy pasting your solution in <a href="http://pythontutor.com/visualize.html#mode=edit" target="_blank">Python tutor</a> and hit <code>Visualize execution</code> and then Forward to step through the process</li>
-<li>What is the complexity of <code>gap_rec</code>? Is it faster or slower than the iterative gap here?</li>
+<li>Users of <code>gap_rec</code> function might want to call it by passing just a list, in order to find any gap in the whole list. So for convenience the new function <code>gap_rec(L)</code> only accepts a list, without indexes <code>i</code> and <code>j</code>. This function just calls the other function <code>gap_rec_helper</code> that will actually contain the recursive calls. So your task is to translate the pseudocode of <code>gap</code> into the Python code of <code>gap_rec_helper</code>, which takes as input the array and the indexes as <code>gap</code> does. Adding a helper function is a frequent pattern you can find when programming recursive functions.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+
+WARNING: The specification of gap_rec assumes the input is always a list of at least
+    two elements, and that the first element is less or equal than the last one. &lt;i&gt;If these 
+    conditions are not met, function behaviour could be completely erroneus! &lt;/i&gt;
+&lt;/p&gt;
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-warn">
+
+WARNING: The specification of gap_rec assumes the input is always a list of at least
+    two elements, and that the first element is less or equal than the last one. <i>If these 
+    conditions are not met, function behaviour could be completely erroneus! </i>
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When preconditions are not met, execution could stop because of an error like index out of bounds, or, even worse, we might get back some wrong index as a gap! To prevent misuse of the function, a good idea can be putting a check at the beginning of the <code>gap_rec</code> function. Such check should immediately stop the execution and raise an error if the parameters don't satisfy the preconditions. One way to do this could be to write some <a href="testing#Assertions">assertion</a> like this:</p>
+<div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">L</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+<ul>
+<li>These commands will make python interrupt execution and throw an error as soon it detects list <code>L</code> is too small or with wrong values</li>
+<li>This kind of behaviour is also called <em>fail fast</em>, which is better than returning wrong values! </li>
+<li>You can put any condition you want after <code>assert</code>, but ideally they should be fast to execute.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
+
+&lt;p class=&quot;algolab-important&quot;&gt;
+GOOD PRACTICE: Notice I wrote as a comment what the helper function is expected to receive. Writing down specs often 
+    helps understanding what the function is supposed to do, and helps users of your code as well!
+&lt;/p&gt;
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-important">
+GOOD PRACTICE: Notice I wrote as a comment what the helper function is expected to receive. Writing down specs often 
+    helps understanding what the function is supposed to do, and helps users of your code as well!
+</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
+
+
+&lt;p class=&quot;algolab-important&quot; &gt;
+COMMANDMENT: You shall also write on paper!
+&lt;/p&gt;
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+
+
+<p class="algolab-important" >
+COMMANDMENT: You shall also write on paper!
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To get an idea of how <code>gap_rec</code> is working, draw histograms on paper like the following, with different heights at index <code>m</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="img/gap-rec-histogram.svg"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice how at each recursive call, we end up with a histogram that is similar to the inital one, that is, it respects the same preconditions (a list of size &gt;= 2 where first element is smaller or equal than the last one)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Look at the iterative gap here:</li>
 </ul>
 <p><img src="img/iterative-gap.png"/></p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gap_iter</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
@@ -12383,7 +12565,8 @@ $(document).ready(algolab.init);
     <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </pre></div>
 <ul>
-<li>Assuming L contains n &gt;= 2 integers such that L[0] &lt; L[n-1], will the recursive gap always give the same result as the iterative one? If we just change function names, can we run the same test case against both implementations?  (Careful!)</li>
+<li>What is the complexity of <code>gap_rec</code>? Is it faster or slower than <code>gap_iter</code> ?</li>
+<li>Assuming <code>L</code> contains <code>n &gt;= 2</code> integers such that <code>L[0] &lt; L[n-1]</code>, will the recursive gap always give the same result as the iterative one? If we just change function names, can we run the same test case against both implementations?  (Careful!)</li>
 </ul>
 
 </div>
@@ -12391,7 +12574,7 @@ $(document).ready(algolab.init);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12441,18 +12624,14 @@ $(document).ready(algolab.init);
 <li>add some test to the provided testcase class</li>
 <li>Does the pseudocode algorithm work with the empty list? </li>
 <li>What happens if we allow non-distinct numbers? Does it work anyway? </li>
+<li>What is the time complexity of the recursive version? </li>
+<li>What is the memory complexity of the recursive version?</li>
 </ul>
 <p>Notice that</p>
 <ul>
 <li>we renamed <code>binarySearch</code> to <code>binary_search_rec</code> to have more pythonic name and differentiate it from the iterative one</li>
-<li><p>the renamed function <code>binary_search_rec(L)</code> only accepts a list, without indexes <code>i</code> and <code>j</code>, we will need a way to specify them when we translate the pseudocode. You can follow the same pattern used for <code>gap_rec_helper</code></p>
-<ul>
-<li>SUGGESTION 1: write as a comment what the helper function is expected to receive. Can it receive an empty list? Can it receive indices out of bounds? You decide the assumptions, but once they are decided you should make sure that unacceptable values don't get into it!</li>
-<li><p>SUGGESTION 2: if you want to make sure no empty list enters the helper function, you can enforce preconditions and do active checking by writing this command at the beginning of the function:</p>
-<div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-</pre></div>
-<p>This command will make python interrupt execution and throw an error as soon it detects list <code>L</code> is empty. You can put any condition you want after <code>assert</code>, but ideally they should be fast to execute.</p>
-</li>
+<li>the renamed function <code>binary_search_rec(L)</code> only accepts a list, without indexes <code>i</code> and <code>j</code>, we will need a way to specify them when we translate the pseudocode. You can follow the same pattern used for <code>gap_rec_helper</code><ul>
+<li>SUGGESTION : write as a comment what the helper function is expected to receive. Can it receive an empty list? Can it receive indices out of bounds? You decide the assumptions, but once they are decided you should make sure that unacceptable values don't get into it!</li>
 </ul>
 </li>
 <li>To understand what's going on, try copy pasting your solution in <a href="http://pythontutor.com/visualize.html#mode=edit" target="_blank">Python tutor</a> and hit <code>Visualize execution</code> and then Forward to step through the process</li>
@@ -12464,7 +12643,7 @@ $(document).ready(algolab.init);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12521,6 +12700,8 @@ $(document).ready(algolab.init);
 <ul>
 <li>This time, there's no code skeleton and you're on your own! </li>
 <li>Try to reuse test cases from the recursive version</li>
+<li>What is the time complexity of the iterative version? Is it different from the recursive version?</li>
+<li>What is the memory complexity of the iterative version? Is it different from the recursive version?</li>
 </ul>
 
 </div>
@@ -12531,7 +12712,7 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Implementation-solutions">Implementation solutions<a class="anchor-link" href="#Implementation-solutions">&#182;</a></h1>
+<h1 id="Solutions">Solutions<a class="anchor-link" href="#Solutions">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -12540,13 +12721,13 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Implement-swap-solution">Implement <code>swap</code> solution<a class="anchor-link" href="#Implement-swap-solution">&#182;</a></h2>
+<h2 id="swap-solution"><code>swap</code> solution<a class="anchor-link" href="#swap-solution">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12602,7 +12783,7 @@ $(document).ready(algolab.init);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">SwapTest</span><span class="p">)</span>
@@ -12620,7 +12801,7 @@ $(document).ready(algolab.init);
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>......
 ----------------------------------------------------------------------
-Ran 6 tests in 0.012s
+Ran 6 tests in 0.013s
 
 OK
 </pre>
@@ -12636,13 +12817,13 @@ OK
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Implement-partial_min_pos-solution">Implement <code>partial_min_pos</code> solution<a class="anchor-link" href="#Implement-partial_min_pos-solution">&#182;</a></h2>
+<h2 id="partial_min_pos-solution"><code>partial_min_pos</code> solution<a class="anchor-link" href="#partial_min_pos-solution">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12682,7 +12863,7 @@ OK
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">PartialMinPosTest</span><span class="p">)</span>
@@ -12700,7 +12881,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>...
 ----------------------------------------------------------------------
-Ran 3 tests in 0.007s
+Ran 3 tests in 0.008s
 
 OK
 </pre>
@@ -12716,13 +12897,13 @@ OK
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="implement-selection_sort-solution">implement <code>selection_sort</code> solution<a class="anchor-link" href="#implement-selection_sort-solution">&#182;</a></h2>
+<h2 id="selection_sort-solution"><code>selection_sort</code> solution<a class="anchor-link" href="#selection_sort-solution">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12776,7 +12957,7 @@ OK
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">SelectionSortTest</span><span class="p">)</span>
@@ -12794,7 +12975,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>......
 ----------------------------------------------------------------------
-Ran 6 tests in 0.013s
+Ran 6 tests in 0.010s
 
 OK
 </pre>
@@ -12810,13 +12991,13 @@ OK
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Implement-gap_rec-solution">Implement gap_rec solution<a class="anchor-link" href="#Implement-gap_rec-solution">&#182;</a></h2>
+<h2 id="gap_rec-solution">gap_rec solution<a class="anchor-link" href="#gap_rec-solution">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12861,7 +13042,7 @@ OK
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">GapRecTest</span><span class="p">)</span>
@@ -12879,7 +13060,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>...
 ----------------------------------------------------------------------
-Ran 3 tests in 0.005s
+Ran 3 tests in 0.008s
 
 OK
 </pre>
@@ -12895,13 +13076,13 @@ OK
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Implement-binary_search_rec-solution">Implement binary_search_rec solution<a class="anchor-link" href="#Implement-binary_search_rec-solution">&#182;</a></h2>
+<h2 id="binary_search_rec-solution">binary_search_rec solution<a class="anchor-link" href="#binary_search_rec-solution">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12982,7 +13163,7 @@ OK
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">BinarySearchRecTest</span><span class="p">)</span>

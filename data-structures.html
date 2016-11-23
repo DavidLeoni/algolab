@@ -11814,6 +11814,13 @@ div#notebook {
         overflow-y: scroll;        
             /* font-size: 50%; */
     }
+
+    
+    
+    code {
+        background-color:rgb(245, 249, 249) !important;
+    }
+    
     
     .algolab-nav-item {
         font-weight:bold;
@@ -11839,7 +11846,7 @@ div#notebook {
         border-left: 5px solid #dfb5b4;
         padding: 1.5em;
         font-weight:bold;
-        margin-bottom:15px;
+        margin-bottom:10px;
     }    
         
     
@@ -11849,7 +11856,7 @@ div#notebook {
         color: #000;        
         padding: 1.5em;
         font-weight:bold;
-        margin-bottom:15px;
+        margin-bottom:10px;
     }
     
     
@@ -12094,26 +12101,34 @@ $(document).ready(algolab.init);
 <span class="kn">import</span> <span class="nn">math</span>
 
 <span class="k">class</span> <span class="nc">ComplexNumber</span><span class="p">:</span>
-    
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Initializes the complex number with real and imaginary part &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
-        
-    <span class="k">def</span> <span class="nf">magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns a float which is the magnitude (that is, the absolute value) of the complex number </span>
+
+    <span class="k">def</span> <span class="nf">phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns a float which is the phase (that is, the vector angle) of the complex number </span>
 <span class="sd">        </span>
 <span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
 <span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
-        <span class="sd">&quot;&quot;&quot; Returns a string representation of the object, overriding default Python behaviour. &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; + &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;i&quot;</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>    
+    
+    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns another ComplexNumber which is the logarithm of this complex number </span>
+<span class="sd">            </span>
+<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
+<span class="sd">            (accomodated for generic base b)</span>
+<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Natural_logarithm</span>
+<span class="sd">        &quot;&quot;&quot;</span>      
+        <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">phase</span><span class="p">()</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">))</span> 
 
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; + &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;i&quot;</span>
+    
 
 <span class="k">class</span> <span class="nc">ComplexNumberTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot; Test cases for ComplexNumber</span>
 
 <span class="sd">         Note this is a *completely* separated class from ComplexNumber and</span>
@@ -12125,10 +12140,10 @@ $(document).ready(algolab.init);
     <span class="k">def</span> <span class="nf">test_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>        
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">test_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+    <span class="k">def</span> <span class="nf">test_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; </span>
-<span class="sd">            Notice we can&#39;t use assertEqual, as the result of magnitude() is a </span>
+<span class="sd">            NOTE: we can&#39;t use assertEqual, as the result of phase() is a </span>
 <span class="sd">            float number which may have floating point rounding errors. So it&#39;s</span>
 <span class="sd">            necessary to use assertAlmostEqual</span>
 <span class="sd">            As an option with the delta you can declare the precision you require.</span>
@@ -12137,16 +12152,22 @@ $(document).ready(algolab.init);
 <span class="sd">            </span>
 <span class="sd">            NOTE: assertEqual might still work on your machine but just DO NOT use it </span>
 <span class="sd">            for float numbers!!!</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># self.assertEqual(ComplexNumber(3.0,4.0).magnitude(),5)  </span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(),</span><span class="mi">5</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>        
+<span class="sd">        &quot;&quot;&quot;</span>       
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">phase</span><span class="p">(),</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
         
     <span class="k">def</span> <span class="nf">test_str</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span> <span class="s2">&quot;1 + 2i&quot;</span><span class="p">)</span>        
         <span class="c1">#self.assertEqual(str(ComplexNumber(1,0)), &quot;1&quot;)</span>
         <span class="c1">#self.assertEqual(str(ComplexNumber(1.0,0)), &quot;1.0&quot;)</span>
         <span class="c1">#self.assertEqual(str(ComplexNumber(0,1)), &quot;i&quot;)</span>
-        <span class="c1">#self.assertEqual(str(ComplexNumber(0,0)), &quot;0&quot;)    </span>
+        <span class="c1">#self.assertEqual(str(ComplexNumber(0,0)), &quot;0&quot;) </span>
+
+        
+    <span class="k">def</span> <span class="nf">test_log</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">phase</span><span class="p">(),</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12172,9 +12193,9 @@ $(document).ready(algolab.init);
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>...
+<pre>....
 ----------------------------------------------------------------------
-Ran 3 tests in 0.007s
+Ran 4 tests in 0.009s
 
 OK
 </pre>
@@ -12224,8 +12245,8 @@ OK
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">mag</span> <span class="o">=</span> <span class="n">my_complex</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
-<span class="k">print</span> <span class="n">mag</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">phase</span> <span class="o">=</span> <span class="n">my_complex</span><span class="o">.</span><span class="n">phase</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">phase</span>
 </pre></div>
 
 </div>
@@ -12238,7 +12259,7 @@ OK
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>5.83095189485
+<pre>1.03037682652
 </pre>
 </div>
 </div>
@@ -12289,6 +12310,44 @@ OK
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also call methods that require a parameter like <code>log(base)</code> . Notice that <code>log</code> function returns a <code>ComplexNumber</code>, and Python will automatically pretty print it for us.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">logarithm</span> <span class="o">=</span> <span class="n">my_complex</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">logarithm</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1.09861228867 + 1.03037682652i
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Ok, now we are ready to define our own stuff.</p>
 
 </div>
@@ -12299,25 +12358,49 @@ OK
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Complex-numbers-equality">Complex numbers equality<a class="anchor-link" href="#Complex-numbers-equality">&#182;</a></h3><p><img src="img/complex-numbers-equality.png"></p>
-<p>Here we will try to give you a glimpse of some aspectes related to Python equality, and trying to respect interfaces when overriding methods. Equality can be a nasty subject, here we will treat it in a simplified form.</p>
+<h3 id="Complex-numbers-magnitude">Complex numbers magnitude<a class="anchor-link" href="#Complex-numbers-magnitude">&#182;</a></h3><p><img src="img/complex-numbers-magnitude-1.png">
+<img src="img/complex-numbers-magnitude-2.png"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Implement the <code>magnitude</code> method, using this signature:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns a float which is the magnitude (that is, the absolute value) of the complex number </span>
+
+<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
+<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="n">Error</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>
+</pre></div>
+<p>To test it, add this test case to <code>ComplexNumberTest</code> class (notice the <code>almost</code> in <code>assertAlmostEquals</code> !!!):</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(),</span><span class="mi">5</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Complex-numbers-equality">Complex numbers equality<a class="anchor-link" href="#Complex-numbers-equality">&#182;</a></h3><p>Here we will try to give you a glimpse of some aspects related to Python equality, and trying to respect interfaces when overriding methods. Equality can be a nasty subject, here we will treat it in a simplified form.</p>
+<p><img src="img/complex-numbers-equality.png"></p>
 <ul>
-<li><p>Can you try to implement equality for ComplexNumber more or less as it was done for Fraction in theory slides?</p>
-<p>use</p>
+<li><p>Implement equality for <code>ComplexNumber</code> more or less as it was done for <code>Fraction</code></p>
+<p>Use this method signature:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 </pre></div>
-<p>and write some tests as well!</p>
-</li>
-<li><p>Beware  'equality' is tricky in Python for float numbers! Rule of thumb: when overriding <code>__eq__</code>, use 'dumb' equality, two things are the same only if their parts are literally equal</p>
-</li>
-<li>If instead you need to determine if two objects are similar, define other 'closeness' functions.</li>
-<li>(Non mandatory read) if you are interested in the gory details of equality, see<ul>
-<li><a href="http://jcalderone.livejournal.com/32837.html" target="_blank">How to Override comparison operators in Python</a></li>
-<li><a href="http://www.asmeurer.com/blog/posts/what-happens-when-you-mess-with-hashing-in-python/" target="_blank">Messing with hashing </a></li>
-</ul>
 </li>
 </ul>
-<p>Use this simple test case to check for equality:</p>
+<p>and use this simple test case to check for equality:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_integer_equality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Note all other tests depend on this test !</span>
@@ -12329,6 +12412,15 @@ OK
         <span class="n">c</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="mi">2</span>        
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
+<ul>
+<li>Beware  'equality' is tricky in Python for float numbers! Rule of thumb: when overriding <code>__eq__</code>, use 'dumb' equality, two things are the same only if their parts are literally equal    </li>
+<li>If instead you need to determine if two objects are similar, define other 'closeness' functions.</li>
+<li>(Non mandatory read) if you are interested in the gory details of equality, see<ul>
+<li><a href="http://jcalderone.livejournal.com/32837.html" target="_blank">How to Override comparison operators in Python</a></li>
+<li><a href="http://www.asmeurer.com/blog/posts/what-happens-when-you-mess-with-hashing-in-python/" target="_blank">Messing with hashing </a></li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div>
@@ -12338,13 +12430,94 @@ OK
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Complex-numbers-isclose">Complex numbers isclose<a class="anchor-link" href="#Complex-numbers-isclose">&#182;</a></h3><p>Complex numbers can be represented as vectors, so intuitively we can determine if a complex number is close to another by checking that the distance between its vector tip and the the other tip is less than a given delta. There are more precise ways to calculate it, but here we prefer keeping the example simple.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Given two complex numbers</p>
+$$z_1 = a + bi$$<p>and</p>
+$$z_2 = c + di$$<p>We can consider them as close if they satisfy this condition:
+$$\sqrt{(a-c)^2 + (b-d)^2} < delta$$</p>
+<ul>
+<li>Implement the method :</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns True if the complex number is within a delta distance from complex number c.                                </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="n">Error</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
+</pre></div>
+<p>Using the testcase:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>
+</pre></div>
+<ul>
+<li>Notice in the testcase we use <code>assertTrue</code> because we expect <code>isclose</code> to return a <code>bool</code> value, and 
+we also test a case where we expect <code>False</code></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
+
+&lt;p class=&quot;algolab-important&quot;&gt;
+REMEMBER: Equality with &lt;code&gt;__eq__&lt;/code&gt; and closeness functions like &lt;code&gt;isclose&lt;/code&gt; 
+are very different things. Equality should check if two objects have the same memory address or, alternatively, 
+if they contain the same things, while closeness functions 
+should check if two objects are similar. You should never use functions like &lt;code&gt;isclose&lt;/code&gt; inside
+&lt;code&gt;__eq__&lt;/code&gt; methods.
+&lt;/p&gt;
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-important">
+REMEMBER: Equality with <code>__eq__</code> and closeness functions like <code>isclose</code> 
+are very different things. Equality should check if two objects have the same memory address or, alternatively, 
+if they contain the same things, while closeness functions 
+should check if two objects are similar. You should never use functions like <code>isclose</code> inside
+<code>__eq__</code> methods.
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Complex-numbers-addition">Complex numbers addition<a class="anchor-link" href="#Complex-numbers-addition">&#182;</a></h3><p><img src="img/complex-numbers-addition.png"></p>
 <ul>
-<li><p>Can you try to implement addition for ComplexNumber more or less as it was done for Fraction in theory slides?
-Write some tests as well!</p>
-</li>
-<li><p><code>a</code> and <code>c</code> correspond to <code>real</code>, <code>b</code> and <code>d</code> correspond to <code>imaginary</code></p>
-</li>
+<li><code>a</code> and <code>c</code> correspond to <code>real</code>, <code>b</code> and <code>d</code> correspond to <code>imaginary</code></li>
+<li>implement addition for <code>ComplexNumber</code> more or less as it was done for <code>Fraction</code> in theory slides</li>
+<li>write some tests as well!</li>
 </ul>
 <p>use</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
@@ -12355,7 +12528,7 @@ Write some tests as well!</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12390,7 +12563,7 @@ Write some tests as well!</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span>    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span> 
@@ -12511,10 +12684,11 @@ Write some tests as well!</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">math</span>
 
 <span class="k">class</span> <span class="nc">ComplexNumber</span><span class="p">:</span>
 
@@ -12524,10 +12698,42 @@ Write some tests as well!</p>
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; + &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;i&quot;</span>
-        
+
+    <span class="k">def</span> <span class="nf">phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns a float which is the phase (that is, the vector angle) of the complex number </span>
+<span class="sd">        </span>
+<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
+<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>    
+    
+    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns another ComplexNumber which is the logarithm of this complex number </span>
+<span class="sd">            </span>
+<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
+<span class="sd">            (accomodated for generic base b)</span>
+<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Natural_logarithm</span>
+<span class="sd">        &quot;&quot;&quot;</span>      
+        <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">phase</span><span class="p">()</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">))</span> 
+    
+    
+    <span class="k">def</span> <span class="nf">magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns a float which is the magnitude (that is, the absolute value) of the complex number </span>
+<span class="sd">        </span>
+<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
+<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    
     <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span> 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">real</span>  <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">imaginary</span>
 
+    <span class="k">def</span> <span class="nf">isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns True if the complex number is within a delta distance from complex number c.                                </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="o">-</span><span class="n">c</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="o">-</span><span class="n">c</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">delta</span>
+    
     <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span> 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">):</span> 
             <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span>
@@ -12563,7 +12769,50 @@ Write some tests as well!</p>
 
 <span class="k">class</span> <span class="nc">ComplexNumberTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
+    <span class="sd">&quot;&quot;&quot; Test cases for ComplexNumber</span>
+
+<span class="sd">         Note this is a *completely* separated class from ComplexNumber and</span>
+<span class="sd">         we declare it here just for testing purposes!</span>
+<span class="sd">         The &#39;self&#39; you see here have nothing to do with the selfs from the</span>
+<span class="sd">         ComplexNumber methods!        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+        
+    <span class="k">def</span> <span class="nf">test_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">test_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">            NOTE: we can&#39;t use assertEqual, as the result of phase() is a </span>
+<span class="sd">            float number which may have floating point rounding errors. So it&#39;s</span>
+<span class="sd">            necessary to use assertAlmostEqual</span>
+<span class="sd">            As an option with the delta you can declare the precision you require.</span>
+<span class="sd">            For more info see Python docs: </span>
+<span class="sd">            https://docs.python.org/2/library/unittest.html#unittest.TestCase.assertAlmostEqual</span>
+<span class="sd">            </span>
+<span class="sd">            NOTE: assertEqual might still work on your machine but just DO NOT use it </span>
+<span class="sd">            for float numbers!!!</span>
+<span class="sd">        &quot;&quot;&quot;</span>       
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">phase</span><span class="p">(),</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">test_str</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span> <span class="s2">&quot;1 + 2i&quot;</span><span class="p">)</span>        
+        <span class="c1">#self.assertEqual(str(ComplexNumber(1,0)), &quot;1&quot;)</span>
+        <span class="c1">#self.assertEqual(str(ComplexNumber(1.0,0)), &quot;1.0&quot;)</span>
+        <span class="c1">#self.assertEqual(str(ComplexNumber(0,1)), &quot;i&quot;)</span>
+        <span class="c1">#self.assertEqual(str(ComplexNumber(0,0)), &quot;0&quot;) </span>
+
+        
+    <span class="k">def</span> <span class="nf">test_log</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">phase</span><span class="p">(),</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+        
     
+    <span class="k">def</span> <span class="nf">test_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(),</span><span class="mi">5</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>                
+        
     <span class="k">def</span> <span class="nf">test_integer_equality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Note all other tests depend on this test !</span>
@@ -12574,6 +12823,10 @@ Write some tests as well!</p>
         <span class="n">c</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="mi">1</span>       
         <span class="n">c</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="mi">2</span>        
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>    
+        
+    <span class="k">def</span> <span class="nf">test_isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>
         
     <span class="k">def</span> <span class="nf">test_add_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
@@ -12616,7 +12869,7 @@ Write some tests as well!</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ComplexNumberTest</span><span class="p">)</span>
@@ -12632,13 +12885,71 @@ Write some tests as well!</p>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>...........
+<pre>.................
 ----------------------------------------------------------------------
-Ran 11 tests in 0.018s
+Ran 17 tests in 0.031s
 
 OK
 </pre>
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">e</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.718281828459045</pre>
+</div>
+
 </div>
 
 </div>
