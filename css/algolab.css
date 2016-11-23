@@ -32,6 +32,11 @@
     
     .algolab-chapter-link {
         font-size:150%;
+        margin-right:15px;        
+    }
+    
+    .algolab-chapter-link a {
+        text-decoration: none;
     }    
     
     .algolab-title {
