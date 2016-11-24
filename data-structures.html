@@ -12445,22 +12445,21 @@ $$z_1 = a + bi$$<p>and</p>
 $$z_2 = c + di$$<p>We can consider them as close if they satisfy this condition:
 $$\sqrt{(a-c)^2 + (b-d)^2} < delta$$</p>
 <ul>
-<li>Implement the method :</li>
+<li>Implement the method, adding it to <code>ComplexNumber</code> class:</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Returns True if the complex number is within a delta distance from complex number c.                                </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
 </pre></div>
-<p>Using the testcase:</p>
+<p>and add this test case to <code>ComplexNumberTest</code> class:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;  Notice we use `assertTrue` because we expect `isclose` to return a `bool` value, and </span>
+<span class="sd">             we also test a case where we expect `False`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>        
         <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>
 </pre></div>
-<ul>
-<li>Notice in the testcase we use <code>assertTrue</code> because we expect <code>isclose</code> to return a <code>bool</code> value, and 
-we also test a case where we expect <code>False</code></li>
-</ul>
 
 </div>
 </div>
@@ -12519,30 +12518,20 @@ should check if two objects are similar. You should never use functions like <co
 <li>implement addition for <code>ComplexNumber</code> more or less as it was done for <code>Fraction</code> in theory slides</li>
 <li>write some tests as well!</li>
 </ul>
-<p>use</p>
+<p>Use this definition:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>
+</pre></div>
+<p>And add this to the <code>ComplexNumberTest</code> class:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_add_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+
+    <span class="k">def</span> <span class="nf">test_add_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>
 </pre></div>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-
-<span class="k">class</span> <span class="nc">ComplexNumberTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">test_add</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -12563,7 +12552,7 @@ should check if two objects are similar. You should never use functions like <co
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span>    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span> 
@@ -12638,13 +12627,14 @@ should check if two objects are similar. You should never use functions like <co
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Complex-numbers-multiplication">Complex numbers multiplication<a class="anchor-link" href="#Complex-numbers-multiplication">&#182;</a></h3><p><img src="img/complex-numbers-multiplication.png"></p>
 <ul>
-<li>Can you try to implement multiplication for ComplexNumber more or less as it was done for Fraction in theory slides?</li>
-<li>Can you extend multiplication to wor with scalars (both left and right) as well?</li>
+<li>Implement multiplication for ComplexNumber, usintaking inspiration from previous <code>__add__</code> implementation</li>
+<li>Can you extend multiplication to work with scalars (both left and right) as well?</li>
 </ul>
-<p>use</p>
+<p>To implement <code>__mul__</code>, copy this definition into <code>ComplexNumber</code> class:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
 </pre></div>
-<p>Use these test cases:</p>
+<p>and add test cases to <code>ComplexNumberTest</code> class:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_mul_by_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
 
@@ -12701,7 +12691,7 @@ should check if two objects are similar. You should never use functions like <co
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12824,7 +12814,7 @@ should check if two objects are similar. You should never use functions like <co
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12965,6 +12955,9 @@ should check if two objects are similar. You should never use functions like <co
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>    
         
     <span class="k">def</span> <span class="nf">test_isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;  Notice we use `assertTrue` because we expect `isclose` to return a `bool` value, and </span>
+<span class="sd">             we also test a case where we expect `False`</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>        
         <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>
         
@@ -13009,7 +13002,7 @@ should check if two objects are similar. You should never use functions like <co
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ComplexNumberTest</span><span class="p">)</span>
@@ -13027,7 +13020,7 @@ should check if two objects are similar. You should never use functions like <co
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.................
 ----------------------------------------------------------------------
-Ran 17 tests in 0.025s
+Ran 17 tests in 0.031s
 
 OK
 </pre>
@@ -13049,7 +13042,7 @@ OK
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -13168,7 +13161,7 @@ OK
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">CappedStackTest</span><span class="p">)</span>
@@ -13186,7 +13179,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.......
 ----------------------------------------------------------------------
-Ran 7 tests in 0.014s
+Ran 7 tests in 0.015s
 
 OK
 </pre>
@@ -13199,7 +13192,7 @@ OK
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span> 
