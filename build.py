@@ -46,7 +46,7 @@ def generate_pdf():
 
     log("Generating PDFs ...")
     
-    if which("swkhtmltopdf") == None:
+    if which("wkhtmltopdf") == None:
         log("ERROR: Couldn't find program wkhtmltopdf , it's needed to generate the pdfs!" )
         sys.exit(-1)
 
