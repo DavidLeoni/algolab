@@ -12195,7 +12195,7 @@ $(document).ready(algolab.init);
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>....
 ----------------------------------------------------------------------
-Ran 4 tests in 0.008s
+Ran 4 tests in 0.009s
 
 OK
 </pre>
@@ -12376,7 +12376,7 @@ OK
 <span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
 <span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="n">Error</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>
 </pre></div>
 <p>To test it, add this test case to <code>ComplexNumberTest</code> class (notice the <code>almost</code> in <code>assertAlmostEquals</code> !!!):</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -12450,7 +12450,7 @@ $$\sqrt{(a-c)^2 + (b-d)^2} < delta$$</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Returns True if the complex number is within a delta distance from complex number c.                                </span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="n">Error</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
 </pre></div>
 <p>Using the testcase:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -12669,6 +12669,146 @@ should check if two objects are similar. You should never use functions like <co
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Stack">Stack<a class="anchor-link" href="#Stack">&#182;</a></h1><h2 id="Stack-theory">Stack theory<a class="anchor-link" href="#Stack-theory">&#182;</a></h2><p>See theory here: <a href="http://disi.unitn.it/~montreso/sp/slides/04-strutture.pdf">http://disi.unitn.it/~montreso/sp/slides/04-strutture.pdf</a>  (Slide 46)</p>
+<p>See <a href="http://interactivepython.org/runestone/static/pythonds/BasicDS/WhatisaStack.html">stack definition on the book</a></p>
+<p>and following sections :</p>
+<ul>
+<li><a href="http://interactivepython.org/runestone/static/pythonds/BasicDS/TheStackAbstractDataType.html">Stack Abstract Data Type</a></li>
+<li><a href="http://interactivepython.org/runestone/static/pythonds/BasicDS/ImplementingaStackinPython.html">Implementing a Stack in Python</a></li>
+<li><a href="http://interactivepython.org/runestone/static/pythonds/BasicDS/SimpleBalancedParentheses.html">Simple Balanced Parenthesis</a></li>
+<li><a href="http://interactivepython.org/runestone/static/pythonds/BasicDS/BalancedSymbols(AGeneralCase).html" target="_blank">Balanced Symbols - a General Case</a></li>
+</ul>
+<h2 id="Stack-exercises">Stack exercises<a class="anchor-link" href="#Stack-exercises">&#182;</a></h2><p>On slide 46 of <a href="http://disi.unitn.it/~montreso/sp/slides/04-strutture.pdf  (Slide 46">theory</a> there is the pseudo code for a version of stack we will call <code>CappedStack</code>:</p>
+<p>&lt;img src="img/capped-stack.png" width=60%&gt;</p>
+<ul>
+<li>Implement the pseudo code using the following skeleton and unit tests</li>
+<li>Name internal variables that you don't want to expose to class users by prepending them with one underscore <code>'_'</code>, like <code>_elements</code> or <code>_cap</code>. <ul>
+<li>The underscore is just a convention, class users will still be able to get internal variables by accessing them with field accessors like <code>mystack._elements</code></li>
+<li>If users manipulate private fields and complain something is not working, you can tell them it's their fault!</li>
+</ul>
+</li>
+<li>This time, we will try to write a little more robust code. In general, when implementing pseudocode you might need to think more about boundary cases. In this case, we add the additional constraint that if you pass to the stack a negative or zero cap, your class initalization is expected to fail and raise an <code>Exception</code> </li>
+</ul>
+<p>Notice that:</p>
+<ul>
+<li>In this case, when this stack reaches <code>cap</code> size, successive <code>push</code> requests silently exit without raising errors. Other implementations might raise an error and stop excecution when trying to push over on already filled stack.</li>
+<li>In this case, when this stack is required to <code>pop</code> or <code>peek</code>, if it is empty the functions will not return anything. During the Python translation, we might not return anything as well and relying on Python implicitly returning <code>None</code>.</li>
+<li><code>pop</code> will both modify the stack <em>and</em> return a value</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="k">class</span> <span class="nc">CappedStack</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cap</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Creates a CappedStack capped at cap. Cap must be &gt; 0, otherwise an AssertionError is thrown</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">cap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the cap of the stack </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
+        
+        
+<span class="k">class</span> <span class="nc">CappedStackTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot; Test cases for CappedStackTest</span>
+
+<span class="sd">         Note this is a *completely* separated class from CappedStack and</span>
+<span class="sd">         we declare it here just for testing purposes!</span>
+<span class="sd">         The &#39;self&#39; you see here have nothing to do with the selfs from the</span>
+<span class="sd">         CappedStack methods!        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">test_init_wrong_cap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>   
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">AssertionError</span><span class="p">):</span>
+            <span class="n">CappedStack</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">AssertionError</span><span class="p">):</span>
+            <span class="n">CappedStack</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+    
+    <span class="k">def</span> <span class="nf">test_cap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">CappedStack</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cap</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">CappedStack</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">cap</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span> 
+    
+        
+    <span class="k">def</span> <span class="nf">test_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">CappedStack</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">test_isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">CappedStack</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">())</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">())</span>
+        
+    
+    <span class="k">def</span> <span class="nf">test_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">CappedStack</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>        
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">test_peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">CappedStack</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">peek</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>         
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">peek</span><span class="p">(),</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">peek</span><span class="p">(),</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>  <span class="c1"># testing peek is not changing the stack</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+                        
+    <span class="k">def</span> <span class="nf">test_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">CappedStack</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">peek</span><span class="p">(),</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">)</span>  <span class="c1"># capped, pushing should do nothing now!</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">peek</span><span class="p">(),</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Solutions">Solutions<a class="anchor-link" href="#Solutions">&#182;</a></h1>
 </div>
 </div>
@@ -12684,7 +12824,7 @@ should check if two objects are similar. You should never use functions like <co
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12869,7 +13009,7 @@ should check if two objects are similar. You should never use functions like <co
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ComplexNumberTest</span><span class="p">)</span>
@@ -12898,41 +13038,140 @@ OK
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
-</pre></div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Stack-Solution">Stack Solution<a class="anchor-link" href="#Stack-Solution">&#182;</a></h2>
 </div>
 </div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>1.0</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">e</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="k">class</span> <span class="nc">CappedStack</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cap</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Creates a CappedStack capped at cap. </span>
+<span class="sd">        </span>
+<span class="sd">            Cap must be &gt; 0, otherwise an AssertionError is thrown</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="k">assert</span> <span class="n">cap</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="c1"># notice we assign to variables with underscore to respect Python conventions        </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cap</span> <span class="o">=</span> <span class="n">cap</span>
+        <span class="c1"># notice with use _elements instead of the A in the pseudocode, because it is</span>
+        <span class="c1"># clearer, starts with underscore, and capital letters are usual reserved </span>
+        <span class="c1"># for classes or constants</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span> <span class="o">=</span> <span class="p">[]</span>         
+        
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_elements</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_elements</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_elements</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>        
+        <span class="c1"># else: implicitly, Python will return None</span>
+    
+    <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_elements</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># else: implicitly, Python will return None        </span>
+        
+    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_elements</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cap</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="c1"># else fail silently</span>
+
+    <span class="k">def</span> <span class="nf">cap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the cap of the stack </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cap</span>
+        
+        
+<span class="k">class</span> <span class="nc">CappedStackTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot; Test cases for CappedStackTest</span>
+
+<span class="sd">         Note this is a *completely* separated class from CappedStack and</span>
+<span class="sd">         we declare it here just for testing purposes!</span>
+<span class="sd">         The &#39;self&#39; you see here have nothing to do with the selfs from the</span>
+<span class="sd">         CappedStack methods!        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">test_init_wrong_cap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>   
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">AssertionError</span><span class="p">):</span>
+            <span class="n">CappedStack</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">AssertionError</span><span class="p">):</span>
+            <span class="n">CappedStack</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+    
+    <span class="k">def</span> <span class="nf">test_cap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">CappedStack</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cap</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">CappedStack</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">cap</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span> 
+    
+        
+    <span class="k">def</span> <span class="nf">test_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">CappedStack</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">test_isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">CappedStack</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">())</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">())</span>
+        
+    
+    <span class="k">def</span> <span class="nf">test_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">CappedStack</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>        
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">test_peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">CappedStack</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">peek</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>         
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">peek</span><span class="p">(),</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">peek</span><span class="p">(),</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>  <span class="c1"># testing peek is not changing the stack</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+                        
+    <span class="k">def</span> <span class="nf">test_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">CappedStack</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">peek</span><span class="p">(),</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">)</span>  <span class="c1"># capped, pushing should do nothing now!</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">peek</span><span class="p">(),</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">CappedStackTest</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12943,15 +13182,30 @@ OK
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.014s
 
-
-<div class="output_text output_subarea output_execute_result">
-<pre>2.718281828459045</pre>
+OK
+</pre>
+</div>
 </div>
 
 </div>
+</div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
 </div>
 </div>
 
