@@ -2,7 +2,7 @@ import sys
 import unittest
 from IPython.core.display import HTML
 
-
+# todo look at test order here: http://stackoverflow.com/a/18499093
 def run(testcase):        
     suite = unittest.TestLoader().loadTestsFromTestCase(testcase)
     unittest.TextTestRunner(verbosity=1,stream=sys.stderr).run( suite )
