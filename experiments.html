@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>index</title>
+<title>experiments</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11751,7 +11751,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<!-- !!!!!!!!!!    NOTICE THE INDEX IN THE CELL BELOW HERE  WILL LOOK INVISIBLE IN JUPYTER  !!!!!!!!!!!!!!!!!   -->
+<h1 id="Just-some-rubbish,-ignore-it">Just some rubbish, ignore it<a class="anchor-link" href="#Just-some-rubbish,-ignore-it">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -11760,387 +11760,22 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">algolab</span>
-<span class="n">algolab</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<style>
-
-    #algolab-nav {
-        position: fixed;
-        top: 10px; 
-        left: 5px; 
-        background: white;
-        width: 200px; 
-        padding: 10px; 
-        z-index: 10;
-    }
-
-    /* style="background: rgba(255, 255, 255, 0);" class="unstyled" */
-  
-    #algolab-toc {
-        position: fixed;
-        top: 100px; 
-        left: -55px; 
-        background: rgba(255, 255, 255, 0);
-        
-        height: 80%;
-        width: 200px; 
-        padding: 20px; 
-        z-index: 10;
-        overflow-y: scroll;        
-            /* font-size: 50%; */
-    }
-
-    
-    
-    code {
-        background-color:rgb(245, 249, 249) !important;
-    }
-    
-    
-    .algolab-nav-item {
-        font-weight:bold;
-        font-size:120%  
-    }
-    
-    .algolab-chapter-link {
-        font-size:150%;
-        margin-right:15px;        
-    }
-    
-    .algolab-chapter-link a {
-        text-decoration: none;
-    }    
-    
-    .algolab-title {
-        font-size:250%; 
-        font-weight:bold        
-    }    
-        
-    .algolab-warn {    
-        background-color: #fcf2f2;        
-        border-left: 5px solid #dfb5b4;
-        padding: 1.5em;
-        font-weight:bold;
-        margin-bottom:10px;
-    }    
-        
-    
-    .algolab-important {
-        background-color: rgba(255, 238, 0, 0.31);
-        border-left: 5px solid rgba(205, 208, 0, 1.0);
-        color: #000;        
-        padding: 1.5em;
-        font-weight:bold;
-        margin-bottom:10px;
-    }
-    
-    
-    #algolab-toc ul {                                                                                                                                                                           
-        list-style-type: none;                                                                                                                                                                 
-        margin-left: 5px;
-    }
-    
-    #algolab-toc li {        
-         padding-left: 3px;
-    }    
-    
-    #algolab-toc .h1 {
-        font-size:110%; 
-        
-    }
-    
-    #algolab-toc .h2 {
-        font-size:100%; 
-        padding-left:15px;
-    }
-
-    #algolab-toc .h3 {
-        font-size:100%; 
-        padding-left:25px;
-    }
-    
-    
-    
-    #notebook-container {
-        box-shadow : none;
-	-web-kit-box-shadow: none;
-    }
-    
-
-    #algolab-toc .toc-active {
-        background: rgba(168, 254, 255, 0.32);
-    }
- </style>
-
-<script>
-
-/*!
- * toc - jQuery Table of Contents Plugin
- * v0.3.2
- * http://projects.jga.me/toc/
- * copyright Greg Allen 2014
- * MIT License
-*/
-!function(a){a.fn.smoothScroller=function(b){b=a.extend({},a.fn.smoothScroller.defaults,b);var c=a(this);return a(b.scrollEl).animate({scrollTop:c.offset().top-a(b.scrollEl).offset().top-b.offset},b.speed,b.ease,function(){var a=c.attr("id");a.length&&(history.pushState?history.pushState(null,null,"#"+a):document.location.hash=a),c.trigger("smoothScrollerComplete")}),this},a.fn.smoothScroller.defaults={speed:400,ease:"swing",scrollEl:"body,html",offset:0},a("body").on("click","[data-smoothscroller]",function(b){b.preventDefault();var c=a(this).attr("href");0===c.indexOf("#")&&a(c).smoothScroller()})}(jQuery),function(a){var b={};a.fn.toc=function(b){var c,d=this,e=a.extend({},jQuery.fn.toc.defaults,b),f=a(e.container),g=a(e.selectors,f),h=[],i=e.activeClass,j=function(b,c){if(e.smoothScrolling&&"function"==typeof e.smoothScrolling){b.preventDefault();var f=a(b.target).attr("href");e.smoothScrolling(f,e,c)}a("li",d).removeClass(i),a(b.target).parent().addClass(i)},k=function(){c&&clearTimeout(c),c=setTimeout(function(){for(var b,c=a(window).scrollTop(),f=Number.MAX_VALUE,g=0,j=0,k=h.length;k>j;j++){var l=Math.abs(h[j]-c);f>l&&(g=j,f=l)}a("li",d).removeClass(i),b=a("li:eq("+g+")",d).addClass(i),e.onHighlight(b)},50)};return e.highlightOnScroll&&(a(window).bind("scroll",k),k()),this.each(function(){var b=a(this),c=a(e.listType);g.each(function(d,f){var g=a(f);h.push(g.offset().top-e.highlightOffset);var i=e.anchorName(d,f,e.prefix);if(f.id!==i){a("<span/>").attr("id",i).insertBefore(g)}var l=a("<a/>").text(e.headerText(d,f,g)).attr("href","#"+i).bind("click",function(c){a(window).unbind("scroll",k),j(c,function(){a(window).bind("scroll",k)}),b.trigger("selected",a(this).attr("href"))}),m=a("<li/>").addClass(e.itemClass(d,f,g,e.prefix)).append(l);c.append(m)}),b.html(c)})},jQuery.fn.toc.defaults={container:"body",listType:"<ul/>",selectors:"h1,h2,h3",smoothScrolling:function(b,c,d){a(b).smoothScroller({offset:c.scrollToOffset}).on("smoothScrollerComplete",function(){d()})},scrollToOffset:0,prefix:"toc",activeClass:"toc-active",onHighlight:function(){},highlightOnScroll:!0,highlightOffset:100,anchorName:function(c,d,e){if(d.id.length)return d.id;var f=a(d).text().replace(/[^a-z0-9]/gi," ").replace(/\s+/g,"-").toLowerCase();if(b[f]){for(var g=2;b[f+g];)g++;f=f+"-"+g}return b[f]=!0,e+"-"+f},headerText:function(a,b,c){return c.text()},itemClass:function(a,b,c,d){return d+"-"+c[0].tagName.toLowerCase()}}}(jQuery);
-
-function showthis(url) {
-    window.open(url, "pres", "toolbar=yes,scrollbars=yes,resizable=yes,top=10,left=400,width=500,height=500");
-    return(false);
-}
-
-var algolab = {
-    
-    isReduced : function(){
-        return $(window).width() < 924;
-    },
-    hoverToc : function(){
-        return $('#algolab-toc:hover').length != 0;
-    },
-    resize : function(){
-        if (algolab.isReduced()){
-            $("#algolab-toc").hide();
-        } else {
-            $("#algolab-toc").show();
-            $("#algolab-toc").css("background","rgba(255, 255, 255, 0)");
-            
-            tocParams = {
-                
-                'selectors': 'h1,h2,h3', //elements to use as headings
-                'container': 'body', //element to find all selectors in
-                'smoothScrolling': true, //enable or disable smooth scrolling on click
-                 //doesn't work  'prefix': 'algolab-toc', //prefix for anchor tags and class names
-                //'onHighlight': function(el) {}, //called when a new section is highlighted 
-                'highlightOnScroll': true, //add class to heading that is currently in focus
-                'highlightOffset': 100, //offset to trigger the next headline
-                'anchorName': function(i, heading, prefix) { //custom function for anchor name
-                    return prefix+i;
-                },
-                'headerText': function(i, heading, $heading) { //custom function building the header-item text                  
-                    return $heading.text().replace("¶","");
-                },
-                'itemClass': function(i, heading, $heading, prefix) { // custom function for item class
-                    return $heading[0].tagName.toLowerCase();
-                }                
-            }
-            
-            $('#algolab-toc').toc(tocParams);
-        }
-    },
-    hideCellStartingWith : function(text){
-        $('.border-box-sizing .code_cell pre').filter(function() { 
-                return $(this).text().indexOf(text) === 0; 
-            }).parents('div .cell .input').hide();        
-    },
-    
-    init : function(){
-
-       var toc = $("<div>").attr("id", "algolab-toc");              
-       var indexLink = $("<a>")
-                        .addClass("algolab-nav-item")
-                        .attr("href","index.html#Chapters")
-                        .text("Algolab");
-       
-       
-       
-       var candidateTitleText = $(".algolab-title").text();              
-                                  
-                    
-       
-       var nav = $("<div>")
-                     .attr("id", "algolab-nav")
-                    .append(indexLink);       
-       
-       if (candidateTitleText.length !== 0){
-
-           var title = $("<span>")
-                    .addClass("algolab-nav-item")
-                    .css("padding-left","8px")
-                    .text(candidateTitleText);
-            nav.append("<br>")
-                .append("<br>")
-                .append(title);                                
-        }
-                     
-       
-       algolab.hideCellStartingWith("%%HTML");
-       algolab.hideCellStartingWith("import algolab");      
-       
-       algolab.hideCellStartingWith("algolab.init()"); 
-              
-       if ($("#algolab-toc").length === 0){
-           $("body").append(toc);       
-       } else {
-           $("#algolab-toc").replaceWith(toc);
-       }
-       
-       if ($("#algolab-nav").length === 0){
-           $("body").append(nav);       
-       } else {
-           $("#algolab-nav").replaceWith(nav);
-       }              
-       
-       algolab.resize();
-    }
-}
-
-$( window ).resize(function() {
-    algolab.resize();
-});
-
-
-$("body").on("mousemove",function(event) {
-    if (algolab.isReduced()){
-        if (event.pageX < 50) {            
-             $("#algolab-toc").show(); 
-            $("#algolab-toc").css("background","rgba(255, 255, 255, 1.0)");
-        } else {
-            
-            if (algolab.hoverToc()) {                    
-            } else {
-                $("#algolab-toc").hide();                        
-            }
-                     
-/*            if ($("#algolab-toc").is(":visible")){
-                if (algolab.hoverToc()) {                    
-                } else {
-                    $("#algolab-toc").hide();                        
-                }
-            } else {
-                if (algolab.hoverToc())
-                  show
-              } else {
-                $("#algolab-toc").hide();                        
-               }                 
-            }
-  */     
-        }
-    }
-});
-
-$(document).ready(algolab.init);
-
-</script>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<center>
-<span style="font-size:250%; font-weight:bold "> Module 2: Algorithm and Data Structures Lab </span>
-</center><p>
-<br/>
-<center>
-
- David Leoni <br/>
- teaching assistant <br/>
- david.leoni [AT] unitn.it
-
-</center>
-<br/>
-<center>
-University of Trento
-</center>
-
-<center>
-<br/>
-1 Dic 2016
-<br/>
-v8.0
-</center>
-
-<br/>
-<br/>
-<center>
-This work is licensed under a Creative Commons Attribution 4.0 License
-</center>
-</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Today">Today<a class="anchor-link" href="#Today">&#182;</a></h1><p>1 Dic 2016</p>
-<ul>
-<li>Implement <code>CappedStack</code></li>
-<li>Implement <code>UnorderedList</code></li>
-</ul>
-<h1 id="Next-lab">Next lab<a class="anchor-link" href="#Next-lab">&#182;</a></h1><ul>
-<li>Friday 2nd Dec, 14:00-16:00 Room 215 </li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Course-website">Course website<a class="anchor-link" href="#Course-website">&#182;</a></h1><p><span style="font-size:130%; font-weight:bold"> Theory </span></p>
-<p>See Alberto Montresor website:</p>
-<p><a href="http://cricca.disi.unitn.it/montresor/teaching/scientific-programming" target="_blank" style="font-size:200%">http://cricca.disi.unitn.it/montresor/teaching/scientific-programming</a></p>
-<p><span style="font-size:130%; font-weight:bold"> Lab </span></p>
-<p><a href="https://davidleoni.github.io/algolab" target="_blank" style="font-size:200%">davidleoni.github.io/algolab</a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Chapters">Chapters<a class="anchor-link" href="#Chapters">&#182;</a></h1><p>Worksheets are meant to be used online - pdf quality is not very good, if they result unreadable please tell me</p>
-<p><span class="algolab-chapter-link"> 0. <a href="testing.html" target="_blank" >Testing </a> </span>  (<a href="pdf/testing.pdf">pdf</a>)</p>
-<p><span class="algolab-chapter-link"> 1. <a href="lists.html" target="_blank" >Lists </a> </span> (<a href="pdf/lists.pdf">pdf</a>)</p>
-<p><span class="algolab-chapter-link"> 2. <a href="data-structures.html" target="_blank" >Data Structures </a></span> (<a href="pdf/data-structures.pdf">pdf</a>)</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;h1&gt;Commandments&lt;/h1&gt;
-
-&lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: If you don&#39;t follow the Commandments, bad things happen! 
-&lt;/p&gt;
-
-&lt;p class=&quot;algolab-important&quot; &gt;
-1) You shall test!
-&lt;/p&gt;
-
-To run tests, enter the following command in the terminal:
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
+<span class="n">x</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">x</span>
 </pre></div>
 
 </div>
@@ -12151,21 +11786,11 @@ To run tests, enter the following command in the terminal:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
 
-<div class="output_html rendered_html output_subarea ">
 
-<h1>Commandments</h1>
-
-<p class="algolab-warn">
-WARNING: If you don't follow the Commandments, bad things happen! 
-</p>
-
-<p class="algolab-important" >
-1) You shall test!
-</p>
-
-To run tests, enter the following command in the terminal:
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;a&#39;, &#39;b&#39;]</pre>
 </div>
 
 </div>
@@ -12173,40 +11798,13 @@ To run tests, enter the following command in the terminal:
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span>python -m unittest my-file
-</pre></div>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: In the call above, DON&#39;T append the extension &lt;i&gt;.py&lt;/i&gt; to &lt;i&gt;my-file&lt;/i&gt;
-&lt;br/&gt;
-WARNING: Still, on the hard-disk the file MUST be named with a &lt;i&gt;.py&lt;/i&gt; at the end, like &lt;i&gt;my-file.py&lt;/i&gt;
-&lt;/p&gt;
-
-&lt;p class=&quot;algolab-important&quot; &gt;
-2. You shall also write on paper!
-&lt;/p&gt;
-
-&lt;p class=&quot;algolab-important&quot; &gt;
-3. You shall copy *exactly the same* function definitions as in the exercises!
-&lt;/p&gt;
-
-For example don&#39;t write :
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span>
 </pre></div>
 
 </div>
@@ -12217,25 +11815,11 @@ For example don&#39;t write :
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
-<div class="output_html rendered_html output_subarea ">
 
-<p class="algolab-warn">
-WARNING: In the call above, DON'T append the extension <i>.py</i> to <i>my-file</i>
-<br/>
-WARNING: Still, on the hard-disk the file MUST be named with a <i>.py</i> at the end, like <i>my-file.py</i>
-</p>
-
-<p class="algolab-important" >
-2. You shall also write on paper!
-</p>
-
-<p class="algolab-important" >
-3. You shall copy *exactly the same* function definitions as in the exercises!
-</p>
-
-For example don't write :
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;a&#39;, &#39;b&#39;]</pre>
 </div>
 
 </div>
@@ -12243,28 +11827,15 @@ For example don't write :
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">MY_selection_sort</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-</pre></div>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-important&quot; &gt;
-4. You shall never ever reassign function parameters:
-&lt;/p&gt;
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">y</span>
 </pre></div>
 
 </div>
@@ -12275,13 +11846,11 @@ For example don't write :
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
-<div class="output_html rendered_html output_subarea ">
 
-<p class="algolab-important" >
-4. You shall never ever reassign function parameters:
-</p>
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;a&#39;]</pre>
 </div>
 
 </div>
@@ -12289,42 +11858,15 @@ For example don't write :
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myfun</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">D</span><span class="p">):</span>
-
-        <span class="c1"># You shall not do any of such evil, no matter what the type of the parameter is:</span>
-        <span class="n">i</span> <span class="o">=</span> <span class="mi">666</span>            <span class="c1"># basic types (int, float, ...)</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;666&quot;</span>          <span class="c1"># strings</span>
-        <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">666</span><span class="p">]</span>          <span class="c1"># containers </span>
-        <span class="n">D</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;evil&quot;</span><span class="p">:</span><span class="mi">666</span><span class="p">}</span>   <span class="c1"># dictionaries</span>
-
-        <span class="c1"># For the sole case of composite parameters like lists or dictionaries, </span>
-        <span class="c1"># you can write stuff like this IF AND ONLY IF the function specification </span>
-        <span class="c1"># requires you to modify the parameter internal elements (i.e. sorting a list</span>
-        <span class="c1"># or changing a dictionary field):</span>
-
-        <span class="n">L</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>          <span class="c1"># list</span>
-        <span class="n">D</span><span class="o">.</span><span class="n">my_field</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c1"># dictionary</span>
-</pre></div>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-important&quot; &gt;
-5. You shall use &lt;i&gt;return&lt;/i&gt; command only if you see written &lt;i&gt;return&lt;/i&gt; in the pseudocode!
-&lt;/p&gt;
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+<span class="n">z</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">z</span>
 </pre></div>
 
 </div>
@@ -12335,13 +11877,11 @@ For example don't write :
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
 
-<div class="output_html rendered_html output_subarea ">
 
-<p class="algolab-important" >
-5. You shall use <i>return</i> command only if you see written <i>return</i> in the pseudocode!
-</p>
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</pre>
 </div>
 
 </div>
@@ -12350,162 +11890,31 @@ For example don't write :
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If there is no <code>return</code> in the pseudocode, the function is intended to return <code>None</code>. In this case you don't even need to write <code>return None</code>, as Python will do it implicitly for you.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Slides">Slides<a class="anchor-link" href="#Slides">&#182;</a></h1><h2 id="Lab-1-Slides">Lab 1 Slides<a class="anchor-link" href="#Lab-1-Slides">&#182;</a></h2><p>3 Nov 2016</p>
-<h3 id="Lab-Goals">Lab Goals<a class="anchor-link" href="#Lab-Goals">&#182;</a></h3><ul>
-<li>Going from theory taught by Prof. Alberto Montresor to implementation</li>
-<li>Pseudo code  --&gt;   Python</li>
-</ul>
-<h3 id="How">How<a class="anchor-link" href="#How">&#182;</a></h3><ul>
-<li>Hands-on approach</li>
-<li>Performance considerations</li>
-<li>Focus on correct code</li>
-<li>Few Python functions</li>
-</ul>
-<h3 id="Lab-Midterm?">Lab Midterm?<a class="anchor-link" href="#Lab-Midterm?">&#182;</a></h3><p>Probably not. Still, will provide exam example.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Lab-2-Slides">Lab 2 Slides<a class="anchor-link" href="#Lab-2-Slides">&#182;</a></h2><p>Date: Nov 11th, 2016</p>
-<ul>
-<li>More practical than last time!</li>
-<li>Finish selection_sort and gap implementation</li>
-<li>midlab pause ;-)</li>
-<li>implement a Python class</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Lab-3-Slides">Lab 3 Slides<a class="anchor-link" href="#Lab-3-Slides">&#182;</a></h2><p>Nov 17th, 2016</p>
-<ul>
-<li>Recursion<ul>
-<li><code>gap_rec</code>, <code>binary_search_rec</code></li>
-</ul>
-</li>
-<li><code>binary_search_iter</code></li>
-<li>Will give you more tests </li>
-<li>Write also on paper!</li>
-<li>Copy <em>exactly the same</em> function definitions!<ul>
-<li>For example don't write <code>def MY_selection_sort(A):</code>  </li>
-</ul>
-</li>
-<li>use <code>return</code> command <em>only</em> if you see written <code>return</code> in the pseudocode!<ul>
-<li>If there is no <code>return</code> in the pseudocode, the function is intended to return <code>None</code>. In this case you don't even need to write <code>return None</code>, as Python will do it implicitly for you.</li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Lab-4-Slides">Lab 4 Slides<a class="anchor-link" href="#Lab-4-Slides">&#182;</a></h2><p>Nov 18th, 2016</p>
-<ul>
-<li>Divide et Impera<ul>
-<li>binary_search_iter</li>
-</ul>
-</li>
-<li>Implement ComplexNumber</li>
-</ul>
-<p>New Commandment:</p>
-<p>You shall never ever reassign function parameters:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myfun</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-
-    <span class="c1"># You shall not do any of this evil:</span>
-    <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">666</span><span class="p">]</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">666</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;666&quot;</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
 </pre></div>
-<p>Previous commandments:</p>
-<ul>
-<li>You shall also write on paper!</li>
-<li>You shall copy exactly the same function definitions as in the exercises!</li>
-<li>For example don't write def MY_selection_sort(A):</li>
-<li>You shall use return command only if you see Written return in the pseudocode!</li>
-<li>If there is no return in the pseudocode, the function is intended to return None. In this case you don't even need to write return None, as Python will do it implicitly for you.</li>
-</ul>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Lab-5-slides">Lab 5 slides<a class="anchor-link" href="#Lab-5-slides">&#182;</a></h2><p>24 Nov 2016</p>
-<ul>
-<li>Implement ComplexNumber</li>
-<li>Implement Stack</li>
-</ul>
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Office-hours">Office hours<a class="anchor-link" href="#Office-hours">&#182;</a></h1><p>You can schedule a meeting by emailing me at david.leoni [AT] unitn.it , more or less I'm available every day until 19.00</p>
-<p>Then you will find me in Povo 1 building at DISI, in room 225 DKM :</p>
-<p><img src="img/office.png" width="40%"></p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Resources">Resources<a class="anchor-link" href="#Resources">&#182;</a></h1><ul>
-<li>Online book: <a href="http://interactivepython.org/runestone/static/pythonds/index.html" target="_blank">
-  Problem Solving with Algorithms and Data Structures using Python </a>
-  by Brad Miller and David Ranum</li>
-<li><a href="http://cricca.disi.unitn.it/montresor/teaching/scientific-programming/slides/" target="_blank">  Theory slides </a> by Alberto Montresor</li>
-<li>Will try to be consistent with <a href="http://disi.unitn.it/~teso/courses/sciprog/index.html" target="_blank"> other lab module notes </a> of Stefano Teso and Toma Tebaldi  </li>
-<li><a href="http://www.pythontutor.com/visualize.html#mode=edit" target="_blank">PythonTutor </a>, a visual virtual machine (<em>very useful</em>! can also be found in examples inside the book!)</li>
-<li><a href="https://github.com/DavidLeoni/algolab">Source code</a> of these worksheets (<a href="https://github.com/DavidLeoni/algolab/archive/master.zip">download zip</a>), in <a href="http://jupyter.org">Jupyter Notebook</a> format. </li>
-<li>The internet ....</li>
-</ul>
-<h3 id="Editors">Editors<a class="anchor-link" href="#Editors">&#182;</a></h3><ul>
-<li><a href="http://jupyter.org">Jupyter Notebook</a>: Nice environment to execute Python commands and display results like graphs. Allows to include documentation in Markdown format</li>
-<li><a href="https://pythonhosted.org/spyder/">Spyder</a>: Should be a fine editor, although I haven't used it in a long time</li>
-</ul>
-
-</div>
-</div>
 </div>
     </div>
   </div>
