@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>testing</title>
+<title>trees</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -12046,8 +12046,9 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><span class="algolab-title">Chapter 0: Testing</span></p>
-
+<center>
+<span class="algolab-title">Chapter 3: Trees</span>
+</center>
 </div>
 </div>
 </div>
@@ -12056,12 +12057,7 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><ul>
-<li>If it seems to work, then it works? </li>
-<li>The devil is in the details, especially for complex algorithms.</li>
-<li>We will do a crash course on testing in Python</li>
-</ul>
-<p>In a typical scenario, somebody can ask you to write a function to perform some task, giving only an informal description:</p>
+<p>To Be Done.</p>
 
 </div>
 </div>
@@ -12071,423 +12067,7 @@ $(document).ready(algolab.init);
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">even_numbers</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Return a list of the first n even numbers </span>
-<span class="sd">    </span>
-<span class="sd">    Zero is considered to be the first even number.</span>
-
-<span class="sd">    &gt;&gt;&gt; even_numbers(5)</span>
-<span class="sd">    [0,2,4,6,8]</span>
-<span class="sd">    &quot;&quot;&quot;</span>    
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME!&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In this case, if you run the function as it is, you are reminded to implement it! So let's put some code. 
-As it often happens, first version may be buggy...</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">even_numbers</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Return a list of the first n even numbers </span>
-<span class="sd">    </span>
-<span class="sd">    Zero is considered to be the first even number.</span>
-
-<span class="sd">    &gt;&gt;&gt; even_numbers(5)</span>
-<span class="sd">    [0,2,4,6,8]</span>
-<span class="sd">    &quot;&quot;&quot;</span>    
-    <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
-    <span class="n">r</span><span class="p">[</span><span class="n">n</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>   <span class="c1"># &lt;-- evil bug, puts number &#39;3&#39; in the middle</span>
-    <span class="k">return</span> <span class="n">r</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Typically the first test we do is printing the output and do some 'visual inspection' of the result, in this case we find many numbers are correct but we might miss errors such as the wrong <code>3</code> in the middle:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">even_numbers</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[0, 2, 3, 6, 8]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Furthermore, if we enter commands a the prompt, each time we fix something in the code we need to enter them again.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">algolab</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Assertions">Assertions<a class="anchor-link" href="#Assertions">&#182;</a></h2><p>To go beyond the 'visual inspection' testing, it's better to write some extra code to allow python to check for us if the function actually returns what we expect, and throws an error otherwise. We can do so with <code>assert</code> command:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">even_numbers</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code>---------------------------------------------------------------------------
-AssertionError                            Traceback (most recent call last)
-&lt;ipython-input-5-2363c9dca74d&gt; in &lt;module&gt;()
-----&gt; 1 assert even_numbers(5) == [0,2,4,6,8]
-
-AssertionError:</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This way after we modify code to fix bugs we can just launch the assert commands and have a quick feedback about possible errors.</p>
-<h2 id="Unittest">Unittest<a class="anchor-link" href="#Unittest">&#182;</a></h2><p><code>assert</code> can help for quick testing, but doesn't tell us exactly which is the wrong number in the list returned by <code>even_number(5)</code>. Luckily, Python offers us a better option, which is a complete testing framework called <a href="https://docs.python.org/2/library/unittest.html" target="_blank">unittest</a>.</p>
-<p>Let's give it a try. Suppose you have a file called <code>my-file.py</code> like this:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-
-<span class="k">def</span> <span class="nf">even_numbers</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Return a list of the first n even numbers </span>
-<span class="sd">    </span>
-<span class="sd">    Zero is considered to be the first even number.</span>
-
-<span class="sd">    &gt;&gt;&gt; even_numbers(5)</span>
-<span class="sd">    [0,2,4,6,8]</span>
-<span class="sd">    &quot;&quot;&quot;</span>    
-    <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
-    <span class="n">r</span><span class="p">[</span><span class="n">n</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>   <span class="c1"># &lt;-- evil bug, puts number &#39;3&#39; in the middle</span>
-    <span class="k">return</span> <span class="n">r</span>
-
-<span class="k">class</span> <span class="nc">MyTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">test_long_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">(</span><span class="mi">5</span><span class="p">),[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We won't explain what <code>class</code> mean, the important thing to notice is the method definition:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_long_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">(</span><span class="mi">5</span><span class="p">),[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
-</pre></div>
-<p>In particular:</p>
-<ul>
-<li>method is declared like a function, and begins with <code>'test_'</code> word</li>
-<li>method takes <code>self</code> as parameter</li>
-<li><code>self.assertEqual(even_numbers(5),[0,2,4,6,8])</code> executes the assertion. Other assertions could be <code>self.assertTrue(some_condition) or self.assertFalse(some_condition)</code></li>
-</ul>
-<h3 id="Running-tests">Running tests<a class="anchor-link" href="#Running-tests">&#182;</a></h3><p class="algolab-important">
-
-To run the tests, enter the following command in the terminal: <br/>
-<br/>
-
-<pre>
-    <code>
-
-    python -m unittest my-file
-
-    </code>        
-</pre>
-
-<p class="algolab-warn">
-!!!!!   WARNING: In the call above, DON'T append the extension `.py` to `my-file`    !!!!!!
-<br/>
-!!!!!   WARNING: Still, on the hard-disk the file MUST be named with a `.py` at the end, like `my-file.py`!!!!!!
-
-</p><p>You should see an output like the following:</p>
-<p class="algolab-warn">
-
-WARNING: please ignore the `algolab.run(MyTest)` at the beginning of the following output:
-</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">MyTest</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>F
-======================================================================
-FAIL: test_long_list (__main__.MyTest)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File &#34;&lt;ipython-input-6-cf0baeef2e72&gt;&#34;, line 19, in test_long_list
-    self.assertEqual(even_numbers(5),[0,2,4,6,8])
-AssertionError: Lists differ: [0, 2, 3, 6, 8] != [0, 2, 4, 6, 8]
-
-First differing element 2:
-3
-4
-
-- [0, 2, 3, 6, 8]
-?        ^
-
-+ [0, 2, 4, 6, 8]
-?        ^
-
-
-----------------------------------------------------------------------
-Ran 1 test in 0.005s
-
-FAILED (failures=1)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now you can see a nice display of where the error is, exactly in the middle of the list.</p>
-<h3 id="Adding-tests">Adding tests<a class="anchor-link" href="#Adding-tests">&#182;</a></h3><p>How can we add (good) tests? Since best ones are usually short, it would be better starting small boundary cases. For example like <code>n=1</code> according to function documentation should produce a list containing zero:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">class</span> <span class="nc">MyTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">test_one_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">(</span><span class="mi">1</span><span class="p">),[</span><span class="mi">0</span><span class="p">])</span>
-        
-    <span class="k">def</span> <span class="nf">test_long_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">(</span><span class="mi">5</span><span class="p">),[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span> 
-        
-        
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's call again the command:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">MyTest</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>FF
-======================================================================
-FAIL: test_long_list (__main__.MyTest)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File &#34;&lt;ipython-input-8-ee61bb2dd25a&gt;&#34;, line 7, in test_long_list
-    self.assertEqual(even_numbers(5),[0,2,4,6,8])
-AssertionError: Lists differ: [0, 2, 3, 6, 8] != [0, 2, 4, 6, 8]
-
-First differing element 2:
-3
-4
-
-- [0, 2, 3, 6, 8]
-?        ^
-
-+ [0, 2, 4, 6, 8]
-?        ^
-
-
-======================================================================
-FAIL: test_one_element (__main__.MyTest)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File &#34;&lt;ipython-input-8-ee61bb2dd25a&gt;&#34;, line 4, in test_one_element
-    self.assertEqual(even_numbers(1),[0])
-AssertionError: Lists differ: [3] != [0]
-
-First differing element 0:
-3
-0
-
-- [3]
-+ [0]
-
-----------------------------------------------------------------------
-Ran 2 tests in 0.008s
-
-FAILED (failures=2)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>From the tests we can now see there is clearly something wrong with the number 3 that keeps popping up, making both tests fail. You can immediately which tests have failed by looking at the first two <code>FF</code> at the top of the output. Let's fix the code by removing the buggy line:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">even_numbers</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Return a list of the first n even numbers </span>
-<span class="sd">    </span>
-<span class="sd">    Zero is considered to be the first even number.</span>
-
-<span class="sd">    &gt;&gt;&gt; even_numbers(5)</span>
-<span class="sd">    [0,2,4,6,8]</span>
-<span class="sd">    &quot;&quot;&quot;</span>    
-    <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
-    <span class="c1"># NOW WE COMMENTED THE BUGGY LINE  r[n // 2] = 3   # &lt;-- evil bug, puts number &#39;3&#39; in the middle</span>
-    <span class="k">return</span> <span class="n">r</span>
+<div class=" highlight hl-ipython2"><pre><span></span> 
 </pre></div>
 
 </div>
@@ -12497,63 +12077,29 @@ FAILED (failures=2)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">MyTest</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span> 
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>..
-----------------------------------------------------------------------
-Ran 2 tests in 0.005s
-
-OK
-</pre>
 </div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Wonderful, all the two tests have passed and we got rid of the bug.</p>
-<h3 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h3><ol>
-<li>Think about other boundary cases, and try to add corresponding tests. <em>Hint: Can we ever have an empty list</em>? Which values can assume <code>n</code>?</li>
-<li>What difference there is between the following two test classes? Which one is better for testing?</li>
-</ol>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">test_one_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">(</span><span class="mi">1</span><span class="p">),[</span><span class="mi">0</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">test_long_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">(</span><span class="mi">5</span><span class="p">),[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
-</pre></div>
-<p>and</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">test_stuff</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">(</span><span class="mi">1</span><span class="p">),[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">(</span><span class="mi">5</span><span class="p">),[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
     </div>
   </div>
