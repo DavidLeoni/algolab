@@ -12182,7 +12182,7 @@ $(document).ready(algolab.init);
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>....
 ----------------------------------------------------------------------
-Ran 4 tests in 0.009s
+Ran 4 tests in 0.004s
 
 OK
 </pre>
@@ -12614,7 +12614,7 @@ should check if two objects are similar. You should never use functions like <co
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Complex-numbers-multiplication">Complex numbers multiplication<a class="anchor-link" href="#Complex-numbers-multiplication">&#182;</a></h3><p><img src="img/complex-numbers-multiplication.png"></p>
 <ul>
-<li>Implement multiplication for ComplexNumber, usintaking inspiration from previous <code>__add__</code> implementation</li>
+<li>Implement multiplication for <code>ComplexNumber</code>, taking inspiration from previous <code>__add__</code> implementation</li>
 <li>Can you extend multiplication to work with scalars (both left and right) as well?</li>
 </ul>
 <p>To implement <code>__mul__</code>, copy this definition into <code>ComplexNumber</code> class:</p>
@@ -12901,7 +12901,7 @@ QUESTION: When would you <i>not</i> use a Python list to hold the data in the st
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1)-Understand-the-problem">1) Understand the problem<a class="anchor-link" href="#1)-Understand-the-problem">&#182;</a></h3><p>Copy <a href="#UnorderedList-Code-Skeleton">the following skeleton and unit tests</a>, and then implement the missing methods</p>
+<h3 id="1)-Understand-the-problem">1) Understand the problem<a class="anchor-link" href="#1)-Understand-the-problem">&#182;</a></h3><p>Copy <a href="#UnorderedList-Code-Skeleton">the following skeleton and unit tests</a>, and then implement the missing methods, in the order they are presented in the skeleton.</p>
 <ul>
 <li>This time there is not much pseudo or Python code to find around, you should rely solely on theory from the slides and book, method definitions and your intuition</li>
 <li>Pay close attention to the comments below each method definition, especially for boundary cases</li>
@@ -12924,7 +12924,26 @@ COMMANDMENT: You shall also draw lists on paper, helps a lot avoiding mistakes
 WARNING: Do &lt;i&gt;not&lt;/i&gt; use a Python list
     to hold data inside the data structure.  Differently from the &lt;code&gt;CappedStack&lt;/code&gt; exercise, here you
     can only use &lt;code&gt;Node&lt;/code&gt; class. Each &lt;code&gt;Node&lt;/code&gt; in the &lt;code&gt;_data&lt;/code&gt; field can hold only one element which is provided by the user of the class, and we 
-    don&#39;t care about the type of the value the user gives us (so it can be an int, a float, a string, or even a Python list !)
+    don&#39;t care about the type of the value the user gives us (so it can be an &lt;code&gt;int&lt;/code&gt;, 
+    a &lt;code&gt;float&lt;/code&gt;, a &lt;code&gt;string&lt;/code&gt;, or even a Python list !)
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-warn&quot; &gt;
+WARNING: NEVER EVER WRITE code like this: &lt;code&gt;self = something&lt;/code&gt;
+&lt;br/&gt;&lt;br/&gt;
+Instead, assign values to &lt;i&gt;fields&lt;/i&gt; 
+     of &lt;code&gt;self&lt;/code&gt;, like &lt;code&gt;self._head = something &lt;/code&gt;
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-warn&quot; &gt;
+WARNING: if there isn&#39;t the word &lt;i&gt; &quot;Return&quot;&lt;/i&gt; in a method comment, then most probably that 
+    method does not return anything!
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-warn&quot; &gt;
+WARNING: Methods of the class &lt;code&gt;UnorderedList&lt;/code&gt; are supposed to &lt;i&gt;never&lt;/i&gt; return instances of &lt;code&gt;Node&lt;/code&gt;. If
+ you see them returned in the tests, then you are making some mistake. Users of &lt;code&gt;UnorderedList&lt;/code&gt; are
+    should only be able to get access to items inside the Node &lt;code&gt;data&lt;/code&gt; fields. 
 &lt;/p&gt;
 </pre></div>
 
@@ -12947,7 +12966,26 @@ COMMANDMENT: You shall also draw lists on paper, helps a lot avoiding mistakes
 WARNING: Do <i>not</i> use a Python list
     to hold data inside the data structure.  Differently from the <code>CappedStack</code> exercise, here you
     can only use <code>Node</code> class. Each <code>Node</code> in the <code>_data</code> field can hold only one element which is provided by the user of the class, and we 
-    don't care about the type of the value the user gives us (so it can be an int, a float, a string, or even a Python list !)
+    don't care about the type of the value the user gives us (so it can be an <code>int</code>, 
+    a <code>float</code>, a <code>string</code>, or even a Python list !)
+</p>
+
+<p class="algolab-warn" >
+WARNING: NEVER EVER WRITE code like this: <code>self = something</code>
+<br/><br/>
+Instead, assign values to <i>fields</i> 
+     of <code>self</code>, like <code>self._head = something </code>
+</p>
+
+<p class="algolab-warn" >
+WARNING: if there isn't the word <i> "Return"</i> in a method comment, then most probably that 
+    method does not return anything!
+</p>
+
+<p class="algolab-warn" >
+WARNING: Methods of the class <code>UnorderedList</code> are supposed to <i>never</i> return instances of <code>Node</code>. If
+ you see them returned in the tests, then you are making some mistake. Users of <code>UnorderedList</code> are
+    should only be able to get access to items inside the Node <code>data</code> fields. 
 </p>
 </div>
 
@@ -12974,12 +13012,12 @@ WARNING: Do <i>not</i> use a Python list
 <div class="highlight"><pre><span></span><span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Some error occurred!&quot;</span><span class="p">)</span>
 </pre></div>
 <p>In general, this is the behaviour you also find in regular Python lists.</p>
-<h3 id="2)-Save-a-copy-of-your-work">2) Save a copy of your work<a class="anchor-link" href="#2)-Save-a-copy-of-your-work">&#182;</a></h3><p>You already wrote a lot of code, which you don't want to lose, right? Since we are going to make many modifications, when you reach a point when the code does something useful, it is good practice to save a copy of what you have done somewhere, so if you later screw up something, you can always restore the copy of the work</p>
+<h3 id="2)-Save-a-copy-of-your-work">2) Save a copy of your work<a class="anchor-link" href="#2)-Save-a-copy-of-your-work">&#182;</a></h3><p>You already wrote a lot of code, and you don't want to lose it, right? Since we are going to make many modifications, when you reach a point when the code does something useful, it is good practice to save a copy of what you have done somewhere, so if you later screw up something, you can always restore the copy of the work</p>
 <ul>
 <li>Add also somewhere in the copy (in a comment at the top of the <code>.py</code> file or in a separate <code>README.txt</code> file) the version (like <code>1.0</code>), the date, and a description of the main features (for example "Simple linked list, not particularly performant").</li>
-<li>What we are doing here is the so-called <em>versioning</em>, there are much better ways to do it (like using <a href="https://git-scm.com" target="_blank">git</a>) but we don't address them here.</li>
+<li>Backing up the work is a form of the so-called <em>versioning</em> : there are much better ways to do it (like using <a href="https://git-scm.com" target="_blank">git</a>) but we don't address them here.</li>
 </ul>
-<h3 id="3)-Faster-size()">3) Faster size()<a class="anchor-link" href="#3)-Faster-size()">&#182;</a></h3><p>Implement a <code>size()</code> method that works in <code>O(1)</code>. To make this work without going through the whole list each time, we will need a new <code>_size</code> field that keeps track of the size. When the list is mutated with methods like <code>add</code>, <code>append</code>, etc you will also need to update the <code>_size</code> method accordingly. Proceed like this:</p>
+<h3 id="3)-Faster-size()">3) Faster size()<a class="anchor-link" href="#3)-Faster-size()">&#182;</a></h3><p>Implement a <code>size()</code> method that works in <code>O(1)</code>. To make this work without going through the whole list each time, we will need a new <code>_size</code> field that keeps track of the size. When the list is mutated with methods like <code>add</code>, <code>append</code>, etc you will also need to update the <code>_size</code> field accordingly. Proceed like this:</p>
 <p>3.1) add a new field <code>_size</code> in the class constructor and initialize it to zero</p>
 <p>3.2) modify the <code>size()</code> method to just return the <code>_size</code> field.</p>
 <p>3.3) The data structure starts to be complex, and we need better testing. If you look at the tests, very often there are lines of code like <code>self.assertEquals(ul.to_python(), ['a', 'b'])</code> in the <code>test_add</code> method:</p>
@@ -13098,8 +13136,8 @@ WARNING: Notice the `.to_python()` after `ul` is gone.
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>3.4) Actually update <code>_size</code> in the various methods where data is mutated, like <code>add</code>, <code>insert</code>, etc.</p>
 <p>3.5) Run the tests and hope for the best ;-)</p>
-<h3 id="4)-Faster-append()">4) Faster append()<a class="anchor-link" href="#4)-Faster-append()">&#182;</a></h3><p>We are now better equipped to make further improvements. Once you're done implementing the above and made sure everything works, we can implement an <code>append</code> method that works in O(1) by adding an additional pointer in the data structure that always point at the last node. To further exploit the pointer, we can also add a fast <code>last(self)</code> method tat returns the last value in the list. Proceed like this:</p>
-<p>4.1) Save a copy of your work so far somewhere, putting version (2.0), date, and comments on the improvemts.</p>
+<h3 id="4)-Faster-append()">4) Faster append()<a class="anchor-link" href="#4)-Faster-append()">&#182;</a></h3><p>We are now better equipped to make further improvements. Once you're done implementing the above and made sure everything works, you can implement an <code>append</code> method that works in $O(1)$ by adding an additional pointer in the data structure that always point at the last node. To further exploit the pointer, you can also add a fast <code>last(self)</code> method that returns the last value in the list. Proceed like this:</p>
+<p>4.1) Save a copy of your work somewhere, putting version (2.0), date, and comments on the improvements.</p>
 <p>4.2) Add an additional pointer called <code>_last</code> in the constructor.</p>
 <p>4.3) Copy this method into the class. Just copy it, don't implement it for now.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">last</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -13158,15 +13196,14 @@ WARNING: During the exam you <i>will</i> be asked to write tests, so don't skip 
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_last</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
 </pre></div>
-<p>In the method, create a list and to add elements using only calls to <code>add</code> method and the <code>myAssert</code> method.
-When done, ask your instructor if the test is correct (or look at the proposed solution at the bottom of the worksheet), it is important you get it right otherwise you won't be able to properly test your code.</p>
-<p>4.4.2) You already have test for the <code>append()</code> method, but, how can you be sure the <code>_last</code> pointer is updated correctly throughout the code? As when implementing the fast <code>size()</code>, it might be a good idea to check some invariant in the <code>myAssert</code> method, which is called quite often. Find the invariant and add the corresponding check to <code>myAssert</code> method. When done, ask your instructor if the invariant is correct (or look at the proposed solution at the bottom of the worksheet), it is important you get it right otherwise you won't be able to properly test your code.</p>
+<p>In the method, create a list and add elements using only calls to <code>add</code> method and checks using the <code>myAssert</code> method. When done, ask your instructor if the test is correct (or look at the proposed solution at the bottom of the worksheet), it is important you get it right otherwise you won't be able to properly test your code.</p>
+<p>4.4.2) You already have a test for the <code>append()</code> method, but, how can you be sure the <code>_last</code> pointer is updated correctly throughout the code? When you implemented the fast <code>size()</code> method you wrote some invariant in the <code>myAssert</code> method. We can do the same this time, too. Find the invariant and add the corresponding check to the <code>myAssert</code> method. When done, ask your instructor if the invariant is correct (or look at the proposed solution at the bottom of the worksheet): it is important you get it right otherwise you won't be able to properly test your code.</p>
 <p>4.5) Update the methods that mutate the data structure (<code>add</code>, <code>insert</code>, <code>remove</code> ...) so they keep <code>_last</code> pointed to last element. If the list is empty, <code>_last</code> will point to <code>None</code>. Taking particular care of corner cases such as empty list and one element list.</p>
 <p>4.6) Cross your fingers and run the tests!</p>
-<h3 id="5)-go-bidirectional">5) go bidirectional<a class="anchor-link" href="#5)-go-bidirectional">&#182;</a></h3><p>(OPTIONAL FOR HOME) Our list so far has links that allows us to traverse it fast in one direction. But what if we want fast traversal in the reverse direction, from last to first element? What if we want a <code>pop()</code> that works in <code>O(1)</code>? By adding backward links might help doing that. Proceed in the following way:</p>
-<p>5.1) Once you're done with previous points, save the version you have somewhere adding comments about the improvements done so far, the version number (like 2.0) and the date. Then start working on a new copy.</p>
-<p>5.2) In <code>Node</code> class, add backlinks by adding the attribute <code>_prev</code> and methods <code>get_prev(self)</code> and <code>set_prev(self, pointer)</code>.</p>
-<p>5.3) Improve <code>__str__</code> method so it shows presence or absence of links, along with the size of the list.
+<h3 id="5)-Go-bidirectional">5) Go bidirectional<a class="anchor-link" href="#5)-Go-bidirectional">&#182;</a></h3><p>Our list so far has links that allow us to traverse it fast in one direction. But what if we want fast traversal in the reverse direction, from last to first element? What if we want a <code>pop()</code> that works in $O(1)$ ? To speed up these operations we could add  backward links to each <code>Node</code>. Proceed in the following way:</p>
+<h4 id="5.1)-Save-your-work">5.1) Save your work<a class="anchor-link" href="#5.1)-Save-your-work">&#182;</a></h4><p>Once you're done with previous points, save the version you have somewhere adding comments about the improvements done so far, the version number (like 2.0) and the date. Then start working on a new copy.</p>
+<h4 id="5.2)-Node-backlinks">5.2) Node backlinks<a class="anchor-link" href="#5.2)-Node-backlinks">&#182;</a></h4><p>In <code>Node</code> class, add backlinks by adding the attribute <code>_prev</code> and methods <code>get_prev(self)</code> and <code>set_prev(self, pointer)</code>.</p>
+<h4 id="5.3)-Better-__str__">5.3) Better <code>__str__</code><a class="anchor-link" href="#5.3)-Better-__str__">&#182;</a></h4><p>Improve <code>__str__</code> method so it shows presence or absence of links, along with the size of the list.
 <code>next</code> pointers presence must be represented with <code>&gt;</code> character , absence with <code>*</code> character. They must be put after the item representation. 
 <code>prev</code> pointers presence must be represented with <code>&lt;</code> character , absence with <code>*</code> character. They must be put befor the item representation.</p>
 <p>For example, for the list ['a','b','c'], you would have the following representation:</p>
@@ -13190,14 +13227,14 @@ UnorderedList(size=3):*a*
 
 Broken list, first backward pointer points to something other than None 
 UnorderedList(size=3):&lt;a&gt;&lt;b&gt;&lt;c*</code></pre>
-<p>5.2) update the <code>UnorderedList</code> <code>add</code> method to take into account you now have backlinks. Take particular care for the boundary cases when the list is empty, has one element, or for nodes at the head and at the tail of the list.</p>
-<p>5.3) Implement <code>to_python_reversed</code> method with a linear scan by using the newly added backlinks:</p>
+<h4 id="5.4)-Modify-add()">5.4) Modify add()<a class="anchor-link" href="#5.4)-Modify-add()">&#182;</a></h4><p>Update the <code>UnorderedList</code> <code>add</code> method to take into account you now have backlinks. Take particular care for the boundary cases when the list is empty, has one element, or for nodes at the head and at the tail of the list.</p>
+<h4 id="5.5)--Add-to_python_reversed()">5.5)  Add to_python_reversed()<a class="anchor-link" href="#5.5)--Add-to_python_reversed()">&#182;</a></h4><p>Implement <code>to_python_reversed</code> method with a linear scan by using the newly added backlinks:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">to_python_reversed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Returns a regular Python list with the elements in reverse order,</span>
 <span class="sd">            from last to first. Since v3. &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me&quot;</span><span class="p">)</span>
 </pre></div>
-<p>Make sure this test pass:</p>
+<p>Add also this test, and make sure it pass:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_to_python_reversed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
         <span class="n">ul</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
         <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
@@ -13207,9 +13244,9 @@ UnorderedList(size=3):&lt;a&gt;&lt;b&gt;&lt;c*</code></pre>
         <span class="n">pr</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>  <span class="c1"># we are reversing pr with Python&#39;s &#39;reverse()&#39; method</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">pr</span><span class="p">,</span> <span class="n">ul</span><span class="o">.</span><span class="n">to_python_reversed</span><span class="p">())</span>
 </pre></div>
-<p>5.4) By using the method <code>to_python_reversed()</code>, add a new invariant to add to the <code>myAssert</code> method. If implemented correctly, this will surely spot a lot of possible errors in the code</p>
-<p>5.5) Modify all other methods that mutate the data structure (<code>insert</code>, <code>remove</code>, etc) so that they update the backward links properly.</p>
-<p>5.6) Run the tests. If you wrote meaningful tests and all pass, congrats!</p>
+<h4 id="5.6)-Add-invariant">5.6) Add invariant<a class="anchor-link" href="#5.6)-Add-invariant">&#182;</a></h4><p>By using the method <code>to_python_reversed()</code>, add a new invariant to the <code>myAssert</code> method. If implemented correctly, this will surely spot a lot of possible errors in the code.</p>
+<h4 id="5.7)-Modify-other-methods">5.7) Modify other methods<a class="anchor-link" href="#5.7)-Modify-other-methods">&#182;</a></h4><p>Modify all other methods that mutate the data structure (<code>insert</code>, <code>remove</code>, etc) so that they update the backward links properly.</p>
+<h4 id="5.8)-Run-the-tests">5.8) Run the tests<a class="anchor-link" href="#5.8)-Run-the-tests">&#182;</a></h4><p>If you wrote meaningful tests and all pass, congrats!</p>
 
 </div>
 </div>
@@ -13331,7 +13368,7 @@ UnorderedList(size=3):&lt;a&gt;&lt;b&gt;&lt;c*</code></pre>
         
     <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Return the index in the list of the first item whose value is x. </span>
-<span class="sd">            It is an error if there is no such item.        </span>
+<span class="sd">            If there is no such item, an exception is raised. </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>                        
@@ -13737,7 +13774,7 @@ UnorderedList(size=3):&lt;a&gt;&lt;b&gt;&lt;c*</code></pre>
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.................
 ----------------------------------------------------------------------
-Ran 17 tests in 0.032s
+Ran 17 tests in 0.035s
 
 OK
 </pre>
@@ -13923,7 +13960,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>
 ----------------------------------------------------------------------
-Ran 8 tests in 0.020s
+Ran 8 tests in 0.015s
 
 OK
 </pre>
@@ -14113,7 +14150,8 @@ OK
         
     <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Return the index in the list of the first item whose value is x. </span>
-<span class="sd">            It is an error if there is no such item.        </span>
+<span class="sd">        </span>
+<span class="sd">            If item is not found, raises an Exception.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         
         <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
@@ -14342,7 +14380,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.....................
 ----------------------------------------------------------------------
-Ran 21 tests in 0.037s
+Ran 21 tests in 0.038s
 
 OK
 </pre>
@@ -14544,7 +14582,8 @@ OK
                 
     <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Return the index in the list of the first item whose value is x. </span>
-<span class="sd">            It is an error if there is no such item.        </span>
+<span class="sd">        </span>
+<span class="sd">            If item is not found, raises an Exception.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         
         <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
