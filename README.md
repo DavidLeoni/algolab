@@ -10,8 +10,7 @@ of making ugly workarounds when necessary. So code may or may not work depending
 
 * Generates a  (sort of) real website, with sidebar and rudimental navigation bar
 * Presentation friendly: when the browser window is small, the sidebar disappers. To show it again, hover mouse on the left.
-* Automaticalaly generates PDFs. NOTE: The worksheets are meant to create a website and to be browsed online. 
-Generated PDFs won't look that pretty.
+* Automaticalaly generates crude PDFs.
 * Allow easy running of  `unittest` tests in the worksheets
 * Customizable with python, JS, and CSS code common to all worksheets
 
@@ -36,7 +35,7 @@ python build.py
 Site will be created in `target/` folder. 
 
 NOTE: to also generate PDFs you will need to install WkHtmlToPdf (See point 3 in [previous paragraph](#installation-instructions)
-
+The worksheets are meant to create a website and to be browsed online, so generated PDFs won't look that pretty.
 
 ### Editing the worksheets
 
