@@ -3,7 +3,7 @@ Source code as Jupyter Python worksheets for algorithms lab of Scientific Progra
 
 Website: http://davidleoni.github.io/algolab
 
-** DISCLAIMER **:With these worksheets, we pushed the limits of Jupyter, sometimes abusing its functionality to the point 
+**DISCLAIMER**:With these worksheets, we pushed the limits of Jupyter, sometimes abusing its functionality to the point 
 of making ugly workarounds when necessary. So code may or may not work depending on your particular version of Jupyter.
 
 ### Features
