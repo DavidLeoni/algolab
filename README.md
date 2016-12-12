@@ -48,8 +48,8 @@ First of all, run Jupyter from the root of the directory
 ```
 
 * Python code common to all worksheets is in [algolab.py](algolab.py)
-* Javascript code common to all worksheets is in `js/loc.js`
-* CSS common to all worksheets is in `css/algolab.css`
+* Javascript code common to all worksheets is in [js/algolab.js](js/algolab.js)
+* CSS common to all worksheets is in [css/algolab.css](css/algolab.css)
 
 Each worksheet must start with this Python code:
 
@@ -58,12 +58,12 @@ import algolab
 algolab.init()
 ```
 
-Running it will create the sidebar even during editing in Jupyter. If you want to refresh the sidebar, just run again the cell.
+Running it will create the sidebar even when editing in Jupyter. If you want to refresh the sidebar, just run again the cell.
 
 #### Launch unit tests
 
 Inside worksheets you can run `unittest` tests by launching 
 
 ```python
-algolab.run(nameOfTheTestClass)
+algolab.run(NameOfTheTestClass)
 ```
