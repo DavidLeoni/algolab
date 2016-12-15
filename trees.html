@@ -12057,7 +12057,48 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To Be Done.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Tree-theory">Tree theory<a class="anchor-link" href="#Tree-theory">&#182;</a></h1><p>See Alberto Montresor theory here: <a href="http://disi.unitn.it/~montreso/sp/slides/05-alberi.pdf">http://disi.unitn.it/~montreso/sp/slides/05-alberi.pdf</a></p>
+<p>See <a href="https://interactivepython.org/runestone/static/pythonds/Trees/toctree.html">Trees on the book</a></p>
+<p>In particular, see :</p>
+<ul>
+<li><a href="https://interactivepython.org/runestone/static/pythonds/Trees/VocabularyandDefinitions.html">Vocabulary and definitions</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="GenericTree">GenericTree<a class="anchor-link" href="#GenericTree">&#182;</a></h1><h2 id="GenericTree-theory">GenericTree theory<a class="anchor-link" href="#GenericTree-theory">&#182;</a></h2><p>See Alberto Montresor theory here (NOTE: currently they are being reworked): <a href="http://disi.unitn.it/~montreso/sp/slides/05-alberi.pdf">http://disi.unitn.it/~montreso/sp/slides/05-alberi.pdf</a> (slide 27 and following ones)</p>
+<p><img src="img/generic-tree.png" width="50%" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this worksheet we are going to provide an implementation of a <code>GenericTree</code> class:</p>
+<ul>
+<li><p>Differently from the <code>UnorderedList</code>, which had actually two classes <code>Node</code> and <code>UnorderedList</code> that was pointing to the first node, in this case we just have one <code>GenericTree</code> class. So to grow a tree like the above one in the picture, for each of the boxes that you see we will need to createone instance of <code>GenericTree</code> and link it to the other instances.</p>
+</li>
+<li><p>Ordinary simple trees just hold pointers to the children. In this case, we have an enriched tree which holds ponters also to up the  <em>parent</em> and on the right to the <em>siblings</em>. Whenever we are going to manipulate the tree, we need to take good care of updating these pointers.</p>
+</li>
+</ul>
 
 </div>
 </div>
@@ -12067,20 +12108,999 @@ $(document).ready(algolab.init);
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
+
+&lt;p class=&quot;algolab-important&quot;&gt;
+    ROOT NODE: In this context, we call a node &lt;i&gt;root&lt;/i&gt; 
+            if has no incoming edges &lt;i&gt;and &lt;/i&gt; it has no parent nor sibling
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-important&quot;&gt;
+    DETACHING A NODE: In this context, when we &lt;i&gt;detach&lt;/i&gt; a node from a tree, 
+    the node  becomes the &lt;i&gt;root&lt;/i&gt; of a new tree, which means it will have no 
+    link anymore with the tree it was in.
+&lt;/p&gt;
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-important">
+    ROOT NODE: In this context, we call a node <i>root</i> 
+            if has no incoming edges <i>and </i> it has no parent nor sibling
+</p>
+
+<p class="algolab-important">
+    DETACHING A NODE: In this context, when we <i>detach</i> a node from a tree, 
+    the node  becomes the <i>root</i> of a new tree, which means it will have no 
+    link anymore with the tree it was in.
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="GenericTree-exercises">GenericTree exercises<a class="anchor-link" href="#GenericTree-exercises">&#182;</a></h2><p>You will implement the <code>GenericTree</code> class. You can start by copying the <a href="#GenericTree-Code-Skeleton">code skeleton and unit tests</a>, then proceed reaading the following.</p>
+<ul>
+<li>A <code>GenericTree</code> class holds thus 3 pointers that link it to the other nodes: <code>_child</code>, <code>_sibling</code> and <code>_parent</code>.
+It also holds a value <code>data</code> which is provided by the user to store arbitrary data (could be ints, strings, lists, even other trees, we don't care):</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">GenericTree</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_child</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
+<ul>
+<li>To create a tree, just call the constructor passing whatever you want like this:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">tn</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">tblah</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s2">&quot;blah&quot;</span><span class="p">)</span>
+</pre></div>
+<ul>
+<li>To grow a <code>GenericTree</code>, as basic building block you will have to implement <code>insert_child</code>:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">insert_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_child</span><span class="p">):</span>        
+        <span class="sd">&quot;&quot;&quot; Inserts new_child at the beginning of the children sequence. &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">()</span>
+</pre></div>
+<p>You can call it like this:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">ta</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">ta</span>
+<span class="n">a</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ta</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">ta</span>
+<span class="n">a</span>
+\<span class="o">-</span><span class="n">b</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">tc</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ta</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">tc</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">ta</span>
+<span class="n">a</span>
+<span class="o">|-</span><span class="n">b</span>
+\<span class="o">-</span><span class="n">c</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">td</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">tb</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">td</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">ta</span>
+<span class="n">a</span>
+<span class="o">|-</span><span class="n">b</span>
+<span class="o">|</span> \<span class="o">-</span><span class="n">d</span>
+\<span class="o">-</span><span class="n">c</span>
+</pre></div>
+<p>If you need to test your data structure, we provide you with this handy function <code>gt</code> that allows to easily construct trees from other trees</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span> 
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: DO NOT USE &lt;code&gt;gt&lt;/code&gt; inside your implementation code !!!! &lt;code&gt;gt&lt;/code&gt; is just meant for testing.
+&lt;/p&gt;
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-warn">
+WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>gt</code> is just meant for testing.
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gt</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">[])</span>
+    <span class="sd">&quot;&quot;&quot; Returns a GenericTree of which the root node is filled with provided data</span>
+<span class="sd">        and children. Children must be instances of GenericTree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+<p>NOTE: this function is <em>not</em> a class method, you can directly invoke it like this:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+    <span class="n">a</span>
+
+    <span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))</span>        
+    <span class="n">a</span>
+    <span class="o">|-</span><span class="n">b</span>
+    \<span class="o">-</span><span class="n">c</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="GenericTree-Code-Skeleton">GenericTree Code Skeleton<a class="anchor-link" href="#GenericTree-Code-Skeleton">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="k">class</span> <span class="nc">GenericTree</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; A tree in which each node can have any number of children. </span>
+<span class="sd">    </span>
+<span class="sd">        Each node is linked to its parent and to its immediate sibling on the right</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_child</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="bp">None</span>        
+
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>    
+    
+    <span class="k">def</span> <span class="nf">child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child</span>    
+    
+    <span class="k">def</span> <span class="nf">sibling</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span>
+    
+    <span class="k">def</span> <span class="nf">parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span>
+        
+    <span class="k">def</span> <span class="nf">is_root</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return True if the node is a root of a tree, False otherwise</span>
+<span class="sd">        </span>
+<span class="sd">            A node is a root whenever it has no parent nor siblings.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">==</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">==</span> <span class="bp">None</span>
+    
+    <span class="k">def</span> <span class="nf">is_subtree</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns True if the node is a subtree of another tree</span>
+<span class="sd">        </span>
+<span class="sd">            A subtree always has a parent </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">!=</span> <span class="bp">None</span>
+        
+        
+    <span class="k">def</span> <span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the children as a Python list &quot;&quot;&quot;</span>
+        
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">_sibling</span>
+        <span class="k">return</span> <span class="n">ret</span>    
+        
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns a pretty string of the tree &quot;&quot;&quot;</span>
+        
+        <span class="k">def</span> <span class="nf">str_branches</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">branches</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot; Returns a string with the tree pretty printed. </span>
+
+<span class="sd">                branches: a list of characters representing the parent branches. Characters can be either ` ` or &#39;|&#39;            </span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">strings</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">_data</span><span class="p">)]</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">_child</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>            
+                    <span class="c1"># there are better end characters but let&#39;s not upset </span>
+                    <span class="c1"># stupid Python with unicode problems</span>
+                    <span class="n">joint</span> <span class="o">=</span> <span class="s1">&#39;\-&#39;</span>  
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">joint</span> <span class="o">=</span> <span class="s1">&#39;|-&#39;</span>
+
+
+                <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">:</span>
+                     <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+                <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>            
+                    <span class="n">branches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;  &#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">branches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;| &#39;</span><span class="p">)</span>                        
+                <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str_branches</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">branches</span><span class="p">))</span>
+                <span class="n">branches</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">_sibling</span>
+
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">str_branches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[])</span>
+                
+    
+    <span class="k">def</span> <span class="nf">insert_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_child</span><span class="p">):</span>        
+        <span class="sd">&quot;&quot;&quot; Inserts new_child at the beginning of the children sequence. &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me !&quot;</span> <span class="p">)</span>
+        
+        
+
+    <span class="k">def</span> <span class="nf">insert_children</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_children</span><span class="p">):</span>        
+        <span class="sd">&quot;&quot;&quot; Takes a list of children and inserts them at the beginning of the current children sequence,</span>
+<span class="sd">            </span>
+<span class="sd">            NOTE: in the new sequence new_children appear in the order they are passed to the function!</span>
+<span class="sd">            </span>
+<span class="sd">        </span>
+<span class="sd">            For example:</span>
+<span class="sd">                &gt;&gt;&gt; t = gt(&#39;a&#39;, gt(&#39;b&#39;), gt(&#39;c))</span>
+<span class="sd">                &gt;&gt;&gt; print t</span>
+<span class="sd">                a</span>
+<span class="sd">                |-b</span>
+<span class="sd">                \-c</span>
+
+<span class="sd">                &gt;&gt;&gt;  t.insert_children([gt(&#39;d&#39;), gt(&#39;e&#39;)])</span>
+<span class="sd">                &gt;&gt;&gt; print t</span>
+<span class="sd">                a</span>
+<span class="sd">                |-d</span>
+<span class="sd">                |-e</span>
+<span class="sd">                |-b</span>
+<span class="sd">                \-c            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me !&quot;</span> <span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">insert_sibling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_sibling</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Inserts new_sibling as the immediate next sibling &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me !&quot;</span> <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">insert_siblings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_siblings</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Inserts new_siblings at the beginning of the siblings sequence, </span>
+<span class="sd">            in the same order as they are passed. </span>
+<span class="sd">            </span>
+<span class="sd">            For example:</span>
+<span class="sd">            </span>
+<span class="sd">                &gt;&gt;&gt; bt =  gt(&#39;b&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; t = gt(&#39;a&#39;, bt , gt(&#39;c))</span>
+<span class="sd">                &gt;&gt;&gt; print t</span>
+<span class="sd">                a</span>
+<span class="sd">                |-b</span>
+<span class="sd">                \-c</span>
+
+<span class="sd">                &gt;&gt;&gt;  bt.insert_children([gt(&#39;d&#39;), gt(&#39;e&#39;)])</span>
+<span class="sd">                &gt;&gt;&gt; print t</span>
+<span class="sd">                a</span>
+<span class="sd">                |-b</span>
+<span class="sd">                |-d</span>
+<span class="sd">                |-e</span>
+<span class="sd">                \-c                        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me !&quot;</span> <span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">has_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns True if this node has a child, False otherwise &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child</span> <span class="o">!=</span> <span class="bp">None</span>
+    
+    <span class="k">def</span> <span class="nf">detach_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Detaches the first child. </span>
+<span class="sd">        </span>
+<span class="sd">            if there is no child, raises an Exception </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me !&quot;</span> <span class="p">)</span>
+            
+            
+    <span class="k">def</span> <span class="nf">detach_sibling</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Detaches the first sibling.</span>
+<span class="sd">        </span>
+<span class="sd">            If there is no sibling, raises an Exception </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me !&quot;</span> <span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">detach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Detaches the first child that holds the provided data   &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me !&quot;</span> <span class="p">)</span>
+        
+
+<span class="k">def</span> <span class="nf">gt</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Shorthand function that returns a GenericTree containing the provided </span>
+<span class="sd">        data and children. First parameter is the data, the following ones are the children.</span>
+<span class="sd">        </span>
+<span class="sd">        Usage examples:</span>
+<span class="sd">        </span>
+<span class="sd">        print gt(&#39;a&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; a</span>
+<span class="sd">        </span>
+<span class="sd">        print gt(&#39;a&#39;, gt(&#39;b&#39;), gt(&#39;c&#39;))</span>
+<span class="sd">        &gt;&gt;&gt; a</span>
+<span class="sd">            |-b</span>
+<span class="sd">            \-c</span>
+<span class="sd">                            </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;You need to provide at least one argument for the data!&quot;</span><span class="p">)</span>
+        
+    <span class="n">data</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">children</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    
+    <span class="n">r</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>    
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">children</span><span class="p">):</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span>
+
+<span class="k">def</span> <span class="nf">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">error_row</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Returns a string version of the two trees side by side</span>
+<span class="sd">    </span>
+<span class="sd">        If error_row is given, the line in error is marked.</span>
+<span class="sd">        If error_row == -1 it is ignored </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">s1</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+    <span class="n">s2</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+
+    <span class="n">lines1</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">lines2</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>                
+
+    <span class="n">max_len1</span> <span class="o">=</span> <span class="mi">0</span>                
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines1</span><span class="p">:</span>                                    
+        <span class="n">max_len1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)),</span> <span class="n">max_len1</span><span class="p">)</span>        
+        
+    <span class="n">max_len2</span> <span class="o">=</span> <span class="mi">0</span>                
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines2</span><span class="p">:</span>                                    
+        <span class="n">max_len2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)),</span> <span class="n">max_len2</span><span class="p">)</span>
+    
+    <span class="n">strings</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines2</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines1</span><span class="p">):</span> 
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lines1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span>
+            <span class="n">len1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">len1</span> <span class="o">=</span> <span class="mi">0</span>
+                       
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines2</span><span class="p">)):</span>
+            <span class="n">len2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+            
+            <span class="n">pad_len1</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">max_len1</span> <span class="o">-</span> <span class="n">len1</span>
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="n">pad_len1</span><span class="p">)</span> <span class="o">+</span> <span class="n">lines2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">len2</span> <span class="o">=</span> <span class="mi">0</span>
+            
+        <span class="k">if</span> <span class="p">(</span><span class="n">error_row</span> <span class="o">==</span> <span class="n">i</span><span class="p">):</span>
+            <span class="n">pad_len2</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">max_len1</span> <span class="o">+</span> <span class="n">max_len2</span> <span class="o">-</span> <span class="n">len1</span> <span class="o">-</span> <span class="n">len2</span>
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="n">pad_len2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&lt;--- DIFFERENT ! &quot;</span><span class="p">)</span>
+            
+        <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
+
+            
+<span class="k">class</span> <span class="nc">GenericTreeTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">assertNotNone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">function_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Asserts method result ret equals None &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> 
+                          <span class="n">function_name</span> 
+                          <span class="o">+</span> <span class="s2">&quot; specs say nothing about returning objects! Instead you are returning &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ret</span><span class="p">))</span>
+    
+    
+    <span class="k">def</span> <span class="nf">assertTreeEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Asserts the trees t1 and t2 are equal &quot;&quot;&quot;</span>
+        
+        <span class="k">def</span> <span class="nf">rec_assert</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">row</span><span class="p">):</span>                    
+            
+            <span class="k">if</span> <span class="n">c1</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">!=</span> <span class="n">c2</span><span class="o">.</span><span class="n">data</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;data() is different!</span><span class="se">\n\n</span><span class="s2"> &quot;</span> 
+                                <span class="o">+</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">))</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>            
+            
+            <span class="n">cs1</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
+            <span class="n">cs2</span> <span class="o">=</span> <span class="n">c2</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cs1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cs2</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Children sizes are different !</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+                                <span class="o">+</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">row</span> <span class="o">+</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cs1</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">cs2</span><span class="p">)))</span> <span class="p">)</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">cs1</span><span class="p">)</span> <span class="p">):</span>
+                <span class="n">rec_assert</span><span class="p">(</span><span class="n">cs1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cs2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>   
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span> 
+        
+        <span class="n">rec_assert</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">assertRoot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Checks provided node t is a root, if not raises Exception &quot;&quot;&quot;</span>
+                          
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">is_root</span><span class="p">(),</span> <span class="s2">&quot;Detached node &quot;</span> <span class="o">+</span> <span class="n">t</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; is not a root, does it have still the _parent or _sibling set to something ?&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">test_str_trees</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;a&#39;</span> <span class="ow">in</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;b&#39;</span> <span class="ow">in</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;a&#39;</span> <span class="ow">in</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;c&#39;</span> <span class="ow">in</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))))</span>
+    
+    
+    <span class="k">def</span> <span class="nf">test_assert_trees_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
+        
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">))</span>            
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)))</span>
+        
+        <span class="c1"># different structure</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))))</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
+                        
+    
+    <span class="k">def</span> <span class="nf">test_insert_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
+        <span class="n">ta</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ta</span><span class="o">.</span><span class="n">child</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">tb</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>        
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">ta</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertNotNone</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="s2">&quot;insert_child&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ta</span><span class="o">.</span><span class="n">child</span><span class="p">(),</span> <span class="n">tb</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">parent</span><span class="p">(),</span> <span class="n">ta</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">sibling</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">child</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
+        
+        <span class="n">tc</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+        <span class="n">ta</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">tc</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ta</span><span class="o">.</span><span class="n">child</span><span class="p">(),</span> <span class="n">tc</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">sibling</span><span class="p">(),</span> <span class="n">tb</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">parent</span><span class="p">(),</span> <span class="n">ta</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">sibling</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">test_insert_children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="n">t</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">insert_children</span><span class="p">([</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)])</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)))</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">insert_children</span><span class="p">([</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)))</span>
+        
+
+    <span class="k">def</span> <span class="nf">test_detach_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="n">tb</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">tc</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+        
+        <span class="n">t</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="n">tc</span><span class="p">)</span>
+        
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">detach_child</span><span class="p">()</span>                
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotNone</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="s2">&quot;detach_child&quot;</span><span class="p">)</span> 
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>                
+
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">detach_child</span><span class="p">()</span>         
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">tc</span><span class="p">)</span>
+        
+        
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">detach_child</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">test_detach_one_node</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>    
+        
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="n">t</span><span class="o">.</span><span class="n">detach</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">test_detach_two_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">b1</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">b1</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">detach</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
+        
+        
+    <span class="k">def</span> <span class="nf">test_detach_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">b1</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">))</span>            
+        <span class="n">t</span><span class="o">.</span><span class="n">detach</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
+        
+    
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="GenericTree-Solution">GenericTree Solution<a class="anchor-link" href="#GenericTree-Solution">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="k">class</span> <span class="nc">GenericTree</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; A tree in which each node can have any number of children. </span>
+<span class="sd">    </span>
+<span class="sd">        Each node is linked to its parent and to its immediate sibling on the right</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_child</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="bp">None</span>        
+
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>    
+    
+    <span class="k">def</span> <span class="nf">child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child</span>    
+    
+    <span class="k">def</span> <span class="nf">sibling</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span>
+    
+    <span class="k">def</span> <span class="nf">parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span>
+        
+    <span class="k">def</span> <span class="nf">is_root</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return True if the node is a root of a tree, False otherwise</span>
+<span class="sd">        </span>
+<span class="sd">            A node is a root whenever it has no parent nor siblings.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">==</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">==</span> <span class="bp">None</span>
+    
+    <span class="k">def</span> <span class="nf">is_subtree</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns True if the node is a subtree of another tree</span>
+<span class="sd">        </span>
+<span class="sd">            A subtree always has a parent </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">!=</span> <span class="bp">None</span>
+        
+        
+    <span class="k">def</span> <span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the children as a Python list &quot;&quot;&quot;</span>
+        
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">_sibling</span>
+        <span class="k">return</span> <span class="n">ret</span>    
+        
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns a pretty string of the tree &quot;&quot;&quot;</span>
+        
+        <span class="k">def</span> <span class="nf">str_branches</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">branches</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot; Returns a string with the tree pretty printed. </span>
+
+<span class="sd">                branches: a list of characters representing the parent branches. Characters can be either ` ` or &#39;|&#39;            </span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">strings</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">_data</span><span class="p">)]</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">_child</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>            
+                    <span class="c1"># there are better end characters but let&#39;s not upset </span>
+                    <span class="c1"># stupid Python with unicode problems</span>
+                    <span class="n">joint</span> <span class="o">=</span> <span class="s1">&#39;\-&#39;</span>  
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">joint</span> <span class="o">=</span> <span class="s1">&#39;|-&#39;</span>
+
+
+                <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">:</span>
+                     <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+                <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>            
+                    <span class="n">branches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;  &#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">branches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;| &#39;</span><span class="p">)</span>                        
+                <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str_branches</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">branches</span><span class="p">))</span>
+                <span class="n">branches</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">_sibling</span>
+
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">str_branches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[])</span>
+                
+    
+    <span class="k">def</span> <span class="nf">insert_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_child</span><span class="p">):</span>        
+        <span class="sd">&quot;&quot;&quot; Inserts new_child at the beginning of the children sequence. &quot;&quot;&quot;</span>
+        
+        <span class="n">new_child</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child</span>
+        <span class="n">new_child</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_child</span> <span class="o">=</span> <span class="n">new_child</span>
+        
+
+    <span class="k">def</span> <span class="nf">insert_children</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_children</span><span class="p">):</span>        
+        <span class="sd">&quot;&quot;&quot; Takes a list of children and inserts them at the beginning of the current children sequence,</span>
+<span class="sd">            </span>
+<span class="sd">            NOTE: in the new sequence new_children appear in the order they are passed to the function!</span>
+<span class="sd">            </span>
+<span class="sd">        </span>
+<span class="sd">            For example:</span>
+<span class="sd">                &gt;&gt;&gt; t = gt(&#39;a&#39;, gt(&#39;b&#39;), gt(&#39;c))</span>
+<span class="sd">                &gt;&gt;&gt; print t</span>
+<span class="sd">                a</span>
+<span class="sd">                |-b</span>
+<span class="sd">                \-c</span>
+
+<span class="sd">                &gt;&gt;&gt;  t.insert_children([gt(&#39;d&#39;), gt(&#39;e&#39;)])</span>
+<span class="sd">                &gt;&gt;&gt; print t</span>
+<span class="sd">                a</span>
+<span class="sd">                |-d</span>
+<span class="sd">                |-e</span>
+<span class="sd">                |-b</span>
+<span class="sd">                \-c            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">new_children</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>        
+        
+    <span class="k">def</span> <span class="nf">insert_sibling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_sibling</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Inserts new_sibling as the immediate next sibling &quot;&quot;&quot;</span>
+        <span class="n">new_sibling</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+        <span class="n">new_sibling</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">=</span> <span class="n">new_sibling</span>
+
+    <span class="k">def</span> <span class="nf">insert_siblings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_siblings</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Inserts new_siblings at the beginning of the siblings sequence, </span>
+<span class="sd">            in the same order as they are passed. </span>
+<span class="sd">            </span>
+<span class="sd">            For example:</span>
+<span class="sd">            </span>
+<span class="sd">                &gt;&gt;&gt; bt =  gt(&#39;b&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; t = gt(&#39;a&#39;, bt , gt(&#39;c))</span>
+<span class="sd">                &gt;&gt;&gt; print t</span>
+<span class="sd">                a</span>
+<span class="sd">                |-b</span>
+<span class="sd">                \-c</span>
+
+<span class="sd">                &gt;&gt;&gt;  bt.insert_children([gt(&#39;d&#39;), gt(&#39;e&#39;)])</span>
+<span class="sd">                &gt;&gt;&gt; print t</span>
+<span class="sd">                a</span>
+<span class="sd">                |-b</span>
+<span class="sd">                |-d</span>
+<span class="sd">                |-e</span>
+<span class="sd">                \-c                        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">new_siblings</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">insert_sibling</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">has_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns True if this node has a child, False otherwise &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child</span> <span class="o">!=</span> <span class="bp">None</span>
+    
+    <span class="k">def</span> <span class="nf">detach_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Detaches the first child. </span>
+<span class="sd">        </span>
+<span class="sd">            if there is no child, raises an Exception </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_child</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;There is no child !&quot;</span><span class="p">)</span>            
+        <span class="k">else</span><span class="p">:</span>
+                        
+            <span class="n">detached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child</span><span class="o">.</span><span class="n">_sibling</span> 
+            <span class="n">detached</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">detached</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+            
+            
+    <span class="k">def</span> <span class="nf">detach_sibling</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Detaches the first sibling.</span>
+<span class="sd">        </span>
+<span class="sd">            If there is no sibling, raises an Exception </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;There is no sibling !&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span><span class="o">.</span><span class="n">_sibling</span>             
+            
+    <span class="k">def</span> <span class="nf">detach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Detaches the first child that holds the provided data   &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_child</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">_data</span> <span class="o">==</span> <span class="n">data</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">prev</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span> <span class="c1"># first element list</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">detach_child</span><span class="p">()</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">current</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="bp">None</span>
+                        <span class="n">current</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+                        <span class="n">prev</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">_sibling</span>
+                    <span class="k">return</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">prev</span> <span class="o">=</span> <span class="n">current</span>
+                    <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">_sibling</span>                        
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find any children holding this data:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        
+
+<span class="k">def</span> <span class="nf">gt</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Shorthand function that returns a GenericTree containing the provided </span>
+<span class="sd">        data and children. First parameter is the data, the following ones are the children.</span>
+<span class="sd">        </span>
+<span class="sd">        Usage examples:</span>
+<span class="sd">        </span>
+<span class="sd">        print gt(&#39;a&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; a</span>
+<span class="sd">        </span>
+<span class="sd">        print gt(&#39;a&#39;, gt(&#39;b&#39;), gt(&#39;c&#39;))</span>
+<span class="sd">        &gt;&gt;&gt; a</span>
+<span class="sd">            |-b</span>
+<span class="sd">            \-c</span>
+<span class="sd">                            </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;You need to provide at least one argument for the data!&quot;</span><span class="p">)</span>
+        
+    <span class="n">data</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">children</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    
+    <span class="n">r</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>    
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">children</span><span class="p">):</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span>
+
+<span class="k">def</span> <span class="nf">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">error_row</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Returns a string version of the two trees side by side</span>
+<span class="sd">    </span>
+<span class="sd">        If error_row is given, the line in error is marked.</span>
+<span class="sd">        If error_row == -1 it is ignored </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">s1</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+    <span class="n">s2</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+
+    <span class="n">lines1</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">lines2</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>                
+
+    <span class="n">max_len1</span> <span class="o">=</span> <span class="mi">0</span>                
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines1</span><span class="p">:</span>                                    
+        <span class="n">max_len1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)),</span> <span class="n">max_len1</span><span class="p">)</span>        
+        
+    <span class="n">max_len2</span> <span class="o">=</span> <span class="mi">0</span>                
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines2</span><span class="p">:</span>                                    
+        <span class="n">max_len2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)),</span> <span class="n">max_len2</span><span class="p">)</span>
+    
+    <span class="n">strings</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines2</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines1</span><span class="p">):</span> 
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lines1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span>
+            <span class="n">len1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">len1</span> <span class="o">=</span> <span class="mi">0</span>
+                       
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines2</span><span class="p">)):</span>
+            <span class="n">len2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+            
+            <span class="n">pad_len1</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">max_len1</span> <span class="o">-</span> <span class="n">len1</span>
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="n">pad_len1</span><span class="p">)</span> <span class="o">+</span> <span class="n">lines2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">len2</span> <span class="o">=</span> <span class="mi">0</span>
+            
+        <span class="k">if</span> <span class="p">(</span><span class="n">error_row</span> <span class="o">==</span> <span class="n">i</span><span class="p">):</span>
+            <span class="n">pad_len2</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">max_len1</span> <span class="o">+</span> <span class="n">max_len2</span> <span class="o">-</span> <span class="n">len1</span> <span class="o">-</span> <span class="n">len2</span>
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="n">pad_len2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&lt;--- DIFFERENT ! &quot;</span><span class="p">)</span>
+            
+        <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
+
+            
+<span class="k">class</span> <span class="nc">GenericTreeTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">assertNotNone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">function_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Asserts method result ret equals None &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> 
+                          <span class="n">function_name</span> 
+                          <span class="o">+</span> <span class="s2">&quot; specs say nothing about returning objects! Instead you are returning &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ret</span><span class="p">))</span>
+    
+    
+    <span class="k">def</span> <span class="nf">assertTreeEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Asserts the trees t1 and t2 are equal &quot;&quot;&quot;</span>
+        
+        <span class="k">def</span> <span class="nf">rec_assert</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">row</span><span class="p">):</span>                    
+            
+            <span class="k">if</span> <span class="n">c1</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">!=</span> <span class="n">c2</span><span class="o">.</span><span class="n">data</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;data() is different!</span><span class="se">\n\n</span><span class="s2"> &quot;</span> 
+                                <span class="o">+</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">))</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>            
+            
+            <span class="n">cs1</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
+            <span class="n">cs2</span> <span class="o">=</span> <span class="n">c2</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cs1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cs2</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Children sizes are different !</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+                                <span class="o">+</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">row</span> <span class="o">+</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cs1</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">cs2</span><span class="p">)))</span> <span class="p">)</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">cs1</span><span class="p">)</span> <span class="p">):</span>
+                <span class="n">rec_assert</span><span class="p">(</span><span class="n">cs1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cs2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>   
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span> 
+        
+        <span class="n">rec_assert</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">assertRoot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Checks provided node t is a root, if not raises Exception &quot;&quot;&quot;</span>
+                          
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">is_root</span><span class="p">(),</span> <span class="s2">&quot;Detached node &quot;</span> <span class="o">+</span> <span class="n">t</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; is not a root, does it have still the _parent or _sibling set to something ?&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">test_str_trees</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;a&#39;</span> <span class="ow">in</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;b&#39;</span> <span class="ow">in</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;a&#39;</span> <span class="ow">in</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;c&#39;</span> <span class="ow">in</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))))</span>
+    
+    
+    <span class="k">def</span> <span class="nf">test_assert_trees_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
+        
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">))</span>            
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)))</span>
+        
+        <span class="c1"># different structure</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))))</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
+                        
+    
+    <span class="k">def</span> <span class="nf">test_insert_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
+        <span class="n">ta</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ta</span><span class="o">.</span><span class="n">child</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">tb</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>        
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">ta</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertNotNone</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="s2">&quot;insert_child&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ta</span><span class="o">.</span><span class="n">child</span><span class="p">(),</span> <span class="n">tb</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">parent</span><span class="p">(),</span> <span class="n">ta</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">sibling</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">child</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
+        
+        <span class="n">tc</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+        <span class="n">ta</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">tc</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ta</span><span class="o">.</span><span class="n">child</span><span class="p">(),</span> <span class="n">tc</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">sibling</span><span class="p">(),</span> <span class="n">tb</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">parent</span><span class="p">(),</span> <span class="n">ta</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">sibling</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">test_insert_children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="n">t</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">insert_children</span><span class="p">([</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)])</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)))</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">insert_children</span><span class="p">([</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)))</span>
+        
+
+    <span class="k">def</span> <span class="nf">test_detach_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="n">tb</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">tc</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+        
+        <span class="n">t</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="n">tc</span><span class="p">)</span>
+        
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">detach_child</span><span class="p">()</span>                
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotNone</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="s2">&quot;detach_child&quot;</span><span class="p">)</span> 
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>                
+
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">detach_child</span><span class="p">()</span>         
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">tc</span><span class="p">)</span>
+        
+        
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">detach_child</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">test_detach_one_node</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>    
+        
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="n">t</span><span class="o">.</span><span class="n">detach</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">test_detach_two_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">b1</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">b1</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">detach</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
+        
+        
+    <span class="k">def</span> <span class="nf">test_detach_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">b1</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">))</span>            
+        <span class="n">t</span><span class="o">.</span><span class="n">detach</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
+        
+        
+        
+        
 </pre></div>
 
 </div>
@@ -12090,7 +13110,38 @@ $(document).ready(algolab.init);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">GenericTreeTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>........
+----------------------------------------------------------------------
+Ran 8 tests in 0.007s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span> 
