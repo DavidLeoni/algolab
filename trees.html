@@ -12057,15 +12057,6 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Tree-theory">Tree theory<a class="anchor-link" href="#Tree-theory">&#182;</a></h1><p>See Alberto Montresor theory here: <a href="http://disi.unitn.it/~montreso/sp/slides/05-alberi.pdf">http://disi.unitn.it/~montreso/sp/slides/05-alberi.pdf</a></p>
 <p>See <a href="https://interactivepython.org/runestone/static/pythonds/Trees/toctree.html">Trees on the book</a></p>
 <p>In particular, see :</p>
@@ -12094,7 +12085,7 @@ $(document).ready(algolab.init);
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this worksheet we are going to provide an implementation of a <code>GenericTree</code> class:</p>
 <ul>
-<li><p>Differently from the <code>UnorderedList</code>, which had actually two classes <code>Node</code> and <code>UnorderedList</code> that was pointing to the first node, in this case we just have one <code>GenericTree</code> class. So to grow a tree like the above one in the picture, for each of the boxes that you see we will need to createone instance of <code>GenericTree</code> and link it to the other instances.</p>
+<li><p>Differently from the <code>UnorderedList</code>, which had actually two classes <code>Node</code> and <code>UnorderedList</code> that was pointing to the first node, in this case we just have one <code>GenericTree</code> class. So to grow a tree like the above one in the picture, for each of the boxes that you see we will need to create one instance of <code>GenericTree</code> and link it to the other instances.</p>
 </li>
 <li><p>Ordinary simple trees just hold pointers to the children. In this case, we have an enriched tree which holds ponters also to up the  <em>parent</em> and on the right to the <em>siblings</em>. Whenever we are going to manipulate the tree, we need to take good care of updating these pointers.</p>
 </li>
@@ -12157,11 +12148,9 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="GenericTree-exercises">GenericTree exercises<a class="anchor-link" href="#GenericTree-exercises">&#182;</a></h2><p>You will implement the <code>GenericTree</code> class. You can start by copying the <a href="#GenericTree-Code-Skeleton">code skeleton and unit tests</a>, then proceed reaading the following.</p>
-<ul>
-<li>A <code>GenericTree</code> class holds thus 3 pointers that link it to the other nodes: <code>_child</code>, <code>_sibling</code> and <code>_parent</code>.
-It also holds a value <code>data</code> which is provided by the user to store arbitrary data (could be ints, strings, lists, even other trees, we don't care):</li>
-</ul>
+<h2 id="GenericTree-exercises">GenericTree exercises<a class="anchor-link" href="#GenericTree-exercises">&#182;</a></h2><p>You will implement the <code>GenericTree</code> class. You can start by copying the <a href="#GenericTree-Code-Skeleton">code skeleton and unit tests</a>, then proceed reading the following.</p>
+<h3 id="Pointers">Pointers<a class="anchor-link" href="#Pointers">&#182;</a></h3><p>A <code>GenericTree</code> class holds 3 pointers that link it to the other nodes: <code>_child</code>, <code>_sibling</code> and <code>_parent</code>.
+It also holds a value <code>data</code> which is provided by the user to store arbitrary data (could be ints, strings, lists, even other trees, we don't care):</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">GenericTree</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -12170,16 +12159,13 @@ It also holds a value <code>data</code> which is provided by the user to store a
         <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="bp">None</span>
 </pre></div>
-<ul>
-<li>To create a tree, just call the constructor passing whatever you want like this:</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="n">tn</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<p>To create a tree of one node, just call the constructor passing whatever you want like this:</p>
+<div class="highlight"><pre><span></span><span class="n">tblah</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s2">&quot;blah&quot;</span><span class="p">)</span>
 
-<span class="n">tblah</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s2">&quot;blah&quot;</span><span class="p">)</span>
+<span class="n">tn</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
-<ul>
-<li>To grow a <code>GenericTree</code>, as basic building block you will have to implement <code>insert_child</code>:</li>
-</ul>
+<p>Note that with the provided constructor you can't pass children.</p>
+<h3 id="Building-with-insert_child">Building with insert_child<a class="anchor-link" href="#Building-with-insert_child">&#182;</a></h3><p>To grow a <code>GenericTree</code>, as basic building block you will have to implement <code>insert_child</code>:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">insert_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_child</span><span class="p">):</span>        
         <span class="sd">&quot;&quot;&quot; Inserts new_child at the beginning of the children sequence. &quot;&quot;&quot;</span>
 
@@ -12188,30 +12174,42 @@ It also holds a value <code>data</code> which is provided by the user to store a
 <p>You can call it like this:</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">ta</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">ta</span>
-<span class="n">a</span>
+<span class="n">a</span>            <span class="c1"># &#39;a&#39; is the root</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">ta</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">ta</span>
-<span class="n">a</span>
-\<span class="o">-</span><span class="n">b</span>
+<span class="n">a</span>            <span class="c1"># &#39;a&#39; is the root </span>
+\<span class="o">-</span><span class="n">b</span>          <span class="c1"># &#39;b&#39; is the child . The &#39;\&#39; means just that it is</span>
+             <span class="c1">#  also the last child of the siblings sequence</span>
+
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">tc</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">ta</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">tc</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">ta</span>
-<span class="n">a</span>
-<span class="o">|-</span><span class="n">b</span>
-\<span class="o">-</span><span class="n">c</span>
+<span class="n">a</span>           <span class="c1"># &#39;a&#39; is the root </span>
+<span class="o">|-</span><span class="n">c</span>         <span class="c1"># &#39;c&#39; is inserted as the first child (would be shown on the left in the graph image)</span>
+\<span class="o">-</span><span class="n">b</span>         <span class="c1"># &#39;b&#39; is now the next sibling of c  The &#39;\&#39; means just that it </span>
+            <span class="c1">#  is also the last child of the siblings sequence</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">td</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">tb</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">td</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">tc</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">td</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">ta</span>
-<span class="n">a</span>
-<span class="o">|-</span><span class="n">b</span>
-<span class="o">|</span> \<span class="o">-</span><span class="n">d</span>
-\<span class="o">-</span><span class="n">c</span>
+<span class="n">a</span>           <span class="c1"># &#39;a&#39; is the root </span>
+<span class="o">|-</span><span class="n">c</span>         <span class="c1"># &#39;c&#39; is the first child of &#39;a&#39;</span>
+<span class="o">|</span> \<span class="o">-</span><span class="n">d</span>       <span class="c1"># &#39;d&#39; is the first child of &#39;c&#39;</span>
+\<span class="o">-</span><span class="n">b</span>         <span class="c1"># &#39;b&#39; is the next sibling of c</span>
 </pre></div>
-<p>If you need to test your data structure, we provide you with this handy function <code>gt</code> that allows to easily construct trees from other trees</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Building-with-gt">Building with gt<a class="anchor-link" href="#Building-with-gt">&#182;</a></h3><p>If you need to test your data structure, we provide you with this handy function <code>gt</code> that allows to easily construct trees from other trees:</p>
 
 </div>
 </div>
@@ -12279,13 +12277,72 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="GenericTree-Code-Skeleton">GenericTree Code Skeleton<a class="anchor-link" href="#GenericTree-Code-Skeleton">&#182;</a></h2>
+<h3 id="1)-Implement-missing-methods">1) Implement missing methods<a class="anchor-link" href="#1)-Implement-missing-methods">&#182;</a></h3><p>Start implementing <code>insert_child</code>, makes sure the tests for it pass, and then implement the other methods. <code>insert_sibling</code> and <code>insert_siblings</code> test will always fail, to fix it see next secition.</p>
+<h3 id="2)-Implement-missing-tests">2) Implement missing tests<a class="anchor-link" href="#2)-Implement-missing-tests">&#182;</a></h3><p>2.1) Implement the missing tests <code>test_insert_sibling</code> and <code>test_insert_siblings</code>. To do it,feel free to use <code>gt</code>, <code>assertTreeEquals</code>, <code>assertRoot</code>  and whatever other function you can find in the code.</p>
+<p>2.2) If possible, try to implement a test method for each case you might have</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
+
+&lt;p class=&quot;algolab-question&quot;&gt;
+Is the function to test expected to raise an Exception in some circumstance? 
+&lt;/p&gt;
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-question">
+Is the function to test expected to raise an Exception in some circumstance? 
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>2.3) Once you're done and your new tests pass, save a copy of your work</p>
+<p>2.4) Work in group and add to your test class the test implementation of somebody else, taking care of 
+renaming test methods so to avoid name clashes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="GenericTree-Code-Skeleton">GenericTree Code Skeleton<a class="anchor-link" href="#GenericTree-Code-Skeleton">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12436,7 +12493,7 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child</span> <span class="o">!=</span> <span class="bp">None</span>
     
     <span class="k">def</span> <span class="nf">detach_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Detaches the first child. </span>
+        <span class="sd">&quot;&quot;&quot; Detaches the first child.</span>
 <span class="sd">        </span>
 <span class="sd">            if there is no child, raises an Exception </span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -12537,7 +12594,7 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
             
 <span class="k">class</span> <span class="nc">GenericTreeTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">assertNotNone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">function_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">assertReturnNone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">function_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Asserts method result ret equals None &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> 
                           <span class="n">function_name</span> 
@@ -12552,6 +12609,40 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
             <span class="k">if</span> <span class="n">c1</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">!=</span> <span class="n">c2</span><span class="o">.</span><span class="n">data</span><span class="p">():</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;data() is different!</span><span class="se">\n\n</span><span class="s2"> &quot;</span> 
                                 <span class="o">+</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">))</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">c1</span> <span class="o">==</span> <span class="n">t1</span> <span class="ow">or</span> <span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">,</span> 
+                            <span class="s2">&quot;Left parent is None! &quot;</span>
+                           <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span>  <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">)</span> <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">c2</span> <span class="o">==</span> <span class="n">t2</span> <span class="ow">or</span> <span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">,</span> 
+                            <span class="s2">&quot;Right parent is None!&quot;</span> 
+                             <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span>  <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">)</span> <span class="p">)</span>            
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">==</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">(),</span> <span class="n">GenericTree</span><span class="p">),</span> 
+                           <span class="s2">&quot;Left parent is not a GenericTree instance!&quot;</span>
+                            <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span>  <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">)</span> <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">==</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">(),</span> <span class="n">GenericTree</span><span class="p">),</span> 
+                           <span class="s2">&quot;Right parent is not a GenericTree instance! &quot;</span>
+                            <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span>  <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">)</span> <span class="p">)</span>
+            
+            <span class="k">if</span> <span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Different parents! &quot;</span>
+                                    <span class="o">+</span> <span class="s2">&quot;Left parent = None   Right parent.data() = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">())</span> 
+                                    <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">)</span> <span class="p">)</span>
+                                    
+            <span class="k">else</span><span class="p">:</span>    
+                <span class="k">if</span> <span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>                    
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Different parents! &quot;</span>
+                                    <span class="o">+</span> <span class="s2">&quot;Left parent.data() = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">())</span> 
+                                    <span class="o">+</span> <span class="s2">&quot;   Right parent = None&quot;</span>
+                                    <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">))</span> 
+                <span class="k">else</span><span class="p">:</span> <span class="c1"># let&#39;s just check data for now</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">(),</span>
+                                  <span class="s2">&quot;Different parents ! &quot;</span> 
+                                 <span class="o">+</span> <span class="s2">&quot;Left parent.data() = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">())</span> 
+                                    <span class="o">+</span> <span class="s2">&quot;   Right parent.data() = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+                                    <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">)</span> <span class="p">))</span>
             <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>            
             
             <span class="n">cs1</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
@@ -12600,7 +12691,7 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ta</span><span class="o">.</span><span class="n">child</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
         <span class="n">tb</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>        
         <span class="n">ret</span> <span class="o">=</span> <span class="n">ta</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertNotNone</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="s2">&quot;insert_child&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertReturnNone</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="s2">&quot;insert_child&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ta</span><span class="o">.</span><span class="n">child</span><span class="p">(),</span> <span class="n">tb</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">parent</span><span class="p">(),</span> <span class="n">ta</span><span class="p">)</span>        
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">sibling</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
@@ -12630,7 +12721,7 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
         <span class="n">t</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="n">tc</span><span class="p">)</span>
         
         <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">detach_child</span><span class="p">()</span>                
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotNone</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="s2">&quot;detach_child&quot;</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertReturnNone</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="s2">&quot;detach_child&quot;</span><span class="p">)</span> 
         
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>                
@@ -12655,8 +12746,7 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
         <span class="n">b1</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">b1</span><span class="p">)</span>
         <span class="n">t</span><span class="o">.</span><span class="n">detach</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
-        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>        
         
     <span class="k">def</span> <span class="nf">test_detach_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">b1</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
@@ -12665,6 +12755,14 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
         
+
+    <span class="k">def</span> <span class="nf">test_insert_sibling</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO - Implement also the *TEST* :-) !&quot;</span>
+                        <span class="o">+</span> <span class="s2">&quot; If possible, try to add test methods for each case&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">test_insert_siblings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO - Implement also the *TEST* :-) !&quot;</span>
+                        <span class="o">+</span> <span class="s2">&quot; If possible, try to add test methods for each case&quot;</span><span class="p">)</span>
     
 </pre></div>
 
@@ -12684,7 +12782,7 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
@@ -12807,14 +12905,22 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
             <span class="bp">self</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>        
         
     <span class="k">def</span> <span class="nf">insert_sibling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_sibling</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Inserts new_sibling as the immediate next sibling &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot; Inserts new_sibling as the immediate next sibling</span>
+<span class="sd">            </span>
+<span class="sd">            If self is a root, raises an Exception</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">is_root</span><span class="p">()):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Can&#39;t add siblings to a root node !!&quot;</span><span class="p">)</span>
+            
         <span class="n">new_sibling</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
         <span class="n">new_sibling</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sibling</span> <span class="o">=</span> <span class="n">new_sibling</span>
 
     <span class="k">def</span> <span class="nf">insert_siblings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_siblings</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Inserts new_siblings at the beginning of the siblings sequence, </span>
-<span class="sd">            in the same order as they are passed. </span>
+        <span class="sd">&quot;&quot;&quot; Inserts new_siblings at the beginning of the siblings sequence.</span>
+<span class="sd">            </span>
+<span class="sd">            Nodes are inserted in the same order as they are passed. </span>
+<span class="sd">            If self is a root, raises an Exception</span>
 <span class="sd">            </span>
 <span class="sd">            For example:</span>
 <span class="sd">            </span>
@@ -12833,6 +12939,9 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
 <span class="sd">                |-e</span>
 <span class="sd">                \-c                        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">is_root</span><span class="p">()):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Can&#39;t add siblings to a root node !!&quot;</span><span class="p">)</span>
+        
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">new_siblings</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">insert_sibling</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
         
@@ -12970,7 +13079,7 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
             
 <span class="k">class</span> <span class="nc">GenericTreeTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">assertNotNone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">function_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">assertReturnNone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">function_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Asserts method result ret equals None &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> 
                           <span class="n">function_name</span> 
@@ -12985,6 +13094,40 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
             <span class="k">if</span> <span class="n">c1</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">!=</span> <span class="n">c2</span><span class="o">.</span><span class="n">data</span><span class="p">():</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;data() is different!</span><span class="se">\n\n</span><span class="s2"> &quot;</span> 
                                 <span class="o">+</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">))</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">c1</span> <span class="o">==</span> <span class="n">t1</span> <span class="ow">or</span> <span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">,</span> 
+                            <span class="s2">&quot;Left parent is None! &quot;</span>
+                           <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span>  <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">)</span> <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">c2</span> <span class="o">==</span> <span class="n">t2</span> <span class="ow">or</span> <span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">,</span> 
+                            <span class="s2">&quot;Right parent is None!&quot;</span> 
+                             <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span>  <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">)</span> <span class="p">)</span>            
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">==</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">(),</span> <span class="n">GenericTree</span><span class="p">),</span> 
+                           <span class="s2">&quot;Left parent is not a GenericTree instance!&quot;</span>
+                            <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span>  <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">)</span> <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">==</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">(),</span> <span class="n">GenericTree</span><span class="p">),</span> 
+                           <span class="s2">&quot;Right parent is not a GenericTree instance! &quot;</span>
+                            <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span>  <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">)</span> <span class="p">)</span>
+            
+            <span class="k">if</span> <span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Different parents! &quot;</span>
+                                    <span class="o">+</span> <span class="s2">&quot;Left parent = None   Right parent.data() = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">())</span> 
+                                    <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">)</span> <span class="p">)</span>
+                                    
+            <span class="k">else</span><span class="p">:</span>    
+                <span class="k">if</span> <span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>                    
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Different parents! &quot;</span>
+                                    <span class="o">+</span> <span class="s2">&quot;Left parent.data() = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">())</span> 
+                                    <span class="o">+</span> <span class="s2">&quot;   Right parent = None&quot;</span>
+                                    <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">))</span> 
+                <span class="k">else</span><span class="p">:</span> <span class="c1"># let&#39;s just check data for now</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">(),</span>
+                                  <span class="s2">&quot;Different parents ! &quot;</span> 
+                                 <span class="o">+</span> <span class="s2">&quot;Left parent.data() = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">())</span> 
+                                    <span class="o">+</span> <span class="s2">&quot;   Right parent.data() = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+                                    <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">row</span><span class="p">)</span> <span class="p">))</span>
             <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>            
             
             <span class="n">cs1</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
@@ -13011,7 +13154,7 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;c&#39;</span> <span class="ow">in</span> <span class="n">str_trees</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))))</span>
     
     
-    <span class="k">def</span> <span class="nf">test_assert_trees_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_assert_tree_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
         
@@ -13025,7 +13168,7 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
             <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))))</span>
 
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>        
                         
     
     <span class="k">def</span> <span class="nf">test_insert_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
@@ -13033,7 +13176,7 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ta</span><span class="o">.</span><span class="n">child</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
         <span class="n">tb</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>        
         <span class="n">ret</span> <span class="o">=</span> <span class="n">ta</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertNotNone</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="s2">&quot;insert_child&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertReturnNone</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="s2">&quot;insert_child&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ta</span><span class="o">.</span><span class="n">child</span><span class="p">(),</span> <span class="n">tb</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">parent</span><span class="p">(),</span> <span class="n">ta</span><span class="p">)</span>        
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">sibling</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
@@ -13063,7 +13206,7 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
         <span class="n">t</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="n">tc</span><span class="p">)</span>
         
         <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">detach_child</span><span class="p">()</span>                
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotNone</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="s2">&quot;detach_child&quot;</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertReturnNone</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="s2">&quot;detach_child&quot;</span><span class="p">)</span> 
         
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>                
@@ -13097,10 +13240,41 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
         <span class="n">t</span><span class="o">.</span><span class="n">detach</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>        
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertRoot</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_insert_right_sibling</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ta</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>                        
+        <span class="n">tb</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>        
+        <span class="n">ta</span><span class="o">.</span><span class="n">insert_child</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>        
+        <span class="n">tb</span><span class="o">.</span><span class="n">insert_sibling</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">ta</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="nf">test_insert_middle_sibling</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         
+        <span class="n">tb</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">ta</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">))</span>        
+        <span class="n">tb</span><span class="o">.</span><span class="n">insert_sibling</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">))</span>
         
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">ta</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span> <span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)))</span>
+                
+    <span class="k">def</span> <span class="nf">test_insert_sibling_to_root</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ta</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
         
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="n">ta</span><span class="o">.</span><span class="n">insert_sibling</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">test_insert_siblings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tb</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">ta</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">))</span>        
+        <span class="n">tb</span><span class="o">.</span><span class="n">insert_siblings</span><span class="p">([</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)])</span>
         
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTreeEqual</span><span class="p">(</span><span class="n">ta</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span> <span class="p">,</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="nf">test_insert_siblings_to_root</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ta</span> <span class="o">=</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="n">ta</span><span class="o">.</span><span class="n">insert_siblings</span><span class="p">([</span><span class="n">gt</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="n">gt</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)])</span>          
+            
 </pre></div>
 
 </div>
@@ -13110,7 +13284,7 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">GenericTreeTest</span><span class="p">)</span>
@@ -13126,28 +13300,15 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>........
+<pre>.............
 ----------------------------------------------------------------------
-Ran 8 tests in 0.007s
+Ran 13 tests in 0.033s
 
 OK
 </pre>
 </div>
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
-</pre></div>
-
-</div>
 </div>
 </div>
 
