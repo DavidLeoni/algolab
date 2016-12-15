@@ -12168,8 +12168,6 @@ It also holds a value <code>data</code> which is provided by the user to store a
 <h3 id="Building-with-insert_child">Building with insert_child<a class="anchor-link" href="#Building-with-insert_child">&#182;</a></h3><p>To grow a <code>GenericTree</code>, as basic building block you will have to implement <code>insert_child</code>:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">insert_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_child</span><span class="p">):</span>        
         <span class="sd">&quot;&quot;&quot; Inserts new_child at the beginning of the children sequence. &quot;&quot;&quot;</span>
-
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">()</span>
 </pre></div>
 <p>You can call it like this:</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">ta</span> <span class="o">=</span> <span class="n">GenericTree</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
@@ -13302,7 +13300,7 @@ renaming test methods so to avoid name clashes. Run the tests and check if you a
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.............
 ----------------------------------------------------------------------
-Ran 13 tests in 0.038s
+Ran 13 tests in 0.048s
 
 OK
 </pre>
