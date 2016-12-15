@@ -1,12 +1,32 @@
 import sys
 import unittest
+import inspect
+
 from IPython.core.display import HTML
 
-# todo look at test order here: http://stackoverflow.com/a/18499093
-def run(testcase):        
-    suite = unittest.TestLoader().loadTestsFromTestCase(testcase)
-    unittest.TextTestRunner(verbosity=1,stream=sys.stderr).run( suite )
+# taken from here: http://stackoverflow.com/a/961057
+def get_class(meth):
+    for cls in inspect.getmro(meth.im_class):
+        if meth.__name__ in cls.__dict__: 
+            return cls
+    return None
 
+
+# todo look at test order here: http://stackoverflow.com/a/18499093
+def run(classOrMethod):    
+    if  inspect.isclass(classOrMethod) and issubclass(classOrMethod, unittest.TestCase):        
+        testcase = classOrMethod
+        suite = unittest.TestLoader().loadTestsFromTestCase(testcase)
+        unittest.TextTestRunner(verbosity=1,stream=sys.stderr).run( suite )
+    elif inspect.ismethod(classOrMethod):
+        meth = classOrMethod
+        suite = unittest.TestSuite()
+        testcase = get_class(meth)
+        suite.addTest(testcase(meth.__name__))
+        unittest.TextTestRunner(verbosity=1,stream=sys.stderr).run( suite )
+    else:
+        raise Exception("Accepted parameters are a TestCase class or a TestCase method. Found instead: " + str(classOrMethod))
+    
 def init():
     css = open("./css/algolab.css", "r").read()
 
@@ -30,3 +50,5 @@ def init():
 
     return  HTML(ret)
 
+def assertNotNone(ret, function_name):
+    return function_name + " specs say nothing about returning objects! Instead you are returning " + str(ret)

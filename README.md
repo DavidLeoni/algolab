@@ -61,8 +61,17 @@ Running it will create the sidebar even when editing in Jupyter. If you want to 
 
 #### Launch unit tests
 
-Inside worksheets you can run `unittest` tests by launching 
+Inside worksheets you can run `unittest` tests. 
+
+To run all the tests of a test class, write like this
 
 ```python
 algolab.run(NameOfTheTestClass)
 ```
+
+To run a single method, write like this:
+
+```python
+algolab.run(NameOfTheTestClass.nameOfTheMethod)
+```
+
