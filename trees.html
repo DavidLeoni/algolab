@@ -12277,9 +12277,8 @@ WARNING: DO NOT USE <code>gt</code> inside your implementation code !!!! <code>g
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1)-Implement-missing-methods">1) Implement missing methods<a class="anchor-link" href="#1)-Implement-missing-methods">&#182;</a></h3><p>Start implementing <code>insert_child</code>, makes sure the tests for it pass, and then implement the other methods. <code>insert_sibling</code> and <code>insert_siblings</code> test will always fail, to fix it see next secition.</p>
-<h3 id="2)-Implement-missing-tests">2) Implement missing tests<a class="anchor-link" href="#2)-Implement-missing-tests">&#182;</a></h3><p>2.1) Implement the missing tests <code>test_insert_sibling</code> and <code>test_insert_siblings</code>. To do it,feel free to use <code>gt</code>, <code>assertTreeEquals</code>, <code>assertRoot</code>  and whatever other function you can find in the code.</p>
-<p>2.2) If possible, try to implement a test method for each case you might have</p>
+<h3 id="1)-Implement-missing-methods">1) Implement missing methods<a class="anchor-link" href="#1)-Implement-missing-methods">&#182;</a></h3><p>Start implementing <code>insert_child</code>, make sure the tests for it pass, and then implement the other methods. Don't worry if <code>insert_sibling</code> and <code>insert_siblings</code> test always fail, to fix them see next section.</p>
+<h3 id="2)-Implement-missing-tests">2) Implement missing tests<a class="anchor-link" href="#2)-Implement-missing-tests">&#182;</a></h3><p>2.1) Implement the missing tests <code>test_insert_sibling</code> and <code>test_insert_siblings</code>. To do it,feel free to use <code>gt</code>, <code>assertTreeEquals</code>, <code>assertRoot</code>  and whatever other function you can find in the code. If possible, try to implement a test method for each case you might have</p>
 
 </div>
 </div>
@@ -12326,7 +12325,8 @@ Is the function to test expected to raise an Exception in some circumstance?
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>2.3) Once you're done and your new tests pass, save a copy of your work</p>
 <p>2.4) Work in group and add to your test class the test implementation of somebody else, taking care of 
-renaming test methods so to avoid name clashes.</p>
+renaming test methods so to avoid name clashes. Run the tests and check if you agree with your  .</p>
+<p>2.5) Try to implement on you own tests for other methods, like <code>detach</code>. Check they pass and then exchange tests with your collegues.</p>
 
 </div>
 </div>
@@ -13302,7 +13302,7 @@ renaming test methods so to avoid name clashes.</p>
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.............
 ----------------------------------------------------------------------
-Ran 13 tests in 0.033s
+Ran 13 tests in 0.038s
 
 OK
 </pre>
