@@ -91,7 +91,7 @@ class UnorderedList:
         
             Usage example:
         
-            >>> lst = new UnorderedList()
+            >>> lst = UnorderedList()
             >>> lst.add('c')
             >>> lst.add('b')
             >>> lst.add('a')            

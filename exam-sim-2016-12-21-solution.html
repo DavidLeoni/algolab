@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>index</title>
+<title>exam-sim-2016-12-21-solution</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11746,15 +11746,6 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<!-- !!!!!!!!!!    NOTICE THE INDEX IN THE CELL BELOW HERE  WILL LOOK INVISIBLE IN JUPYTER  !!!!!!!!!!!!!!!!!   -->
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
@@ -12056,36 +12047,11 @@ $(document).ready(algolab.init);
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <center>
-<span style="font-size:250%; font-weight:bold "> Module 2: Algorithm and Data Structures Lab </span>
-</center><p>
+<span class="algolab-title"> Exam Simulation Solution</span><br/> 
 <br/>
-<center>
-
- David Leoni <br/>
- teaching assistant <br/>
- david.leoni [AT] unitn.it
-
+<span style="font-size:20px"> Scientific Programming Algolab  </span> <br/><br/>
+<span> Wednesday 21 Dec 2016</span>
 </center>
-<br/>
-<center>
-University of Trento
-</center>
-
-<center>
-<br/>
-21 Dic 2016
-<br/>
-v0.11.1
-</center>
-
-<br/>
-<br/>
-<center>
-<span>This work is licensed under a Creative Commons Attribution 4.0 License  
-<a href="https://creativecommons.org/licenses/by/4.0/">creativecommons.org/licenses/by/4.0/</a>
-<a href="https://creativecommons.org/licenses/by/4.0/"><img width="10%" src="img/cc-by.svg"></a></span>
-</center>
-</p>
 </div>
 </div>
 </div>
@@ -12094,57 +12060,7 @@ v0.11.1
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Today">Today<a class="anchor-link" href="#Today">&#182;</a></h1><p><a href="exam-sim-2016-12-21.html">Exam simulation</a> !</p>
-<h1 id="See-you">See you<a class="anchor-link" href="#See-you">&#182;</a></h1><table>
-<thead><tr>
-<th>Date</th>
-<th>Hour</th>
-<th>Topic</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Thursday 22 Dec</td>
-<td>9:00-11:00</td>
-<td>Graph algos /    Exam simulation discussion</td>
-</tr>
-</tbody>
-</table>
-<p><br/></p>
-<center style="font-size:30px">Midterm</center>
-<br/>
-
-<center style="font-size:25px">Friday 13th Jan 14:00-17:00  </center><p><img src="img/friday-13.jpg" width="50%"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Course-website">Course website<a class="anchor-link" href="#Course-website">&#182;</a></h1><p><span style="font-size:130%; font-weight:bold"> Theory </span></p>
-<p>See Alberto Montresor website:</p>
-<p><a href="http://cricca.disi.unitn.it/montresor/teaching/scientific-programming" target="_blank" style="font-size:200%">http://cricca.disi.unitn.it/montresor/teaching/scientific-programming</a></p>
-<p><span style="font-size:130%; font-weight:bold"> Lab </span></p>
-<p><a href="https://davidleoni.github.io/algolab" target="_blank" style="font-size:200%">davidleoni.github.io/algolab</a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Chapters">Chapters<a class="anchor-link" href="#Chapters">&#182;</a></h1><p>Worksheets are meant to be used online - pdf quality is not very good, if they result unreadable please tell me</p>
-<p><span class="algolab-chapter-link"> 0. <a href="testing.html" target="_blank" >Testing</a></span>  (<a href="pdf/testing.pdf">pdf</a>)</p>
-<p><span class="algolab-chapter-link"> 1. <a href="lists.html" target="_blank" >Lists</a></span> (<a href="pdf/lists.pdf">pdf</a>)</p>
-<p><span class="algolab-chapter-link"> 2. <a href="data-structures.html" target="_blank" >Data Structures</a></span> (<a href="pdf/data-structures.pdf">pdf</a>)</p>
-<p><span class="algolab-chapter-link"> 3. <a href="trees.html" target="_blank" >Trees</a></span> (<a href="pdf/trees.pdf">pdf</a>)</p>
-<p><span class="algolab-chapter-link"> A. <a href="past-exams.html" target="_blank" >Past exams</a></span></p>
-
+<h1 id="1)-Insertion-sort-solution">1) Insertion sort solution<a class="anchor-link" href="#1)-Insertion-sort-solution">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -12153,48 +12069,54 @@ v0.11.1
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
 
-&lt;h1&gt;Commandments&lt;/h1&gt;
+<span class="k">def</span> <span class="nf">insertion_sort</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Sorts in-place list A with insertion sort.  &quot;&quot;&quot;</span>
+                                         
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>                
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>                       
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span>                             
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">temp</span><span class="p">:</span>    
+            <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>                  
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>                         
+        <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>                           
+    
 
-&lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: If you don&#39;t follow the Commandments, bad things happen! 
-&lt;/p&gt;
+<span class="k">class</span> <span class="nc">InsertionSortTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+   
+    <span class="k">def</span> <span class="nf">test_zero_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">insertion_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,[])</span>     
+        
+    <span class="k">def</span> <span class="nf">test_return_none</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">insertion_sort</span><span class="p">([</span><span class="mi">2</span><span class="p">]))</span>        
+        
+    <span class="k">def</span> <span class="nf">test_one_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span>
+        <span class="n">insertion_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,[</span><span class="s2">&quot;a&quot;</span><span class="p">])</span>     
+                
+    <span class="k">def</span> <span class="nf">test_three_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">insertion_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 
-&lt;p class=&quot;algolab-important&quot; &gt;
-1) You shall test!
-&lt;/p&gt;
-
-To run tests, enter the following command in the terminal:
+    <span class="k">def</span> <span class="nf">test_two_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">insertion_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>  
+        
+    <span class="k">def</span> <span class="nf">test_piccinno_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
+        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">7777</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>        
+        <span class="n">insertion_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">vcopy</span> <span class="o">=</span> <span class="n">v</span><span class="p">[:]</span>
+        <span class="n">vcopy</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">vcopy</span><span class="p">)</span> 
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-
-<h1>Commandments</h1>
-
-<p class="algolab-warn">
-WARNING: If you don't follow the Commandments, bad things happen! 
-</p>
-
-<p class="algolab-important" >
-1) You shall test!
-</p>
-
-To run tests, enter the following command in the terminal:
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -12204,9 +12126,7 @@ To run tests, enter the following command in the terminal:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span>python -m unittest my-file
-</pre></div>
-
+<h1 id="2)-Rev-and-copy-Solution">2) Rev and copy Solution<a class="anchor-link" href="#2)-Rev-and-copy-Solution">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -12215,91 +12135,289 @@ To run tests, enter the following command in the terminal:
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
 
-&lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: In the call above, DON&#39;T append the extension &lt;i&gt;.py&lt;/i&gt; to &lt;i&gt;my-file&lt;/i&gt;
-&lt;br/&gt;
-WARNING: Still, on the hard-disk the file MUST be named with a &lt;i&gt;.py&lt;/i&gt; at the end, like &lt;i&gt;my-file.py&lt;/i&gt;
-&lt;/p&gt;
+<span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; A Node of an UnorderedList. Holds data provided by the user. &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">initdata</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">initdata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="o">=</span> <span class="bp">None</span>
 
-&lt;p class=&quot;algolab-important&quot; &gt;
-2. You shall also write on paper!
-&lt;/p&gt;
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
 
-&lt;p&gt;
-If staring at the monitor doesn&#39;t work, help yourself and draw a representation of the state sof the program. 
-Tables, nodes, arrows, all can help figuring out a solution for the problem. 
-&lt;/p&gt;
+    <span class="k">def</span> <span class="nf">get_next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next</span>
 
-&lt;p class=&quot;algolab-important&quot; &gt;
-3. You shall copy *exactly the same* function definitions as in the exercises!
-&lt;/p&gt;
+    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">newdata</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">newdata</span>
 
-For example don&#39;t write :
+    <span class="k">def</span> <span class="nf">set_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">newnext</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="o">=</span> <span class="n">newnext</span>
+
+
+<span class="k">class</span> <span class="nc">UnorderedList</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This is a stripped down version of the UnorderedList seen in the lab</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+        
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns this UnorderedList as a regular Python list. This method </span>
+<span class="sd">            is very handy for testing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">python_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>        
+        
+        <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="n">python_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">get_data</span><span class="p">())</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">get_next</span><span class="p">()</span>                       
+        <span class="k">return</span> <span class="n">python_list</span>        
+        
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
+        <span class="n">strings</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">get_data</span><span class="p">()))</span>            
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">get_next</span><span class="p">()</span>            
+        
+        <span class="k">return</span> <span class="s2">&quot;UnorderedList: &quot;</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
+        
+        
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">item</span><span class="p">):</span>    
+        <span class="sd">&quot;&quot;&quot; Adds item at the beginning of the list &quot;&quot;&quot;</span>
+        
+        <span class="n">new_head</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="n">new_head</span><span class="o">.</span><span class="n">set_next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_head</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="n">new_head</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Removes first occurrence of item from the list</span>
+<span class="sd">        </span>
+<span class="sd">            If item is not found, raises an Exception.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>        
+        <span class="n">prev</span> <span class="o">=</span> <span class="bp">None</span>
+        
+        <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span> <span class="o">==</span> <span class="n">item</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">prev</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>  <span class="c1"># we need to remove the head </span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">get_next</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>  
+                    <span class="n">prev</span><span class="o">.</span><span class="n">set_next</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">get_next</span><span class="p">())</span>
+                    <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">get_next</span><span class="p">()</span>                    
+                <span class="k">return</span>  <span class="c1"># Found, exits the function</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">current</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">get_next</span><span class="p">()</span> 
+        
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Tried to remove a non existing item! Item was: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+
+            
+    
+    <span class="k">def</span> <span class="nf">rev</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns a *new* UnorderedList, which is the reversed version of this one.</span>
+
+<span class="sd">            Function must run in O(n), and try to make this function as fast as possible,</span>
+<span class="sd">            without using python lists or extra fields.</span>
+<span class="sd">        </span>
+<span class="sd">            Usage example:</span>
+<span class="sd">        </span>
+<span class="sd">            &gt;&gt;&gt; lst = UnorderedList()</span>
+<span class="sd">            &gt;&gt;&gt; lst.add(&#39;c&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; lst.add(&#39;b&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; lst.add(&#39;a&#39;)            </span>
+<span class="sd">            &gt;&gt;&gt; print lst</span>
+<span class="sd">                UnorderedList: &#39;a&#39;,&#39;b&#39;,&#39;c&#39;</span>
+<span class="sd">            &gt;&gt;&gt; print lst.rev()</span>
+<span class="sd">                UnorderedList: &#39;c&#39;,&#39;b&#39;,&#39;a&#39;</span>
+<span class="sd">            &gt;&gt;&gt; print lst</span>
+<span class="sd">                UnorderedList: &#39;a&#39;,&#39;b&#39;,&#39;c&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+        
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
+        
+        <span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>            
+            <span class="n">ret</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">get_data</span><span class="p">())</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">get_next</span><span class="p">()</span>            
+            
+        <span class="k">return</span> <span class="n">ret</span>
+        
+    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return a *copy* of this UnorderedList in O(n)</span>
+<span class="sd">            NOTE: since we are making a copy, the output of this function </span>
+<span class="sd">            won&#39;t contain any Node instance from the original list. Still, new Node </span>
+<span class="sd">            instances will point to the same data items of the original list</span>
+<span class="sd">        </span>
+<span class="sd">            Example (for more examples look at the tests):        </span>
+<span class="sd">        </span>
+<span class="sd">            &gt;&gt;&gt; orig = new UnorderedList()</span>
+<span class="sd">            &gt;&gt;&gt; orig.add(&#39;c&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; orig.add(&#39;a&#39;)            </span>
+<span class="sd">            &gt;&gt;&gt; print orig</span>
+<span class="sd">                UnorderedList: &#39;a&#39;,&#39;c&#39;</span>
+<span class="sd">            &gt;&gt;&gt; cp = orig.copy()</span>
+<span class="sd">            &gt;&gt;&gt; print cp</span>
+<span class="sd">                UnorderedList: &#39;a&#39;,&#39;c&#39;</span>
+<span class="sd">            &gt;&gt;&gt; cp.remove(&#39;c&#39;)            </span>
+<span class="sd">            &gt;&gt;&gt; print cp</span>
+<span class="sd">                UnorderedList: &#39;a&#39;</span>
+<span class="sd">            &gt;&gt;&gt; print orig</span>
+<span class="sd">                UnorderedList: &#39;a&#39;,&#39;c&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1"># this could be faster and occupy less memory, but it&#39;s still O(n)  ;-) </span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rev</span><span class="p">()</span><span class="o">.</span><span class="n">rev</span><span class="p">()</span>
+        
+
+<span class="k">class</span> <span class="nc">UnorderedListTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Test cases for UnorderedList</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>    
+    
+    <span class="k">def</span> <span class="nf">test_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">test_str</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;UnorderedList&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">ul</span><span class="p">))</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;z&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">ul</span><span class="p">))</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;z&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">ul</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;w&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">ul</span><span class="p">))</span>
+    
+            
+        
+    <span class="k">def</span> <span class="nf">test_add</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Remember &#39;add&#39; adds stuff at the beginning of the list ! &quot;&quot;&quot;</span>
+        
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ul</span><span class="o">.</span><span class="n">to_python</span><span class="p">(),</span> <span class="p">[])</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ul</span><span class="o">.</span><span class="n">to_python</span><span class="p">(),</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">])</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ul</span><span class="o">.</span><span class="n">to_python</span><span class="p">(),</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
+        
+    <span class="k">def</span> <span class="nf">test_remove_empty_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="n">ul</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">test_remove_one_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="n">ul</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ul</span><span class="o">.</span><span class="n">to_python</span><span class="p">(),</span> <span class="p">[])</span>
+        
+    <span class="k">def</span> <span class="nf">test_remove_two_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="n">ul</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ul</span><span class="o">.</span><span class="n">to_python</span><span class="p">(),</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">])</span>        
+        <span class="n">ul</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ul</span><span class="o">.</span><span class="n">to_python</span><span class="p">(),</span> <span class="p">[])</span>        
+
+        
+    <span class="k">def</span> <span class="nf">test_remove_first_occurrence</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="n">ul</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ul</span><span class="o">.</span><span class="n">to_python</span><span class="p">(),</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">])</span>        
+        <span class="n">ul</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ul</span><span class="o">.</span><span class="n">to_python</span><span class="p">(),</span> <span class="p">[])</span>
+         
+                        
+    <span class="k">def</span> <span class="nf">test_rev_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([],</span> <span class="n">ul</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([],</span> <span class="n">ul</span><span class="o">.</span><span class="n">rev</span><span class="p">()</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>        
+
+    <span class="k">def</span> <span class="nf">test_rev_one</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">ul</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">ul</span><span class="o">.</span><span class="n">rev</span><span class="p">()</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>
+        
+
+    <span class="k">def</span> <span class="nf">test_rev_three</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">ul</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="n">ul</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">ul</span><span class="o">.</span><span class="n">rev</span><span class="p">()</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>        
+
+    <span class="k">def</span> <span class="nf">test_copy_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">orig</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+                
+        <span class="n">cp</span> <span class="o">=</span> <span class="n">orig</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([],</span> <span class="n">cp</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>        
+        
+        <span class="n">orig</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">orig</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([],</span> <span class="n">cp</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>        
+        
+
+    <span class="k">def</span> <span class="nf">test_copy_one</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">orig</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+        <span class="n">orig</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        
+        <span class="n">cp</span> <span class="o">=</span> <span class="n">orig</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="n">cp</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>        
+        
+        <span class="n">orig</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="n">orig</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="n">cp</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>        
+        <span class="n">orig</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">orig</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="n">cp</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>        
+
+        
+    <span class="k">def</span> <span class="nf">test_copy_two</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">orig</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+        <span class="n">orig</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+        <span class="n">orig</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>        
+        
+        <span class="n">cp</span> <span class="o">=</span> <span class="n">orig</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="n">cp</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>        
+        
+        <span class="n">orig</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="n">orig</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="n">cp</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>        
+
+        <span class="n">orig</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="n">orig</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="n">cp</span><span class="o">.</span><span class="n">to_python</span><span class="p">())</span>        
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-warn">
-WARNING: In the call above, DON'T append the extension <i>.py</i> to <i>my-file</i>
-<br/>
-WARNING: Still, on the hard-disk the file MUST be named with a <i>.py</i> at the end, like <i>my-file.py</i>
-</p>
-
-<p class="algolab-important" >
-2. You shall also write on paper!
-</p>
-
-<p>
-If staring at the monitor doesn't work, help yourself and draw a representation of the state sof the program. 
-Tables, nodes, arrows, all can help figuring out a solution for the problem. 
-</p>
-
-<p class="algolab-important" >
-3. You shall copy *exactly the same* function definitions as in the exercises!
-</p>
-
-For example don't write :
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">MY_selection_sort</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-</pre></div>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-important&quot; &gt;
-4. You shall never ever reassign function parameters:
-&lt;/p&gt;
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">UnorderedListTest</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12311,386 +12429,32 @@ For example don't write :
 
 
 <div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>.............
+----------------------------------------------------------------------
+Ran 13 tests in 0.027s
 
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-important" >
-4. You shall never ever reassign function parameters:
-</p>
-</div>
-
-</div>
-
+OK
+</pre>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
 </div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myfun</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">D</span><span class="p">):</span>
 
-        <span class="c1"># You shall not do any of such evil, no matter what the type of the parameter is:</span>
-        <span class="n">i</span> <span class="o">=</span> <span class="mi">666</span>            <span class="c1"># basic types (int, float, ...)</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;666&quot;</span>          <span class="c1"># strings</span>
-        <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">666</span><span class="p">]</span>          <span class="c1"># containers </span>
-        <span class="n">D</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;evil&quot;</span><span class="p">:</span><span class="mi">666</span><span class="p">}</span>   <span class="c1"># dictionaries</span>
-
-        <span class="c1"># For the sole case of composite parameters like lists or dictionaries, </span>
-        <span class="c1"># you can write stuff like this IF AND ONLY IF the function specification </span>
-        <span class="c1"># requires you to modify the parameter internal elements (i.e. sorting a list</span>
-        <span class="c1"># or changing a dictionary field):</span>
-
-        <span class="n">L</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>          <span class="c1"># list</span>
-        <span class="n">D</span><span class="o">.</span><span class="n">my_field</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c1"># dictionary</span>
-</pre></div>
-<p>This also applies to class methods. Never ever write horrors such as:</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyClass</span>
-    <span class="k">def</span> <span class="nf">my_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span> <span class="o">=</span> <span class="p">{</span><span class="n">a</span><span class="p">:</span><span class="mi">666</span><span class="p">}</span>  <span class="c1"># since self is a kind of dictionary, you might be tempted to do like this</span>
-                        <span class="c1"># but to the outside world this will bring no effect.</span>
-                        <span class="c1"># For example, let&#39;s say somebody from outside makes a call like this:</span>
-                        <span class="c1">#    mc = MyClass()</span>
-                        <span class="c1">#    mc.my_method()</span>
-                        <span class="c1"># after the call mc will not point to {a:666}</span>
-        <span class="bp">self</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;666&#39;</span><span class="p">]</span>  <span class="c1"># self is only supposed to be a sort of dictionary and passed from outside</span>
-        <span class="bp">self</span> <span class="o">=</span> <span class="mi">6</span>        <span class="c1"># self is only supposed to be a sort of dictionary and passed from outside</span>
-</pre></div>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-important&quot; &gt;
-5. You shall never ever assign values to method calls:
-&lt;/p&gt;
+<div class=" highlight hl-ipython2"><pre><span></span> 
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-important" >
-5. You shall never ever assign values to method calls:
-</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>WRONG WRONG STUFF</p>
-<div class="highlight"><pre><span></span><span class="n">my_fun</span><span class="p">()</span> <span class="o">=</span> <span class="mi">666</span>
-<span class="n">my_fun</span><span class="p">()</span> <span class="o">=</span> <span class="s1">&#39;666&#39;</span>
-<span class="n">my_fun</span><span class="p">()</span> <span class="o">=</span> <span class="p">[</span><span class="mi">666</span><span class="p">]</span>
-</pre></div>
-<p>CORRECT STUFF</p>
-<p>With the assignment operator we want to store in the left side a value from the right side, so all of these are valid operations:</p>
-<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">my_fun</span><span class="p">()</span>
-<span class="n">z</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
-<span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">d</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>
-</pre></div>
-<p>Function calls such as <code>my_fun()</code> return instead results of calculations in a box that is created just for the purpose of the call and Python will just not allow us to reuse it as a variable. So whenever you see 'name()' at the left side, it <em>can't</em> be possibly follewed by one equality <code>=</code> sign (but it can be followed by two equality signs <code>==</code> if you are performing a comparison).</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-important&quot; &gt;
-6. You shall use &lt;i&gt;return&lt;/i&gt; command only if you see written &lt;i&gt;return&lt;/i&gt; in the pseudocode!
-&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-important" >
-6. You shall use <i>return</i> command only if you see written <i>return</i> in the pseudocode!
-</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If there is no <code>return</code> in the pseudocode, the function is intended to return <code>None</code>. In this case you don't even need to write <code>return None</code>, as Python will do it implicitly for you.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Slides">Slides<a class="anchor-link" href="#Slides">&#182;</a></h1><p><strong>Lab 1 Slides</strong></p>
-<p>3 Nov 2016</p>
-<p><strong>Lab Goals</strong></p>
-<ul>
-<li>Going from theory taught by Prof. Alberto Montresor to implementation</li>
-<li>Pseudo code  --&gt;   Python</li>
-</ul>
-<p><strong>How</strong></p>
-<ul>
-<li>Hands-on approach</li>
-<li>Performance considerations</li>
-<li>Focus on correct code</li>
-<li>Few Python functions</li>
-</ul>
-<p><strong>Lab Midterm?</strong></p>
-<p>Probably not. Still, will provide exam example.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 2 Slides</strong></p>
-<p>Date: Nov 11th, 2016</p>
-<ul>
-<li>More practical than last time!</li>
-<li>Finish selection_sort and gap implementation</li>
-<li>midlab pause ;-)</li>
-<li>implement a Python class</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 3 Slides</strong></p>
-<p>Nov 17th, 2016</p>
-<ul>
-<li>Recursion<ul>
-<li><code>gap_rec</code>, <code>binary_search_rec</code></li>
-</ul>
-</li>
-<li><code>binary_search_iter</code></li>
-<li>Will give you more tests </li>
-<li>Write also on paper!</li>
-<li>Copy <em>exactly the same</em> function definitions!<ul>
-<li>For example don't write <code>def MY_selection_sort(A):</code>  </li>
-</ul>
-</li>
-<li>use <code>return</code> command <em>only</em> if you see written <code>return</code> in the pseudocode!<ul>
-<li>If there is no <code>return</code> in the pseudocode, the function is intended to return <code>None</code>. In this case you don't even need to write <code>return None</code>, as Python will do it implicitly for you.</li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 4 Slides</strong></p>
-<p>Nov 18th, 2016</p>
-<ul>
-<li>Divide et Impera<ul>
-<li>binary_search_iter</li>
-</ul>
-</li>
-<li>Implement ComplexNumber</li>
-</ul>
-<p>New Commandment:</p>
-<p>You shall never ever reassign function parameters:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myfun</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-
-    <span class="c1"># You shall not do any of this evil:</span>
-    <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">666</span><span class="p">]</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">666</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;666&quot;</span>
-</pre></div>
-<p>Previous commandments:</p>
-<ul>
-<li>You shall also write on paper!</li>
-<li>You shall copy exactly the same function definitions as in the exercises!</li>
-<li>For example don't write def MY_selection_sort(A):</li>
-<li>You shall use return command only if you see Written return in the pseudocode!</li>
-<li>If there is no return in the pseudocode, the function is intended to return None. In this case you don't even need to write return None, as Python will do it implicitly for you.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 5 slides</strong></p>
-<p>24 Nov 2016</p>
-<ul>
-<li>Implement ComplexNumber</li>
-<li>Implement Stack</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 6 slides</strong></p>
-<p>1 Dic 2016</p>
-<ul>
-<li>Implement <code>CappedStack</code></li>
-<li>Implement <code>UnorderedList</code></li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 7 slides</strong></p>
-<ul>
-<li>UnorderedList</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 8 slides</strong></p>
-<ul>
-<li>will start writing tests (will be required during exams)</li>
-<li>invariants in particular</li>
-<li><code>UnorderedList</code> ( see <a href="data-structures.html" target="_blank">Chapter 2</a> ) until fast <code>size()</code> and <code>append()</code> included</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 9 slides</strong></p>
-<p>15 Dic 2016</p>
-<ul>
-<li>Implement <code>GenericTree</code>, see <a href="trees.html" target="_blank">Trees chapter</a></li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 10 slides</strong></p>
-<p>19 Dic 2016</p>
-<ul>
-<li><code>GenericTree</code> see <a href="graphs.html" target="_blank">Graphs chapter</a></li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Office-hours">Office hours<a class="anchor-link" href="#Office-hours">&#182;</a></h1><p>You can schedule a meeting by emailing me at david.leoni [AT] unitn.it , more or less I'm available every day until 19.00</p>
-<p>Then you will find me in Povo 1 building at DISI, in room 225 DKM :</p>
-<p><img src="img/office.png" width="40%"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Resources">Resources<a class="anchor-link" href="#Resources">&#182;</a></h1><ul>
-<li>Online book: <a href="http://interactivepython.org/runestone/static/pythonds/index.html" target="_blank">
-  Problem Solving with Algorithms and Data Structures using Python </a>
-  by Brad Miller and David Ranum</li>
-<li><a href="http://cricca.disi.unitn.it/montresor/teaching/scientific-programming/slides/" target="_blank">  Theory slides </a> by Alberto Montresor</li>
-<li>Will try to be consistent with <a href="http://disi.unitn.it/~teso/courses/sciprog/index.html" target="_blank"> other lab module notes </a> of Stefano Teso and Toma Tebaldi  </li>
-<li><a href="http://www.pythontutor.com/visualize.html#mode=edit" target="_blank">PythonTutor </a>, a visual virtual machine (<em>very useful</em>! can also be found in examples inside the book!)</li>
-<li><a href="https://github.com/DavidLeoni/algolab">Source code</a> of these worksheets (<a href="https://github.com/DavidLeoni/algolab/archive/master.zip">download zip</a>), in <a href="http://jupyter.org">Jupyter Notebook</a> format. </li>
-<li>The internet ....</li>
-</ul>
-<h3 id="Editors">Editors<a class="anchor-link" href="#Editors">&#182;</a></h3><ul>
-<li><a href="http://jupyter.org">Jupyter Notebook</a>: Nice environment to execute Python commands and display results like graphs. Allows to include documentation in Markdown format</li>
-<li><a href="https://pythonhosted.org/spyder/">Spyder</a>: Should be a fine editor, although I haven't used it in a long time</li>
-</ul>
-
-</div>
-</div>
 </div>
     </div>
   </div>
