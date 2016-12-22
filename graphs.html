@@ -12049,6 +12049,10 @@ $(document).ready(algolab.init);
 <center>
 <span class="algolab-title">Chapter 4: Graphs</span>
 </center>
+<br/>
+<center>
+<span style="font-size:30px">DRAFT</span>
+</center>
 </div>
 </div>
 </div>
@@ -12063,6 +12067,44 @@ $(document).ready(algolab.init);
 <ul>
 <li><a href="https://interactivepython.org/runestone/static/pythonds/Graphs/VocabularyandDefinitions.html">Vocabulary and definitions</a></li>
 </ul>
+<p>To keep it short, a graph is a set of vertices linked by edges.</p>
+<h2 id="Directed-graphs">Directed graphs<a class="anchor-link" href="#Directed-graphs">&#182;</a></h2><p>In this worksheet we are going to use so called Directed Graphs (<code>DiGraph</code> for brevity), that is graphs that have <em>directed</em> edges: each edge can be pictured as an arrow linking source node <em>a</em> to target node <em>b</em>.  With such an arrow, you can go from <em>a</em> to <em>b</em> but you cannot go from <em>b</em> to <em>a</em> unless there is another edge in the reverse direction. A <code>DiGraph</code> for us can also have no edges or no verteces at all.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="1)-Building-graphs">1) Building graphs<a class="anchor-link" href="#1)-Building-graphs">&#182;</a></h1><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">full_graph</span><span class="p">(</span><span class="n">verteces</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Returns a DiGraph which is a full graph with provided verteces list.</span>
+
+<span class="sd">        In a full graph all verteces link to all other verteces) </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dag</span><span class="p">(</span><span class="n">verteces</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Returns a DiGraph which is DAG made out of provided verteces list</span>
+
+<span class="sd">        Provided list is intended to be in topological order.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+<h1 id="2)-Manipulate-graphs">2) Manipulate graphs<a class="anchor-link" href="#2)-Manipulate-graphs">&#182;</a></h1><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Reverses the direction of all the edges &quot;&quot;&quot;</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_self_loops</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Removes all of the self loops &quot;&quot;&quot;</span>
+</pre></div>
+<p>TODO: graph union, intersection, ...</p>
+<h1 id="3)-Query-graphs">3) Query graphs<a class="anchor-link" href="#3)-Query-graphs">&#182;</a></h1><p>Today we query graphs the "Do it yourself" way with Depth First Search (DFS) or Breadth First Search (BFS).</p>
+<p>If you have a big graph and complex query needs, there are off-the-shelves query languages and databases (example: Cypher and Neo4J)</p>
+<h2 id="3.1)-Play-with-dfs-and-bfs">3.1) Play with dfs and bfs<a class="anchor-link" href="#3.1)-Play-with-dfs-and-bfs">&#182;</a></h2><p>Create small graphs (like linked lists a-&gt;b-&gt;c, triangles, mini-full graphs, trees) and try to predict the visit sequence (verteces order, with discovery and finish times) you would have running a dfs or bfs. Then write tests that assert you actually get those sequences bwhen running provided dfs and bfs</p>
+<h1 id="4)-Do-cool-stuff-with-theory">4) Do cool stuff with theory<a class="anchor-link" href="#4)-Do-cool-stuff-with-theory">&#182;</a></h1><ul>
+<li>find connected components</li>
+<li>determine if a graph is acyclic</li>
+<li>find node distances</li>
+</ul>
 
 </div>
 </div>
@@ -12072,7 +12114,598 @@ $(document).ready(algolab.init);
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">PrettyPrinter</span>
+<span class="kn">from</span> <span class="nn">Queue</span> <span class="kn">import</span> <span class="n">Queue</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+
+<span class="n">pp</span> <span class="o">=</span> <span class="n">PrettyPrinter</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">VertexLog</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Represents the visit log a single DiGraph vertex</span>
+<span class="sd">    </span>
+<span class="sd">        This class is very simple and doesn&#39;t even have getters methods. </span>
+
+<span class="sd">        You can just access fields by using the dot:</span>
+
+<span class="sd">            print vertex_log.discovery_time</span>
+
+<span class="sd">        and set them directly:</span>
+
+<span class="sd">            vertex_log.finish_time = 5</span>
+<span class="sd">        </span>
+<span class="sd">        If you want, an instances you can set your own fields:</span>
+<span class="sd">        </span>
+<span class="sd">            vertex_log.my_own_field = &quot;whatever&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vertex</span> <span class="o">=</span> <span class="n">vertex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">None</span>              
+        
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
+        <span class="k">return</span> <span class="n">pp</span><span class="o">.</span><span class="n">pformat</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+       
+<span class="k">class</span> <span class="nc">Visit</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; The visit of a DiGraph visit sequence. </span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Creates a Visit &quot;&quot;&quot;</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span> <span class="o">=</span> <span class="p">{}</span>
+        
+
+    <span class="k">def</span> <span class="nf">is_discovered</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns true if given vertex is present in the log and </span>
+<span class="sd">            has discovery_time != -1</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the log of the given vertex. </span>
+<span class="sd">        </span>
+<span class="sd">            If there is no existing log, a new one will be created and returned</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span> <span class="o">=</span> <span class="n">VertexLog</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span>
+        
+    <span class="k">def</span> <span class="nf">logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+             <span class="n">sort_by</span><span class="o">=</span><span class="k">lambda</span> <span class="n">log</span><span class="p">:</span> <span class="n">log</span><span class="o">.</span><span class="n">discovery_time</span><span class="p">,</span> 
+             <span class="n">descendant</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+             <span class="n">get_all</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns an array with sequence of discovered VertexLogs, sorted by discovery time.</span>
+
+<span class="sd">            Optionally, they can be sorted by:</span>
+<span class="sd">            - a custom field using &#39;sort_by&#39; parameter </span>
+<span class="sd">            - in descendent order with &#39;descendant&#39; parameter.</span>
+<span class="sd">            </span>
+<span class="sd">            By default only discovered vertex logs are returned:</span>
+<span class="sd">             to get all, use get_all=True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">get_all</span><span class="p">:</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>            
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">log</span><span class="p">:</span> <span class="n">log</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+        <span class="n">ret</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span> <span class="n">sort_by</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span> <span class="n">descendant</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span>
+        
+    <span class="k">def</span> <span class="nf">verteces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+                 <span class="n">sort_by</span><span class="o">=</span><span class="k">lambda</span> <span class="n">log</span><span class="p">:</span> <span class="n">log</span><span class="o">.</span><span class="n">discovery_time</span><span class="p">,</span> 
+                 <span class="n">descendant</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                 <span class="n">get_all</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns an array with sequence of the discovered VertexLogs, sorted by discovery time.</span>
+
+<span class="sd">            Optionally, they can be sorted by:</span>
+<span class="sd">            - a custom field using &#39;sort_by&#39; parameter </span>
+<span class="sd">            - in descendent order with &#39;descendant&#39; parameter.</span>
+<span class="sd">            </span>
+<span class="sd">            By default only discovered vertex logs are returned:</span>
+<span class="sd">             to get all, use get_all=True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">vertex_log</span><span class="p">:</span><span class="n">vertex_log</span><span class="o">.</span><span class="n">vertex</span><span class="p">,</span>                                      
+                   <span class="bp">self</span><span class="o">.</span><span class="n">logs</span><span class="p">(</span><span class="n">sort_by</span><span class="o">=</span><span class="n">sort_by</span><span class="p">,</span> 
+                             <span class="n">descendant</span><span class="o">=</span><span class="n">descendant</span><span class="p">,</span>
+                             <span class="n">get_all</span><span class="o">=</span><span class="n">get_all</span><span class="p">))</span>
+
+    
+    <span class="k">def</span> <span class="nf">last_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return the maximum time found among discovery and finish times.</span>
+<span class="sd">        </span>
+<span class="sd">            If no node was visited, returns zero.        </span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        
+        <span class="n">max_time</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">log</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">&gt;</span> <span class="n">max_time</span><span class="p">:</span>
+               <span class="n">max_time</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">discovery_time</span> 
+            <span class="k">if</span> <span class="n">log</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">&gt;</span> <span class="n">max_time</span><span class="p">:</span>
+               <span class="n">max_time</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">finish_time</span> 
+        <span class="k">return</span> <span class="n">max_time</span>                
+                    
+        
+<span class="k">class</span> <span class="nc">DiGraph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; A simple graph data structure, represented as a dictionary of adjacency lists</span>
+<span class="sd">    </span>
+<span class="sd">        Verteces can be of any type, to keep things simple in this data model they coincide with their labels.</span>
+<span class="sd">        Adjacency lists hold the target verteces. </span>
+<span class="sd">        Attempts to add duplicate targets will be silently ignored.</span>
+<span class="sd">        </span>
+<span class="sd">        For shorthand construction, see separate dig() function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+            
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span> <span class="o">=</span> <span class="p">{}</span>
+        
+    <span class="k">def</span> <span class="nf">add_vertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Adds vertex to the DiGraph. A vertex can be any object.</span>
+<span class="sd">            </span>
+<span class="sd">            If the vertex already exist, does nothing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">vertex</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>            
+            <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">def</span> <span class="nf">verteces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns a set of the graph verteces. Verteces can be any object. &quot;&quot;&quot;</span>
+        
+        <span class="c1"># Note dict keys() return a list, not a set. Bleah.  </span>
+        <span class="c1"># See http://stackoverflow.com/questions/13886129/why-does-pythons-dict-keys-return-a-list-and-not-a-set</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> 
+        
+    <span class="k">def</span> <span class="nf">has_vertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns true if graph contains given vertex. A vertex can be any object. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span>
+    
+    <span class="k">def</span> <span class="nf">remove_vertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Removes the provided vertex  and returns it</span>
+<span class="sd">            </span>
+<span class="sd">            If the vertex is not found, raises an Exception.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+                
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find vertex:&quot;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">vertex</span><span class="p">))</span>
+        
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">verteces</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">verteces</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">verteces</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex1</span><span class="p">,</span> <span class="n">vertex2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Adds an edge to the graph, from vertex1 to vertex2</span>
+<span class="sd">        </span>
+<span class="sd">            If verteces don&#39;t exist, raises an Exception.</span>
+<span class="sd">            If there is already such an edge, exits silently.            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find source vertex:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vertex1</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find target vertex:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vertex2</span><span class="p">))</span>        
+            
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">vertex1</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">vertex1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vertex2</span><span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns a string representation like the following:</span>
+<span class="sd">        </span>
+<span class="sd">            &gt;&gt;&gt; print gr(&#39;a&#39;,[&#39;b&#39;,&#39;c&#39;, &#39;d&#39;],</span>
+<span class="sd">                         &#39;b&#39;, [&#39;b&#39;],</span>
+<span class="sd">                         &#39;c&#39;, [&#39;a&#39;])</span>
+
+<span class="sd">            a: [b,c]</span>
+<span class="sd">            b: [b]</span>
+<span class="sd">            c: [a]         </span>
+<span class="sd">            d: []</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;DiGraph()&quot;</span> 
+        
+        <span class="n">max_len</span><span class="o">=</span><span class="mi">0</span>
+        
+        <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
+            <span class="n">max_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">source</span><span class="p">)))</span>
+        
+        <span class="n">strings</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">max_len</span><span class="p">))</span>
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;: &#39;</span><span class="p">)</span>            
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">source</span><span class="p">]))</span>
+            
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">adj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find a vertex &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vertex</span><span class="p">))</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span>
+      
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+            
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DiGraph</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verteces</span><span class="p">()</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">verteces</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        
+        <span class="k">for</span> <span class="n">source_vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>            
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">source_vertex</span><span class="p">]</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">source_vertex</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+        
+        <span class="k">return</span> <span class="bp">True</span>
+        
+    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;  A DiGraph for us is empty if it has no verteces and no edges &quot;&quot;&quot;</span>
+        
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">visit</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Performs a simple depth first search on the graph</span>
+<span class="sd">            </span>
+<span class="sd">            Returns a Visit of the visited nodes. If the graph is empty, raises an Exception.</span>
+<span class="sd">            Optionally, you can pass the initial visit trace. </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot perform DFS on an empty graph!&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">visit</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">visit</span> <span class="o">=</span> <span class="n">Visit</span><span class="p">()</span>            
+        
+        <span class="c1"># we just discovered the vertex           </span>
+        <span class="n">source_log</span> <span class="o">=</span> <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="n">source_log</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">=</span> <span class="n">visit</span><span class="o">.</span><span class="n">last_time</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+        
+        <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="n">source</span><span class="p">):</span> 
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">visit</span><span class="o">.</span><span class="n">is_discovered</span><span class="p">(</span><span class="n">neighbor</span><span class="p">):</span>
+                
+                <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">source</span>        
+            
+                <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">neighbor</span><span class="p">,</span> <span class="n">visit</span><span class="p">)</span>                
+                
+        <span class="n">source_log</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="n">visit</span><span class="o">.</span><span class="n">last_time</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>    
+        
+        <span class="k">return</span> <span class="n">visit</span>
+
+        
+    <span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Performs a simple breadth first search in the graph, starting from </span>
+<span class="sd">            provided source vertex.</span>
+<span class="sd">            </span>
+<span class="sd">            Returns a Visit of the discovered nodes.</span>
+<span class="sd">            NOTE: it stores discovery but not finish times.</span>
+<span class="sd">            </span>
+<span class="sd">            If source is not in the graph, raises an Exception </span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot perform BFS on an empty graph!&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">verteces</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Can&#39;t find vertex:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">source</span><span class="p">))</span>
+        
+        <span class="n">visit</span> <span class="o">=</span> <span class="n">Visit</span><span class="p">()</span>  
+        
+        <span class="n">queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>        
+        <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">queue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+            <span class="n">vertex</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">visit</span><span class="o">.</span><span class="n">is_discovered</span><span class="p">(</span><span class="n">vertex</span><span class="p">):</span>
+                <span class="c1"># we just discovered the node</span>
+                <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">=</span> <span class="n">visit</span><span class="o">.</span><span class="n">last_time</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+            
+                <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>                    
+                    <span class="n">neighbor_log</span> <span class="o">=</span> <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">neighbor_log</span><span class="o">.</span><span class="n">parent</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="n">neighbor_log</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">vertex</span>
+                    <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>                    
+        
+        <span class="k">return</span> <span class="n">visit</span>            
+
+
+
+
+<span class="k">def</span> <span class="nf">str_compare_digraphs</span><span class="p">(</span><span class="n">dg1</span><span class="p">,</span> <span class="n">dg2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Returns a string representing a comparison side by side </span>
+<span class="sd">        of the provided digraphs</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">dg1</span> <span class="o">==</span> <span class="bp">None</span><span class="p">)</span> <span class="o">^</span> <span class="p">(</span><span class="n">dg1</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;At least one graph is None ! &quot;</span> <span class="o">+</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2"> Graph 1: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dg1</span><span class="p">)</span>  <span class="o">+</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2"> Graph 2: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dg2</span><span class="p">)</span> 
+    
+    <span class="n">max_len1</span> <span class="o">=</span> <span class="mi">0</span>    
+    <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">dg1</span><span class="o">.</span><span class="n">verteces</span><span class="p">():</span>
+        <span class="n">max_len1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_len1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">source</span><span class="p">)))</span>
+
+    <span class="n">max_len2</span> <span class="o">=</span> <span class="mi">0</span>    
+    <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">dg2</span><span class="o">.</span><span class="n">verteces</span><span class="p">():</span>
+        <span class="n">max_len2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_len2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">source</span><span class="p">)))</span>
+
+    
+    <span class="n">strings</span> <span class="o">=</span> <span class="p">[]</span>
+    
+
+    <span class="n">common_edges</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">dg1</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">dg2</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
+
+    <span class="n">all_edges</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">dg1</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span><span class="o">.</span><span class="n">union</span><span class="p">(</span> <span class="n">dg2</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
+    
+    <span class="n">different_edges</span> <span class="o">=</span> <span class="n">all_edges</span> <span class="o">-</span> <span class="n">common_edges</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">different_edges</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">vs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">common_edges</span><span class="p">)</span>
+        <span class="n">vs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">different_edges</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">vs</span> <span class="o">=</span> <span class="n">dg1</span><span class="o">.</span><span class="n">verteces</span><span class="p">()</span>
+
+    <span class="n">strings</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">vs</span><span class="p">:</span>
+                
+        <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span>
+        <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;: &#39;</span><span class="p">)</span>
+                
+        <span class="k">if</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">dg1</span><span class="o">.</span><span class="n">verteces</span><span class="p">():</span>
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">dg1</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="n">vertex</span><span class="p">))</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">max_len1</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_len1</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
+            
+        <span class="k">if</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">dg2</span><span class="o">.</span><span class="n">verteces</span><span class="p">():</span>
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dg2</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="n">vertex</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_len2</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">dg1</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span> <span class="o">!=</span> <span class="n">dg2</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="n">vertex</span><span class="p">)):</span>
+            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;  &lt;---- DIFFERENT ! &quot;</span><span class="p">)</span>
+        
+        <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
+
+        
+
+<span class="k">def</span> <span class="nf">dig</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Shorthand to construct a DiGraph with provided arguments</span>
+<span class="sd">    </span>
+<span class="sd">        To use it, provide source vertex / target vertex pairs like in the following examples:        </span>
+<span class="sd">        </span>
+<span class="sd">        &gt;&gt;&gt; print dig()        </span>
+<span class="sd">        </span>
+<span class="sd">        DiGraph()</span>
+<span class="sd">        </span>
+<span class="sd">        &gt;&gt;&gt; print dig(&#39;a&#39;,[&#39;b&#39;,&#39;c&#39;])</span>
+<span class="sd">                </span>
+<span class="sd">        a: [b,c]</span>
+<span class="sd">        b: []</span>
+<span class="sd">        c: []</span>
+<span class="sd">        </span>
+<span class="sd">        &gt;&gt;&gt; print dig(&#39;a&#39;,[&#39;b&#39;,&#39;c&#39;],</span>
+<span class="sd">                     &#39;b&#39;, [&#39;b&#39;],</span>
+<span class="sd">                     &#39;c&#39;, [&#39;a&#39;])</span>
+<span class="sd">                </span>
+<span class="sd">        a: [b,c]</span>
+<span class="sd">        b: [b]</span>
+<span class="sd">        c: [a]                </span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">g</span> <span class="o">=</span> <span class="n">DiGraph</span><span class="p">()</span>
+        
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Number of arguments must be even! You need to provide&quot;</span>
+                    <span class="o">+</span> <span class="s2">&quot; vertex/list pairs like &#39;a&#39;,[&#39;b&#39;, &#39;c&#39;], b, [&#39;d&#39;], ... !&quot;</span><span class="p">)</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>        
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">vertex</span> <span class="o">=</span> <span class="n">a</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span>            
+            
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="nb">iter</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Targets of &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; are not iterable: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">)</span>
+            <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">g</span><span class="o">.</span><span class="n">has_vertex</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+                    <span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+                <span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">vertex</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">return</span> <span class="n">g</span>
+    
+    
+    
+<span class="k">def</span> <span class="nf">gen_graphs</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>    
+    <span class="sd">&quot;&quot;&quot; Returns a list with all the possible 2^(n^2) graphs of size n </span>
+<span class="sd">    </span>
+<span class="sd">        Verteces will be identified with numbers from 1 to n </span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+
+    <span class="k">def</span> <span class="nf">gen_bits</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;  Generates a sequence of 2^(n^2) lists, each of n^2 0 / 1 ints  &quot;&quot;&quot;</span>
+                        
+        <span class="n">bits</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">;</span>    
+        <span class="n">nedges</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">bits</span>    
+        
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nedges</span><span class="p">):</span>
+                    
+            <span class="n">right</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">bin</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]]</span>
+            <span class="n">lst</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">bits</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)))</span>
+            <span class="n">lst</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+    
+            <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">DiGraph</span><span class="p">()]</span>
+        
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">lst</span> <span class="ow">in</span> <span class="n">gen_bits</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        
+        <span class="n">g</span> <span class="o">=</span> <span class="n">DiGraph</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+        
+        <span class="n">source</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>            
+            <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">source</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
+                <span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret</span>
+      
+<span class="k">def</span> <span class="nf">gen_list</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Generates a graph of n verteces displaced like a </span>
+<span class="sd">        monodirectional list:  1 -&gt; 2 -&gt; 3 -&gt; ... -&gt; n </span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">DiGraph</span><span class="p">()</span>
+    
+    <span class="n">g</span> <span class="o">=</span> <span class="n">DiGraph</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+      
+    <span class="k">return</span> <span class="n">g</span>
+
+<span class="n">GRAPHS_3</span> <span class="o">=</span> <span class="n">gen_graphs</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">VisitTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">test_log</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Checks it doesn&#39;t explode with non-existing verteces &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Visit</span><span class="p">()</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">discovery_time</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Visit</span><span class="p">()</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">finish_time</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_verteces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([],</span> <span class="n">Visit</span><span class="p">()</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
+        
+        <span class="n">visit</span> <span class="o">=</span> <span class="n">Visit</span><span class="p">()</span>
+        <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">(</span><span class="n">get_all</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+        <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
+        <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
+        <span class="c1">#  descendant=False, get_all=False):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">(</span><span class="n">descendant</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">(</span><span class="n">descendant</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+        
+        <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">(</span><span class="n">sort_by</span><span class="o">=</span><span class="k">lambda</span> <span class="n">log</span><span class="p">:</span><span class="n">log</span><span class="o">.</span><span class="n">finish_time</span><span class="p">))</span>
+        
+<span class="k">class</span> <span class="nc">DiGraphTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>    
+    
+    <span class="k">def</span> <span class="nf">assertDiGraphEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dg1</span><span class="p">,</span> <span class="n">dg2</span><span class="p">):</span>                    
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dg1</span> <span class="o">==</span> <span class="n">dg2</span><span class="p">:</span>            
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;Graphs are different: </span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">str_compare_digraphs</span> <span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">assertSubset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Asserts set1 is a subset of set2 &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">set1</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">set2</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">set1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is not a subset of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">set2</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">raise_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exception</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">visit</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Emulates reraising an exception for a given graph visit &quot;&quot;&quot;</span>
+                        
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span>
+             <span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Failed graph was: </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+             <span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Failed graph visit was: </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">pp</span><span class="o">.</span><span class="n">pformat</span><span class="p">(</span><span class="n">visit</span><span class="o">.</span><span class="n">logs</span><span class="p">()))</span>
+    
+    <span class="k">def</span> <span class="nf">test_str</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s2">&quot;DiGraph()&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">dig</span><span class="p">()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s2">&quot;x&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">dig</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,[</span><span class="s1">&#39;y&#39;</span><span class="p">])))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s2">&quot;y&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">dig</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,[</span><span class="s1">&#39;y&#39;</span><span class="p">])))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">]),</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">]),</span>
+                          <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">test_gen_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">gen_list</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">dig</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">gen_list</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">dig</span><span class="p">(</span><span class="mi">1</span><span class="p">,[]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">gen_list</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">dig</span><span class="p">(</span><span class="mi">1</span><span class="p">,[</span><span class="mi">2</span><span class="p">],</span><span class="mi">2</span><span class="p">,[</span><span class="mi">3</span><span class="p">]))</span>
+        
+    <span class="k">def</span> <span class="nf">test_gen_graphs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="n">gs0</span> <span class="o">=</span> <span class="n">gen_graphs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gs0</span><span class="p">))</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">dig</span><span class="p">()</span> <span class="ow">in</span> <span class="n">gs0</span><span class="p">)</span>
+        
+        <span class="n">gs1</span> <span class="o">=</span> <span class="n">gen_graphs</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gs1</span><span class="p">))</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">dig</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[])</span> <span class="ow">in</span> <span class="n">gs1</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">test_assert_dig</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertDiGraphEqual</span><span class="p">(</span><span class="n">dig</span><span class="p">(),</span> <span class="n">dig</span><span class="p">())</span>
+        
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertDiGraphEqual</span><span class="p">(</span><span class="n">dig</span><span class="p">(),</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,[]))</span>        
+
+    <span class="k">def</span> <span class="nf">test_dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([],</span> <span class="n">dig</span><span class="p">()</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+                        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,[])</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
+                        
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">GRAPHS_3</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">visit</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertLessEqual</span><span class="p">(</span><span class="n">visit</span><span class="o">.</span><span class="n">last_time</span><span class="p">(),</span> <span class="mi">3</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">finish_time</span><span class="p">,</span> 
+                                  <span class="n">visit</span><span class="o">.</span><span class="n">last_time</span><span class="p">())</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">raise_graph</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">visit</span><span class="p">)</span>
+          
+             
+    <span class="k">def</span> <span class="nf">test_bfs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([],</span> <span class="n">dig</span><span class="p">()</span><span class="o">.</span><span class="n">bfs</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+                                                        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,[])</span><span class="o">.</span><span class="n">bfs</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
+                
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">GRAPHS_3</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">visit</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">bfs</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertSubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">()),</span> <span class="n">g</span><span class="o">.</span><span class="n">verteces</span><span class="p">()</span> <span class="p">)</span>                
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertLessEqual</span><span class="p">(</span><span class="n">visit</span><span class="o">.</span><span class="n">last_time</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>                                                
+                <span class="bp">self</span><span class="o">.</span><span class="n">raise_graph</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">visit</span><span class="p">)</span>
+                
 </pre></div>
 
 </div>
@@ -12082,7 +12715,69 @@ $(document).ready(algolab.init);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">VisitTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>..
+----------------------------------------------------------------------
+Ran 2 tests in 0.009s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">DiGraphTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>......
+----------------------------------------------------------------------
+Ran 6 tests in 0.109s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span> 
