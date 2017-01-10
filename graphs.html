@@ -12048,10 +12048,11 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<center>
+<p><center>
 <span class="algolab-title">Chapter 4: Graphs</span>
 </center>
-<br/>
+<br/></p>
+
 </div>
 </div>
 </div>
@@ -12067,8 +12068,7 @@ $(document).ready(algolab.init);
 <li><a href="https://interactivepython.org/runestone/static/pythonds/Graphs/VocabularyandDefinitions.html">Vocabulary and definitions</a></li>
 </ul>
 <p>To keep it short, a graph is a set of vertices linked by edges.</p>
-<h2 id="Directed-graphs">Directed graphs<a class="anchor-link" href="#Directed-graphs">&#182;</a></h2><p>First off, download <a href="graphs.py">the Python skeleton</a> to modify. Solutions are in a <a href="graphs_solution.py">separate file</a>.</p>
-<p>In this worksheet we are going to use so called Directed Graphs (<code>DiGraph</code> for brevity), that is graphs that have <em>directed</em> edges: each edge can be pictured as an arrow linking source node <em>a</em> to target node <em>b</em>.  With such an arrow, you can go from <em>a</em> to <em>b</em> but you cannot go from <em>b</em> to <em>a</em> unless there is another edge in the reverse direction.</p>
+<h2 id="Directed-graphs">Directed graphs<a class="anchor-link" href="#Directed-graphs">&#182;</a></h2><p>In this worksheet we are going to use so called Directed Graphs (<code>DiGraph</code> for brevity), that is graphs that have <em>directed</em> edges: each edge can be pictured as an arrow linking source node <em>a</em> to target node <em>b</em>.  With such an arrow, you can go from <em>a</em> to <em>b</em> but you cannot go from <em>b</em> to <em>a</em> unless there is another edge in the reverse direction.</p>
 <ul>
 <li>A <code>DiGraph</code> for us can also have no edges or no verteces at all. </li>
 <li>A vertex for us can be anything, a string like <em>'abc'</em>, the number <em>3</em>, etc </li>
@@ -12119,7 +12119,17 @@ QUESTION: <code>DiGraph</code> model is thus good for dense or sparse graphs?
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Serious-graphs">Serious graphs<a class="anchor-link" href="#Serious-graphs">&#182;</a></h2><p>In this worksheet we follow the Do-It-Yourself methodology and create graph classes from scratch for didactical purposes. Of course, in Python world you have alread nice libraries entirely devoted to graphs like <a href="https://networkx.github.io/" target="_blank">networkx</a>. If you have huge graphs you might consider big data tools like <a href="http://spark.apache.org/graphx/" target="_blank">Spark GraphX</a> which is programmable in Python.</p>
+<h2 id="Serious-graphs">Serious graphs<a class="anchor-link" href="#Serious-graphs">&#182;</a></h2><p>In this worksheet we follow the Do-It-Yourself methodology and create graph classes from scratch for didactical purposes. Of course, in Python world you have alread nice libraries entirely devoted to graphs like <a href="https://networkx.github.io/" target="_blank">networkx</a>, you can also use them for visualizating graphs. If you have huge graphs to process you might consider big data tools like <a href="http://spark.apache.org/graphx/" target="_blank">Spark GraphX</a> which is programmable in Python.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="0)-Code-skeleton">0) Code skeleton<a class="anchor-link" href="#0)-Code-skeleton">&#182;</a></h1><p>First off, download <a href="graphs.py">the Python skeleton</a> to modify. Solutions are in a <a href="graphs_solution.py">separate file</a>.</p>
 
 </div>
 </div>
@@ -13839,7 +13849,7 @@ QUESTION: What happens if you call <code>gen_graphs(10)</code> ? How many graphs
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>...
 ----------------------------------------------------------------------
-Ran 3 tests in 0.003s
+Ran 3 tests in 0.007s
 
 OK
 </pre>
@@ -13870,7 +13880,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.....................................
 ----------------------------------------------------------------------
-Ran 37 tests in 0.080s
+Ran 37 tests in 0.115s
 
 OK
 </pre>
@@ -13880,6 +13890,16 @@ OK
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h1><p>Solutions are in a <a href="graphs_solution.py">separate file</a>.</p>
+
+</div>
+</div>
 </div>
     </div>
   </div>
