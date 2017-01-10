@@ -52,3 +52,16 @@ def init():
 
 def assertNotNone(ret, function_name):
     return function_name + " specs say nothing about returning objects! Instead you are returning " + str(ret)
+
+
+import networkx as nx
+from nxpd import draw
+
+def show_distances():
+    G = nx.DiGraph()
+    G.graph['dpi'] = 80
+    G.add_nodes_from(['a  0','b  1', 'c  1', 'd  2', 'e  3', 'f  -1', 'g  -1'])
+    G.add_edges_from([('a  0','b  1'),('a  0', 'c  1'), ('b  1', 'd  2'),  ('c  1', 'd  2'), ('d  2', 'e  3') 
+                      , ('e  3', 'd  2'),
+                     ('f  -1', 'g  -1')])
+    return G

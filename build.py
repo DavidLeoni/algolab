@@ -1,6 +1,7 @@
 #!/usr/bin/python
 from subprocess import call
 import shutil
+import glob
 import os
 import sys
 
@@ -72,6 +73,8 @@ log("Copying other files ...")
 shutil.copytree("img/", "target/img/")
 shutil.copytree("js/", "target/js/")
 shutil.copytree("css/", "target/css/")
+for file in glob.glob(r'*.py'):                                                                                                                                  
+    shutil.copy(file, "target/")
 shutil.copytree("exam-simulation/", "target/exam-simulation/")
 
 log("Website generated at target/")
