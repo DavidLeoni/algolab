@@ -12343,7 +12343,7 @@ First differing element 2:
 
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.003s
+Ran 1 test in 0.004s
 
 FAILED (failures=1)
 </pre>
@@ -12360,6 +12360,13 @@ FAILED (failures=1)
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now you can see a nice display of where the error is, exactly in the middle of the list.</p>
+<h3 id="When-tests-don't-run">When tests don't run<a class="anchor-link" href="#When-tests-don't-run">&#182;</a></h3><p>When <code>-m unittest</code> does not work and you keep seeing absurd errors like Python not finding a module and you are getting desperate (especially because Python has unittest included <em>by default</em>, there is no need to install it! ), try to put the following code at the very end of the file you are editing:</p>
+<div class="highlight"><pre><span></span><span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+<p>Then run your file with just</p>
+<div class="highlight"><pre><span></span>python my-file.py
+</pre></div>
+<p>In this case it should REALLY work. If it still doesn't, call the Ghostbusters. Or, better, the IndentationBusters, you're likely having tabs mixed with spaces mixed with bad bad luck.</p>
 <h3 id="Adding-tests">Adding tests<a class="anchor-link" href="#Adding-tests">&#182;</a></h3><p>How can we add (good) tests? Since best ones are usually short, it would be better starting small boundary cases. For example like <code>n=1</code> according to function documentation should produce a list containing zero:</p>
 
 </div>
@@ -12450,7 +12457,7 @@ First differing element 0:
 + [0]
 
 ----------------------------------------------------------------------
-Ran 2 tests in 0.004s
+Ran 2 tests in 0.008s
 
 FAILED (failures=2)
 </pre>
@@ -12515,7 +12522,7 @@ FAILED (failures=2)
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>..
 ----------------------------------------------------------------------
-Ran 2 tests in 0.002s
+Ran 2 tests in 0.005s
 
 OK
 </pre>

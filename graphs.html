@@ -11752,6 +11752,8 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">algolab</span>
+<span class="kn">from</span> <span class="nn">graphs</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">nxpd</span> <span class="kn">import</span> <span class="n">draw</span>
 <span class="n">algolab</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
 </pre></div>
 
@@ -12068,13 +12070,59 @@ $(document).ready(algolab.init);
 <li><a href="https://interactivepython.org/runestone/static/pythonds/Graphs/VocabularyandDefinitions.html">Vocabulary and definitions</a></li>
 </ul>
 <p>To keep it short, a graph is a set of vertices linked by edges.</p>
-<h2 id="Directed-graphs">Directed graphs<a class="anchor-link" href="#Directed-graphs">&#182;</a></h2><p>In this worksheet we are going to use so called Directed Graphs (<code>DiGraph</code> for brevity), that is graphs that have <em>directed</em> edges: each edge can be pictured as an arrow linking source node <em>a</em> to target node <em>b</em>.  With such an arrow, you can go from <em>a</em> to <em>b</em> but you cannot go from <em>b</em> to <em>a</em> unless there is another edge in the reverse direction.</p>
+<h2 id="Directed-graphs">Directed graphs<a class="anchor-link" href="#Directed-graphs">&#182;</a></h2><p>First off, download <a href="graphs.py">the Python skeleton</a> to modify. Solutions are in a <a href="graphs_solutions.py">separate file</a>.</p>
+<p>In this worksheet we are going to use so called Directed Graphs (<code>DiGraph</code> for brevity), that is graphs that have <em>directed</em> edges: each edge can be pictured as an arrow linking source node <em>a</em> to target node <em>b</em>.  With such an arrow, you can go from <em>a</em> to <em>b</em> but you cannot go from <em>b</em> to <em>a</em> unless there is another edge in the reverse direction.</p>
 <ul>
-<li>The <code>DiGraph</code> is represented as a </li>
 <li>A <code>DiGraph</code> for us can also have no edges or no verteces at all. </li>
-<li>In our model, edges simply lik vertices and have no weights</li>
-<li></li>
+<li>A vertex for us can be anything, a string like <em>'abc'</em>, the number <em>3</em>, etc </li>
+<li>In our model, edges simply link vertices and have no weights</li>
+<li>The <code>DiGraph</code> is represented as an adjacency list, mapping each vertex to the verteces it is linked to.</li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
+
+&lt;p class=&quot;algolab-question&quot;&gt;
+QUESTION: &lt;code&gt;DiGraph&lt;/code&gt; model is thus good for dense or sparse graphs?
+&lt;/p&gt;
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-question">
+QUESTION: <code>DiGraph</code> model is thus good for dense or sparse graphs?
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Serious-graphs">Serious graphs<a class="anchor-link" href="#Serious-graphs">&#182;</a></h2><p>In this worksheet we follow the Do-It-Yourself methodology and create graph classes from scratch for didactical purposes. Of course, in Python world you have alread nice libraries entirely devoted to graphs like <a href="https://networkx.github.io/" target="_blank">networkx</a>. If you have huge graphs you might consider big data tools like <a href="http://spark.apache.org/graphx/" target="_blank">Spark GraphX</a> which is programmable in Python.</p>
 
 </div>
 </div>
@@ -12084,28 +12132,1686 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="1)-Building-graphs">1) Building graphs<a class="anchor-link" href="#1)-Building-graphs">&#182;</a></h1><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">full_graph</span><span class="p">(</span><span class="n">verteces</span><span class="p">):</span>
+<h1 id="1)-Building-graphs">1) Building graphs<a class="anchor-link" href="#1)-Building-graphs">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
+
+&lt;p class=&quot;algolab-important&quot;&gt;
+IMPORTANT: All the functions until &lt;a href=&quot;#1.8)-has_edge&quot; &gt;1.8 has_edge() excluded&lt;/a&gt; are already
+    provided and you don&#39;t need to implement them !
+&lt;/p&gt;
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-important">
+IMPORTANT: All the functions until <a href="#1.8)-has_edge" >1.8 has_edge() excluded</a> are already
+    provided and you don't need to implement them !
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.1)-Building-basics">1.1) Building basics<a class="anchor-link" href="#1.1)-Building-basics">&#182;</a></h2><p>Let's look at the constructor <code>__init__</code> and <code>add_vertex</code>. They are already provided and you don't need to implement it:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DiGraph</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># The class just holds the dictionary _edges: as keys it has the verteces, and </span>
+        <span class="c1"># to each vertex associates a list with the verteces it is linked to.</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">add_vertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Adds vertex to the DiGraph. A vertex can be any object.</span>
+
+<span class="sd">            If the vertex already exist, does nothing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">vertex</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>            
+            <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You will see that inside it just initializes <code>_edges</code>. So the only way to create a <code>DiGraph</code> is with a call like</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">DiGraph</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>DiGraph</code> provides an <code>__str__</code> method to have a nice printout:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">g</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+DiGraph()
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can add then vertices to the graph like so:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">g</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+a: []
+b: []
+c: []
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Adding a vertex twice does nothing:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">g</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+a: []
+b: []
+c: []
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once you added the verteces, you can start adding directed edges among them with the method <code>add_edge</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex1</span><span class="p">,</span> <span class="n">vertex2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Adds an edge to the graph, from vertex1 to vertex2</span>
+
+<span class="sd">            If verteces don&#39;t exist, raises an Exception.</span>
+<span class="sd">            If there is already such an edge, exits silently.            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find source vertex:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vertex1</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find target vertex:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vertex2</span><span class="p">))</span>        
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">vertex1</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">vertex1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vertex2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">g</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+a: [&#39;c&#39;]
+b: []
+c: []
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">g</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+a: [&#39;c&#39;, &#39;b&#39;]
+b: []
+c: []
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Adding an edge twice makes no difference:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">g</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+a: [&#39;c&#39;, &#39;b&#39;]
+b: []
+c: []
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice a <code>DiGraph</code> can have self-loops too (also called <em>caps</em>):</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">g</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+a: [&#39;c&#39;, &#39;b&#39;]
+b: [&#39;b&#39;]
+c: []
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.2)-dig()">1.2) dig()<a class="anchor-link" href="#1.2)-dig()">&#182;</a></h2><p><code>dig()</code> is a shortcut to build graphs, it is already provided and you don't need to implement it. <strong>USE IT ONLY WHEN TESTING, <em>NOT</em> IN THE <code>DiGraph</code> CLASS CODE !!!!  </strong></p>
+<p>With no parameter prints the empty graph:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">dig</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+DiGraph()
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To build more complex graphs, provide pairs source vertex / target verteces list  like in the following examples:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+a: [&#39;b&#39;, &#39;c&#39;]
+b: []
+c: []
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">],</span>
+          <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">],</span>
+          <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+a: [&#39;b&#39;, &#39;c&#39;]
+b: [&#39;b&#39;]
+c: [&#39;a&#39;]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.3)-Equality">1.3) Equality<a class="anchor-link" href="#1.3)-Equality">&#182;</a></h2><p>Graphs for us are equal irrespectively of the order in which elements in adjacency lists are specified. So for example 
+these two graphs will be considered equal:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.4)-Basic-querying">1.4) Basic querying<a class="anchor-link" href="#1.4)-Basic-querying">&#182;</a></h2><p>There are some provided methods to query the <code>DiGraph</code>: <code>adj</code>, <code>verteces</code>, <code>is_empty</code></p>
+<h2 id="1.5)-adj">1.5) adj<a class="anchor-link" href="#1.5)-adj">&#182;</a></h2><p>To obtain the edges, you can use the method <code>adj(self, vertex)</code>. It is already provided and you don't need to implement it:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the verteces adjacent to vertex. </span>
+
+<span class="sd">            NOTE: verteces are returned in a NEW list.</span>
+<span class="sd">            Modifying the list will have NO effect on the graph!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find a vertex &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vertex</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">vertex</span><span class="p">][:]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span>
+          <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">lst</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;b&#39;, &#39;c&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's check we actually get back a new list (so modifying the old one won't change the graph):</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">lst</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">g</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;c&#39;, &#39;b&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>NOTE</strong>: This technique of giving back copies is also called <em>defensive copying</em>: it prevents users from modifying the 
+internal data structures of a class instance in an uncontrolled manner. For example, if we allowed them direct access to the internal verteces list, they could add duplicate edges, which we don't allow in our model.
+If instead we only allow users to add edges by calling <code>add_edge</code>, we are sure the constraints for our model will always remain satisfied.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.6)-is_empty()">1.6) is_empty()<a class="anchor-link" href="#1.6)-is_empty()">&#182;</a></h2><p>We can check if a <code>DiGraph</code> is empty. It is already provided and you don't need to implement it:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;  A DiGraph for us is empty if it has no verteces and no edges &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">dig</span><span class="p">()</span><span class="o">.</span><span class="n">is_empty</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>True
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,[])</span><span class="o">.</span><span class="n">is_empty</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>False
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.7)-verteces()">1.7) verteces()<a class="anchor-link" href="#1.7)-verteces()">&#182;</a></h2><p>To obtain the verteces, you can use the function <code>verteces</code>. (NOTE for Italians: method is called vert<strong>e</strong>c<strong>e</strong>s, with two <strong>e</strong>s !!!). It is already provided and you don't need to implement it:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">verteces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns a set of the graph verteces. Verteces can be any object. &quot;&quot;&quot;</span>
+
+        <span class="c1"># Note dict keys() return a list, not a set. Bleah.  </span>
+        <span class="c1"># See http://stackoverflow.com/questions/13886129/why-does-pythons-dict-keys-return-a-list-and-not-a-set</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span>
+          <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">])</span>
+<span class="k">print</span> <span class="n">g</span><span class="o">.</span><span class="n">verteces</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>set([&#39;a&#39;, &#39;c&#39;, &#39;b&#39;])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice it returns a <em>set</em>, as verteces are stored as keys in a dictionary, so they are not supposed to be in any particular order. When you print the whole graph you see them vertically ordered though, for clarity purposes:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">g</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+a: [&#39;c&#39;, &#39;b&#39;]
+b: [&#39;c&#39;]
+c: []
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Verteces in the edges list are instead stored and displayed in the order in which they were inserted.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.8)-has_edge">1.8) has_edge<a class="anchor-link" href="#1.8)-has_edge">&#182;</a></h2><p>Enough for talking! Implement this method in <code>DiGraph</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">has_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;  Returns True if there is an edge between source vertex and target vertex. </span>
+<span class="sd">             Otherwise returns False.</span>
+
+<span class="sd">            If either source, target or both verteces don&#39;t exist raises an Exception.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME!&quot;</span><span class="p">)</span>
+</pre></div>
+<h2 id="1.9)-full_graph">1.9) full_graph<a class="anchor-link" href="#1.9)-full_graph">&#182;</a></h2><p>Implement this function <strong>outside</strong> the class definition. It is <strong>not</strong> a method of <code>DiGraph</code> !</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">full_graph</span><span class="p">(</span><span class="n">verteces</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Returns a DiGraph which is a full graph with provided verteces list.</span>
 
-<span class="sd">        In a full graph all verteces link to all other verteces) </span>
+<span class="sd">        In a full graph all verteces link to all other verteces (including themselves!).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME!&quot;</span><span class="p">)</span>
 </pre></div>
+<h2 id="1.10)-dag">1.10) dag<a class="anchor-link" href="#1.10)-dag">&#182;</a></h2><p>Implement this function <strong>outside</strong> the class definition. It is <strong>not</strong> a method of <code>DiGraph</code> !</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dag</span><span class="p">(</span><span class="n">verteces</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Returns a DiGraph which is DAG made out of provided verteces list</span>
+    <span class="sd">&quot;&quot;&quot; Returns a DiGraph which is DAG (Directed Acyclic Graph) made out of provided verteces list</span>
 
 <span class="sd">        Provided list is intended to be in topological order.</span>
+<span class="sd">        NOTE: a DAG is ACYCLIC, so caps (self-loops) are not allowed !!</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME!&quot;</span><span class="p">)</span>
+</pre></div>
+<h2 id="1.11)-list_graph">1.11) list_graph<a class="anchor-link" href="#1.11)-list_graph">&#182;</a></h2><p>Implement this function <strong>outside</strong> the class definition. It is <strong>not</strong> a method of <code>DiGraph</code> !</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">list_graph</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return a graph of n verteces displaced like a </span>
+<span class="sd">        monodirectional list:  1 -&gt; 2 -&gt; 3 -&gt; ... -&gt; n </span>
+
+<span class="sd">        Each vertex is a number i, 1 &lt;= i &lt;= n  and has only one edge connecting it</span>
+<span class="sd">        to the following one in the sequence        </span>
+<span class="sd">        If n = 0, return the empty graph.</span>
+<span class="sd">        if n &lt; 0, raises an Exception.</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME!&quot;</span><span class="p">)</span>
+</pre></div>
+<h2 id="1.12)-star_graph">1.12) star_graph<a class="anchor-link" href="#1.12)-star_graph">&#182;</a></h2><p>Implement this function <strong>outside</strong> the class definition. It is <strong>not</strong> a method of <code>DiGraph</code> !</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">star_graph</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Returns graph which is a star with n nodes </span>
+
+<span class="sd">        First node is the center of the star and it is labeled with 1. This node is linked </span>
+<span class="sd">        to all the others. For example, for n=4 you would have a graph like this:</span>
+
+<span class="sd">                3</span>
+<span class="sd">                ^</span>
+<span class="sd">                |    </span>
+<span class="sd">           2 &lt;- 1 -&gt; 4           </span>
+
+<span class="sd">        If n = 0, the empty graph is returned</span>
+<span class="sd">        If n &lt; 0, raises an Exception           </span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME!&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="2)-Manipulate-graphs">2) Manipulate graphs<a class="anchor-link" href="#2)-Manipulate-graphs">&#182;</a></h1><p>You will now implement some methods to manipulate graphs.</p>
+<h2 id="2.1)-remove_vertex">2.1) remove_vertex<a class="anchor-link" href="#2.1)-remove_vertex">&#182;</a></h2><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_vertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Removes the provided vertex  and returns it</span>
+
+<span class="sd">            If the vertex is not found, raises an Exception.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME!&quot;</span><span class="p">)</span>
+</pre></div>
+<h2 id="2.2)-reverse">2.2) reverse<a class="anchor-link" href="#2.2)-reverse">&#182;</a></h2><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Reverses the direction of all the edges &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME!&quot;</span><span class="p">)</span>
+</pre></div>
+<h2 id="2.3)-has_self_loops">2.3) has_self_loops<a class="anchor-link" href="#2.3)-has_self_loops">&#182;</a></h2><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">has_self_loops</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns True if the graph has any self loop (a.k.a. cap), False otherwise &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">source</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="bp">True</span>
+
+        <span class="k">return</span> <span class="bp">False</span>
+</pre></div>
+<h2 id="2.4)-remove_self_loops">2.4) remove_self_loops<a class="anchor-link" href="#2.4)-remove_self_loops">&#182;</a></h2><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_self_loops</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Removes all of the self-loops edges (a.k.a. caps) </span>
+
+<span class="sd">            NOTE: Removes just the edges, not the verteces!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME!&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="3)-Query-graphs">3) Query graphs<a class="anchor-link" href="#3)-Query-graphs">&#182;</a></h1><p>You can query graphs the "Do it yourself" way with Depth First Search (DFS) or Breadth First Search (BFS).</p>
+<h2 id="3.1)-Visit-and-VertexLog">3.1) Visit and VertexLog<a class="anchor-link" href="#3.1)-Visit-and-VertexLog">&#182;</a></h2><p>If you noticed, in the skeleton there are two extra classes <code>Visit</code> and <code>VertexLog</code>. Also, in <code>DiGraph</code> the functions <code>dfs</code> and <code>bfs</code> are already provided. The idea here is that both <code>dfs</code> and <code>bfs</code> will traverse the graph and report the intermediate results of the visit inside instances of <code>Visit</code> and <code>VertexLog</code>. At the end of the traversal, they will give back one instance of <code>Visit</code>. Maybe when you do exercises on paper it is convenient to write for example the discovery times inside the nodes of your graphs, but when programming writing intermediate results directly in the verteces of the input graph may cause troubles to the users of your methods. So it is better to store such visit logs in separate data structures: basically, <code>Visit</code> contains a a map that associates to each vertex its <code>VertexLog</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Visit</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; The visit of a DiGraph visit sequence. </span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Creates a Visit &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span> <span class="o">=</span> <span class="p">{}</span>
+</pre></div>
+<p>In <code>VertexLog</code> you can put the intermediate info like i.e. discovery_time, or parents of the node if you are interested in building a tree.</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">VertexLog</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Represents the visit log a single DiGraph vertex</span>
+
+<span class="sd">        This class is very simple and doesn&#39;t even have getters methods. </span>
+
+<span class="sd">        You can just access fields by using the dot:</span>
+
+<span class="sd">            print vertex_log.discovery_time</span>
+
+<span class="sd">        and set them directly:</span>
+
+<span class="sd">            vertex_log.finish_time = 5</span>
+
+<span class="sd">        If you want, an instances you can set your own fields:</span>
+
+<span class="sd">            vertex_log.my_own_field = &quot;whatever&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vertex</span> <span class="o">=</span> <span class="n">vertex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
+<p>Let's make a simple example:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;e&#39;</span><span class="p">])</span>
+<span class="k">print</span> <span class="n">g</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Visit:
+[   {   &#39;discovery_time&#39;: 1, &#39;finish_time&#39;: 6, &#39;parent&#39;: None, &#39;vertex&#39;: &#39;a&#39;},
+    {   &#39;discovery_time&#39;: 2, &#39;finish_time&#39;: 5, &#39;parent&#39;: &#39;a&#39;, &#39;vertex&#39;: &#39;b&#39;},
+    {   &#39;discovery_time&#39;: 3, &#39;finish_time&#39;: 4, &#39;parent&#39;: &#39;b&#39;, &#39;vertex&#39;: &#39;c&#39;}]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice we started from 'a', so by default unreachable nodes like <code>d</code> and <code>e</code> were not displayed. Let's try a <code>bfs</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">g</span><span class="o">.</span><span class="n">bfs</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Visit:
+[   {   &#39;discovery_time&#39;: 1, &#39;finish_time&#39;: -1, &#39;parent&#39;: None, &#39;vertex&#39;: &#39;a&#39;},
+    {   &#39;discovery_time&#39;: 2, &#39;finish_time&#39;: -1, &#39;parent&#39;: &#39;a&#39;, &#39;vertex&#39;: &#39;b&#39;},
+    {   &#39;discovery_time&#39;: 3, &#39;finish_time&#39;: -1, &#39;parent&#39;: &#39;a&#39;, &#39;vertex&#39;: &#39;c&#39;}]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Predictably, results are different, you can see it by the <code>parent</code> fields. Note how the <code>finish_time</code> here is always <em>-1</em> because it is less meaningful to calculate it for a 'bfs'.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can extract the logs from the <code>Visit</code> object by calling <code>logs()</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">pp</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">logs</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[   {   &#39;discovery_time&#39;: 1, &#39;finish_time&#39;: 6, &#39;parent&#39;: None, &#39;vertex&#39;: &#39;a&#39;},
+    {   &#39;discovery_time&#39;: 2, &#39;finish_time&#39;: 5, &#39;parent&#39;: &#39;a&#39;, &#39;vertex&#39;: &#39;b&#39;},
+    {   &#39;discovery_time&#39;: 3, &#39;finish_time&#39;: 4, &#39;parent&#39;: &#39;b&#39;, &#39;vertex&#39;: &#39;c&#39;}]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>By default, they are sorted ascending by discovery time. To see them in descending order, use <code>descendant=False</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">pp</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">logs</span><span class="p">(</span><span class="n">descendant</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>  
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[   {   &#39;discovery_time&#39;: 3, &#39;finish_time&#39;: 4, &#39;parent&#39;: &#39;b&#39;, &#39;vertex&#39;: &#39;c&#39;},
+    {   &#39;discovery_time&#39;: 2, &#39;finish_time&#39;: 5, &#39;parent&#39;: &#39;a&#39;, &#39;vertex&#39;: &#39;b&#39;},
+    {   &#39;discovery_time&#39;: 1, &#39;finish_time&#39;: 6, &#39;parent&#39;: None, &#39;vertex&#39;: &#39;a&#39;}]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To see the last timestamp, use <code>last_time</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">g</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">last_time</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>6
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.2)-distances()">3.2) distances()<a class="anchor-link" href="#3.2)-distances()">&#182;</a></h2><p>Try to implement this method of <code>DiGraph</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Returns a dictionary where the keys are verteces, and each vertex v is associated</span>
+<span class="sd">        to the *minimal* distance in number of edges required to go from the source </span>
+<span class="sd">        vertex to vertex v. If node is unreachable, the distance will be -1</span>
+
+<span class="sd">        Source has distance zero from itself</span>
+<span class="sd">        Verteces immediately connected to source have distance one.</span>
+
+<span class="sd">        if source is not a vertex, raises an Exception</span>
+
+<span class="sd">        HINT: to implement this, copy and edit either dfs or bfs. Question: which one ?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+<p>If you look at the following graph, you can see an example of the distances to associate to each vertex, supposing that the <code>source</code> is <code>a</code>. Note that <code>a</code> iself is at distance zero from itself and also that unreachable nodes like <code>f</code> and <code>g</code> will be at distance <em>-1</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">draw</span><span class="p">(</span><span class="n">algolab</span><span class="o">.</span><span class="n">show_distances</span><span class="p">(),</span> <span class="n">show</span><span class="o">=</span><span class="s1">&#39;ipynb&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[29]:</div>
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>distances('a')</code> called on this graph would return a map like this:</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+  <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+  <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+  <span class="s1">&#39;d&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+  <span class="s1">&#39;e&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+  <span class="s1">&#39;f&#39;</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+  <span class="s1">&#39;g&#39;</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.2)-Play-with-dfs-and-bfs">3.2) Play with dfs and bfs<a class="anchor-link" href="#3.2)-Play-with-dfs-and-bfs">&#182;</a></h2><p>Create small graphs (like linked lists a-&gt;b-&gt;c, triangles, mini-full graphs, trees - you can also use the functions you defined to create graphs like <code>full_graph</code>, <code>dag</code>, <code>list_graph</code>, <code>star_graph</code>) and try to predict 
+the visit sequence (verteces order, with discovery and finish times) you would have running a dfs or bfs. 
+Then write tests that assert you actually get those sequences when running provided dfs and bfs</p>
+<h2 id="3.3)-Blow-up-you-computer">3.3) Blow up you computer<a class="anchor-link" href="#3.3)-Blow-up-you-computer">&#182;</a></h2><p>Try to call the already implemented function <code>gen_graphs</code> with small numbers for <code>n</code>, like <em>1</em>, <em>2</em> , <em>3</em> , <em>4</em> .... Just with <em>2</em> we get back a lot of graphs:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_graphs</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>    
+    <span class="sd">&quot;&quot;&quot; Returns a list with all the possible 2^(n^2) graphs of size n </span>
+
+<span class="sd">        Verteces will be identified with numbers from 1 to n </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 </pre></div>
-<h1 id="2)-Manipulate-graphs">2) Manipulate graphs<a class="anchor-link" href="#2)-Manipulate-graphs">&#182;</a></h1><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Reverses the direction of all the edges &quot;&quot;&quot;</span>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">gen_graphs</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_self_loops</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Removes all of the self loops &quot;&quot;&quot;</span>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[
+1: []
+2: []
+, 
+1: []
+2: [2]
+, 
+1: []
+2: [1]
+, 
+1: []
+2: [1, 2]
+, 
+1: [2]
+2: []
+, 
+1: [2]
+2: [2]
+, 
+1: [2]
+2: [1]
+, 
+1: [2]
+2: [1, 2]
+, 
+1: [1]
+2: []
+, 
+1: [1]
+2: [2]
+, 
+1: [1]
+2: [1]
+, 
+1: [1]
+2: [1, 2]
+, 
+1: [1, 2]
+2: []
+, 
+1: [1, 2]
+2: [2]
+, 
+1: [1, 2]
+2: [1]
+, 
+1: [1, 2]
+2: [1, 2]
+]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span> 
+
+&lt;p class=&quot;algolab-question&quot;&gt; 
+QUESTION: What happens if you call &lt;code&gt;gen_graphs(10)&lt;/code&gt; ? How many graphs do you get back ?
+&lt;/p&gt;
 </pre></div>
-<p>TODO: graph union, intersection, ...</p>
-<h1 id="3)-Query-graphs">3) Query graphs<a class="anchor-link" href="#3)-Query-graphs">&#182;</a></h1><p>Today we query graphs the "Do it yourself" way with Depth First Search (DFS) or Breadth First Search (BFS).</p>
-<p>If you have a big graph and complex query needs, there are off-the-shelves query languages and databases (example: Cypher and Neo4J)</p>
-<h2 id="3.1)-Play-with-dfs-and-bfs">3.1) Play with dfs and bfs<a class="anchor-link" href="#3.1)-Play-with-dfs-and-bfs">&#182;</a></h2><p>Create small graphs (like linked lists a-&gt;b-&gt;c, triangles, mini-full graphs, trees) and try to predict the visit sequence (verteces order, with discovery and finish times) you would have running a dfs or bfs. Then write tests that assert you actually get those sequences bwhen running provided dfs and bfs</p>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-question"> 
+QUESTION: What happens if you call <code>gen_graphs(10)</code> ? How many graphs do you get back ?
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="4)-Do-cool-stuff-with-theory">4) Do cool stuff with theory<a class="anchor-link" href="#4)-Do-cool-stuff-with-theory">&#182;</a></h1><ul>
 <li>find connected components</li>
 <li>determine if a graph is acyclic</li>
@@ -12117,614 +13823,11 @@ $(document).ready(algolab.init);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">PrettyPrinter</span>
-<span class="kn">from</span> <span class="nn">Queue</span> <span class="kn">import</span> <span class="n">Queue</span>
-<span class="kn">import</span> <span class="nn">traceback</span>
-
-<span class="n">pp</span> <span class="o">=</span> <span class="n">PrettyPrinter</span><span class="p">()</span>
-
-<span class="k">class</span> <span class="nc">VertexLog</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; Represents the visit log a single DiGraph vertex</span>
-<span class="sd">    </span>
-<span class="sd">        This class is very simple and doesn&#39;t even have getters methods. </span>
-
-<span class="sd">        You can just access fields by using the dot:</span>
-
-<span class="sd">            print vertex_log.discovery_time</span>
-
-<span class="sd">        and set them directly:</span>
-
-<span class="sd">            vertex_log.finish_time = 5</span>
-<span class="sd">        </span>
-<span class="sd">        If you want, an instances you can set your own fields:</span>
-<span class="sd">        </span>
-<span class="sd">            vertex_log.my_own_field = &quot;whatever&quot;</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vertex</span> <span class="o">=</span> <span class="n">vertex</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">None</span>              
-        
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="k">return</span> <span class="n">pp</span><span class="o">.</span><span class="n">pformat</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-       
-<span class="k">class</span> <span class="nc">Visit</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; The visit of a DiGraph visit sequence. </span>
-<span class="sd">    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Creates a Visit &quot;&quot;&quot;</span>
-            
-        <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span> <span class="o">=</span> <span class="p">{}</span>
-        
-
-    <span class="k">def</span> <span class="nf">is_discovered</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns true if given vertex is present in the log and </span>
-<span class="sd">            has discovery_time != -1</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span>
-
-    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns the log of the given vertex. </span>
-<span class="sd">        </span>
-<span class="sd">            If there is no existing log, a new one will be created and returned</span>
-<span class="sd">        &quot;&quot;&quot;</span>        
-        
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span> <span class="o">=</span> <span class="n">VertexLog</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span>
-        
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span>
-        
-    <span class="k">def</span> <span class="nf">logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
-             <span class="n">sort_by</span><span class="o">=</span><span class="k">lambda</span> <span class="n">log</span><span class="p">:</span> <span class="n">log</span><span class="o">.</span><span class="n">discovery_time</span><span class="p">,</span> 
-             <span class="n">descendant</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-             <span class="n">get_all</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns an array with sequence of discovered VertexLogs, sorted by discovery time.</span>
-
-<span class="sd">            Optionally, they can be sorted by:</span>
-<span class="sd">            - a custom field using &#39;sort_by&#39; parameter </span>
-<span class="sd">            - in descendent order with &#39;descendant&#39; parameter.</span>
-<span class="sd">            </span>
-<span class="sd">            By default only discovered vertex logs are returned:</span>
-<span class="sd">             to get all, use get_all=True</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">get_all</span><span class="p">:</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>            
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">log</span><span class="p">:</span> <span class="n">log</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-
-        <span class="n">ret</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span> <span class="n">sort_by</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span> <span class="n">descendant</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span>
-        
-    <span class="k">def</span> <span class="nf">verteces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
-                 <span class="n">sort_by</span><span class="o">=</span><span class="k">lambda</span> <span class="n">log</span><span class="p">:</span> <span class="n">log</span><span class="o">.</span><span class="n">discovery_time</span><span class="p">,</span> 
-                 <span class="n">descendant</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-                 <span class="n">get_all</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns an array with sequence of the discovered VertexLogs, sorted by discovery time.</span>
-
-<span class="sd">            Optionally, they can be sorted by:</span>
-<span class="sd">            - a custom field using &#39;sort_by&#39; parameter </span>
-<span class="sd">            - in descendent order with &#39;descendant&#39; parameter.</span>
-<span class="sd">            </span>
-<span class="sd">            By default only discovered vertex logs are returned:</span>
-<span class="sd">             to get all, use get_all=True</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">vertex_log</span><span class="p">:</span><span class="n">vertex_log</span><span class="o">.</span><span class="n">vertex</span><span class="p">,</span>                                      
-                   <span class="bp">self</span><span class="o">.</span><span class="n">logs</span><span class="p">(</span><span class="n">sort_by</span><span class="o">=</span><span class="n">sort_by</span><span class="p">,</span> 
-                             <span class="n">descendant</span><span class="o">=</span><span class="n">descendant</span><span class="p">,</span>
-                             <span class="n">get_all</span><span class="o">=</span><span class="n">get_all</span><span class="p">))</span>
-
-    
-    <span class="k">def</span> <span class="nf">last_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Return the maximum time found among discovery and finish times.</span>
-<span class="sd">        </span>
-<span class="sd">            If no node was visited, returns zero.        </span>
-<span class="sd">        &quot;&quot;&quot;</span>        
-        
-        <span class="n">max_time</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">log</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">&gt;</span> <span class="n">max_time</span><span class="p">:</span>
-               <span class="n">max_time</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">discovery_time</span> 
-            <span class="k">if</span> <span class="n">log</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">&gt;</span> <span class="n">max_time</span><span class="p">:</span>
-               <span class="n">max_time</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">finish_time</span> 
-        <span class="k">return</span> <span class="n">max_time</span>                
-                    
-        
-<span class="k">class</span> <span class="nc">DiGraph</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; A simple graph data structure, represented as a dictionary of adjacency lists</span>
-<span class="sd">    </span>
-<span class="sd">        Verteces can be of any type, to keep things simple in this data model they coincide with their labels.</span>
-<span class="sd">        Adjacency lists hold the target verteces. </span>
-<span class="sd">        Attempts to add duplicate targets will be silently ignored.</span>
-<span class="sd">        </span>
-<span class="sd">        For shorthand construction, see separate dig() function</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-            
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span> <span class="o">=</span> <span class="p">{}</span>
-        
-    <span class="k">def</span> <span class="nf">add_vertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Adds vertex to the DiGraph. A vertex can be any object.</span>
-<span class="sd">            </span>
-<span class="sd">            If the vertex already exist, does nothing.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">vertex</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>            
-            <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-    
-    <span class="k">def</span> <span class="nf">verteces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns a set of the graph verteces. Verteces can be any object. &quot;&quot;&quot;</span>
-        
-        <span class="c1"># Note dict keys() return a list, not a set. Bleah.  </span>
-        <span class="c1"># See http://stackoverflow.com/questions/13886129/why-does-pythons-dict-keys-return-a-list-and-not-a-set</span>
-        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> 
-        
-    <span class="k">def</span> <span class="nf">has_vertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns true if graph contains given vertex. A vertex can be any object. &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span>
-    
-    <span class="k">def</span> <span class="nf">remove_vertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Removes the provided vertex  and returns it</span>
-<span class="sd">            </span>
-<span class="sd">            If the vertex is not found, raises an Exception.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-                
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find vertex:&quot;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">vertex</span><span class="p">))</span>
-        
-        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">verteces</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">verteces</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span>
-        
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">verteces</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex1</span><span class="p">,</span> <span class="n">vertex2</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Adds an edge to the graph, from vertex1 to vertex2</span>
-<span class="sd">        </span>
-<span class="sd">            If verteces don&#39;t exist, raises an Exception.</span>
-<span class="sd">            If there is already such an edge, exits silently.            </span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find source vertex:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vertex1</span><span class="p">))</span>
-
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find target vertex:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vertex2</span><span class="p">))</span>        
-            
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">vertex1</span><span class="p">]:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">vertex1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vertex2</span><span class="p">)</span>
-            
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns a string representation like the following:</span>
-<span class="sd">        </span>
-<span class="sd">            &gt;&gt;&gt; print gr(&#39;a&#39;,[&#39;b&#39;,&#39;c&#39;, &#39;d&#39;],</span>
-<span class="sd">                         &#39;b&#39;, [&#39;b&#39;],</span>
-<span class="sd">                         &#39;c&#39;, [&#39;a&#39;])</span>
-
-<span class="sd">            a: [b,c]</span>
-<span class="sd">            b: [b]</span>
-<span class="sd">            c: [a]         </span>
-<span class="sd">            d: []</span>
-<span class="sd">        </span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        
-        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-            <span class="k">return</span> <span class="s2">&quot;DiGraph()&quot;</span> 
-        
-        <span class="n">max_len</span><span class="o">=</span><span class="mi">0</span>
-        
-        <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
-            <span class="n">max_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">source</span><span class="p">)))</span>
-        
-        <span class="n">strings</span> <span class="o">=</span> <span class="p">[]</span>
-        
-        <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
-            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">max_len</span><span class="p">))</span>
-            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;: &#39;</span><span class="p">)</span>            
-            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">source</span><span class="p">]))</span>
-            
-            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-        
-        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">adj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">):</span>
-        
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find a vertex &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vertex</span><span class="p">))</span>
-        
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span>
-      
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-            
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DiGraph</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">False</span>
-        
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verteces</span><span class="p">()</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">verteces</span><span class="p">():</span>
-            <span class="k">return</span> <span class="bp">False</span>
-        
-        <span class="k">for</span> <span class="n">source_vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>            
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">source_vertex</span><span class="p">]</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">source_vertex</span><span class="p">]:</span>
-                <span class="k">return</span> <span class="bp">False</span>
-        
-        <span class="k">return</span> <span class="bp">True</span>
-        
-    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;  A DiGraph for us is empty if it has no verteces and no edges &quot;&quot;&quot;</span>
-        
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
-
-    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">visit</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Performs a simple depth first search on the graph</span>
-<span class="sd">            </span>
-<span class="sd">            Returns a Visit of the visited nodes. If the graph is empty, raises an Exception.</span>
-<span class="sd">            Optionally, you can pass the initial visit trace. </span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot perform DFS on an empty graph!&quot;</span><span class="p">)</span>
-        
-        <span class="k">if</span> <span class="n">visit</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">visit</span> <span class="o">=</span> <span class="n">Visit</span><span class="p">()</span>            
-        
-        <span class="c1"># we just discovered the vertex           </span>
-        <span class="n">source_log</span> <span class="o">=</span> <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-        <span class="n">source_log</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">=</span> <span class="n">visit</span><span class="o">.</span><span class="n">last_time</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
-        
-        <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="n">source</span><span class="p">):</span> 
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">visit</span><span class="o">.</span><span class="n">is_discovered</span><span class="p">(</span><span class="n">neighbor</span><span class="p">):</span>
-                
-                <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">source</span>        
-            
-                <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">neighbor</span><span class="p">,</span> <span class="n">visit</span><span class="p">)</span>                
-                
-        <span class="n">source_log</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="n">visit</span><span class="o">.</span><span class="n">last_time</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>    
-        
-        <span class="k">return</span> <span class="n">visit</span>
-
-        
-    <span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Performs a simple breadth first search in the graph, starting from </span>
-<span class="sd">            provided source vertex.</span>
-<span class="sd">            </span>
-<span class="sd">            Returns a Visit of the discovered nodes.</span>
-<span class="sd">            NOTE: it stores discovery but not finish times.</span>
-<span class="sd">            </span>
-<span class="sd">            If source is not in the graph, raises an Exception </span>
-<span class="sd">            </span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot perform BFS on an empty graph!&quot;</span><span class="p">)</span>
-        
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">verteces</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Can&#39;t find vertex:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">source</span><span class="p">))</span>
-        
-        <span class="n">visit</span> <span class="o">=</span> <span class="n">Visit</span><span class="p">()</span>  
-        
-        <span class="n">queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>        
-        <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-
-        <span class="k">while</span> <span class="ow">not</span> <span class="n">queue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
-            <span class="n">vertex</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">visit</span><span class="o">.</span><span class="n">is_discovered</span><span class="p">(</span><span class="n">vertex</span><span class="p">):</span>
-                <span class="c1"># we just discovered the node</span>
-                <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">=</span> <span class="n">visit</span><span class="o">.</span><span class="n">last_time</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
-            
-                <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>                    
-                    <span class="n">neighbor_log</span> <span class="o">=</span> <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">neighbor_log</span><span class="o">.</span><span class="n">parent</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
-                        <span class="n">neighbor_log</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">vertex</span>
-                    <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>                    
-        
-        <span class="k">return</span> <span class="n">visit</span>            
-
-
-
-
-<span class="k">def</span> <span class="nf">str_compare_digraphs</span><span class="p">(</span><span class="n">dg1</span><span class="p">,</span> <span class="n">dg2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Returns a string representing a comparison side by side </span>
-<span class="sd">        of the provided digraphs</span>
-<span class="sd">    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">dg1</span> <span class="o">==</span> <span class="bp">None</span><span class="p">)</span> <span class="o">^</span> <span class="p">(</span><span class="n">dg1</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;At least one graph is None ! &quot;</span> <span class="o">+</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2"> Graph 1: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dg1</span><span class="p">)</span>  <span class="o">+</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2"> Graph 2: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dg2</span><span class="p">)</span> 
-    
-    <span class="n">max_len1</span> <span class="o">=</span> <span class="mi">0</span>    
-    <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">dg1</span><span class="o">.</span><span class="n">verteces</span><span class="p">():</span>
-        <span class="n">max_len1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_len1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">source</span><span class="p">)))</span>
-
-    <span class="n">max_len2</span> <span class="o">=</span> <span class="mi">0</span>    
-    <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">dg2</span><span class="o">.</span><span class="n">verteces</span><span class="p">():</span>
-        <span class="n">max_len2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_len2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">source</span><span class="p">)))</span>
-
-    
-    <span class="n">strings</span> <span class="o">=</span> <span class="p">[]</span>
-    
-
-    <span class="n">common_edges</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">dg1</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">dg2</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
-
-    <span class="n">all_edges</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">dg1</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span><span class="o">.</span><span class="n">union</span><span class="p">(</span> <span class="n">dg2</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
-    
-    <span class="n">different_edges</span> <span class="o">=</span> <span class="n">all_edges</span> <span class="o">-</span> <span class="n">common_edges</span>
-    
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">different_edges</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="n">vs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">common_edges</span><span class="p">)</span>
-        <span class="n">vs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">different_edges</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">vs</span> <span class="o">=</span> <span class="n">dg1</span><span class="o">.</span><span class="n">verteces</span><span class="p">()</span>
-
-    <span class="n">strings</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">vs</span><span class="p">:</span>
-                
-        <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span>
-        <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;: &#39;</span><span class="p">)</span>
-                
-        <span class="k">if</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">dg1</span><span class="o">.</span><span class="n">verteces</span><span class="p">():</span>
-            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">dg1</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="n">vertex</span><span class="p">))</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">max_len1</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_len1</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
-            
-        <span class="k">if</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">dg2</span><span class="o">.</span><span class="n">verteces</span><span class="p">():</span>
-            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dg2</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="n">vertex</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_len2</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
-        
-        <span class="k">if</span> <span class="p">(</span><span class="n">dg1</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span> <span class="o">!=</span> <span class="n">dg2</span><span class="o">.</span><span class="n">adj</span><span class="p">(</span><span class="n">vertex</span><span class="p">)):</span>
-            <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;  &lt;---- DIFFERENT ! &quot;</span><span class="p">)</span>
-        
-        <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            
-    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
-
-        
-
-<span class="k">def</span> <span class="nf">dig</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Shorthand to construct a DiGraph with provided arguments</span>
-<span class="sd">    </span>
-<span class="sd">        To use it, provide source vertex / target vertex pairs like in the following examples:        </span>
-<span class="sd">        </span>
-<span class="sd">        &gt;&gt;&gt; print dig()        </span>
-<span class="sd">        </span>
-<span class="sd">        DiGraph()</span>
-<span class="sd">        </span>
-<span class="sd">        &gt;&gt;&gt; print dig(&#39;a&#39;,[&#39;b&#39;,&#39;c&#39;])</span>
-<span class="sd">                </span>
-<span class="sd">        a: [b,c]</span>
-<span class="sd">        b: []</span>
-<span class="sd">        c: []</span>
-<span class="sd">        </span>
-<span class="sd">        &gt;&gt;&gt; print dig(&#39;a&#39;,[&#39;b&#39;,&#39;c&#39;],</span>
-<span class="sd">                     &#39;b&#39;, [&#39;b&#39;],</span>
-<span class="sd">                     &#39;c&#39;, [&#39;a&#39;])</span>
-<span class="sd">                </span>
-<span class="sd">        a: [b,c]</span>
-<span class="sd">        b: [b]</span>
-<span class="sd">        c: [a]                </span>
-<span class="sd">        </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    
-    <span class="n">g</span> <span class="o">=</span> <span class="n">DiGraph</span><span class="p">()</span>
-        
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Number of arguments must be even! You need to provide&quot;</span>
-                    <span class="o">+</span> <span class="s2">&quot; vertex/list pairs like &#39;a&#39;,[&#39;b&#39;, &#39;c&#39;], b, [&#39;d&#39;], ... !&quot;</span><span class="p">)</span>
-
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>        
-    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
-        
-        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">vertex</span> <span class="o">=</span> <span class="n">a</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span>            
-            
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="nb">iter</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Targets of &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; are not iterable: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">)</span>
-            <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">g</span><span class="o">.</span><span class="n">has_vertex</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
-                    <span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
-                <span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">vertex</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-    
-    <span class="k">return</span> <span class="n">g</span>
-    
-    
-    
-<span class="k">def</span> <span class="nf">gen_graphs</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>    
-    <span class="sd">&quot;&quot;&quot; Returns a list with all the possible 2^(n^2) graphs of size n </span>
-<span class="sd">    </span>
-<span class="sd">        Verteces will be identified with numbers from 1 to n </span>
-<span class="sd">    &quot;&quot;&quot;</span>    
-
-    <span class="k">def</span> <span class="nf">gen_bits</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;  Generates a sequence of 2^(n^2) lists, each of n^2 0 / 1 ints  &quot;&quot;&quot;</span>
-                        
-        <span class="n">bits</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">;</span>    
-        <span class="n">nedges</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">bits</span>    
-        
-        <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nedges</span><span class="p">):</span>
-                    
-            <span class="n">right</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">bin</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]]</span>
-            <span class="n">lst</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">bits</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)))</span>
-            <span class="n">lst</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
-    
-            <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span>
-
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">DiGraph</span><span class="p">()]</span>
-        
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-    
-    <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">for</span> <span class="n">lst</span> <span class="ow">in</span> <span class="n">gen_bits</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        
-        <span class="n">g</span> <span class="o">=</span> <span class="n">DiGraph</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
-        
-        <span class="n">source</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>            
-            <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">source</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
-                <span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ret</span>
-      
-<span class="k">def</span> <span class="nf">gen_list</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Generates a graph of n verteces displaced like a </span>
-<span class="sd">        monodirectional list:  1 -&gt; 2 -&gt; 3 -&gt; ... -&gt; n </span>
-<span class="sd">    &quot;&quot;&quot;</span>    
-    
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">DiGraph</span><span class="p">()</span>
-    
-    <span class="n">g</span> <span class="o">=</span> <span class="n">DiGraph</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-      
-    <span class="k">return</span> <span class="n">g</span>
-
-<span class="n">GRAPHS_3</span> <span class="o">=</span> <span class="n">gen_graphs</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">VisitTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-    
-    <span class="k">def</span> <span class="nf">test_log</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Checks it doesn&#39;t explode with non-existing verteces &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Visit</span><span class="p">()</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">discovery_time</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Visit</span><span class="p">()</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">finish_time</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">test_verteces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([],</span> <span class="n">Visit</span><span class="p">()</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
-        
-        <span class="n">visit</span> <span class="o">=</span> <span class="n">Visit</span><span class="p">()</span>
-        <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">(</span><span class="n">get_all</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
-        <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
-        <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">discovery_time</span> <span class="o">=</span> <span class="mi">2</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
-        <span class="c1">#  descendant=False, get_all=False):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">(</span><span class="n">descendant</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">(</span><span class="n">descendant</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
-        
-        <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="mi">4</span>
-        <span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="mi">3</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">(</span><span class="n">sort_by</span><span class="o">=</span><span class="k">lambda</span> <span class="n">log</span><span class="p">:</span><span class="n">log</span><span class="o">.</span><span class="n">finish_time</span><span class="p">))</span>
-        
-<span class="k">class</span> <span class="nc">DiGraphTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>    
-    
-    <span class="k">def</span> <span class="nf">assertDiGraphEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dg1</span><span class="p">,</span> <span class="n">dg2</span><span class="p">):</span>                    
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">dg1</span> <span class="o">==</span> <span class="n">dg2</span><span class="p">:</span>            
-            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;Graphs are different: </span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">str_compare_digraphs</span> <span class="p">)</span>
-    
-    <span class="k">def</span> <span class="nf">assertSubset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Asserts set1 is a subset of set2 &quot;&quot;&quot;</span>
-        
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">set1</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">set2</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">set1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is not a subset of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">set2</span><span class="p">))</span>
-    
-    <span class="k">def</span> <span class="nf">raise_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exception</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">visit</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Emulates reraising an exception for a given graph visit &quot;&quot;&quot;</span>
-                        
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span>
-             <span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Failed graph was: </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
-             <span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Failed graph visit was: </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">pp</span><span class="o">.</span><span class="n">pformat</span><span class="p">(</span><span class="n">visit</span><span class="o">.</span><span class="n">logs</span><span class="p">()))</span>
-    
-    <span class="k">def</span> <span class="nf">test_str</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s2">&quot;DiGraph()&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">dig</span><span class="p">()))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s2">&quot;x&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">dig</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,[</span><span class="s1">&#39;y&#39;</span><span class="p">])))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s2">&quot;y&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">dig</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,[</span><span class="s1">&#39;y&#39;</span><span class="p">])))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">]),</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">]),</span>
-                          <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
-
-    <span class="k">def</span> <span class="nf">test_gen_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">gen_list</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">dig</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">gen_list</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">dig</span><span class="p">(</span><span class="mi">1</span><span class="p">,[]))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">gen_list</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">dig</span><span class="p">(</span><span class="mi">1</span><span class="p">,[</span><span class="mi">2</span><span class="p">],</span><span class="mi">2</span><span class="p">,[</span><span class="mi">3</span><span class="p">]))</span>
-        
-    <span class="k">def</span> <span class="nf">test_gen_graphs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        
-        <span class="n">gs0</span> <span class="o">=</span> <span class="n">gen_graphs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gs0</span><span class="p">))</span>    
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">dig</span><span class="p">()</span> <span class="ow">in</span> <span class="n">gs0</span><span class="p">)</span>
-        
-        <span class="n">gs1</span> <span class="o">=</span> <span class="n">gen_graphs</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gs1</span><span class="p">))</span>    
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">dig</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[])</span> <span class="ow">in</span> <span class="n">gs1</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">test_assert_dig</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertDiGraphEqual</span><span class="p">(</span><span class="n">dig</span><span class="p">(),</span> <span class="n">dig</span><span class="p">())</span>
-        
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">assertDiGraphEqual</span><span class="p">(</span><span class="n">dig</span><span class="p">(),</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,[]))</span>        
-
-    <span class="k">def</span> <span class="nf">test_dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([],</span> <span class="n">dig</span><span class="p">()</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
-                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,[])</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
-                        
-        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">GRAPHS_3</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">visit</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertLessEqual</span><span class="p">(</span><span class="n">visit</span><span class="o">.</span><span class="n">last_time</span><span class="p">(),</span> <span class="mi">3</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">visit</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">finish_time</span><span class="p">,</span> 
-                                  <span class="n">visit</span><span class="o">.</span><span class="n">last_time</span><span class="p">())</span>
-            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">raise_graph</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">visit</span><span class="p">)</span>
-          
-             
-    <span class="k">def</span> <span class="nf">test_bfs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([],</span> <span class="n">dig</span><span class="p">()</span><span class="o">.</span><span class="n">bfs</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
-                                                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">dig</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,[])</span><span class="o">.</span><span class="n">bfs</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">verteces</span><span class="p">())</span>
-                
-        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">GRAPHS_3</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">visit</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">bfs</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertSubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">visit</span><span class="o">.</span><span class="n">verteces</span><span class="p">()),</span> <span class="n">g</span><span class="o">.</span><span class="n">verteces</span><span class="p">()</span> <span class="p">)</span>                
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertLessEqual</span><span class="p">(</span><span class="n">visit</span><span class="o">.</span><span class="n">last_time</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>                                                
-                <span class="bp">self</span><span class="o">.</span><span class="n">raise_graph</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">visit</span><span class="p">)</span>
-                
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">VisitTest</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">graphs_solution</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">VisitTest</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12737,9 +13840,9 @@ $(document).ready(algolab.init);
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>..
+<pre>...
 ----------------------------------------------------------------------
-Ran 2 tests in 0.002s
+Ran 3 tests in 0.003s
 
 OK
 </pre>
@@ -12752,7 +13855,7 @@ OK
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">DiGraphTest</span><span class="p">)</span>
@@ -12768,28 +13871,15 @@ OK
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>......
+<pre>.....................................
 ----------------------------------------------------------------------
-Ran 6 tests in 0.075s
+Ran 37 tests in 0.080s
 
 OK
 </pre>
 </div>
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
-</pre></div>
-
-</div>
 </div>
 </div>
 
