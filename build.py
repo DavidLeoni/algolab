@@ -73,9 +73,9 @@ log("Copying other files ...")
 shutil.copytree("img/", "target/img/")
 shutil.copytree("js/", "target/js/")
 shutil.copytree("css/", "target/css/")
+shutil.copytree("past-exams/", "target/past-exams/")
 for file in glob.glob(r'*.py'):                                                                                                                                  
     shutil.copy(file, "target/")
-shutil.copytree("exam-simulation/", "target/exam-simulation/")
 
 log("Website generated at target/")
 
