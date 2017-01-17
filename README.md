@@ -18,6 +18,15 @@ of making ugly workarounds when necessary. So code may or may not work depending
 ### Installation instructions
 
 1. Install Python 2.7
+2. Install NetworkX modules:
+
+On ubuntu: 
+
+```bash
+sudo pip install networkx
+sudo pip install nxpd
+```
+
 2. [Install Jupyter](http://jupyter.org/install.html)
 3. If you also want to build the pdfs, install the program [WkHtmlToPdf](http://wkhtmltopdf.org/downloads.html), at version >= 0.12.4  . In particular, to install it in Ubuntu, run
     ```bash
