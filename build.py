@@ -55,7 +55,7 @@ def generate_pdf():
 
     for file in os.listdir("target/"):
         if file.endswith(".html"):        
-            call(["wkhtmltopdf", "--minimum-font-size", "18", "target/" + str(file), "target/pdf/" + str(file).replace("html", "pdf")])
+            call(["wkhtmltopdf", "--minimum-font-size", "16", "target/" + str(file), "target/pdf/" + str(file).replace("html", "pdf")])
 
 
 print

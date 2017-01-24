@@ -450,53 +450,54 @@ class DiGraph:
         return ret           
         
 
-def str_compare_digraphs(expected, actual):
+def str_compare_digraphs(actual, expected):
     """ Returns a string representing a comparison side by side 
         of the provided digraphs
     
     """
 
-    if (expected == None) ^ (actual == None):
+    if (actual == None) ^ (expected == None):
         if expected == None:
-            which = "EXPECTED"
-        else:
             which = "ACTUAL"
-        return which + " GRAPH POINT IS None ! " +"\n\nEXPECTED: \n" + str(expected)  +"\n\nACTUAL: \n" + str(actual) 
+        else:
+            which = "EXPECTED"
+        return which + " GRAPH IS None ! " +"\n\nACTUAL: \n" + str(actual)  +"\n\nEXPECTED: \n" + str(expected) 
 
     if (expected.is_empty()) ^ (actual.is_empty()):
         if expected.is_empty():
-            which = "EXPECTED"
-        else:
             which = "ACTUAL"
-        return which + " GRAPH IS EMPTY ! " +"\n\nEXPECTED: \n" + str(expected)  +"\n\nACTUAL: \n" + str(actual) 
+        else:
+            which = "EXPECTED"
+            
+        return which + " GRAPH IS EMPTY ! " +"\n\nACTUAL: \n" + str(actual)  +"\n\nEXPECTED: \n" + str(expected) 
 
 
     max_len1_keys = 0    
-    for source in expected.verteces():
-        max_len1_keys = max(max_len1_keys, len(str(source+": " )))
+    for source in actual.verteces():
+        max_len1_keys = max(max_len1_keys, len(str(source)+": " ))
 
     
     max_len1 = 0    
-    for line in str(expected).split("\n"):
+    for line in str(actual).split("\n"):
         max_len1 = max(max_len1, len(line))
-    max_len1 = max(max_len1, "EXPECTED")
+    max_len1 = max(max_len1, len("ACTUAL"))
 
     max_len2_keys = 0    
-    for source in actual.verteces():
-        max_len2_keys = max(max_len2_keys, len(str(source+": " )))
+    for source in expected.verteces():
+        max_len2_keys = max(max_len2_keys, len(str(source)+": " ))
     
             
     max_len2 = 0    
-    for line in str(actual).split("\n"):
+    for line in str(expected).split("\n"):
         max_len2 = max(max_len2, len(line))
-    max_len2 = max(max_len1, "ACTUAL")
+    max_len2 = max(max_len1, len("EXPECTED"))
     
     strings = []
     
 
-    common_edges = set(expected.verteces()) & set(actual.verteces())
+    common_edges = set(actual.verteces()) & set(expected.verteces())
 
-    all_edges = set(expected.verteces()).union( actual.verteces())
+    all_edges = set(actual.verteces()).union( expected.verteces())
     
     different_edges = all_edges - common_edges
     
@@ -504,41 +505,42 @@ def str_compare_digraphs(expected, actual):
         vs = sorted(list(common_edges))
         vs.extend(sorted(different_edges))
     else:
-        vs = sorted(expected.verteces())
+        vs = sorted(actual.verteces())
 
     strings = []
 
     dist = 2
     dist2 = - max_len2_keys
     
-    strings.append((" " * max_len1_keys + "EXPECTED").ljust(max_len1 + dist))
-    strings.append("  ACTUAL\n")
+    strings.append((" " * max_len1_keys + "ACTUAL").ljust(max_len1 + dist))
+    strings.append("  EXPECTED\n")
     
     for vertex in vs:
                 
-        strings.append(vertex)
+        strings.append(str(vertex))
         strings.append(': ')
                 
-        if vertex in expected.verteces():
-            strings.append(str(expected.adj(vertex)).ljust(max_len1 + dist))
+        if vertex in actual.verteces():
+            strings.append(str(actual.adj(vertex)).ljust(max_len1 + dist))
         else:
             strings.append("--" + " " * (max_len1 + dist - 2))
             
-        if vertex in actual.verteces():            
-            strings.append(str(actual.adj(vertex)).ljust(max_len2 + dist2))
+        if vertex in expected.verteces():            
+            strings.append(str(expected.adj(vertex)).ljust(max_len2 + dist2))
         else:
             strings.append("--" + " " * (max_len2 + dist2 - 2))
         
-        if (not vertex in expected.verteces()
-            or not vertex in actual.verteces()
-            or expected.adj(vertex) != actual.adj(vertex)):
+        if (not vertex in actual.verteces()
+            or not vertex in expected.verteces()
+            or set(actual.adj(vertex)) != set(expected.adj(vertex))):
             strings.append("  <---- DIFFERENT ! ")
         
         strings.append("\n")
             
     return ''.join(strings)
 
-        
+  
+   
 
 def dig(*args):
     """ Shorthand to construct a DiGraph with provided arguments
@@ -769,18 +771,18 @@ class DiGraphTest(unittest.TestCase):
     
     def assertReturnNone(self, ret, function_name):
         """ Asserts method result ret equals None """
-        self.assertEquals(None, ret, 
+        self.assertEqual(None, ret, 
                           function_name 
                           + " specs say nothing about returning objects! Instead you are returning " + str(ret))
 
     
-    def assertDiGraphEqual(self, expected, actual, msg=None):                    
+    def assertDiGraphEqual(self, actual, expected,  msg=None):                    
         if not expected == actual:            
             if msg == None:
                 the_msg = "Graphs are different:"
             else:
                 the_msg = msg
-            raise AssertionError(the_msg + " \n\n" + str_compare_digraphs(expected, actual) )
+            raise AssertionError(the_msg + " \n\n" + str_compare_digraphs(actual, expected) )
     
     def assertSubset(self, set1, set2):
         """ Asserts set1 is a subset of set2 """
@@ -796,9 +798,12 @@ class DiGraphTest(unittest.TestCase):
              +"\n Failed graph visit was: \n" + str(visit))
 
     def test_adj(self):
-        self.assertEqual([], dig('a', []).adj('a'))
-        self.assertEqual(['b'], dig('a', ['b']).adj('a'))
-        self.assertEqual(['b', 'c'], dig('a', ['b', 'c']).adj('a'))
+        self.assertEqual(dig('a', []).adj('a'), 
+                         [])
+        self.assertEqual(dig('a', ['b']).adj('a'),
+                         ['b'])
+        self.assertEqual(dig('a', ['b', 'c']).adj('a'),
+                         ['b', 'c'])
         g = dig('a', ['b'])
         lst = g.adj('a')
         lst[0] = 'c'
@@ -833,12 +838,12 @@ class DiGraphTest(unittest.TestCase):
     def test_gen_graphs(self):
         
         gs0 = gen_graphs(0)
-        self.assertEquals(1, len(gs0))    
+        self.assertEqual(len(gs0), 1)
         self.assertTrue(dig() in gs0)
         
         gs1 = gen_graphs(1)        
         
-        self.assertEquals(2, len(gs1))    
+        self.assertEqual(len(gs1), 2)    
         self.assertTrue(dig(1, []) in gs1)
         
     def test_assert_dig(self):
@@ -851,15 +856,15 @@ class DiGraphTest(unittest.TestCase):
     def test_dfs(self):
 
         with self.assertRaises(Exception):
-            self.assertEquals([], dig().dfs('a'))
+            self.assertEquals(dig().dfs('a'), [])
                         
-        self.assertEquals(['a'], dig('a',[]).dfs('a').verteces())
+        self.assertEquals(dig('a',[]).dfs('a').verteces(), ['a'])
                         
         for g in GRAPHS_3:
             try:
                 visit = g.dfs(1)
                 self.assertLessEqual(visit.last_time(), 3*2)
-                self.assertEquals(visit.log(1).finish_time, 
+                self.assertEqual(visit.log(1).finish_time, 
                                   visit.last_time())
             except Exception as e:
                 self.raise_graph(e, g, visit)
@@ -875,18 +880,18 @@ class DiGraphTest(unittest.TestCase):
     def test_bfs_root_parent(self):
         
         visit = dig('a', ['a']).bfs('a')        
-        self.assertEqual(None, visit.log('a').parent )
+        self.assertEqual(visit.log('a').parent, None )
 
     def test_bfs_parent(self):
         
         visit = dig('a', ['a', 'b']).bfs('a')        
-        self.assertEqual('a', visit.log('b').parent )
+        self.assertEqual(visit.log('b').parent, 'a' )
               
              
     def test_bfs(self):
 
                                                         
-        self.assertEquals(['a'], dig('a',[]).bfs('a').verteces())
+        self.assertEquals(dig('a',[]).bfs('a').verteces(), ['a'])
                 
         for g in GRAPHS_3:
             try:
@@ -898,27 +903,30 @@ class DiGraphTest(unittest.TestCase):
     
 
     def test_full_graph(self):
-        self.assertDiGraphEqual(dig(), full_graph([]))
-        self.assertDiGraphEqual(dig('a', ['a']), full_graph(['a']))
-        self.assertDiGraphEqual(dig('a',['a','b'],
-                                    'b',['a','b']), full_graph(['a','b']))
+        self.assertDiGraphEqual(full_graph([]),
+                                dig())
+        self.assertDiGraphEqual(full_graph(['a']),
+                                dig('a', ['a']))
+        self.assertDiGraphEqual(full_graph(['a','b']), 
+                                dig('a',['a','b'],
+                                    'b',['a','b']))
 
 
     def test_dag(self):
-        self.assertDiGraphEqual(dig(), dag([]))
-        self.assertDiGraphEqual(dig('a', []), dag(['a']))
-        self.assertDiGraphEqual(dig('a', ['b']), dag(['a', 'b']))
-        self.assertDiGraphEqual(dig('a',['b','c'],
-                                    'b',['c']),
-                                dag(['a','b','c']))
+        self.assertDiGraphEqual(dag([]), dig())
+        self.assertDiGraphEqual(dag(['a']), dig('a', []))
+        self.assertDiGraphEqual(dag(['a', 'b']), dig('a', ['b']))
+        self.assertDiGraphEqual(dag(['a','b','c']),
+                                dig('a',['b','c'],
+                                    'b',['c']))
 
     def test_list_graph(self):
         with self.assertRaises(Exception):
             list_graph(-4)
                     
-        self.assertEquals(list_graph(0), dig())
-        self.assertEquals(list_graph(1), dig(1,[]))
-        self.assertEquals(list_graph(3), dig(1,[2],2,[3]))
+        self.assertEquals(dig(), list_graph(0))
+        self.assertEquals(dig(1,[]), list_graph(1))
+        self.assertEquals(dig(1,[2],2,[3]), list_graph(3))
 
     def test_reverse_empty(self):
         g = dig()
@@ -938,17 +946,17 @@ class DiGraphTest(unittest.TestCase):
         g = dig('a', ['c'],
                 'b', ['d'])
         g.reverse()
-        self.assertDiGraphEqual(dig('c', ['a'],
-                                    'd', ['b']), g)
+        self.assertDiGraphEqual(g, dig('c', ['a'],
+                                    'd', ['b']))
 
     def test_reverse_star(self):
         g = dig('a', ['b','c','d'])
         g.reverse()
-        self.assertDiGraphEqual(dig('b', ['a'],
+        self.assertDiGraphEqual(g, dig('b', ['a'],
                                     'c', ['a'],
-                                    'd', ['a']), g)
+                                    'd', ['a']))
         g.reverse()
-        self.assertEqual(dig('a', ['b','c','d']), g)
+        self.assertEqual(g, dig('a', ['b','c','d']))
         
       
     def test_has_self_loops_empty(self):        
@@ -974,48 +982,54 @@ class DiGraphTest(unittest.TestCase):
                 'b', ['a'])
         
         g.remove_vertex('a')
-        self.assertDiGraphEqual(dig('b', []), g)
+        self.assertDiGraphEqual(g, dig('b', []))
         
         g.remove_vertex('b')
-        self.assertDiGraphEqual(dig(), g)
+        self.assertDiGraphEqual(g, dig())
 
     def test_remove_vertex_self(self):        
         g = dig('a', ['a'],
                 'b', ['a', 'b'])
         
         g.remove_vertex('b')
-        self.assertDiGraphEqual(dig('a', ['a']), g)
+        self.assertDiGraphEqual(g, dig('a', ['a']))
         
         g.remove_vertex('a')
-        self.assertDiGraphEqual(dig(), g)
+        self.assertDiGraphEqual(g, dig())
 
         
     def test_remove_self_loops_empty(self):
         g = dig()
         g.remove_self_loops()
-        self.assertDiGraphEqual(dig(), g)
+        self.assertDiGraphEqual(g, dig())
 
     def test_remove_self_loops_no_loops(self):
         g = dig('a',[])
         g.remove_self_loops()
-        self.assertDiGraphEqual(dig('a',[]), g)
+        self.assertDiGraphEqual(g, dig('a',[]))
 
     def test_remove_self_loops_complex(self):
         g = dig('a',['a','b'],
                  'b',['c', 'b'])
         g.remove_self_loops()
-        self.assertDiGraphEqual(dig('a', ['b'],
-                               'b', ['c']), g)
+        self.assertDiGraphEqual(g,
+                                dig('a', ['b'],
+                               'b', ['c']))
 
     def test_star_graph(self):
         with self.assertRaises(Exception):
             star_graph(-4)
-        self.assertDiGraphEqual(dig(), star_graph(0))
-        self.assertDiGraphEqual(dig(1,[]), star_graph(1))      
+        self.assertDiGraphEqual(star_graph(0),
+                                dig())
+        self.assertDiGraphEqual(star_graph(1),
+                                dig(1,[]))      
         
-        self.assertDiGraphEqual(dig(1, [2]), star_graph(2))
-        self.assertDiGraphEqual(dig(1, [2,3]), star_graph(3))
-        self.assertDiGraphEqual(dig(1, [2,3,4]), star_graph(4))            
+        self.assertDiGraphEqual(star_graph(2),
+                                dig(1, [2]))
+        self.assertDiGraphEqual(star_graph(3),
+                                dig(1, [2,3]))
+        self.assertDiGraphEqual(star_graph(4),
+                                dig(1, [2,3,4]))
         
     def test_distances_empty(self):
         with self.assertRaises(Exception):
@@ -1027,38 +1041,40 @@ class DiGraphTest(unittest.TestCase):
 
 
     def test_distances_root(self):        
-        self.assertEquals({'a': 0}, dig('a', []).distances('a'))
-        self.assertEquals({'a': 0}, dig('a', ['a']).distances('a'))
+        self.assertEquals(dig('a', []).distances('a'),
+                          {'a': 0})
+        self.assertEquals(dig('a', ['a']).distances('a'),
+                          {'a': 0})
 
     def test_distances_one(self):        
-        self.assertEquals({'a': 0, 
-                           'b': 1}, 
-                           dig('a', ['b']).distances('a'))
+        self.assertEquals(dig('a', ['b']).distances('a'),
+                          {'a': 0, 
+                           'b': 1})
 
 
     def test_distances_unreachable(self):        
-        self.assertEquals({'a': 0, 
-                           'b': -1}, 
-                          dig('a', [],
-                              'b', [],).distances('a'))
+        self.assertEquals(dig('a', [],
+                              'b', [],).distances('a'),
+                          {'a': 0, 
+                          'b': -1})
 
     def test_distances_triangle(self):        
-        self.assertEquals({'a': 0, 
-                           'b': 1,
-                           'c': 2}, 
-                          dig('a', ['b'],
+        self.assertEquals(dig('a', ['b'],
                               'b', ['c'],
-                              'c', ['a']).distances('a'))
+                              'c', ['a']).distances('a'),
+                          {'a': 0, 
+                           'b': 1,
+                           'c': 2})
         
     def test_distances_square(self):        
-        self.assertEquals({'a': 0, 
+        self.assertEquals(dig('a', ['b','c'],
+                              'b', ['d'],
+                              'c', ['d']).distances('a'),
+                          {'a': 0, 
                            'b': 1,
                            'c': 1,
-                           'd': 2}, 
-                          dig('a', ['b','c'],
-                              'b', ['d'],
-                              'c', ['d']).distances('a'))
+                           'd': 2})
 
 
 # Uncomment the following line to launch the tets by just writing:  python graphs_solution.py
-# unittest.main()
+#unittest.main()
