@@ -495,17 +495,7 @@ def str_compare_digraphs(actual, expected):
     strings = []
     
 
-    common_edges = set(actual.verteces()) & set(expected.verteces())
-
-    all_edges = set(actual.verteces()).union( expected.verteces())
-    
-    different_edges = all_edges - common_edges
-    
-    if len(different_edges) > 0:
-        vs = sorted(list(common_edges))
-        vs.extend(sorted(different_edges))
-    else:
-        vs = sorted(actual.verteces())
+    vs = sorted(set(actual.verteces()).union( expected.verteces()))
 
     strings = []
 
@@ -1075,6 +1065,3 @@ class DiGraphTest(unittest.TestCase):
                            'c': 1,
                            'd': 2})
 
-
-# Uncomment the following line to launch the tets by just writing:  python graphs_solution.py
-#unittest.main()
