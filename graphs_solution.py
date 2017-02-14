@@ -456,20 +456,24 @@ def str_compare_digraphs(actual, expected):
     
     """
 
-    if (actual == None) ^ (expected == None):
-        if expected == None:
-            which = "ACTUAL"
-        else:
-            which = "EXPECTED"
-        return which + " GRAPH IS None ! " +"\n\nACTUAL: \n" + str(actual)  +"\n\nEXPECTED: \n" + str(expected) 
+    if actual == None and expected == None:
+        return "Both graphs are None."
 
-    if (expected.is_empty()) ^ (actual.is_empty()):
-        if expected.is_empty():
-            which = "ACTUAL"
+    if (actual == None) ^ (expected == None):
+        if actual == None:
+            what = ""
         else:
-            which = "EXPECTED"
+            what = "NOT"
+        return "ACTUAL GRAPH IS " + what + " None ! " +"\n\nACTUAL: \n" + str(actual)  +"\n\nEXPECTED: \n" + str(expected) 
+
+
+    if actual.is_empty() ^ expected.is_empty():
+        if actual.is_empty():
+            what = ""
+        else:
+            what = "NOT"
             
-        return which + " GRAPH IS EMPTY ! " +"\n\nACTUAL: \n" + str(actual)  +"\n\nEXPECTED: \n" + str(expected) 
+        return " ACTUAL GRAPH IS " + what + " EMPTY ! " +"\n\nACTUAL: \n" + str(actual)  +"\n\nEXPECTED: \n" + str(expected) 
 
 
     max_len1_keys = 0    
