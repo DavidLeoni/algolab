@@ -42,10 +42,25 @@ var algolab = {
             $('#algolab-toc').toc(tocParams);
         }
     },
-    hideCellStartingWith : function(text){
+    /**
+        Hides cell input
+        
+        Renamed in 0.19
+    */    
+    hideCell : function(prefix){
         $('.border-box-sizing .code_cell pre').filter(function() { 
-                return $(this).text().indexOf(text) === 0; 
+                return $(this).text().indexOf(prefix) === 0; 
             }).parents('div .cell .input').hide();        
+    },
+    /**
+        Hides the cell input AND output.
+        
+        @since 0.19
+    */
+    hideCellAll : function(prefix){        
+        $('.border-box-sizing .code_cell pre').filter(function() { 
+                return $(this).text().indexOf(prefix) === 0; 
+            }).parents('div .cell ').hide();        
     },
     
     init : function(){
@@ -78,10 +93,13 @@ var algolab = {
         }
                      
        
-       algolab.hideCellStartingWith("%%HTML");
-       algolab.hideCellStartingWith("import algolab");      
+       algolab.hideCell("%%HTML");
+       algolab.hideCell("import algolab");      
        
-       algolab.hideCellStartingWith("algolab.init()"); 
+       algolab.hideCell("algolab.init()"); 
+       algolab.hideCell("algolab.show_run(");
+       algolab.hideCell("nxpd.draw(");
+       algolab.hideCellAll("algolab.run("); 
               
        if ($("#algolab-toc").length === 0){
            $("body").append(toc);       
