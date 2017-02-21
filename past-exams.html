@@ -11938,10 +11938,25 @@ var algolab = {
             $('#algolab-toc').toc(tocParams);
         }
     },
-    hideCellStartingWith : function(text){
+    /**
+        Hides cell input
+        
+        Renamed in 0.19
+    */    
+    hideCell : function(prefix){
         $('.border-box-sizing .code_cell pre').filter(function() { 
-                return $(this).text().indexOf(text) === 0; 
+                return $(this).text().indexOf(prefix) === 0; 
             }).parents('div .cell .input').hide();        
+    },
+    /**
+        Hides the cell input AND output.
+        
+        @since 0.19
+    */
+    hideCellAll : function(prefix){        
+        $('.border-box-sizing .code_cell pre').filter(function() { 
+                return $(this).text().indexOf(prefix) === 0; 
+            }).parents('div .cell ').hide();        
     },
     
     init : function(){
@@ -11974,10 +11989,13 @@ var algolab = {
         }
                      
        
-       algolab.hideCellStartingWith("%%HTML");
-       algolab.hideCellStartingWith("import algolab");      
+       algolab.hideCell("%%HTML");
+       algolab.hideCell("import algolab");      
        
-       algolab.hideCellStartingWith("algolab.init()"); 
+       algolab.hideCell("algolab.init()"); 
+       algolab.hideCell("algolab.show_run(");
+       algolab.hideCell("nxpd.draw(");
+       algolab.hideCellAll("algolab.run("); 
               
        if ($("#algolab-toc").length === 0){
            $("body").append(toc);       
@@ -12058,7 +12076,19 @@ $(document).ready(algolab.init);
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As the course is still experimental, actual exams may differ in format from past ones.</p>
-<h3 id="2017-01-26">2017-01-26<a class="anchor-link" href="#2017-01-26">&#182;</a></h3><ul>
+<h3 id="2017-02-16">2017-02-16<a class="anchor-link" href="#2017-02-16">&#182;</a></h3><ul>
+<li><a href="exam-2017-02-16.html" target="_blank">online</a> </li>
+<li><a href="pdf/exam-2017-02-16.pdf" target="_blank">pdf</a> </li>
+</ul>
+<br/>
+Solutions:
+<ul>
+<li><a href="past-exams/2017-02-16.zip" target="_blank">All (zipped)</a></li>
+<li><a href="past-exams/2017-02-16/solutions/exercise1_slow_solution.py" target="_blank">Exercise 1.1 Slow</a></li>
+<li><a href="past-exams/2017-02-16/solutions/exercise1_fast_solution.py" target="_blank">Exercise 1.2 Fast</a></li>
+<li><a href="past-exams/2017-02-16/solutions/exercise2_solution.py" target="_blank">Exercise 2</a></li>
+<li><a href="past-exams/2017-02-16/solutions/exercise3_solution.py" target="_blank">Exercise 3</a></li>
+</ul><h3 id="2017-01-26">2017-01-26<a class="anchor-link" href="#2017-01-26">&#182;</a></h3><ul>
 <li><a href="exam-2017-01-26.html" target="_blank">online</a> </li>
 <li><a href="pdf/exam-2017-01-26.pdf" target="_blank">pdf</a> </li>
 </ul>

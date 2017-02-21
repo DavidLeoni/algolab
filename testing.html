@@ -11938,10 +11938,25 @@ var algolab = {
             $('#algolab-toc').toc(tocParams);
         }
     },
-    hideCellStartingWith : function(text){
+    /**
+        Hides cell input
+        
+        Renamed in 0.19
+    */    
+    hideCell : function(prefix){
         $('.border-box-sizing .code_cell pre').filter(function() { 
-                return $(this).text().indexOf(text) === 0; 
+                return $(this).text().indexOf(prefix) === 0; 
             }).parents('div .cell .input').hide();        
+    },
+    /**
+        Hides the cell input AND output.
+        
+        @since 0.19
+    */
+    hideCellAll : function(prefix){        
+        $('.border-box-sizing .code_cell pre').filter(function() { 
+                return $(this).text().indexOf(prefix) === 0; 
+            }).parents('div .cell ').hide();        
     },
     
     init : function(){
@@ -11974,10 +11989,13 @@ var algolab = {
         }
                      
        
-       algolab.hideCellStartingWith("%%HTML");
-       algolab.hideCellStartingWith("import algolab");      
+       algolab.hideCell("%%HTML");
+       algolab.hideCell("import algolab");      
        
-       algolab.hideCellStartingWith("algolab.init()"); 
+       algolab.hideCell("algolab.init()"); 
+       algolab.hideCell("algolab.show_run(");
+       algolab.hideCell("nxpd.draw(");
+       algolab.hideCellAll("algolab.run("); 
               
        if ($("#algolab-toc").length === 0){
            $("body").append(toc);       
@@ -12297,10 +12315,7 @@ To run the tests, enter the following command in the terminal: <br/>
 !!!!!   WARNING: Still, on the hard-disk the file MUST be named with a `.py` at the end, like `my-file.py`!!!!!!
 
 </p><p>You should see an output like the following:</p>
-<p class="algolab-warn">
 
-WARNING: please ignore the `algolab.run(MyTest)` at the beginning of the following output:
-</p>
 </div>
 </div>
 </div>
@@ -12309,7 +12324,7 @@ WARNING: please ignore the `algolab.run(MyTest)` at the beginning of the followi
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">MyTest</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">show_run</span><span class="p">(</span><span class="n">MyTest</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12343,7 +12358,7 @@ First differing element 2:
 
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.002s
+Ran 1 test in 0.005s
 
 FAILED (failures=1)
 </pre>
@@ -12399,6 +12414,8 @@ FAILED (failures=1)
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's call again the command:</p>
+<div class="highlight"><pre><span></span>python -m unittest my-file
+</pre></div>
 
 </div>
 </div>
@@ -12408,7 +12425,7 @@ FAILED (failures=1)
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">MyTest</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">show_run</span><span class="p">(</span><span class="n">MyTest</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12457,7 +12474,7 @@ First differing element 0:
 + [0]
 
 ----------------------------------------------------------------------
-Ran 2 tests in 0.007s
+Ran 2 tests in 0.006s
 
 FAILED (failures=2)
 </pre>
@@ -12502,12 +12519,24 @@ FAILED (failures=2)
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And call yet again the command:</p>
+<div class="highlight"><pre><span></span>python -m unittest my-file
+</pre></div>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">MyTest</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">show_run</span><span class="p">(</span><span class="n">MyTest</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12522,7 +12551,7 @@ FAILED (failures=2)
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>..
 ----------------------------------------------------------------------
-Ran 2 tests in 0.004s
+Ran 2 tests in 0.002s
 
 OK
 </pre>

@@ -11938,10 +11938,25 @@ var algolab = {
             $('#algolab-toc').toc(tocParams);
         }
     },
-    hideCellStartingWith : function(text){
+    /**
+        Hides cell input
+        
+        Renamed in 0.19
+    */    
+    hideCell : function(prefix){
         $('.border-box-sizing .code_cell pre').filter(function() { 
-                return $(this).text().indexOf(text) === 0; 
+                return $(this).text().indexOf(prefix) === 0; 
             }).parents('div .cell .input').hide();        
+    },
+    /**
+        Hides the cell input AND output.
+        
+        @since 0.19
+    */
+    hideCellAll : function(prefix){        
+        $('.border-box-sizing .code_cell pre').filter(function() { 
+                return $(this).text().indexOf(prefix) === 0; 
+            }).parents('div .cell ').hide();        
     },
     
     init : function(){
@@ -11974,10 +11989,13 @@ var algolab = {
         }
                      
        
-       algolab.hideCellStartingWith("%%HTML");
-       algolab.hideCellStartingWith("import algolab");      
+       algolab.hideCell("%%HTML");
+       algolab.hideCell("import algolab");      
        
-       algolab.hideCellStartingWith("algolab.init()"); 
+       algolab.hideCell("algolab.init()"); 
+       algolab.hideCell("algolab.show_run(");
+       algolab.hideCell("nxpd.draw(");
+       algolab.hideCellAll("algolab.run("); 
               
        if ($("#algolab-toc").length === 0){
            $("body").append(toc);       
@@ -12822,7 +12840,7 @@ would work exactly the same as the initial definition:
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;__main__.ComplexNumber instance at 0xa9d583cc&gt;
+<pre>&lt;__main__.ComplexNumber instance at 0xa9ce5c0c&gt;
 </pre>
 </div>
 </div>
@@ -13215,7 +13233,7 @@ Python will implicitly return <code> self</code> !
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;__main__.ComplexNumber instance at 0xa9d583cc&gt;
+<pre>&lt;__main__.ComplexNumber instance at 0xa9ce5c0c&gt;
 </pre>
 </div>
 </div>
@@ -13702,7 +13720,7 @@ WARNING: As before for <code>phase</code>, notice we didn't pass any dictionary 
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;__main__.ComplexNumber instance at 0xa9d58aec&gt;
+<pre>&lt;__main__.ComplexNumber instance at 0xa9cf22ac&gt;
 </pre>
 </div>
 </div>
@@ -13813,7 +13831,7 @@ fields:</p>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;__main__.ComplexNumber instance at 0xa9d58acc&gt;
+<pre>&lt;__main__.ComplexNumber instance at 0xa9cf23cc&gt;
 </pre>
 </div>
 </div>
@@ -14630,7 +14648,7 @@ should check if two objects are similar. You should never use functions like <co
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.................
 ----------------------------------------------------------------------
-Ran 17 tests in 0.029s
+Ran 17 tests in 0.018s
 
 OK
 </pre>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>index</title>
+<title>exam-2017-02-16</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11746,21 +11746,16 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<!-- !!!!!!!!!!    NOTICE THE INDEX IN THE CELL BELOW HERE  WILL LOOK INVISIBLE IN JUPYTER  !!!!!!!!!!!!!!!!!   -->
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">algolab</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="c1">#sys.path.append(&#39;../exams/2017-02-16-lab/solutions&#39;)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;past-exams/2017-02-16/solutions&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">nxpd</span>
 <span class="n">algolab</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
 </pre></div>
 
@@ -12074,36 +12069,63 @@ $(document).ready(algolab.init);
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <center>
-<span style="font-size:250%; font-weight:bold "> Module 2: Algorithm and Data Structures Lab </span>
-</center><p>
-<br/>
-<center>
+<span class="algolab-title"> Algolab Exam</span><br/><br/> 
+<span style="font-size:20px"> Scientific Programming Module 2</span> <br/>
+<span style="font-size:20px"> Algorithms and Data Structures  </span> <br/><br/>
+<span> Thusday 16th, Feb 2017</span><br/><br/>
 
- David Leoni <br/>
- teaching assistant <br/>
- david.leoni [AT] unitn.it
 
 </center>
-<br/>
-<center>
-University of Trento
-</center>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><ul>
+<li>Taking part to this exam erases any vote you had before, both lab and theory</li>
+<li>If you don't ship or you don't pass this lab part, you lose also the theory part.</li>
+</ul>
+<ul>
+<li>Log into your computer in <em>exam mode</em>, it should start Ubuntu</li>
+<li>To edit the files, you can use any editor of your choice: <em>Editra</em> seems easy to use, you can find it under <em>Applications-&gt;Programming-&gt;Editra</em>. Others could be <em>GEdit</em> (simpler), or <em>PyCharm</em> (more complex).</li>
+</ul>
+<h2 id="Allowed-material">Allowed material<a class="anchor-link" href="#Allowed-material">&#182;</a></h2><p>There won't be any internet access. You will only be able to access:</p>
+<ul>
+<li><a href="index.html" target="_blank">Sciprog Algolab worksheets</a></li>
+<li><a href="../montresor/Montresor%20sciprog/cricca.disi.unitn.it/montresor/teaching/scientific-programming/slides/index.html">Alberto Montresor slides</a></li>
+<li><a href="../teso/disi.unitn.it/_teso/courses/sciprog/index.html" target="_blank">Stefano Teso docs</a></li>
+<li>Python 2.7 documentation :&nbsp;&nbsp; <a href="../python-docs/html/index.html" target="_blank">html</a>
+&nbsp;&nbsp;<a href="../python-docs/pdf" target="_blank">pdf</a><ul>
+<li>In particular, <a href="../python-docs/html/library/unittest.html" target="_blank">Unittest docs</a></li>
+</ul>
+</li>
+<li>The course book <em>Problem Solving with Algorithms and Data Structures using Python</em> &nbsp;&nbsp;<a href="../pythonds/index.html" target="_blank">html</a> &nbsp;&nbsp;&nbsp;<a href="../pythonds/ProblemSolvingwithAlgorithmsandDataStructures.pdf" target="_blank">pdf</a></li>
+</ul>
+<h2 id="Grading">Grading<a class="anchor-link" href="#Grading">&#182;</a></h2><ul>
+<li>The grade of this lab part will range from 0 to 30. Total grade for the module will be given by the average with the theory part of Alberto Montresor.</li>
+<li>Correct implementations with the required complexity grant you full grade.</li>
+<li>Partial implementations <em>might</em> still give you a few points. If you just can't solve an exercise,  try to solve it at least for some subcase (i.e. array of fixed size 2) commenting why you did so. </li>
+<li><p>One bonus point can be earned by writing stylish code. You got style if you:</p>
+<ul>
+<li>do not infringe the <a href="../algolab/index.html#Commandments">Commandments</a></li>
+<li>write <a href="http://docs.python-guide.org/en/latest/writing/style">pythonic code</a></li>
+<li><p>avoid convoluted code like i.e.</p>
 
-<center>
-<br/>
-16 Feb 2017
-<br/>
-v0.20
-</center>
+<pre><code>  if x &gt; 5:
+      return True
+  else:
+      return False</code></pre>
+<p>when you could write just</p>
 
-<br/>
-<br/>
-<center>
-<span>This work is licensed under a Creative Commons Attribution 4.0 License  
-<a href="https://creativecommons.org/licenses/by/4.0/">creativecommons.org/licenses/by/4.0/</a>
-<a href="https://creativecommons.org/licenses/by/4.0/"><img width="10%" src="img/cc-by.svg"></a></span>
-</center>
-</p>
+<pre><code>  return x &gt; 5</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+
 </div>
 </div>
 </div>
@@ -12114,196 +12136,15 @@ v0.20
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
 
-
-&lt;h1&gt; News &lt;/h1&gt;
-
-&lt;h4&gt; 16/02/2017 &lt;/h4&gt;
-- published solutions of &lt;a href=&quot;past-exams.html#2017-02-16&quot; target=&quot;_blank&quot;&gt; 16/02/17 Midterm&lt;/a&gt; &lt;br/&gt;
-- v0.20&lt;br/&gt;
-
-&lt;h4&gt; 9/02/2017 &lt;/h4&gt;
-- fixed bugs in &lt;a href=&quot;trees.html&quot; target=&quot;_blank&quot;&gt;methods of GenericTree&lt;/a&gt;, added &lt;code&gt;detach_sibling&lt;/code&gt; tests &lt;br/&gt;
-- v0.18&lt;br/&gt;
-
-
-&lt;h4&gt; 26/01/2017 &lt;/h4&gt;
-- published solutions of &lt;a href=&quot;past-exams.html#2016-01-26&quot; target=&quot;_blank&quot;&gt; 26/01/17 exam&lt;/a&gt; &lt;br/&gt;
-- v0.17&lt;br/&gt;
-
-&lt;h4&gt; 23/01/2017 &lt;/h4&gt;
-- Fixed many bugs in &lt;a href=&quot;graphs.html&quot; target=&quot;_blank&quot;&gt;graph&lt;/a&gt; reports of differences during testing  &lt;br/&gt;
-- v0.16&lt;br/&gt;
-
-&lt;h4&gt; 13/01/2017 &lt;/h4&gt;
-- published solutions of &lt;a href=&quot;past-exams.html#2017-01-13-midterm&quot; target=&quot;_blank&quot;&gt; 13/01/17 Midterm&lt;/a&gt; &lt;br/&gt;
-- v0.15&lt;br/&gt;
-
-&lt;h4&gt; 10/01/2017 &lt;/h4&gt;
-- Added a lot of material &lt;a href=&quot;graphs.html&quot; target=&quot;_blank&quot;&gt;on graphs &lt;/a&gt; &lt;br/&gt;
-- v0.14&lt;br/&gt;
-
-&lt;h4&gt; 9/01/2017 &lt;/h4&gt;
-- fixed broken link in Chapters to &lt;a href=&quot;data-structures-2.html&quot; target=&quot;_blank&quot;&gt;Data Structures 2.2 for stacks and linked lists &lt;/a&gt;&lt;br/&gt;
-- 0.13.1&lt;br/&gt;
-
-&lt;h4&gt; 8/01/2017 &lt;/h4&gt;
-- added looong intro to classes in &lt;a href=&quot;data-structures-1.html&quot; target=&quot;_blank&quot; &gt;Data Structures 2.1:  ComplexNumber&lt;/a&gt;&lt;br/&gt;
-- split Chapter 2: Data Structures into 2 parts, &lt;a href=&quot;data-structures-1.html&quot; target=&quot;_blank&quot;&gt;2.1 for ComplexNumber&lt;/a&gt; and &lt;a href=&quot;data-structures-2.html&quot; target=&quot;_blank&quot;&gt;2.2 for stacks and linked lists.&lt;/a&gt; &lt;br/&gt;
-- v0.13&lt;br/&gt;
-
-&lt;h4&gt;22/12/2016 &lt;/h4&gt;
-- added graph exercises
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-
-
-<h1> News </h1>
-
-<h4> 16/02/2017 </h4>
-- published solutions of <a href="past-exams.html#2017-02-16" target="_blank"> 16/02/17 Midterm</a> <br/>
-- v0.20<br/>
-
-<h4> 9/02/2017 </h4>
-- fixed bugs in <a href="trees.html" target="_blank">methods of GenericTree</a>, added <code>detach_sibling</code> tests <br/>
-- v0.18<br/>
-
-
-<h4> 26/01/2017 </h4>
-- published solutions of <a href="past-exams.html#2016-01-26" target="_blank"> 26/01/17 exam</a> <br/>
-- v0.17<br/>
-
-<h4> 23/01/2017 </h4>
-- Fixed many bugs in <a href="graphs.html" target="_blank">graph</a> reports of differences during testing  <br/>
-- v0.16<br/>
-
-<h4> 13/01/2017 </h4>
-- published solutions of <a href="past-exams.html#2017-01-13-midterm" target="_blank"> 13/01/17 Midterm</a> <br/>
-- v0.15<br/>
-
-<h4> 10/01/2017 </h4>
-- Added a lot of material <a href="graphs.html" target="_blank">on graphs </a> <br/>
-- v0.14<br/>
-
-<h4> 9/01/2017 </h4>
-- fixed broken link in Chapters to <a href="data-structures-2.html" target="_blank">Data Structures 2.2 for stacks and linked lists </a><br/>
-- 0.13.1<br/>
-
-<h4> 8/01/2017 </h4>
-- added looong intro to classes in <a href="data-structures-1.html" target="_blank" >Data Structures 2.1:  ComplexNumber</a><br/>
-- split Chapter 2: Data Structures into 2 parts, <a href="data-structures-1.html" target="_blank">2.1 for ComplexNumber</a> and <a href="data-structures-2.html" target="_blank">2.2 for stacks and linked lists.</a> <br/>
-- v0.13<br/>
-
-<h4>22/12/2016 </h4>
-- added graph exercises
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Exams">Exams<a class="anchor-link" href="#Exams">&#182;</a></h1><p>See exams schedule on  <a href="http://cricca.disi.unitn.it/montresor/teaching/scientific-programming/exams/" target="_blank"> Alberto Montresor's site</a></p>
-<h2 id="Exam-modalities">Exam modalities<a class="anchor-link" href="#Exam-modalities">&#182;</a></h2><p>Algolab exams are open book. You can bring a printed version of the material listed below.</p>
-<p>Exam will take place in the lab with no internet access. You will only be able to access a folder with this documentation:</p>
-<ul>
-<li><a href="http://davidleoni.github.io/algolab">Sciprog Algolab website</a></li>
-<li><a href="http://cricca.disi.unitn.it/montresor/teaching/scientific-programming/">Alberto Montresor slides</a></li>
-<li><a href="http://disi.unitn.it/~teso/courses/sciprog/index.html">Stefano Teso slides</a></li>
-<li><a href="https://docs.python.org/2/">Python 2.7 documentation</a><ul>
-<li>In particular, <a href="https://docs.python.org/2/library/unittest.html">Unittest docs</a></li>
-</ul>
-</li>
-<li><a href="http://interactivepython.org/runestone/static/pythonds/index.html">The course book 'Problem Solving with Algorithms and Data Structures using Python'</a></li>
-</ul>
-<p>So if you need to look up some Python function, please start today learning how to search documentation using the search functionality on Python website.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Past-exams">Past exams<a class="anchor-link" href="#Past-exams">&#182;</a></h2><p>See page <a href="past-exams.html" target="_blank"  >here&lt;/a&gt;.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Course-website">Course website<a class="anchor-link" href="#Course-website">&#182;</a></h1><p><span style="font-size:130%; font-weight:bold"> Theory </span></p>
-<p>See Alberto Montresor website:</p>
-<p><a href="http://cricca.disi.unitn.it/montresor/teaching/scientific-programming" target="_blank" style="font-size:200%">http://cricca.disi.unitn.it/montresor/teaching/scientific-programming</a></p>
-<p><span style="font-size:130%; font-weight:bold"> Lab </span></p>
-<p><a href="https://davidleoni.github.io/algolab" target="_blank" style="font-size:200%">davidleoni.github.io/algolab</a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Chapters">Chapters<a class="anchor-link" href="#Chapters">&#182;</a></h1><p>Worksheets are meant to be used online - pdf quality is not very good, if they result unreadable please tell me</p>
-<p><span class="algolab-chapter-link"> 0. <a href="testing.html" target="_blank" >Testing</a></span>  (<a href="pdf/testing.pdf">pdf</a>)</p>
-<p><span class="algolab-chapter-link"> 1. <a href="lists.html" target="_blank" >Lists</a></span> (<a href="pdf/lists.pdf">pdf</a>)</p>
-<p><span class="algolab-chapter-link"> 2 Data Structures <span></p>
-<p><span class="algolab-chapter-link"> 2.1 <a href="data-structures-1.html" target="_blank" >ComplexNumber</a></span> (<a href="pdf/data-structures-1.pdf">pdf</a>)</p>
-<p><span class="algolab-chapter-link"> 2.2 <a href="data-structures-2.html" target="_blank" >Stacks and linked lists</a></span> (<a href="pdf/data-structures-2.pdf">pdf</a>)</p>
-<p><span class="algolab-chapter-link"> 3. <a href="trees.html" target="_blank" >Trees</a></span> (<a href="pdf/trees.pdf">pdf</a>)</p>
-<p><span class="algolab-chapter-link"> 4. <a href="graphs.html" target="_blank" >Graphs</a></span> (<a href="pdf/graphs.pdf">pdf</a>)</p>
-<p><span class="algolab-chapter-link"> A. <a href="past-exams.html" target="_blank" >Past exams</a></span></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Commandments">Commandments<a class="anchor-link" href="#Commandments">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
 &lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: If you don&#39;t follow the Commandments, bad things happen! 
-&lt;/p&gt;
 
-&lt;p class=&quot;algolab-important&quot; &gt;
-1) You shall test!
-&lt;/p&gt;
+!!!!!!!!! WARNING !!!!!!!!!
+    
+    &lt;br/&gt;
+    &lt;br/&gt;
+!!!!!!!!!  **ONLY** IMPLEMENTATIONS OF THE PROVIDED FUNCTION SIGNATURES WILL BE EVALUATED !!!!!!!!! &lt;br/&gt;    
 
-To run tests, enter the following command in the terminal:
+&lt;/p&gt;
 </pre></div>
 
 </div>
@@ -12319,14 +12160,14 @@ To run tests, enter the following command in the terminal:
 <div class="output_html rendered_html output_subarea ">
 
 <p class="algolab-warn">
-WARNING: If you don't follow the Commandments, bad things happen! 
-</p>
 
-<p class="algolab-important" >
-1) You shall test!
-</p>
+!!!!!!!!! WARNING !!!!!!!!!
+    
+    <br/>
+    <br/>
+!!!!!!!!!  **ONLY** IMPLEMENTATIONS OF THE PROVIDED FUNCTION SIGNATURES WILL BE EVALUATED !!!!!!!!! <br/>    
 
-To run tests, enter the following command in the terminal:
+</p>
 </div>
 
 </div>
@@ -12340,8 +12181,144 @@ To run tests, enter the following command in the terminal:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span>python -m unittest my-file
+<p>For example, if you are given to implement:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cool_fun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me&quot;</span><span class="p">)</span>
 </pre></div>
+<p>and you ship this code:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cool_fun_non_working_trial</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># do some absurdity</span>
+
+<span class="k">def</span> <span class="nf">cool_fun_a_perfectly_working_trial</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># a super fast, correct and stylish implementation</span>
+
+<span class="k">def</span> <span class="nf">cool_fun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me&quot;</span><span class="p">)</span>
+</pre></div>
+<p>We will assess only the latter one <code>cool_fun(x)</code>, and conclude it doesn't work at all :P   !!!!!!!</p>
+<p>Still, you are allowed to define any extra helper function you might need. If your <code>cool_fun(x)</code> implementation calls some other function you defined like <code>my_helper</code> here, it is ok:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_helper</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="c1"># do something useful</span>
+
+<span class="k">def</span> <span class="nf">cool_fun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">my_helper</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># this will get ignored:</span>
+<span class="k">def</span> <span class="nf">some_trial</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># do some absurdity</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-to-do">What to do<a class="anchor-link" href="#What-to-do">&#182;</a></h2><p>In <a href="/usr/local/esame" target="_blank">/usr/local/esame</a> you should find a file named <code>algolab-17-01-26.zip</code>. Download it and extract it on your desktop. The content should be like this:</p>
+
+<pre><code>algolab-17-01-26
+    |- FIRSTNAME-LASTNAME-ID
+        |- exercise1-slow.py
+        |- exercise1-fast.py
+        |- exercise2.py
+        |- exercise3.py</code></pre>
+<p>2) Check this folder also shows under <code>/var/exam</code>.</p>
+<p>3) Rename <code>FIRSTNAME-LASTNAME-ID</code> folder: put your name, lastname an id number, like <code>john-doe-432432</code></p>
+<p>From now on, you will be editing the files in that folder. At the end of the exam, that is what will be evaluated.</p>
+<p>4) Edit the files following the instructions in this worksheet for each exercise.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span> 
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: &lt;i&gt;DON&#39;T&lt;/i&gt; modify function signatures! Just provide the implementation.
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: &lt;i&gt;DON&#39;T&lt;/i&gt; change the existing test methods, just add new ones !!!  You can add as many as you want.
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: &lt;i&gt;DON&#39;T&lt;/i&gt; create other files. If you still do it, they won&#39;t be evaluated.
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-important&quot;&gt;
+IMPORTANT: Pay close attention to the comments of the functions.
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-important&quot;&gt;
+IMPORTANT: if you need to print some debugging information, you &lt;i&gt;are allowed&lt;/i&gt; to put extra &lt;code&gt;print&lt;/code&gt;
+    statements in the function bodies.
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: even if &lt;code&gt;print&lt;/code&gt; statements are allowed, be careful with prints that might
+     break your function, i.e. avoid stuff like this: &lt;code&gt; print 1/0 &lt;/code&gt; 
+&lt;/p&gt;
+ 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-warn">
+WARNING: <i>DON'T</i> modify function signatures! Just provide the implementation.
+</p>
+
+<p class="algolab-warn">
+WARNING: <i>DON'T</i> change the existing test methods, just add new ones !!!  You can add as many as you want.
+</p>
+
+<p class="algolab-warn">
+WARNING: <i>DON'T</i> create other files. If you still do it, they won't be evaluated.
+</p>
+
+<p class="algolab-important">
+IMPORTANT: Pay close attention to the comments of the functions.
+</p>
+
+<p class="algolab-important">
+IMPORTANT: if you need to print some debugging information, you <i>are allowed</i> to put extra <code>print</code>
+    statements in the function bodies.
+</p>
+
+<p class="algolab-warn">
+WARNING: even if <code>print</code> statements are allowed, be careful with prints that might
+     break your function, i.e. avoid stuff like this: <code> print 1/0 </code> 
+</p>
+ 
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>3) Every exercise should take max 25 mins. If it takes longer, leave it and try another exercise.</p>
 
 </div>
 </div>
@@ -12354,25 +12331,9 @@ To run tests, enter the following command in the terminal:
 <div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
 
 &lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: In the call above, DON&#39;T append the extension &lt;i&gt;.py&lt;/i&gt; to &lt;i&gt;my-file&lt;/i&gt;
-&lt;br/&gt;
-WARNING: Still, on the hard-disk the file MUST be named with a &lt;i&gt;.py&lt;/i&gt; at the end, like &lt;i&gt;my-file.py&lt;/i&gt;
+WARNING: MAKE SURE ALL EXERCISE FILES AT LEAST COMPILE !!! &lt;br/&gt; 10 MINS BEFORE THE END 
+    OF THE EXAM I WILL ASK YOU TO DO A FINAL CLEAN UP OF THE CODE 
 &lt;/p&gt;
-
-&lt;p class=&quot;algolab-important&quot; &gt;
-2. You shall also write on paper!
-&lt;/p&gt;
-
-&lt;p&gt;
-If staring at the monitor doesn&#39;t work, help yourself and draw a representation of the state sof the program. 
-Tables, nodes, arrows, all can help figuring out a solution for the problem. 
-&lt;/p&gt;
-
-&lt;p class=&quot;algolab-important&quot; &gt;
-3. You shall copy *exactly the same* function definitions as in the exercises!
-&lt;/p&gt;
-
-For example don&#39;t write :
 </pre></div>
 
 </div>
@@ -12388,25 +12349,9 @@ For example don&#39;t write :
 <div class="output_html rendered_html output_subarea ">
 
 <p class="algolab-warn">
-WARNING: In the call above, DON'T append the extension <i>.py</i> to <i>my-file</i>
-<br/>
-WARNING: Still, on the hard-disk the file MUST be named with a <i>.py</i> at the end, like <i>my-file.py</i>
+WARNING: MAKE SURE ALL EXERCISE FILES AT LEAST COMPILE !!! <br/> 10 MINS BEFORE THE END 
+    OF THE EXAM I WILL ASK YOU TO DO A FINAL CLEAN UP OF THE CODE 
 </p>
-
-<p class="algolab-important" >
-2. You shall also write on paper!
-</p>
-
-<p>
-If staring at the monitor doesn't work, help yourself and draw a representation of the state sof the program. 
-Tables, nodes, arrows, all can help figuring out a solution for the problem. 
-</p>
-
-<p class="algolab-important" >
-3. You shall copy *exactly the same* function definitions as in the exercises!
-</p>
-
-For example don't write :
 </div>
 
 </div>
@@ -12420,8 +12365,12 @@ For example don't write :
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">MY_selection_sort</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-</pre></div>
+<h1 id="1)-BoolStack">1) BoolStack<a class="anchor-link" href="#1)-BoolStack">&#182;</a></h1><p>You are given a class <code>BoolStack</code> that models a simple stack. This stack is similar to the <code>CappedStack</code> you already saw in class, the only differences being:</p>
+<ul>
+<li>it can only contain booleans, trying to put other type of values will raise a <code>TypeError</code></li>
+<li>trying to <code>pop</code> or <code>peek</code> an empty stack will raise an <code>IndexError</code></li>
+<li>there is no cap</li>
+</ul>
 
 </div>
 </div>
@@ -12431,32 +12380,10 @@ For example don't write :
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-important&quot; &gt;
-4. You shall never ever reassign function parameters:
-&lt;/p&gt;
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">exercise1_slow_solution</span> <span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-important" >
-4. You shall never ever reassign function parameters:
-</p>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -12466,34 +12393,7 @@ For example don't write :
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myfun</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">D</span><span class="p">):</span>
-
-        <span class="c1"># You shall not do any of such evil, no matter what the type of the parameter is:</span>
-        <span class="n">i</span> <span class="o">=</span> <span class="mi">666</span>            <span class="c1"># basic types (int, float, ...)</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;666&quot;</span>          <span class="c1"># strings</span>
-        <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">666</span><span class="p">]</span>          <span class="c1"># containers </span>
-        <span class="n">D</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;evil&quot;</span><span class="p">:</span><span class="mi">666</span><span class="p">}</span>   <span class="c1"># dictionaries</span>
-
-        <span class="c1"># For the sole case of composite parameters like lists or dictionaries, </span>
-        <span class="c1"># you can write stuff like this IF AND ONLY IF the function specification </span>
-        <span class="c1"># requires you to modify the parameter internal elements (i.e. sorting a list</span>
-        <span class="c1"># or changing a dictionary field):</span>
-
-        <span class="n">L</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>          <span class="c1"># list</span>
-        <span class="n">D</span><span class="o">.</span><span class="n">my_field</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c1"># dictionary</span>
-</pre></div>
-<p>This also applies to class methods. Never ever write horrors such as:</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyClass</span>
-    <span class="k">def</span> <span class="nf">my_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span> <span class="o">=</span> <span class="p">{</span><span class="n">a</span><span class="p">:</span><span class="mi">666</span><span class="p">}</span>  <span class="c1"># since self is a kind of dictionary, you might be tempted to do like this</span>
-                        <span class="c1"># but to the outside world this will bring no effect.</span>
-                        <span class="c1"># For example, let&#39;s say somebody from outside makes a call like this:</span>
-                        <span class="c1">#    mc = MyClass()</span>
-                        <span class="c1">#    mc.my_method()</span>
-                        <span class="c1"># after the call mc will not point to {a:666}</span>
-        <span class="bp">self</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;666&#39;</span><span class="p">]</span>  <span class="c1"># self is only supposed to be a sort of dictionary and passed from outside</span>
-        <span class="bp">self</span> <span class="o">=</span> <span class="mi">6</span>        <span class="c1"># self is only supposed to be a sort of dictionary and passed from outside</span>
-</pre></div>
+<p>To create a <code>BoolStack</code>, just call it:</p>
 
 </div>
 </div>
@@ -12503,11 +12403,8 @@ For example don't write :
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-important&quot; &gt;
-5. You shall never ever assign values to method calls:
-&lt;/p&gt;
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="n">BoolStack</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">bs</span>
 </pre></div>
 
 </div>
@@ -12519,53 +12416,326 @@ For example don't write :
 
 
 <div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-important" >
-5. You shall never ever assign values to method calls:
-</p>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>BoolStack:   elements=[]
+</pre>
 </div>
-
 </div>
 
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>WRONG WRONG STUFF</p>
-<div class="highlight"><pre><span></span><span class="n">my_fun</span><span class="p">()</span> <span class="o">=</span> <span class="mi">666</span>
-<span class="n">my_fun</span><span class="p">()</span> <span class="o">=</span> <span class="s1">&#39;666&#39;</span>
-<span class="n">my_fun</span><span class="p">()</span> <span class="o">=</span> <span class="p">[</span><span class="mi">666</span><span class="p">]</span>
-</pre></div>
-<p>CORRECT STUFF</p>
-<p>With the assignment operator we want to store in the left side a value from the right side, so all of these are valid operations:</p>
-<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">my_fun</span><span class="p">()</span>
-<span class="n">z</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
-<span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">d</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>
-</pre></div>
-<p>Function calls such as <code>my_fun()</code> return instead results of calculations in a box that is created just for the purpose of the call and Python will just not allow us to reuse it as a variable. So whenever you see 'name()' at the left side, it <em>can't</em> be possibly follewed by one equality <code>=</code> sign (but it can be followed by two equality signs <code>==</code> if you are performing a comparison).</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">bs</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">bs</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>BoolStack:   elements=[True]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">bs</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">bs</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>BoolStack:   elements=[True, False]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">bs</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>False
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">bs</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>BoolStack:   elements=[True]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">bs</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>True
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">bs</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>BoolStack:   elements=[]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.0)-test-BoolStack">1.0) test <code>BoolStack</code><a class="anchor-link" href="#1.0)-test-BoolStack">&#182;</a></h2><p>Now start editing the file <code>exercise1_slow.py</code>. To check your environment is working fine, try to run the tests for <code>BoolStackTest</code>, which contain tests for the already implemented methods <code>pop</code>, <code>push</code>, etc ...</p>
+<p><strong>Notice that  <code>exercise1_slow</code> is followed by a dot and test class name: <code>.BoolStackTest</code> </strong></p>
+<div class="highlight"><pre><span></span>python -m unittest exercise1_slow.BoolStackTest
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">BoolStackTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.018s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.1)-true_count,-slow-version">1.1) <code>true_count</code>, slow version<a class="anchor-link" href="#1.1)-true_count,-slow-version">&#182;</a></h2><p>Implement the <code>true_count</code> method inside the class, <strong>just working on this method alone</strong>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">true_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return the number of elements which are True in O(n), where n is the size of stack.  &quot;&quot;&quot;</span>
+
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong>Testing</strong></p>
+<p>Once done, running this will run only the tests in <code>TrueCountTest</code> class and hopefully they will pass.</p>
+<p><strong>Notice that  <code>exercise1_slow</code> is followed by a dot and test class name <code>.TrueCountTest</code> : </strong></p>
+<div class="highlight"><pre><span></span>python -m unittest exercise1_slow.TrueCountTest
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">TrueCountTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>...
+----------------------------------------------------------------------
+Ran 3 tests in 0.005s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.2)-true_count,-fast-version">1.2) <code>true_count</code>, fast version<a class="anchor-link" href="#1.2)-true_count,-fast-version">&#182;</a></h2><p>Now start editing the file <code>exercise1_fast.py</code>: inside you will find the class <code>FastBoolStack</code>. Your goal now is to implement a <code>true_count</code> method that works in <code>O(1)</code>. To make this possible, you are allowed to add any field you want in the constructor and you can also change any other method you deem necessary (like <code>push</code>) .</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">true_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return the number of elements which are True </span>
+
+<span class="sd">            ***   MUST EXECUTE IN O(1)  ***</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong> Testing </strong>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
 
-&lt;p class=&quot;algolab-important&quot; &gt;
-6. You shall use &lt;i&gt;return&lt;/i&gt; command only if you see written &lt;i&gt;return&lt;/i&gt; in the pseudocode!
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: Since you are going to modify the whole class, make sure tests pass BOTH for &lt;code&gt;FastBoolStackTest&lt;/code&gt; AND &lt;code&gt;TrueCountTest&lt;/code&gt; !
 &lt;/p&gt;
 </pre></div>
 
@@ -12581,8 +12751,8 @@ For example don't write :
 
 <div class="output_html rendered_html output_subarea ">
 
-<p class="algolab-important" >
-6. You shall use <i>return</i> command only if you see written <i>return</i> in the pseudocode!
+<p class="algolab-warn">
+WARNING: Since you are going to modify the whole class, make sure tests pass BOTH for <code>FastBoolStackTest</code> AND <code>TrueCountTest</code> !
 </p>
 </div>
 
@@ -12597,112 +12767,435 @@ For example don't write :
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If there is no <code>return</code> in the pseudocode, the function is intended to return <code>None</code>. In this case you don't even need to write <code>return None</code>, as Python will do it implicitly for you.</p>
+<p><strong>Tests for <code>push</code>, <code>pop</code>, etc</strong>:</p>
+<p><code>python -m unittest exercise1_fast.FastBoolStackTest</code></p>
+<p><strong>Tests just for <code>true_count</code></strong>:</p>
+<p><code>python -m unittest exercise1_fast.TrueCountTest</code></p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Slides">Slides<a class="anchor-link" href="#Slides">&#182;</a></h1><p><strong>Lab 1 Slides</strong></p>
-<p>3 Nov 2016</p>
-<p><strong>Lab Goals</strong></p>
-<ul>
-<li>Going from theory taught by Prof. Alberto Montresor to implementation</li>
-<li>Pseudo code  --&gt;   Python</li>
-</ul>
-<p><strong>How</strong></p>
-<ul>
-<li>Hands-on approach</li>
-<li>Performance considerations</li>
-<li>Focus on correct code</li>
-<li>Few Python functions</li>
-</ul>
-<p><strong>Lab Midterm?</strong></p>
-<p>Probably not. Still, will provide exam example.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 2 Slides</strong></p>
-<p>Date: Nov 11th, 2016</p>
-<ul>
-<li>More practical than last time!</li>
-<li>Finish selection_sort and gap implementation</li>
-<li>midlab pause ;-)</li>
-<li>implement a Python class</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 3 Slides</strong></p>
-<p>Nov 17th, 2016</p>
-<ul>
-<li>Recursion<ul>
-<li><code>gap_rec</code>, <code>binary_search_rec</code></li>
-</ul>
-</li>
-<li><code>binary_search_iter</code></li>
-<li>Will give you more tests </li>
-<li>Write also on paper!</li>
-<li>Copy <em>exactly the same</em> function definitions!<ul>
-<li>For example don't write <code>def MY_selection_sort(A):</code>  </li>
-</ul>
-</li>
-<li>use <code>return</code> command <em>only</em> if you see written <code>return</code> in the pseudocode!<ul>
-<li>If there is no <code>return</code> in the pseudocode, the function is intended to return <code>None</code>. In this case you don't even need to write <code>return None</code>, as Python will do it implicitly for you.</li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 4 Slides</strong></p>
-<p>Nov 18th, 2016</p>
-<ul>
-<li>Divide et Impera<ul>
-<li>binary_search_iter</li>
-</ul>
-</li>
-<li>Implement ComplexNumber ( see <a href="data-structures-1.html" target="_blank">Chapter 2.1</a> )</li>
-</ul>
-<p>New Commandment:</p>
-<p>You shall never ever reassign function parameters:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myfun</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-
-    <span class="c1"># You shall not do any of this evil:</span>
-    <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">666</span><span class="p">]</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">666</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;666&quot;</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">exercise1_fast_solution</span> <span class="kn">import</span> <span class="o">*</span>
 </pre></div>
-<p>Previous commandments:</p>
-<ul>
-<li>You shall also write on paper!</li>
-<li>You shall copy exactly the same function definitions as in the exercises!</li>
-<li>For example don't write def MY_selection_sort(A):</li>
-<li>You shall use return command only if you see Written return in the pseudocode!</li>
-<li>If there is no return in the pseudocode, the function is intended to return None. In this case you don't even need to write return None, as Python will do it implicitly for you.</li>
-</ul>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">FastBoolStackTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.016s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">TrueCountTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>...
+----------------------------------------------------------------------
+Ran 3 tests in 0.005s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="2)-UnorderedList">2) UnorderedList<a class="anchor-link" href="#2)-UnorderedList">&#182;</a></h1><p>Start editing file <code>exercise2.py</code>, which contains a simplified versioned of the <code>UnorderedList</code> we saw in the labs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">exercise2_solution</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.1)-dup_first">2.1) <code>dup_first</code><a class="anchor-link" href="#2.1)-dup_first">&#182;</a></h2><p>Implement the method <code>dup_first</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dup_first</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Modifies this list by adding a duplicate of first node right after it. </span>
+
+<span class="sd">            For example, the list &#39;a&#39;,&#39;b&#39;,&#39;c&#39; should become &#39;a&#39;,&#39;a&#39;,&#39;b&#39;,&#39;c&#39;.            </span>
+<span class="sd">            An empty list remains unmodified.            </span>
+
+<span class="sd">            ** DOES NOT RETURN ANYTHING !!! **          </span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong>Testing:</strong> <code>python -m unittest exercise2.DupFirstTest</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">DupFirstTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>......
+----------------------------------------------------------------------
+Ran 6 tests in 0.013s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.2)-dup_all">2.2) <code>dup_all</code><a class="anchor-link" href="#2.2)-dup_all">&#182;</a></h2><p>Implement the method <code>dup_all</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dup_all</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Modifies this list by adding a duplicate of each node right after it.</span>
+
+<span class="sd">            For example, the list &#39;a&#39;,&#39;b&#39;,&#39;c&#39; should become &#39;a&#39;,&#39;a&#39;,&#39;b&#39;,&#39;b&#39;,&#39;c&#39;,&#39;c&#39;.</span>
+<span class="sd">            An empty list remains unmodified.      </span>
+
+<span class="sd">            ** MUST PERFORM IN O(n) WHERE n is the length of the list. **</span>
+
+<span class="sd">            ** DOES NOT RETURN ANYTHING !!! **</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong>Testing:</strong> <code>python -m unittest exercise2.DupAllTest</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">DupAllTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>......
+----------------------------------------------------------------------
+Ran 6 tests in 0.008s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="3)-DiGraph">3) DiGraph<a class="anchor-link" href="#3)-DiGraph">&#182;</a></h1><p>Now you are going to build some <code>DiGraph</code>, by defining functions <em>external</em> to class <code>DiGraph</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
+
+&lt;p class=&quot;algolab-warn&quot; target=&quot;_blank&quot;&gt;
+WARNING: To build the graphs, just use the methods you find inside &lt;code&gt;DiGraph&lt;/code&gt; class, like &lt;code&gt;add_vertex&lt;/code&gt;, 
+    &lt;code&gt;add_edge&lt;/code&gt;, etc.
+&lt;/p&gt;
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-warn" target="_blank">
+WARNING: To build the graphs, just use the methods you find inside <code>DiGraph</code> class, like <code>add_vertex</code>, 
+    <code>add_edge</code>, etc.
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Start editing file <code>exercise3.py</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">exercise3_solution</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.1)-pie">3.1) pie<a class="anchor-link" href="#3.1)-pie">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Implement the function <code>pie</code>. Note the function is defined <em>outside</em> <code>DiGraph</code> class.</p>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a DiGraph with n+1 verteces, displaced like a polygon with a perimeter </span>
+<span class="sd">        of n verteces progressively numbered from 1 to n. </span>
+<span class="sd">        A central vertex numbered zero has outgoing edges to all other verteces.</span>
+
+<span class="sd">        For n = 0, return the empty graph.</span>
+<span class="sd">        For n = 1, return vertex zero connected to node 1, and node 1 has a self-loop.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong> Testing: </strong> <code>python -m unittest exercise3.PieTest</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">DiGraphTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.011s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">PieTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.008s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong> Example usage </strong>:</p>
+<p>For <em>n=5</em>, the function creates this graph:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">pie</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+0: [1, 2, 3, 4, 5]
+1: [2]
+2: [3]
+3: [4]
+4: [5]
+5: [1]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="img/pie.svg" width="250px"></p>
 
 </div>
 </div>
@@ -12712,12 +13205,169 @@ For example don't write :
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 5 slides</strong></p>
-<p>24 Nov 2016</p>
-<ul>
-<li>Implement ComplexNumber ( see <a href="data-structures-1.html" target="_blank">Chapter 2.1</a> )</li>
-<li>Implement Stack</li>
-</ul>
+<p><strong>Degenerate cases</strong>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">pie</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+DiGraph()
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">pie</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+0: [1]
+1: [1]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">nxpd</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">algolab</span><span class="o">.</span><span class="n">to_nx</span><span class="p">(</span><span class="n">pie</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span> <span class="n">show</span><span class="o">=</span><span class="s1">&#39;ipynb&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,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
+4P+4GoZL1mf9awAAAABJRU5ErkJggg==
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.2)-Flux-Capacitor">3.2) Flux Capacitor<a class="anchor-link" href="#3.2)-Flux-Capacitor">&#182;</a></h2><p>A <em>Flux Capacitor</em> is a plutonium-powered device that enables time travelling. During the 80s it was installed on a Delorean car and successfully used to ride humans back and forth across centuries:</p>
+<p><img src="img/flux-capacitor.jpg" width="200px"></p>
+<p>In this exercise you will build a Flux Capacitor model as a Y-shaped <code>DiGraph</code>, created according to a parameter <code>depth</code>. Here you see examples at different depths:</p>
 
 </div>
 </div>
@@ -12727,12 +13377,7 @@ For example don't write :
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 6 slides</strong></p>
-<p>1 Dic 2016</p>
-<ul>
-<li>Implement <code>CappedStack</code> ( see <a href="data-structures-2.html" target="_blank">Chapter 2.2</a> )</li>
-<li>Implement <code>UnorderedList</code></li>
-</ul>
+<p><img src="img/flux-capacitor.svg" width="700px"></p>
 
 </div>
 </div>
@@ -12742,10 +13387,29 @@ For example don't write :
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 7 slides</strong></p>
-<ul>
-<li>UnorderedList</li>
-</ul>
+<p>Implement the function <code>flux</code>. Note the function is defined <em>outside</em> <code>DiGraph</code> class:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">flux</span><span class="p">(</span><span class="n">depth</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Returns a DiGraph with 1 + (d * 3) numbered verteces displaced like a Flux Capacitor:</span>
+
+<span class="sd">        - from a central node numbered 0, three branches depart  </span>
+<span class="sd">        - all edges are directed outward</span>
+<span class="sd">        - on each branch there are &#39;depth&#39; verteces. </span>
+
+<span class="sd">        For example, for depth=2 we get the following graph (suppose arrows point outward):</span>
+
+<span class="sd">             4         5</span>
+<span class="sd">              \       /</span>
+<span class="sd">               1     2</span>
+<span class="sd">                \   /</span>
+<span class="sd">                  0</span>
+<span class="sd">                  |</span>
+<span class="sd">                  3</span>
+<span class="sd">                  |</span>
+<span class="sd">                  6</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
 
 </div>
 </div>
@@ -12755,79 +13419,190 @@ For example don't write :
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 8 slides</strong></p>
-<ul>
-<li>will start writing tests (will be required during exams)</li>
-<li>invariants in particular</li>
-<li><code>UnorderedList</code> ( see <a href="data-structures-2.html" target="_blank">Chapter 2.2</a> ) until fast <code>size()</code> and <code>append()</code> included</li>
-</ul>
+<p><strong>Testing</strong>: <code>python -m unittest exercise3.FluxTest</code></p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">FluxTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>....
+----------------------------------------------------------------------
+Ran 4 tests in 0.004s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 9 slides</strong></p>
-<p>15 Dic 2016</p>
-<ul>
-<li>Implement <code>GenericTree</code>, see <a href="trees.html" target="_blank">Trees chapter</a></li>
-</ul>
+<p><strong>Usage examples</strong></p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">flux</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+DiGraph()
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">flux</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+0: [1, 2, 3]
+1: []
+2: []
+3: []
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">flux</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+0: [1, 2, 3]
+1: [4]
+2: [5]
+3: [6]
+4: []
+5: []
+6: []
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">flux</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+0: [1, 2, 3]
+1: [4]
+2: [5]
+3: [6]
+4: [7]
+5: [8]
+6: [9]
+7: []
+8: []
+9: []
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lab 10 slides</strong></p>
-<p>19 Dic 2016</p>
-<ul>
-<li><code>GenericTree</code> see <a href="graphs.html" target="_blank">Graphs chapter</a></li>
-</ul>
-<p><strong>Lab 11 slides</strong></p>
-<p>21 Dic 2016</p>
-<p><a href="exam-sim-2016-12-21.html">Exam simulation</a> !</p>
-<p>For exam solution, see Appendix A in <a href="#Chapters">Chapters</a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Office-hours">Office hours<a class="anchor-link" href="#Office-hours">&#182;</a></h1><p>You can schedule a meeting by emailing me at david.leoni [AT] unitn.it , more or less I'm available every day until 19.00</p>
-<p>Then you will find me in Povo 1 building at DISI, in room 226 DKM :</p>
-<p><img src="img/office.png" width="40%"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Resources">Resources<a class="anchor-link" href="#Resources">&#182;</a></h1><ul>
-<li>Online book: <a href="http://interactivepython.org/runestone/static/pythonds/index.html" target="_blank">
-  Problem Solving with Algorithms and Data Structures using Python </a>
-  by Brad Miller and David Ranum</li>
-<li><a href="http://cricca.disi.unitn.it/montresor/teaching/scientific-programming/slides/" target="_blank">  Theory slides </a> by Alberto Montresor</li>
-<li>Will try to be consistent with <a href="http://disi.unitn.it/~teso/courses/sciprog/index.html" target="_blank"> other lab module notes </a> of Stefano Teso and Toma Tebaldi  </li>
-<li><a href="http://www.pythontutor.com/visualize.html#mode=edit" target="_blank">PythonTutor </a>, a visual virtual machine (<em>very useful</em>! can also be found in examples inside the book!)</li>
-<li><a href="https://github.com/DavidLeoni/algolab">Source code</a> of these worksheets (<a href="https://github.com/DavidLeoni/algolab/archive/master.zip">download zip</a>), in <a href="http://jupyter.org">Jupyter Notebook</a> format. </li>
-<li>The internet ....</li>
-</ul>
-<h3 id="Editors">Editors<a class="anchor-link" href="#Editors">&#182;</a></h3><ul>
-<li><a href="https://pythonhosted.org/spyder/">Spyder</a>: Seems like a fine and simple editor</li>
-<li><a href="http://jupyter.org">Jupyter Notebook</a>: Nice environment to execute Python commands and display results like graphs. Allows to include documentation in Markdown format</li>
-</ul>
 
 </div>
 </div>
