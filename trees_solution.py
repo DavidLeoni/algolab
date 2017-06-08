@@ -40,7 +40,9 @@ class GenericTree:
         
         
     def children(self):
-        """ Returns the children as a Python list """
+        """ Returns the children as a Python list
+            NOTE: this function return the *nodes*, not the data.  
+        """
         
         ret = []
         current = self._child
@@ -305,6 +307,13 @@ class GenericTreeTest(unittest.TestCase):
         """ Asserts the trees t1 and t2 are equal """
         
         def rec_assert(c1, c2, row):                    
+            
+            if c1 == None:
+                raise Exception("Found a None node in left tree! \n\n "
+                                + str_trees(t1,t2,row))         
+            if c2 == None:
+                raise Exception("Found a None node in right tree !\n\n "
+                                + str_trees(t1,t2,row))
             
             if c1.data() != c2.data():
                 raise Exception("data() is different!\n\n " 

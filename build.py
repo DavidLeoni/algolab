@@ -4,7 +4,8 @@ import shutil
 import glob
 import os
 import sys
-
+import fileinput, string, sys, os
+from os.path import join
 
 def log(msg):
     
@@ -43,6 +44,25 @@ def which(program):
 
     return None
 
+
+def replace(stext, rtext):
+    
+    path = "target/*.html"
+
+    print "finding: " + stext + " replacing with: " + rtext + " in: " + path
+
+    files = glob.glob(path)
+    for line in fileinput.input(files,inplace=1):
+      lineno = 0
+      lineno = string.find(line, stext)
+      if lineno >0:
+            line =line.replace(stext, rtext)
+
+      sys.stdout.write(line)
+
+
+
+
 def generate_pdf():
 
     log("Generating PDFs ...")
@@ -80,6 +100,18 @@ for file in glob.glob(r'*.py'):
 log("Website generated at target/")
 
 generate_pdf()
+
+log("Fixing Unix permissions...") #otherwise js/  can't be read by others !!!
+call(["chmod", "-R", "a+r", "target"])
+
+call(["chmod", "-R", "a+X", "target"])
+
+log("Fixing html paths for offline browsing ....")
+
+replace('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/', 'js/')
+replace('https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/', 'js/')
+replace('https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML', 'js/MathJax.js')
+
 
 log("Done.")
 

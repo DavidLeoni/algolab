@@ -20,11 +20,17 @@ of making ugly workarounds when necessary. So code may or may not work depending
 1. Install Python 2.7
 2. Install NetworkX modules:
 
-On ubuntu: 
+On Ubuntu: 
 
 ```bash
 sudo pip install networkx
 sudo pip install nxpd
+```
+
+Install graphviz:
+
+```bash
+sudo apt-get install graphviz
 ```
 
 2. [Install Jupyter](http://jupyter.org/install.html)
