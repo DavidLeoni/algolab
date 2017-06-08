@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>lists</title><script src="js/require.min.js"></script>
+<title>exam-2017-06-08</title><script src="js/require.min.js"></script>
 <script src="js/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11773,21 +11773,16 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<!-- !!!!!!!!!!    NOTICE THE INDEX IN THE CELL BELOW HERE  WILL LOOK INVISIBLE IN JUPYTER  !!!!!!!!!!!!!!!!!   -->
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">algolab</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="c1">#sys.path.append(&#39;../exams/2017-06-08-lab/solutions&#39;)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;past-exams/2017-06-08/solutions&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">nxpd</span>
 <span class="n">algolab</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
 </pre></div>
 
@@ -12103,7 +12098,12 @@ $(document).ready(algolab.init);
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <center>
-<span class="algolab-title"> Chapter 2:  Lists </span>
+<span class="algolab-title"> Algolab Exam</span><br/><br/> 
+<span style="font-size:20px"> Scientific Programming Module 2</span> <br/>
+<span style="font-size:20px"> Algorithms and Data Structures  </span> <br/><br/>
+<span> Thursday 8th, June 2017</span><br/><br/>
+
+
 </center>
 </div>
 </div>
@@ -12113,37 +12113,47 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="From-Theory-to-Python">From Theory to Python<a class="anchor-link" href="#From-Theory-to-Python">&#182;</a></h1><h2 id="List-performance">List performance<a class="anchor-link" href="#List-performance">&#182;</a></h2><p>Table from <a href="http://interactivepython.org/runestone/static/pythonds/AlgorithmAnalysis/Lists.html"
- target="_blank">the book Chapter 2.6: Lists</a></p>
-<table>
-<thead><tr>
-<th><img src="img/list-complexity-1.png"></th>
-<th><img src="img/list-complexity-2.png"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id="Fast-or-not?">Fast or not?<a class="anchor-link" href="#Fast-or-not?">&#182;</a></h2><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]</span>
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><ul>
+<li>Taking part to this exam erases any vote you had before, both lab and theory</li>
+<li>If you don't ship or you don't pass this lab part, you lose also the theory part.</li>
+</ul>
+<ul>
+<li>Log into your computer in <em>exam mode</em>, it should start Ubuntu</li>
+<li>To edit the files, you can use any editor of your choice: <em>Editra</em> seems easy to use, you can find it under <em>Applications-&gt;Programming-&gt;Editra</em>. Others could be <em>GEdit</em> (simpler), or <em>PyCharm</em> (more complex).</li>
+</ul>
+<h2 id="Allowed-material">Allowed material<a class="anchor-link" href="#Allowed-material">&#182;</a></h2><p>There won't be any internet access. You will only be able to access:</p>
+<ul>
+<li><a href="index.html" target="_blank">Sciprog Algolab worksheets</a></li>
+<li><a href="../montresor/Montresor%20sciprog/cricca.disi.unitn.it/montresor/teaching/scientific-programming/slides/index.html">Alberto Montresor slides</a></li>
+<li><a href="../teso/disi.unitn.it/_teso/courses/sciprog/index.html" target="_blank">Stefano Teso docs</a></li>
+<li>Python 2.7 documentation :&nbsp;&nbsp; <a href="../python-docs/html/index.html" target="_blank">html</a>
+&nbsp;&nbsp;<a href="../python-docs/pdf" target="_blank">pdf</a><ul>
+<li>In particular, <a href="../python-docs/html/library/unittest.html" target="_blank">Unittest docs</a></li>
+</ul>
+</li>
+<li>The course book <em>Problem Solving with Algorithms and Data Structures using Python</em> &nbsp;&nbsp;<a href="../pythonds/index.html" target="_blank">html</a> &nbsp;&nbsp;&nbsp;<a href="../pythonds/ProblemSolvingwithAlgorithmsandDataStructures.pdf" target="_blank">pdf</a></li>
+</ul>
+<h2 id="Grading">Grading<a class="anchor-link" href="#Grading">&#182;</a></h2><ul>
+<li>The grade of this lab part will range from 0 to 30. Total grade for the module will be given by the average with the theory part of Alberto Montresor.</li>
+<li>Correct implementations with the required complexity grant you full grade.</li>
+<li>Partial implementations <em>might</em> still give you a few points. If you just can't solve an exercise,  try to solve it at least for some subcase (i.e. array of fixed size 2) commenting why you did so. </li>
+<li><p>One bonus point can be earned by writing stylish code. You got style if you:</p>
+<ul>
+<li>do not infringe the <a href="../algolab/index.html#Commandments">Commandments</a></li>
+<li>write <a href="http://docs.python-guide.org/en/latest/writing/style">pythonic code</a></li>
+<li><p>avoid convoluted code like i.e.</p>
 
-<span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>        <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;d&quot;</span>       <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">)</span>     <span class="n">x</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">)</span>        <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>        <span class="n">x</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-</pre></div>
-<p>What about <code>len(x)</code> ? If you don't know the answer, try googling it!</p>
+<pre><code>  if x &gt; 5:
+      return True
+  else:
+      return False</code></pre>
+<p>when you could write just</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Sublist iteration performance</p>
-<p><code>get slice</code> time complexity is <code>O(k)</code>, but what about memory? It's the same!</p>
-<p>So if you want to iterate a part of a list, beware of slicing! For example, slicing a list like this can occupy much more memory than necessary:</p>
+<pre><code>  return x &gt; 5</code></pre>
+</li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div>
@@ -12153,296 +12163,16 @@ $(document).ready(algolab.init);
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">200</span><span class="p">]]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[200, 202, 204, 206, 208, 210, 212, 214, 216, 218, 220, 222, 224, 226, 228, 230, 232, 234, 236, 238, 240, 242, 244, 246, 248, 250, 252, 254, 256, 258, 260, 262, 264, 266, 268, 270, 272, 274, 276, 278, 280, 282, 284, 286, 288, 290, 292, 294, 296, 298, 300, 302, 304, 306, 308, 310, 312, 314, 316, 318, 320, 322, 324, 326, 328, 330, 332, 334, 336, 338, 340, 342, 344, 346, 348, 350, 352, 354, 356, 358, 360, 362, 364, 366, 368, 370, 372, 374, 376, 378, 380, 382, 384, 386, 388, 390, 392, 394, 396, 398]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The reason is that, depending on the Python interpreter you have, slicing like <code>x[100:200]</code>at loop start can create a <em>new</em> list. If we want to explicitly tell Python we just want to iterate through the list, we can use the so called <a href="https://docs.python.org/2/library/itertools.html" target="_blank">itertools</a>. In particular, the <a href="https://docs.python.org/2/library/itertools.html#itertools.islice" target="_blank"> islice </a> method is handy, with it we can rewrite the list comprehension above like this:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
-
-<span class="k">print</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[200, 202, 204, 206, 208, 210, 212, 214, 216, 218, 220, 222, 224, 226, 228, 230, 232, 234, 236, 238, 240, 242, 244, 246, 248, 250, 252, 254, 256, 258, 260, 262, 264, 266, 268, 270, 272, 274, 276, 278, 280, 282, 284, 286, 288, 290, 292, 294, 296, 298, 300, 302, 304, 306, 308, 310, 312, 314, 316, 318, 320, 322, 324, 326, 328, 330, 332, 334, 336, 338, 340, 342, 344, 346, 348, 350, 352, 354, 356, 358, 360, 362, 364, 366, 368, 370, 372, 374, 376, 378, 380, 382, 384, 386, 388, 390, 392, 394, 396, 398]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h1><h2 id="Implement-swap">Implement <code>swap</code><a class="anchor-link" href="#Implement-swap">&#182;</a></h2><p>Try to code and test the <code>swap</code> function from <a href="http://disi.unitn.it/~montreso/sp/slides/03-analisi.pdf" target="_blank">selection sort (slide 29 theory)</a>:</p>
-<p><img src="img/swap.png"/></p>
-<ul>
-<li>Use the following skeleton to code it</li>
-<li>Check carefully all the test cases, in particular <code>test_swap_property</code> and <code>test_double_swap</code>. They show two important properties of the swap function. Make sure you understand why these tests should succeed. </li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-
-<span class="k">def</span> <span class="nf">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    In the array A, swaps the elements at position x and y.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>
-    
-<span class="k">class</span> <span class="nc">SwapTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-   
-    <span class="k">def</span> <span class="nf">test_one_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">];</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">test_two_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">];</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">])</span>
-        
-    <span class="k">def</span> <span class="nf">test_return_none</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">];</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-        
-        
-    <span class="k">def</span> <span class="nf">test_long_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">];</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
-        
-        
-    <span class="k">def</span> <span class="nf">test_swap_property</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">];</span>
-        <span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">];</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">test_double_swap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">];</span>        
-        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">])</span>   
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Implement-partial_min_pos">Implement <code>partial_min_pos</code><a class="anchor-link" href="#Implement-partial_min_pos">&#182;</a></h2><p>Try to code and test the partial <code>min</code> pos function from <a href="http://disi.unitn.it/~montreso/sp/slides/03-analisi.pdf" target="_blank">selection sort (slide 29 theory)</a>:</p>
-<p><img src="img/partial-min.png"></p>
-<ul>
-<li>Use the following skeleton to code it</li>
-<li>add some test to the provided testcase class</li>
-</ul>
-<p>Notice that</p>
-<ul>
-<li>we renamed <code>min</code> to <code>partial_min_pos</code> to avoid name collision with Python standard library <code>min</code> function</li>
-<li>it is not necessary to pass list length <code>n</code>, as it is already stored in Python implementation of lists, and we can retrieve it in <code>O(1)</code> time with <code>len(A)</code></li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-
-<span class="k">def</span> <span class="nf">partial_min_pos</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Return the index of the element in list A which is lesser or equal than all other values in A </span>
-<span class="sd">    that start from index i included</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>
-    
-<span class="k">class</span> <span class="nc">PartialMinPosTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-   
-    <span class="k">def</span> <span class="nf">test_one_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">partial_min_pos</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>     
-
-    <span class="k">def</span> <span class="nf">test_two_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">partial_min_pos</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="mi">0</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">partial_min_pos</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">partial_min_pos</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">test_long_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">partial_min_pos</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span><span class="mi">2</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>   
-    
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Implement-selection_sort">Implement <code>selection_sort</code><a class="anchor-link" href="#Implement-selection_sort">&#182;</a></h2><p>Try to code and test the <code>selectionSort</code> from <a href="http://disi.unitn.it/~montreso/sp/slides/03-analisi.pdf" target="_blank">selection sort (slide 29 theory)</a>:</p>
-<p><img src="img/selection-sort.png"></p>
-<p>Use the following skeleton to code it and add some test to the provided testcase class.</p>
-<p>Notice that</p>
-<ul>
-<li>we renamed <code>selectionSort</code> to <code>selection_sort</code> because it is a <a href="https://www.python.org/dev/peps/pep-0008/#function-names" target="_blank">more pythonic name</a></li>
-<li>it is not necessary to pass list length <code>n</code>, as it is already stored in Python implementation of lists, and we can retrieve it in <code>O(1)</code> time with <code>len(A)</code></li>
-<li>On the book website, there is <a href="http://interactivepython.org/runestone/static/pythonds/SortSearch/TheSelectionSort.html" target="_blank">an implementation of the selection sort</a> with a nice animated histogram showing a sorting process. Differently from the slides, instead of selecting the minimal element the algorithm on the book selects the <em>maximal</em> element and puts it to the right of the array.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-
-<span class="k">def</span> <span class="nf">selection_sort</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Sorts the list A in-place in O(n^2) time. </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>
-    
-<span class="k">class</span> <span class="nc">SelectionSortTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-   
-    <span class="k">def</span> <span class="nf">test_zero_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">selection_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,[])</span>     
-        
-    <span class="k">def</span> <span class="nf">test_return_none</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">selection_sort</span><span class="p">([</span><span class="mi">2</span><span class="p">]))</span>        
-        
-    <span class="k">def</span> <span class="nf">test_one_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span>
-        <span class="n">selection_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,[</span><span class="s2">&quot;a&quot;</span><span class="p">])</span>     
-        
-
-    <span class="k">def</span> <span class="nf">test_two_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">selection_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>  
-        
-    <span class="k">def</span> <span class="nf">test_three_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-        <span class="n">selection_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-    
-    <span class="k">def</span> <span class="nf">test_piccinno_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">7777</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>        
-        <span class="n">selection_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="n">vcopy</span> <span class="o">=</span> <span class="n">v</span><span class="p">[:]</span>
-        <span class="n">vcopy</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">vcopy</span><span class="p">)</span>     
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Implement-gap_rec">Implement gap_rec<a class="anchor-link" href="#Implement-gap_rec">&#182;</a></h2><p>Try to code and test the <code>gap</code> function from <a href="http://disi.unitn.it/~montreso/sp/slides/02-recursion.pdf" target="_blank">recursion theory slides (slide 21)</a>:</p>
-<p><img src="img/recursive-gap.png"></p>
-<p>Use the following skeleton to code it and add some test to the provided testcase class.To understand what's going on, try copy pasting your solution in <a href="http://pythontutor.com/visualize.html#mode=edit" target="_blank">Python tutor</a> and hit <code>Visualize execution</code> and then <code>Forward</code> to step through the process</p>
-<p>Notice that</p>
-<ul>
-<li>We created a function <code>gap_rec</code> to differentiate it from the iterative one</li>
-<li>Users of <code>gap_rec</code> function might want to call it by passing just a list, in order to find any gap in the whole list. So for convenience the new function <code>gap_rec(L)</code> only accepts a list, without indexes <code>i</code> and <code>j</code>. This function just calls the other function <code>gap_rec_helper</code> that will actually contain the recursive calls. So your task is to translate the pseudocode of <code>gap</code> into the Python code of <code>gap_rec_helper</code>, which takes as input the array and the indexes as <code>gap</code> does. Adding a helper function is a frequent pattern you can find when programming recursive functions.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
 
 &lt;p class=&quot;algolab-warn&quot;&gt;
 
-WARNING: The specification of gap_rec assumes the input is always a list of at least
-    two elements, and that the first element is less or equal than the last one. &lt;i&gt;If these 
-    conditions are not met, function behaviour could be completely erroneus! &lt;/i&gt;
+!!!!!!!!! WARNING !!!!!!!!!
+    
+    &lt;br/&gt;
+    &lt;br/&gt;
+!!!!!!!!!  **ONLY** IMPLEMENTATIONS OF THE PROVIDED FUNCTION SIGNATURES WILL BE EVALUATED !!!!!!!!! &lt;br/&gt;    
+
 &lt;/p&gt;
 </pre></div>
 
@@ -12462,9 +12192,12 @@ WARNING: The specification of gap_rec assumes the input is always a list of at l
 
 <p class="algolab-warn">
 
-WARNING: The specification of gap_rec assumes the input is always a list of at least
-    two elements, and that the first element is less or equal than the last one. <i>If these 
-    conditions are not met, function behaviour could be completely erroneus! </i>
+!!!!!!!!! WARNING !!!!!!!!!
+    
+    <br/>
+    <br/>
+!!!!!!!!!  **ONLY** IMPLEMENTATIONS OF THE PROVIDED FUNCTION SIGNATURES WILL BE EVALUATED !!!!!!!!! <br/>    
+
 </p>
 </div>
 
@@ -12479,42 +12212,159 @@ WARNING: The specification of gap_rec assumes the input is always a list of at l
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>When preconditions are not met, execution could stop because of an error like index out of bounds, or, even worse, we might get back some wrong index as a gap! To prevent misuse of the function, a good idea can be putting a check at the beginning of the <code>gap_rec</code> function. Such check should immediately stop the execution and raise an error if the parameters don't satisfy the preconditions. One way to do this could be to write some <a href="testing#Assertions">assertion</a> like this:</p>
-<div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span>
-    <span class="k">assert</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">L</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<p>For example, if you are given to implement:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cool_fun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me&quot;</span><span class="p">)</span>
 </pre></div>
-<ul>
-<li>These commands will make python interrupt execution and throw an error as soon it detects list <code>L</code> is too small or with wrong values</li>
-<li>This kind of behaviour is also called <em>fail fast</em>, which is better than returning wrong values! </li>
-<li>You can put any condition you want after <code>assert</code>, but ideally they should be fast to execute.</li>
-</ul>
+<p>and you ship this code:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cool_fun_non_working_trial</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># do some absurdity</span>
+
+<span class="k">def</span> <span class="nf">cool_fun_a_perfectly_working_trial</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># a super fast, correct and stylish implementation</span>
+
+<span class="k">def</span> <span class="nf">cool_fun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me&quot;</span><span class="p">)</span>
+</pre></div>
+<p>We will assess only the latter one <code>cool_fun(x)</code>, and conclude it doesn't work at all :P   !!!!!!!</p>
+<p>Still, you are allowed to define any extra helper function you might need. If your <code>cool_fun(x)</code> implementation calls some other function you defined like <code>my_helper</code> here, it is ok:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_helper</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="c1"># do something useful</span>
+
+<span class="k">def</span> <span class="nf">cool_fun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">my_helper</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># this will get ignored:</span>
+<span class="k">def</span> <span class="nf">some_trial</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># do some absurdity</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-to-do">What to do<a class="anchor-link" href="#What-to-do">&#182;</a></h2><p>In <a href="/usr/local/esame" target="_blank">/usr/local/esame</a> you should find a file named <code>algolab-17-06-08.zip</code>. Download it and extract it on your desktop. The content should be like this:</p>
+
+<pre><code>algolab-17-06-08
+    |- FIRSTNAME-LASTNAME-ID
+        |- exercise1.py
+        |- exercise2.py
+        |- exercise3.py</code></pre>
+<p>2) Check this folder also shows under <code>/var/exam</code>. TODO</p>
+<p>3) Rename <code>FIRSTNAME-LASTNAME-ID</code> folder: put your name, lastname an id number, like <code>john-doe-432432</code></p>
+<p>From now on, you will be editing the files in that folder. At the end of the exam, that is what will be evaluated.</p>
+<p>4) Edit the files following the instructions in this worksheet for each exercise.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span> 
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: &lt;i&gt;DON&#39;T&lt;/i&gt; modify function signatures! Just provide the implementation.
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: &lt;i&gt;DON&#39;T&lt;/i&gt; change the existing test methods, just add new ones !!!  You can add as many as you want.
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: &lt;i&gt;DON&#39;T&lt;/i&gt; create other files. If you still do it, they won&#39;t be evaluated.
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-important&quot;&gt;
+IMPORTANT: Pay close attention to the comments of the functions.
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-important&quot;&gt;
+IMPORTANT: if you need to print some debugging information, you &lt;i&gt;are allowed&lt;/i&gt; to put extra &lt;code&gt;print&lt;/code&gt;
+    statements in the function bodies.
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: even if &lt;code&gt;print&lt;/code&gt; statements are allowed, be careful with prints that might
+     break your function, i.e. avoid stuff like this: &lt;code&gt; print 1/0 &lt;/code&gt; 
+&lt;/p&gt;
+ 
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-warn">
+WARNING: <i>DON'T</i> modify function signatures! Just provide the implementation.
+</p>
+
+<p class="algolab-warn">
+WARNING: <i>DON'T</i> change the existing test methods, just add new ones !!!  You can add as many as you want.
+</p>
+
+<p class="algolab-warn">
+WARNING: <i>DON'T</i> create other files. If you still do it, they won't be evaluated.
+</p>
+
+<p class="algolab-important">
+IMPORTANT: Pay close attention to the comments of the functions.
+</p>
+
+<p class="algolab-important">
+IMPORTANT: if you need to print some debugging information, you <i>are allowed</i> to put extra <code>print</code>
+    statements in the function bodies.
+</p>
+
+<p class="algolab-warn">
+WARNING: even if <code>print</code> statements are allowed, be careful with prints that might
+     break your function, i.e. avoid stuff like this: <code> print 1/0 </code> 
+</p>
+ 
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>3) Every exercise should take max 25 mins. If it takes longer, leave it and try another exercise.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
 
-&lt;p class=&quot;algolab-important&quot;&gt;
-GOOD PRACTICE: Notice I wrote as a comment what the helper function is expected to receive. Writing down specs often 
-    helps understanding what the function is supposed to do, and helps users of your code as well!
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: MAKE SURE ALL EXERCISE FILES AT LEAST COMPILE !!! &lt;br/&gt; 10 MINS BEFORE THE END 
+    OF THE EXAM I WILL ASK YOU TO DO A FINAL CLEAN UP OF THE CODE 
 &lt;/p&gt;
 </pre></div>
 
@@ -12532,13 +12382,148 @@ GOOD PRACTICE: Notice I wrote as a comment what the helper function is expected 
 
 <div class="output_html rendered_html output_subarea ">
 
-<p class="algolab-important">
-GOOD PRACTICE: Notice I wrote as a comment what the helper function is expected to receive. Writing down specs often 
-    helps understanding what the function is supposed to do, and helps users of your code as well!
+<p class="algolab-warn">
+WARNING: MAKE SURE ALL EXERCISE FILES AT LEAST COMPILE !!! <br/> 10 MINS BEFORE THE END 
+    OF THE EXAM I WILL ASK YOU TO DO A FINAL CLEAN UP OF THE CODE 
 </p>
+</div>
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="1)-SortedStack">1) SortedStack<a class="anchor-link" href="#1)-SortedStack">&#182;</a></h1><p>You are given a class <code>SortedStack</code> that models a simple stack. This stack is similar to the <code>CappedStack</code> you already saw in class, the differences being:</p>
+<ul>
+<li><em>it can only contain integers</em>, trying to put other type of values will raise a <code>ValueError</code></li>
+<li><em>integers must be inserted sorted in the stack</em>, either ascending or descending   </li>
+<li>there is no cap</li>
+</ul>
+
+<pre><code>   Example:
+
+        Ascending:       Descending
+
+           8                 3
+           5                 5
+           3                 8</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">exercise1_solution</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To create a <code>SortedStack</code> sorted in ascending order, just call it passing <code>True</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">SortedStack</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">s</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>SortedStack (ascending):   elements=[]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">s</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>SortedStack (ascending):   elements=[5]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">s</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>SortedStack (ascending):   elements=[5, 7]
+</pre>
+</div>
 </div>
 
 </div>
@@ -12550,12 +12535,7 @@ GOOD PRACTICE: Notice I wrote as a comment what the helper function is expected 
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-
-&lt;p class=&quot;algolab-important&quot; &gt;
-COMMANDMENT: You shall also write on paper!
-&lt;/p&gt;
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12569,289 +12549,22 @@ COMMANDMENT: You shall also write on paper!
 <div class="output_area">
 <div class="prompt"></div>
 
-
-<div class="output_html rendered_html output_subarea ">
-
-
-<p class="algolab-important" >
-COMMANDMENT: You shall also write on paper!
-</p>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>7
+</pre>
 </div>
-
 </div>
 
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To get an idea of how <code>gap_rec</code> is working, draw histograms on paper like the following, with different heights at index <code>m</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="img/gap-rec-histogram.svg"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice how at each recursive call, we end up with a histogram that is similar to the inital one, that is, it respects the same preconditions (a list of size &gt;= 2 where first element is smaller or equal than the last one)</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>Look at the iterative gap here:</li>
-</ul>
-<p><img src="img/iterative-gap.png"/></p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gap_iter</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">i</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-</pre></div>
-<ul>
-<li>What is the complexity of <code>gap_rec</code>? Is it faster or slower than <code>gap_iter</code> ?</li>
-<li>Assuming <code>L</code> contains <code>n &gt;= 2</code> integers such that <code>L[0] &lt; L[n-1]</code>, will the recursive gap always give the same result as the iterative one? If we just change function names, can we run the same test case against both implementations?  (Careful!)</li>
-</ul>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-
-<span class="k">def</span> <span class="nf">gap_rec</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Searches a gap in list L</span>
-<span class="sd">    </span>
-<span class="sd">    Given a list L containing n &gt;= 2 integers such that L[0] &lt; L[n-1], returns a gap in the list.</span>
-<span class="sd">    A gap is an index i, 0 &lt; i &lt; n such that L[i-1] &lt; L[i]</span>
-<span class="sd">    &quot;&quot;&quot;</span>    
-    <span class="k">return</span> <span class="n">gap_helper</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">gap_helper</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Searches a gap in sublist L[i:j]</span>
-<span class="sd">    </span>
-<span class="sd">    Given a list L containing n &gt;= 2 integers such that L[i] &lt; L[j], returns a gap in the sublist L[i:j]</span>
-<span class="sd">    A gap is an index z, i &lt; z &lt; j+1 such that L[z-1] &lt; L[z]</span>
-<span class="sd">    &quot;&quot;&quot;</span>    
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>
-    
-<span class="k">class</span> <span class="nc">GapRecTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-   
-    <span class="k">def</span> <span class="nf">test_two_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">gap_rec</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]),</span><span class="mi">1</span><span class="p">)</span> 
-
-    <span class="k">def</span> <span class="nf">test_three_elements_middle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">gap_rec</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)</span>        
-        
-    <span class="k">def</span> <span class="nf">test_three_elements_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">gap_rec</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>        
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Implement-binary_search_rec">Implement binary_search_rec<a class="anchor-link" href="#Implement-binary_search_rec">&#182;</a></h2><p>Try to code and test the <code>binarySearch</code> recursive function from <a href="http://disi.unitn.it/~montreso/sp/slides/02-recursion.pdf" target="_blank">recursion theory slides (slide 21)</a>:</p>
-<p><img src="img/binary-search-recursive.png" width="60%"></p>
-<ul>
-<li>Use the following skeleton to code it</li>
-<li>add some test to the provided testcase class</li>
-<li>Does the pseudocode algorithm work with the empty list? </li>
-<li>What happens if we allow non-distinct numbers? Does it work anyway? </li>
-<li>What is the time complexity of the recursive version? </li>
-<li>What is the memory complexity of the recursive version?</li>
-</ul>
-<p>Notice that</p>
-<ul>
-<li>we renamed <code>binarySearch</code> to <code>binary_search_rec</code> to have more pythonic name and differentiate it from the iterative one</li>
-<li>the renamed function <code>binary_search_rec(L)</code> only accepts a list, without indexes <code>i</code> and <code>j</code>, we will need a way to specify them when we translate the pseudocode. You can follow the same pattern used for <code>gap_rec_helper</code><ul>
-<li>SUGGESTION : write as a comment what the helper function is expected to receive. Can it receive an empty list? Can it receive indices out of bounds? You decide the assumptions, but once they are decided you should make sure that unacceptable values don't get into it!</li>
-</ul>
-</li>
-<li>To understand what's going on, try copy pasting your solution in <a href="http://pythontutor.com/visualize.html#mode=edit" target="_blank">Python tutor</a> and hit <code>Visualize execution</code> and then Forward to step through the process</li>
-<li>Remember that even experienced programmers tend to fail implementing the binary search at first time, it's easy to get wrong indexes! So good tests here can really spot issues.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-
-<span class="k">def</span> <span class="nf">binary_search_rec</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">v</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Searches value v in sorted list L</span>
-<span class="sd">    </span>
-<span class="sd">    Given a list L containing n distinct sorted integers, returns the index position</span>
-<span class="sd">    of element with value v, or -1 if not found</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>    
-    
-<span class="k">class</span> <span class="nc">BinarySearchRecTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>       
-    
-    <span class="k">def</span> <span class="nf">test_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([],</span> <span class="mi">7</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-   
-    <span class="k">def</span> <span class="nf">test_one_element_found</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">7</span><span class="p">],</span><span class="mi">7</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span> 
-
-    <span class="k">def</span> <span class="nf">test_one_element_not_found</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">6</span><span class="p">],</span><span class="mi">7</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>         
-    
-    <span class="k">def</span> <span class="nf">test_one_negative_element_not_found</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="o">-</span><span class="mi">7</span><span class="p">],</span><span class="mi">7</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>         
-
-    <span class="k">def</span> <span class="nf">test_two_elements_found_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span><span class="mi">7</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>        
-        
-    <span class="k">def</span> <span class="nf">test_two_elements_not_found</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span><span class="mi">3</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">test_two_elements_found_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span><span class="mi">6</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>    
-                
-    <span class="k">def</span> <span class="nf">test_long_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span><span class="mi">7</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>           
-        
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Implement-binary_search_iter">Implement binary_search_iter<a class="anchor-link" href="#Implement-binary_search_iter">&#182;</a></h2><p>Try to code and test the <code>iterativeBinarySearch</code> function from <a href="http://disi.unitn.it/~montreso/sp/slides/01-introduzione.pdf" target="_blank">Introduction slides (slide 18)</a>:</p>
-<p><img src="img/binary-search-iterative.png"></p>
-<ul>
-<li>This time, there's no code skeleton and you're on your own! </li>
-<li>Try to reuse test cases from the recursive version</li>
-<li>What is the time complexity of the iterative version? Is it different from the recursive version?</li>
-<li>What is the memory complexity of the iterative version? Is it different from the recursive version?</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Solutions">Solutions<a class="anchor-link" href="#Solutions">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="swap-solution"><code>swap</code> solution<a class="anchor-link" href="#swap-solution">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-
-<span class="k">def</span> <span class="nf">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    In the array A, swaps the elements at position x and y.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
-    <span class="n">A</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
-    <span class="n">A</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
-    
-<span class="k">class</span> <span class="nc">SwapTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-   
-    <span class="k">def</span> <span class="nf">test_one_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">];</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">test_two_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">];</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">])</span>
-        
-    <span class="k">def</span> <span class="nf">test_return_none</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">];</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>        
-        
-    <span class="k">def</span> <span class="nf">test_long_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">];</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
-        
-        
-    <span class="k">def</span> <span class="nf">test_swap_property</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">];</span>
-        <span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">];</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">test_double_swap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">];</span>        
-        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">SwapTest</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">s</span>
 </pre></div>
 
 </div>
@@ -12865,12 +12578,66 @@ COMMANDMENT: You shall also write on paper!
 <div class="output_area">
 <div class="prompt"></div>
 
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>......
-----------------------------------------------------------------------
-Ran 6 tests in 0.004s
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>SortedStack (ascending):   elements=[5]
+</pre>
+</div>
+</div>
 
-OK
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">s</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>SortedStack (ascending):   elements=[]
 </pre>
 </div>
 </div>
@@ -12884,7 +12651,54 @@ OK
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="partial_min_pos-solution"><code>partial_min_pos</code> solution<a class="anchor-link" href="#partial_min_pos-solution">&#182;</a></h2>
+<p>For descending order, pass <code>False</code> when you create it:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">sd</span> <span class="o">=</span> <span class="n">SortedStack</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">sd</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">sd</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">sd</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sd</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>SortedStack (descending):   elements=[7, 5, 4]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.0)-test-SortedStack">1.0) test <code>SortedStack</code><a class="anchor-link" href="#1.0)-test-SortedStack">&#182;</a></h2><p>Now open the file <code>exercise1.py</code> andcheck your environment is working fine, by trying to run the tests only for <code>SortedStackTest</code>, which tests already implemented methods like <code>pop</code>, <code>push</code>, etc ... : these tests should all pass, if they don't, tell your instructor.</p>
+<p><strong>Notice that  <code>exercise1</code> is followed by a dot and test class name: <code>.SortedStackTest</code> </strong></p>
+<div class="highlight"><pre><span></span>python -m unittest exercise1.SortedStackTest
+</pre></div>
+
 </div>
 </div>
 </div>
@@ -12893,34 +12707,180 @@ OK
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">SortedStackTest</span><span class="p">)</span>
+</pre></div>
 
-<span class="k">def</span> <span class="nf">partial_min_pos</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Return the index of the element in list A which is lesser or equal than all other values in A </span>
-<span class="sd">    that start from index i included</span>
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>...........
+----------------------------------------------------------------------
+Ran 11 tests in 0.006s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.1)-transfer">1.1) <code>transfer</code><a class="anchor-link" href="#1.1)-transfer">&#182;</a></h2><p>Now implement the <code>transfer</code> function. <strong>NOTE</strong>: function is external to class <code>SortedStack</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transfer</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Takes as input a SortedStack s (either ascending or descending) and </span>
+<span class="sd">        returns a new SortedStack with the same elements of s, but in reverse order. </span>
+<span class="sd">        At the end of the call s will be empty.</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">            s       result</span>
+
+<span class="sd">            2         5</span>
+<span class="sd">            3         3</span>
+<span class="sd">            5         2</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pm</span> <span class="o">=</span> <span class="n">i</span>
-    
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">[</span><span class="n">pm</span><span class="p">]):</span>
-            <span class="n">pm</span> <span class="o">=</span> <span class="n">j</span> 
-    <span class="k">return</span> <span class="n">pm</span>
-    
-<span class="k">class</span> <span class="nc">PartialMinPosTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-   
-    <span class="k">def</span> <span class="nf">test_one_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">partial_min_pos</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>     
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !!&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong>Testing</strong></p>
+<p>Once done, running this will run only the tests in <code>TransferTest</code> class and hopefully they will pass.</p>
+<p><strong>Notice that  <code>exercise1</code> is followed by a dot and test class name <code>.TransferTest</code> : </strong></p>
+<div class="highlight"><pre><span></span>python -m unittest exercise1.TransferTest
+</pre></div>
 
-    <span class="k">def</span> <span class="nf">test_two_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">partial_min_pos</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="mi">0</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">partial_min_pos</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">partial_min_pos</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">test_long_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">partial_min_pos</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span><span class="mi">2</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">TransferTest</span><span class="p">)</span>
+</pre></div>
 
-        
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>....
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.2)-merge">1.2) <code>merge</code><a class="anchor-link" href="#1.2)-merge">&#182;</a></h2><p>Implement following <code>merge</code> function. <strong>NOTE</strong>: function is external to class <code>SortedStack</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span><span class="n">s2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Takes as input two SortedStacks having both ascending order, </span>
+<span class="sd">       and returns a new SortedStack sorted in descending order, which will be the sorted merge </span>
+<span class="sd">       of the two input stacks. MUST run in O(n1 + n2) time, where n1 and n2 are s1 and s2 sizes.</span>
+
+<span class="sd">       If input stacks are not both ascending, raises ValueError.</span>
+<span class="sd">       At the end of the call the input stacks will be empty.</span>
+
+
+<span class="sd">       Example:</span>
+
+<span class="sd">       s1 (asc)   s2 (asc)      result (desc)</span>
+
+<span class="sd">          5          7             2</span>
+<span class="sd">          4          3             3</span>
+<span class="sd">          2                        4</span>
+<span class="sd">                                   5</span>
+<span class="sd">                                   7</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>   
+
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong>Testing</strong>: <code>python -m unittest exercise1.MergeTest</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">MergeTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>........
+----------------------------------------------------------------------
+Ran 8 tests in 0.005s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="2)-UnorderedList">2) UnorderedList<a class="anchor-link" href="#2)-UnorderedList">&#182;</a></h1><p>Start editing file <code>exercise2.py</code>, which contains a simplified versioned of the <code>UnorderedList</code> we saw in the labs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">exercise2_solution</span> <span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 
 </div>
@@ -12928,12 +12888,192 @@ OK
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.1)-panino">2.1) <code>panino</code><a class="anchor-link" href="#2.1)-panino">&#182;</a></h2><p>Implement following <code>panino</code> function. <strong>NOTE</strong>: the function is external to class <code>UnorderedList</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">panino</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Returns a new UnorderedList having double the nodes of provided lst</span>
+<span class="sd">        First nodes will have same elements of lst, following nodes will </span>
+<span class="sd">        have the same elements but in reversed order.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; panino([&#39;a&#39;])</span>
+<span class="sd">            UnorderedList: a,a            </span>
+
+<span class="sd">            &gt;&gt;&gt; panino([&#39;a&#39;,&#39;b&#39;])</span>
+<span class="sd">            UnorderedList: a,b,b,a</span>
+
+<span class="sd">            &gt;&gt;&gt; panino([&#39;a&#39;,&#39;b&#39;,&#39;c&#39;])</span>
+<span class="sd">            UnorderedList: a,b,c,c,b,a</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong>Testing:</strong> <code>python -m unittest exercise2.PaninoTest</code></p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">PartialMinPosTest</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">PaninoTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>....
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.2)-norep">2.2) <code>norep</code><a class="anchor-link" href="#2.2)-norep">&#182;</a></h2><p>Implement the method <code>norep</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">norep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Removes all the consecutive repetitions from the list.</span>
+<span class="sd">            Must perform in O(n), where n is the list size.</span>
+
+<span class="sd">            For example, after calling norep:</span>
+
+<span class="sd">            &#39;a&#39;,&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;c&#39;,&#39;c&#39;   will become  &#39;a&#39;,&#39;b&#39;,&#39;c&#39;</span>
+
+<span class="sd">            &#39;a&#39;,&#39;a&#39;,&#39;b&#39;,&#39;a&#39;   will become   &#39;a&#39;,&#39;b&#39;,&#39;a&#39;            </span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong>Testing:</strong> <code>python -m unittest exercise2.NorepTest</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">NorepTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>.........
+----------------------------------------------------------------------
+Ran 9 tests in 0.006s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="3)-GenericTree">3) GenericTree<a class="anchor-link" href="#3)-GenericTree">&#182;</a></h1><p>Start editing file <code>exercise3.py</code>, which contains a simplified versioned of the <code>GenericTree</code> we saw in the labs.</p>
+<p><img src="img/generic-tree-labeled.png"/></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Start editing file <code>exercise3.py</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">exercise3_solution</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.1)-ancestors">3.1) ancestors<a class="anchor-link" href="#3.1)-ancestors">&#182;</a></h2><p>Implement the method <code>ancestors</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ancestors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return the ancestors up until the root as a Python list.             </span>
+<span class="sd">            First item in the list will be the parent of this node.</span>
+
+<span class="sd">            NOTE: this function return the *nodes*, not the data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong> Testing: </strong> <code>python -m unittest exercise3.AncestorsTest</code></p>
+<p><strong> Examples:</strong></p>
+
+<pre><code>- ancestors of p:  f, b, a
+- ancestors of h:  c, a
+- ancestors of a:  empty list</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">GenericTreeTest</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12950,7 +13090,40 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>...
 ----------------------------------------------------------------------
-Ran 3 tests in 0.002s
+Ran 3 tests in 0.004s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">AncestorsTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>....
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
 
 OK
 </pre>
@@ -12966,70 +13139,100 @@ OK
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="selection_sort-solution"><code>selection_sort</code> solution<a class="anchor-link" href="#selection_sort-solution">&#182;</a></h2>
+<h2 id="3.2)-leftmost">3.2) leftmost<a class="anchor-link" href="#3.2)-leftmost">&#182;</a></h2><p>Implement the method <code>leftmost</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">leftmost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">            Return the leftmost node of the root of this node. To find it, from</span>
+<span class="sd">            current node you need to reach the root of the tree and then from </span>
+<span class="sd">            the root you need to follow the _child chain until a node with no children is found.</span>
+
+<span class="sd">            If self is already the root, or the root has no child, raises LookupError.</span>
+
+<span class="sd">            NOTE: this function return a *node*, not the data.                </span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong> Testing: </strong> <code>python -m unittest exercise3.LeftmostTest</code></p>
+<p><strong> Examples:</strong></p>
+
+<pre><code>- leftmost of p:  e
+- leftmost of h:  e
+- leftmost of e:  raise LookupError</code></pre>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-
-<span class="k">def</span> <span class="nf">selection_sort</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Sorts the list A in-place in O(n^2) time. </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">m</span> <span class="o">=</span> <span class="n">partial_min_pos</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
-    
-<span class="k">class</span> <span class="nc">SelectionSortTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-   
-    <span class="k">def</span> <span class="nf">test_zero_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">selection_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,[])</span>     
-        
-    <span class="k">def</span> <span class="nf">test_return_none</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">selection_sort</span><span class="p">([</span><span class="mi">2</span><span class="p">]))</span>        
-        
-    <span class="k">def</span> <span class="nf">test_one_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span>
-        <span class="n">selection_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,[</span><span class="s2">&quot;a&quot;</span><span class="p">])</span>     
-        
-
-    <span class="k">def</span> <span class="nf">test_two_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">selection_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>  
-        
-    <span class="k">def</span> <span class="nf">test_three_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-        <span class="n">selection_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-    
-    <span class="k">def</span> <span class="nf">test_piccinno_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">7777</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>        
-        <span class="n">selection_sort</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="n">vcopy</span> <span class="o">=</span> <span class="n">v</span><span class="p">[:]</span>
-        <span class="n">vcopy</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">vcopy</span><span class="p">)</span>    
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">LeftmostTest</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.004s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.3)-common_ancestor">3.3) common_ancestor<a class="anchor-link" href="#3.3)-common_ancestor">&#182;</a></h2><p>Implement the method <code>common_ancestor</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">common_ancestor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gt2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return the first common ancestor of current node and the provided gt2 node</span>
+<span class="sd">            If gt2 is not a node of the same tree, raises LookupError</span>
+
+<span class="sd">            NOTE: this function returns a *node*, not the data.</span>
+
+<span class="sd">            Ideally, this method should perform in O(h) where h is the height of the tree.</span>
+<span class="sd">            (Hint: you should use a Python Set). If you can&#39;t figure out how to make it </span>
+<span class="sd">            that fast, try to make it at worst O(h^2)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>        
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong> Testing: </strong> <code>python -m unittest exercise3.CommonAncestorTest</code></p>
+<p><strong>Examples:</strong></p>
+
+<pre><code>- common ancestor of g and i: c
+- common_ancestor of g and q: c
+- common_ancestor of e and d: a</code></pre>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">SelectionSortTest</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">CommonAncestorTest</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13046,217 +13249,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>......
 ----------------------------------------------------------------------
-Ran 6 tests in 0.004s
-
-OK
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="gap_rec-solution">gap_rec solution<a class="anchor-link" href="#gap_rec-solution">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-
-<span class="k">def</span> <span class="nf">gap_rec</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Given a list L containing n &gt;= 2 integers such that L[0] &lt; L[n-1], returns a gap in the list.</span>
-<span class="sd">    A gap is an index i, 0 &lt; i &lt; n such that L[i-1] &lt; L[i]</span>
-<span class="sd">    &quot;&quot;&quot;</span>    
-    <span class="k">return</span> <span class="n">gap_helper</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">gap_helper</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Given a list L containing n &gt;= 2 integers such that L[i] &lt; L[j], returns a gap in the sublist L[i:j]</span>
-<span class="sd">    A gap is an index z, i &lt; z &lt; j+1 such that L[z-1] &lt; L[z]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">j</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>   <span class="c1"># remember in every python version // operator behaves the same and floors the result</span>
-    
-    <span class="k">if</span> <span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
-        <span class="k">return</span> <span class="n">gap_helper</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">gap_helper</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
-    
-<span class="k">class</span> <span class="nc">GapRecTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-   
-    <span class="k">def</span> <span class="nf">test_two_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">gap_rec</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]),</span><span class="mi">1</span><span class="p">)</span> 
-
-    <span class="k">def</span> <span class="nf">test_three_elements_middle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">gap_rec</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)</span>        
-        
-    <span class="k">def</span> <span class="nf">test_three_elements_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">gap_rec</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>        
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">GapRecTest</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>...
-----------------------------------------------------------------------
-Ran 3 tests in 0.002s
-
-OK
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="binary_search_rec-solution">binary_search_rec solution<a class="anchor-link" href="#binary_search_rec-solution">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-
-<span class="k">def</span> <span class="nf">binary_search_rec</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">v</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Searches value v in sorted list L</span>
-<span class="sd">    </span>
-<span class="sd">    Given a list L containing n distinct sorted integers, returns the index position</span>
-<span class="sd">    of element with value v, or -1 if not found</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">return</span> <span class="n">binary_search_helper</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">binary_search_helper</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Helper for the recursive binary search</span>
-<span class="sd">    </span>
-<span class="sd">    Given a list L containing n distinct sorted integers, returns the index position</span>
-<span class="sd">    of element with value v if it is present in sublist L[i:j], or -1 if not found</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">j</span><span class="p">:</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-    
-    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>   <span class="c1"># remember in every python version // operator behaves the same and floors the result</span>
-        
-    <span class="c1"># print &quot;L = &quot;, L</span>
-    <span class="c1"># print &quot;v = &quot;, v</span>
-    <span class="c1"># print &quot;m = &quot;, m</span>
-    <span class="c1"># print &quot;i = &quot;, i</span>
-    <span class="c1"># print &quot;j = &quot;, j</span>
-    
-    <span class="k">if</span> <span class="n">L</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">m</span>
-    <span class="k">elif</span> <span class="n">L</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">binary_search_helper</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">binary_search_helper</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-    
-<span class="k">class</span> <span class="nc">BinarySearchRecTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>       
-    
-    <span class="k">def</span> <span class="nf">test_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([],</span> <span class="mi">7</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-   
-    <span class="k">def</span> <span class="nf">test_one_element_found</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">7</span><span class="p">],</span><span class="mi">7</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span> 
-
-    <span class="k">def</span> <span class="nf">test_one_element_not_found</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">6</span><span class="p">],</span><span class="mi">7</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>         
-    
-    <span class="k">def</span> <span class="nf">test_one_negative_element_not_found</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="o">-</span><span class="mi">7</span><span class="p">],</span><span class="mi">7</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>         
-
-    <span class="k">def</span> <span class="nf">test_two_elements_found_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span><span class="mi">7</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>        
-        
-    <span class="k">def</span> <span class="nf">test_two_elements_not_found</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span><span class="mi">3</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">test_two_elements_found_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span><span class="mi">6</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>        
-        
-    <span class="k">def</span> <span class="nf">test_long_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span><span class="mi">7</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>       
-        
-    <span class="k">def</span> <span class="nf">test_not_distinct_found</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span><span class="mi">7</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>        
-
-    <span class="k">def</span> <span class="nf">test_not_distinct_not_found</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">binary_search_rec</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span><span class="mi">5</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        
-        
-        
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">BinarySearchRecTest</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>..........
-----------------------------------------------------------------------
-Ran 10 tests in 0.006s
+Ran 6 tests in 0.016s
 
 OK
 </pre>

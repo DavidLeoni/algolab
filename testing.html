@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>testing</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<title>testing</title><script src="js/require.min.js"></script>
+<script src="js/jquery.min.js"></script>
 
 <style type="text/css">
     /*!
@@ -13,8 +11,8 @@
 *
 */
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1109,7 +1107,6 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2538,7 +2535,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3029,7 +3025,6 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -8760,6 +8755,9 @@ body > #header .header-bar {
     margin-left: 10px;
   }
 }
+[dir="rtl"] #ipython_notebook {
+  float: right !important;
+}
 #noscript {
   width: auto;
   padding-top: 16px;
@@ -8962,8 +8960,14 @@ span#login_widget > .button .badge,
  *
  * Author: Jupyter Development Team
  */
+[dir="rtl"] #tabs li {
+  float: right;
+}
 ul#tabs {
   margin-bottom: 4px;
+}
+[dir="rtl"] ul#tabs {
+  margin-right: 0px;
 }
 ul#tabs a {
   padding-top: 6px;
@@ -8986,6 +8990,16 @@ ul.breadcrumb span {
 }
 .list_toolbar .tree-buttons {
   padding-top: 1px;
+}
+[dir="rtl"] .list_toolbar .tree-buttons {
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-right {
+  padding-top: 1px;
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-left {
+  float: right !important;
 }
 .dynamic-buttons {
   padding-top: 3px;
@@ -9122,6 +9136,9 @@ ul.breadcrumb span {
 #tree-selector {
   padding-right: 0px;
 }
+[dir="rtl"] #tree-selector a {
+  float: right;
+}
 #button-select-all {
   min-width: 50px;
 }
@@ -9211,6 +9228,9 @@ ul#new-menu {
   left: auto;
   right: 0;
 }
+[dir="rtl"] #new-menu {
+  text-align: right;
+}
 .kernel-menu-icon {
   padding-right: 12px;
   width: 24px;
@@ -9255,6 +9275,9 @@ ul#new-menu {
 }
 #running .panel-group .panel .panel-body .list_container .list_item:last-child {
   border-bottom: 0px;
+}
+[dir="rtl"] #running .col-sm-8 {
+  float: right !important;
 }
 .delete-button {
   display: none;
@@ -9551,6 +9574,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -9571,11 +9595,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11246,7 +11265,7 @@ div#pager .ui-resizable-handle::after {
 }
 .shortcut_key {
   display: inline-block;
-  width: 20ex;
+  width: 21ex;
   text-align: right;
   font-family: monospace;
 }
@@ -11558,6 +11577,7 @@ ul.typeahead-list > li > a {
   box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
 }
 .terminal-app .terminal {
+  width: 100%;
   float: left;
   font-family: monospace;
   color: white;
@@ -11571,6 +11591,9 @@ ul.typeahead-list > li > a {
 .terminal-app .terminal dummy-screen {
   line-height: 1em;
   font-size: 14px;
+}
+.terminal-app .terminal .xterm-rows {
+  padding: 10px;
 }
 .terminal-app .terminal-cursor {
   color: black;
@@ -11631,8 +11654,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11643,9 +11668,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11722,7 +11749,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="js/MathJax.js"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11763,7 +11790,9 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[1]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <style>
@@ -12075,7 +12104,7 @@ $(document).ready(algolab.init);
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><ul>
-<li>If it seems to work, then it works? </li>
+<li>If it seems to work, then it actually works? </li>
 <li>The devil is in the details, especially for complex algorithms.</li>
 <li>We will do a crash course on testing in Python</li>
 </ul>
@@ -12167,7 +12196,9 @@ As it often happens, first version may be buggy...</p>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[0, 2, 3, 6, 8]
 </pre>
@@ -12206,7 +12237,7 @@ As it often happens, first version may be buggy...</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Assertions">Assertions<a class="anchor-link" href="#Assertions">&#182;</a></h2><p>To go beyond the 'visual inspection' testing, it's better to write some extra code to allow python to check for us if the function actually returns what we expect, and throws an error otherwise. We can do so with <code>assert</code> command:</p>
+<h2 id="Assertions">Assertions<a class="anchor-link" href="#Assertions">&#182;</a></h2><p>To go beyond the "visual inspection" testing, it's better to write some extra code to allow python to check for us if the function actually returns what we expect, and throws an error otherwise. We can do so with <code>assert</code> command:</p>
 
 </div>
 </div>
@@ -12335,7 +12366,9 @@ To run the tests, enter the following command in the terminal: <br/>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>F
 ======================================================================
@@ -12358,7 +12391,7 @@ First differing element 2:
 
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.005s
+Ran 1 test in 0.002s
 
 FAILED (failures=1)
 </pre>
@@ -12375,14 +12408,14 @@ FAILED (failures=1)
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now you can see a nice display of where the error is, exactly in the middle of the list.</p>
-<h3 id="When-tests-don't-run">When tests don't run<a class="anchor-link" href="#When-tests-don't-run">&#182;</a></h3><p>When <code>-m unittest</code> does not work and you keep seeing absurd errors like Python not finding a module and you are getting desperate (especially because Python has unittest included <em>by default</em>, there is no need to install it! ), try to put the following code at the very end of the file you are editing:</p>
+<h3 id="When-tests-don't-run">When tests don't run<a class="anchor-link" href="#When-tests-don't-run">&#182;</a></h3><p>When <code>-m unittest</code> does not work and you keep seeing absurd errors like Python not finding a module and you are getting desperate (especially because Python has <code>unittest</code> included <em>by default</em>, there is no need to install it! ), try to put the following code at the very end of the file you are editing:</p>
 <div class="highlight"><pre><span></span><span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 </pre></div>
 <p>Then run your file with just</p>
 <div class="highlight"><pre><span></span>python my-file.py
 </pre></div>
 <p>In this case it should REALLY work. If it still doesn't, call the Ghostbusters. Or, better, the IndentationBusters, you're likely having tabs mixed with spaces mixed with bad bad luck.</p>
-<h3 id="Adding-tests">Adding tests<a class="anchor-link" href="#Adding-tests">&#182;</a></h3><p>How can we add (good) tests? Since best ones are usually short, it would be better starting small boundary cases. For example like <code>n=1</code> according to function documentation should produce a list containing zero:</p>
+<h3 id="Adding-tests">Adding tests<a class="anchor-link" href="#Adding-tests">&#182;</a></h3><p>How can we add (good) tests? Since best ones are usually short, it would be better starting small boundary cases. For example like <code>n=1</code> , which according to function documentation should produce a list containing zero:</p>
 
 </div>
 </div>
@@ -12436,7 +12469,9 @@ FAILED (failures=1)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>FF
 ======================================================================
@@ -12474,7 +12509,7 @@ First differing element 0:
 + [0]
 
 ----------------------------------------------------------------------
-Ran 2 tests in 0.004s
+Ran 2 tests in 0.002s
 
 FAILED (failures=2)
 </pre>
@@ -12490,7 +12525,7 @@ FAILED (failures=2)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>From the tests we can now see there is clearly something wrong with the number 3 that keeps popping up, making both tests fail. You can immediately which tests have failed by looking at the first two <code>FF</code> at the top of the output. Let's fix the code by removing the buggy line:</p>
+<p>From the tests we can now see there is clearly something wrong with the number 3 that keeps popping up, making both tests fail. You can see immediately which tests have failed by looking at the first two <code>FF</code> at the top of the output. Let's fix the code by removing the buggy line:</p>
 
 </div>
 </div>
@@ -12547,11 +12582,13 @@ FAILED (failures=2)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>..
 ----------------------------------------------------------------------
-Ran 2 tests in 0.005s
+Ran 2 tests in 0.001s
 
 OK
 </pre>
@@ -12569,7 +12606,7 @@ OK
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Wonderful, all the two tests have passed and we got rid of the bug.</p>
 <h3 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h3><ol>
-<li>Think about other boundary cases, and try to add corresponding tests. <em>Hint: Can we ever have an empty list</em>? Which values can assume <code>n</code>?</li>
+<li>Think about other boundary cases, and try to add corresponding tests. <em>Hint: Can we ever have an empty list? Which values can assume <code>n</code>?</em></li>
 <li>What difference there is between the following two test classes? Which one is better for testing?</li>
 </ol>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
@@ -12594,4 +12631,8 @@ OK
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>
