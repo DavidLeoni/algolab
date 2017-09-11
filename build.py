@@ -4,8 +4,8 @@ import shutil
 import glob
 import os
 import sys
-import fileinput, string, sys, os
-from os.path import join
+import fileinput
+import string
 
 def log(msg):
     
@@ -15,7 +15,7 @@ def log(msg):
 
 def clean(dirpath):
     if (dirpath != "target/"):
-	raise Error("Failed security check! You are trying to delete something which is not target/ directory: " + dirpath)
+	raise Exception("Failed security check! You are trying to delete something which is not target/ directory: " + dirpath)
 
     log( "Cleaning " + dirpath )
 
@@ -49,7 +49,7 @@ def replace(stext, rtext):
     
     path = "target/*.html"
 
-    print "finding: " + stext + " replacing with: " + rtext + " in: " + path
+    log("finding: " + stext + " replacing with: " + rtext + " in: " + path)
 
     files = glob.glob(path)
     for line in fileinput.input(files,inplace=1):
@@ -103,7 +103,6 @@ generate_pdf()
 
 log("Fixing Unix permissions...") #otherwise js/  can't be read by others !!!
 call(["chmod", "-R", "a+r", "target"])
-
 call(["chmod", "-R", "a+X", "target"])
 
 log("Fixing html paths for offline browsing ....")
@@ -112,6 +111,7 @@ replace('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/', 'js/')
 replace('https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/', 'js/')
 replace('https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML', 'js/MathJax.js')
 
+log("Website is now browsable at   " + os.path.abspath("target/index.html"))
 
 log("Done.")
 

@@ -11975,9 +11975,18 @@ var algolab = {
         
         Renamed in 0.19
     */    
-    hideCell : function(prefix){
+    hideCell : function(prefixOrRegex){
+        
         $('.border-box-sizing .code_cell pre').filter(function() { 
-                return $(this).text().indexOf(prefix) === 0; 
+                var t = $(this).text();
+                if (typeof prefixOrRegex == "string"){
+                    return t.indexOf(prefixOrRegex) === 0;
+                } else if ( prefixOrRegex instanceof RegExp){
+                    return t.match(prefixOrRegex);
+                } else {
+                    console.error("Invalid argument:", prefixOrRegex);
+                    throw new Error("Invalid argument!");
+                }
             }).parents('div .cell .input').hide();        
     },
     /**
@@ -12022,7 +12031,10 @@ var algolab = {
                      
        
        algolab.hideCell("%%HTML");
-       algolab.hideCell("import algolab");      
+       algolab.hideCell("import algolab");   
+       
+        // TODO this is a bit too hacky   
+       algolab.hideCell(/from exercise(.+)_solution import \*/)
        
        algolab.hideCell("algolab.init()"); 
        algolab.hideCell("algolab.show_run(");

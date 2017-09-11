@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>data-structures-1</title><script src="js/require.min.js"></script>
+<title>exam-2017-09-04</title><script src="js/require.min.js"></script>
 <script src="js/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11779,6 +11779,10 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">algolab</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="c1">#sys.path.append(&#39;../exams/2017-09-04/solutions&#39;)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;past-exams/2017-09-04/solutions&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">nxpd</span>
 <span class="n">algolab</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
 </pre></div>
 
@@ -12106,7 +12110,12 @@ $(document).ready(algolab.init);
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <center>
-<span class="algolab-title">Chapter 2.1: Data Structures - ComplexNumber</span>
+<span class="algolab-title"> Algolab Exam</span><br/><br/> 
+<span style="font-size:20px"> Scientific Programming Module 2</span> <br/>
+<span style="font-size:20px"> Algorithms and Data Structures  </span> <br/><br/>
+<span> Monday 4th, September 2017</span><br/><br/>
+
+
 </center>
 </div>
 </div>
@@ -12116,23 +12125,44 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="1.-Abstract-Data-Types-(ADT)-Theory">1. Abstract Data Types (ADT) Theory<a class="anchor-link" href="#1.-Abstract-Data-Types-(ADT)-Theory">&#182;</a></h2><h3 id="1.1.--Intro">1.1.  Intro<a class="anchor-link" href="#1.1.--Intro">&#182;</a></h3><ul>
-<li>Theory from the slides: <a href="http://disi.unitn.it/~montreso/sp/slides/04-strutture.pdf">http://disi.unitn.it/~montreso/sp/slides/04-strutture.pdf</a>  (First slides until <code>class Fraction</code> included)</li>
-<li>Object Oriented programming on the <a href="http://interactivepython.org/runestone/static/pythonds/Introduction/ObjectOrientedProgramminginPythonDefiningClasses.html">the book</a> (In particular, <a href="http://interactivepython.org/runestone/static/pythonds/Introduction/ObjectOrientedProgramminginPythonDefiningClasses.html#a-fraction-class">Fraction class</a>, in this course we won't focus on inheritance)</li>
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><ul>
+<li><strong>Taking part to this exam erases any vote you had before, both lab and theory</strong></li>
+<li><strong>If you don't ship or don't pass this lab part, you lose also the theory part.</strong></li>
 </ul>
-<h3 id="1.2.-Complex-number-theory">1.2. Complex number theory<a class="anchor-link" href="#1.2.-Complex-number-theory">&#182;</a></h3><p><img src="img/complex-numbers-definition.png"></p>
+<h2 id="Allowed-material">Allowed material<a class="anchor-link" href="#Allowed-material">&#182;</a></h2><p>There won't be any internet access. You will only be able to access:</p>
+<ul>
+<li><a href="index.html" target="_blank">Sciprog Algolab worksheets</a></li>
+<li><a href="../montresor/Montresor%20sciprog/cricca.disi.unitn.it/montresor/teaching/scientific-programming/slides/index.html" target="_blank">Alberto Montresor slides</a></li>
+<li><a href="../teso/disi.unitn.it/_teso/courses/sciprog/index.html" target="_blank">Stefano Teso docs</a></li>
+<li>Python 2.7 documentation :&nbsp;&nbsp; <a href="../python-docs/html/index.html" target="_blank">html</a>
+&nbsp;&nbsp;<a href="../python-docs/pdf" target="_blank">pdf</a><ul>
+<li>In particular, <a href="../python-docs/html/library/unittest.html" target="_blank">Unittest docs</a></li>
+</ul>
+</li>
+<li>The course book <em>Problem Solving with Algorithms and Data Structures using Python</em> &nbsp;&nbsp;<a href="../pythonds/index.html" target="_blank">html</a> &nbsp;&nbsp;&nbsp;<a href="../pythonds/ProblemSolvingwithAlgorithmsandDataStructures.pdf" target="_blank">pdf</a></li>
+</ul>
+<h2 id="Grading">Grading<a class="anchor-link" href="#Grading">&#182;</a></h2><ul>
+<li><strong>Lab grade:</strong> The grade of this lab part will range from 0 to 30. Total grade for the module will be given by the average with the theory part of Alberto Montresor.</li>
+<li><strong>Correct implementations</strong>: Correct implementations with the required complexity grant you full grade.</li>
+<li><strong>Partial implementations</strong>: Partial implementations <em>might</em> still give you a few points. If you just can't solve an exercise,  try to solve it at least for some subcase (i.e. array of fixed size 2) commenting why you did so. </li>
+<li><p><strong>Bonus point</strong>: One bonus point can be earned by writing stylish code. You got style if you:</p>
+<ul>
+<li>do not infringe the <a href="../algolab/index.html#Commandments">Commandments</a></li>
+<li>write <a href="http://docs.python-guide.org/en/latest/writing/style">pythonic code</a></li>
+<li><p>avoid convoluted code like i.e.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.3.-Datatypes-the-old-way">1.3. Datatypes the old way<a class="anchor-link" href="#1.3.-Datatypes-the-old-way">&#182;</a></h3><p>From the definition we see that to identify a complex number <strong>we need two float values</strong> . One number is for the <strong><em>real</em> part</strong>, and another number is for the <strong><em>imaginary</em> part</strong>.</p>
-<p>How can we represent this in Python? So far, you saw there are many ways to put two numbers together. One way could be to put as items in a list of two elements, and implicitly assume the first one is the <em>real</em> and the second the <em>imaginary</em> part:</p>
+<pre><code>  if x &gt; 5:
+      return True
+  else:
+      return False</code></pre>
+<p>when you could write just</p>
 
+<pre><code>  return x &gt; 5</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Valid-code">Valid code<a class="anchor-link" href="#Valid-code">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -12141,10 +12171,58 @@ $(document).ready(algolab.init);
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span> 
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: MAKE SURE ALL EXERCISE FILES AT LEAST COMPILE !!! &lt;br/&gt; 10 MINS BEFORE THE END 
+    OF THE EXAM I WILL ASK YOU TO DO A FINAL CLEAN UP OF THE CODE 
+&lt;/p&gt;
+
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+
+!!!!!!!!! WARNING !!!!!!!!!
+    
+    &lt;br/&gt;
+    &lt;br/&gt;
+!!!!!!!!!  **ONLY** IMPLEMENTATIONS OF THE PROVIDED FUNCTION SIGNATURES WILL BE EVALUATED !!!!!!!!! &lt;br/&gt;    
+
+&lt;/p&gt;
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-warn">
+WARNING: MAKE SURE ALL EXERCISE FILES AT LEAST COMPILE !!! <br/> 10 MINS BEFORE THE END 
+    OF THE EXAM I WILL ASK YOU TO DO A FINAL CLEAN UP OF THE CODE 
+</p>
+
+
+<p class="algolab-warn">
+
+!!!!!!!!! WARNING !!!!!!!!!
+    
+    <br/>
+    <br/>
+!!!!!!!!!  **ONLY** IMPLEMENTATIONS OF THE PROVIDED FUNCTION SIGNATURES WILL BE EVALUATED !!!!!!!!! <br/>    
+
+</p>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12154,7 +12232,37 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Or we could use a tuple:</p>
+<p>For example, if you are given to implement:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me&quot;</span><span class="p">)</span>
+</pre></div>
+<p>and you ship this code:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># a super fast, correct and stylish implementation</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me&quot;</span><span class="p">)</span>
+</pre></div>
+<p>We will assess only the latter one <code>f(x)</code>, and conclude it doesn't work at all :P   !!!!!!!</p>
+<p><strong>Helper functions</strong></p>
+<p>Still, you are allowed to define any extra helper function you might need. If your <code>f(x)</code> implementation calls some other function you defined like <code>my_f</code> here, it is ok:</p>
+<div class="highlight"><pre><span></span><span class="c1"># Not called by f, will get ignored:</span>
+<span class="k">def</span> <span class="nf">my_g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># bla</span>
+
+<span class="c1"># Called by f, will be graded:</span>
+<span class="k">def</span> <span class="nf">my_f</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="c1"># bla</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">my_f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+<h2 id="How-to-edit">How to edit<a class="anchor-link" href="#How-to-edit">&#182;</a></h2><p>To edit the files, you can use any editor of your choice:</p>
+<ul>
+<li><strong>Editra editor</strong> is easy to use, you can find it under <em>Applications-&gt;Programming-&gt;Editra</em>.**</li>
+<li><strong>The Terminal</strong> to run python can be found in<em> Accessories -&gt; Terminal</em> </li>
+<li>Others could be <em>GEdit</em> (simpler), or <em>PyCharm</em> (more complex).</li>
+</ul>
 
 </div>
 </div>
@@ -12164,10 +12272,62 @@ $(document).ready(algolab.init);
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span> 
+
+
+&lt;p class=&quot;algolab-important&quot;&gt;
+IMPORTANT: Pay close attention to the comments of the functions.
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: &lt;i&gt;DON&#39;T&lt;/i&gt; modify function signatures! Just provide the implementation.
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: &lt;i&gt;DON&#39;T&lt;/i&gt; change the existing test methods, just add new ones !!!  You can add as many as you want.
+&lt;/p&gt;
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: &lt;i&gt;DON&#39;T&lt;/i&gt; create other files. If you still do it, they won&#39;t be evaluated.
+&lt;/p&gt;
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+
+<div class="output_html rendered_html output_subarea ">
+
+
+<p class="algolab-important">
+IMPORTANT: Pay close attention to the comments of the functions.
+</p>
+
+<p class="algolab-warn">
+WARNING: <i>DON'T</i> modify function signatures! Just provide the implementation.
+</p>
+
+<p class="algolab-warn">
+WARNING: <i>DON'T</i> change the existing test methods, just add new ones !!!  You can add as many as you want.
+</p>
+
+<p class="algolab-warn">
+WARNING: <i>DON'T</i> create other files. If you still do it, they won't be evaluated.
+</p>
+
+
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12177,7 +12337,8 @@ $(document).ready(algolab.init);
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A problem with the previous representations is that a casual observer might not know exactly the meaning of the two numbers.  We could be more explicit and store the values into a dictionary, using keys to identify the two parts:</p>
+<h2 id="Debugging">Debugging<a class="anchor-link" href="#Debugging">&#182;</a></h2><p>If you need to print some debugging information, you are allowed to put extra <code>print</code>
+    statements in the function bodies.</p>
 
 </div>
 </div>
@@ -12187,2564 +12348,123 @@ $(document).ready(algolab.init);
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;real&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s1">&#39;imaginary&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">}</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span> 
+
+&lt;p class=&quot;algolab-warn&quot;&gt;
+WARNING: even if &lt;code&gt;print&lt;/code&gt; statements are allowed, be careful with prints that might
+     break your function!&lt;br/&gt;&lt;br/&gt;
+        For example, avoid stuff like this: 
+&lt;code&gt;
+x = 0 
+print 1/x
+&lt;/code&gt; 
+&lt;/p&gt;
+ 
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+
+<div class="output_html rendered_html output_subarea ">
+
+<p class="algolab-warn">
+WARNING: even if <code>print</code> statements are allowed, be careful with prints that might
+     break your function!<br/><br/>
+        For example, avoid stuff like this: 
+<code>
+x = 0 
+print 1/x
+</code> 
+</p>
+ 
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-to-do">What to do<a class="anchor-link" href="#What-to-do">&#182;</a></h2><p>1) Download  <a href="../algolab-2017-09-04.zip" target="_blank">algolab-2017-09-04.zip</a> and extract it <b>on your desktop</b>. Folder content should be like this:</p>
+
+<pre><code>algolab-2017-09-04
+    |- FIRSTNAME-LASTNAME-ID
+        |- exercise1.py
+        |- exercise2.py
+        |- exercise3.py</code></pre>
+<p>2) Rename <code>FIRSTNAME-LASTNAME-ID</code> folder: put your name, lastname an id number, like <code>john-doe-432432</code></p>
+<p>From now on, you will be editing the files in that folder. At the end of the exam, that is what will be evaluated.</p>
+<p>3) Edit the files following the instructions in this worksheet for each exercise. Every exercise should take max 25 mins. If it takes longer, leave it and try another exercise.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="1)-MultiSet">1) MultiSet<a class="anchor-link" href="#1)-MultiSet">&#182;</a></h1><p>You are going to implement a class called <code>MultiSet</code>, where you are only given the class skeleton, and you will need to determine which Python basic datastructures like list, set, dict (or combinations thereof) is best suited to actually hold the data.</p>
+<p>In math a multiset (or bag) generalizes a set by allowing multiple instances of the multiset's elements.</p>
+<p>The multiplicity of an element is the number of instances of the element in a specific multiset.</p>
+<p>For example:</p>
+<ul>
+<li>The multiset <code>a, b</code> contains only elements <code>a</code> and <code>b</code>, each having multiplicity 1</li>
+<li>In multiset <code>a, a, b</code>, <code>a</code> has multiplicity 2 and <code>b</code> has multiplicity 1</li>
+<li>In multiset <code>a, a, a, b, b, b</code>, <code>a</code> and <code>b</code> both have multiplicity 3</li>
+</ul>
+<p>NOTE: order of insertion does not matter, so <code>a, a, b</code> and <code>a, b, a</code> are the same multiset,
+where <code>a</code> has multiplicity 2 and <code>b</code> has multiplicity 1.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">c</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">exercise1_solution</span> <span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.0)-run-EnvWorkingTest">1.0) run <code>EnvWorkingTest</code><a class="anchor-link" href="#1.0)-run-EnvWorkingTest">&#182;</a></h2><p>Now open the file <code>exercise1.py</code> and check your environment is working fine, by trying to run the test <code>EnvWorkingTest</code>: it should always pass, if it doesn't, tell your instructor.</p>
+<p><strong>Notice that  <code>exercise1</code> is followed by a dot and test class name: <code>.EnvWorkingTest</code> </strong></p>
+<div class="highlight"><pre><span></span>python -m unittest exercise1.EnvWorkingTest
+</pre></div>
 
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#39;real&#39;: 3.0, &#39;imaginary&#39;: 5.0}
-</pre>
 </div>
 </div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;real&#39;</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>3.0
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;imaginary&#39;</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>5.0
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now, writing the whole record <code>{'real': 3.0, 'imaginary': 5.0}</code> each time 
-we want to create a complex number might be annoying and error prone. To help us, we can create a little shortcut 
-function named <code>complex_number</code> that creates and returns the dictionary:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">complex_number</span><span class="p">(</span><span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;real&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">real</span>
-    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;imaginary&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imaginary</span>
-    <span class="k">return</span> <span class="n">d</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">complex_number</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">c</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#39;real&#39;: 3.0, &#39;imaginary&#39;: 5.0}
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To do something with our dictionary, we would then define functions, like for example <code>complex_str</code> to show them nicely:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">complex_str</span><span class="p">(</span><span class="n">cn</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">cn</span><span class="p">[</span><span class="s1">&#39;real&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; + &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cn</span><span class="p">[</span><span class="s1">&#39;imaginary&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;i&quot;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">complex_number</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">complex_str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>3.0 + 5.0i
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We could do something more complex, like defining the <code>phase</code> of the complex number which returns a <code>float</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-important&quot;&gt;
-IMPORTANT: In these exercises, we care about programming, not complex numbers theory. There&#39;s no need to break your head over formulas!
-&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-important">
-IMPORTANT: In these exercises, we care about programming, not complex numbers theory. There's no need to break your head over formulas!
-</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="k">def</span> <span class="nf">phase</span><span class="p">(</span><span class="n">cn</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns a float which is the phase (that is, the vector angle) of the complex number </span>
-<span class="sd">                    </span>
-<span class="sd">            See definition: https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">cn</span><span class="p">[</span><span class="s1">&#39;imaginary&#39;</span><span class="p">],</span> <span class="n">cn</span><span class="p">[</span><span class="s1">&#39;real&#39;</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">complex_number</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">phase</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1.03037682652
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We could even define functions that that take the complex number and some other parameter, for example we could define the <code>log</code> of complex numbers, which return another complex number (mathematically it would be infinitely many, but we just pick the first one in the series):</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns another complex number which is the logarithm of this complex number </span>
-<span class="sd">            </span>
-<span class="sd">            See definition (accomodated for generic base b):</span>
-<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Natural_logarithm</span>
-<span class="sd">        &quot;&quot;&quot;</span>      
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;real&#39;</span><span class="p">:</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">cn</span><span class="p">[</span><span class="s1">&#39;real&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">),</span> 
-                <span class="s1">&#39;imaginary&#39;</span> <span class="p">:</span> <span class="n">phase</span><span class="p">(</span><span class="n">cn</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">)}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#39;real&#39;: 1.5849625007211563, &#39;imaginary&#39;: 1.4865195378735334}
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>You see we got our dictionary representing a complex number. If we want a nicer display we can call on it the <code>complex_str</code> we defined:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">complex_str</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1.58496250072 + 1.48651953787i
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.4.-Finding-the-pattern">1.4. Finding the pattern<a class="anchor-link" href="#1.4.-Finding-the-pattern">&#182;</a></h3><p>So, what have we done so far?</p>
-<p>1) Decided a data format for the complex number, saw that the dictionary is quite convenient</p>
-<p>2) Defined a function to quickly create the dictionary:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">complex_number</span><span class="p">(</span><span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
-</pre></div>
-<p>3) Defined some function like <code>phase</code> and <code>log</code> to do stuff on the complex number</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">phase</span><span class="p">(</span><span class="n">cn</span><span class="p">):</span>
-<span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
-</pre></div>
-<p>4) Defined a function <code>complex_str</code> to express the complex number as a readable string:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">complex_str</span><span class="p">(</span><span class="n">cn</span><span class="p">):</span>
-</pre></div>
-<p>Notice that:</p>
-<ul>
-<li>all functions above take a <code>cn</code> complex number dictionary as first parameter</li>
-<li>the functions <code>phase</code> and <code>log</code> are quite peculiar to complex number, and to know what they do you need to have deep knowledge of what a complex number is. </li>
-<li>the function <code>complex_str</code> is more intuitive, because it covers the common need of giving a nice string representation to the data format we just defined. Also, we used the word <code>str</code> as part of the name to give a hint to the reader that probably the function behaves in a way similar to the Python function <code>str()</code>.</li>
-</ul>
-<p>When we encounter a new datatype in our programs, we often follow the procedure of thinking listed above. Such procedure is so common that software engineering people though convenient to provide a specific programming paradigm to represent it, called <em>Object Oriented</em> programming. We are now going to rewrite the complex number example using such paradigm.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.5.-Object-Oriented-programming">1.5. Object Oriented programming<a class="anchor-link" href="#1.5.-Object-Oriented-programming">&#182;</a></h3><p>In object oriented programming, we usually</p>
-<ol>
-<li>Introduce new datatypes by declaring a <em>class</em>, named for example <code>ComplexNumber</code></li>
-<li>Are given a dictionary and define how data is stored in the dictionary (i.e. in fields <code>real</code> and <code>imaginary</code>)</li>
-<li>Define a way to <em>construct</em> specific <em>instances</em> , like <code>3 + 2i</code>, <code>5 + 6i</code> (instances are also called <em>objects</em>)</li>
-<li>Define some <em>methods</em> to operate on the <em>instances</em> (like <code>phase</code>)</li>
-<li>Define some special <em>methods</em> to customize how Python treats <em>instances</em> (for example for displaying them as strings when printing)</li>
-</ol>
-<p>Let's now create our first <em>class</em>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2.-ComplexNumber-class">2. ComplexNumber class<a class="anchor-link" href="#2.-ComplexNumber-class">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.1.-Class-declaration">2.1. Class declaration<a class="anchor-link" href="#2.1.-Class-declaration">&#182;</a></h3><p>A minimal class declaration will at least declare the class name and the <code>__init__</code> method:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">class</span> <span class="nc">ComplexNumber</span><span class="p">:</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>       
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we declare to Python that we are starting defining a template for a new <em>class</em> called <code>ComplexNumber</code>.
-This template will hold a collection of functions (called methods) that manipulate <em>instances</em> of complex numbers 
-(instances are <code>1.0 + 2.0i</code>, <code>3.0 + 4.0i</code>, ...).</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-important&quot;&gt;
-IMPORTANT: Although classes can have any name (i.e. &lt;code&gt;complex_number&lt;/code&gt;, &lt;code&gt;complexNumber&lt;/code&gt;, ...),
-by convention you &lt;i&gt;SHOULD&lt;/i&gt; use a camel cased name like &lt;code&gt;ComplexNumber&lt;/code&gt;, with capital letters as initials and no underscores.
-
-&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-important">
-IMPORTANT: Although classes can have any name (i.e. <code>complex_number</code>, <code>complexNumber</code>, ...),
-by convention you <i>SHOULD</i> use a camel cased name like <code>ComplexNumber</code>, with capital letters as initials and no underscores.
-
-</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.2.-Constructor-__init__">2.2. Constructor <code>__init__</code><a class="anchor-link" href="#2.2.-Constructor-__init__">&#182;</a></h3><p>With the dictonary model, to create complex numbers remember we defined that small utility function <code>complex_number</code>, where inside we were creating the dictionary:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">complex_number</span><span class="p">(</span><span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;real&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">real</span>
-    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;imaginary&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imaginary</span>
-    <span class="k">return</span> <span class="n">d</span>
-</pre></div>
-<p>With classes, to create objects we have instead to define a so-called <em>constructor method</em> called <code>__init__</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">class</span> <span class="nc">ComplexNumber</span><span class="p">:</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><code>__init__</code> is a very special method, that has the job to initialize an <em>instance</em> of a complex number. It has three important features:</p>
-<p>a) it is defined like a function, inside the <code>ComplexNumber</code> declaration (as usual, indentation matters!)</p>
-<p>b) it always takes as first parameter <code>self</code>, which is an instance of a special kind of dictionary that will hold the fields of the complex number. Inside the previous <code>complex_number</code> function, we were creating a dictionary <code>d</code>. In <code>__init__</code> method, the dictionary instead is automatically created by Python and given to us in the form of parameter <code>self</code></p>
-<p>c) <code>__init__</code> does not return anything: this is different from the previous <code>complex_number</code> function where instead we were returning the dictionary <code>d</code>.</p>
-<p>Later we will explain better these properties. For now, let's just concentrate on the names of things we see in the declaration.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: There can be only one constructor method per class, and MUST be named &lt;code&gt;__init__&lt;/code&gt; 
-&lt;/p&gt;
-
-&lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: &lt;code&gt;__init__&lt;/code&gt; MUST take at least one parameter, by convention it is usually named &lt;code&gt;self&lt;/code&gt;
-&lt;/p&gt;
-
-&lt;p class=&quot;algolab-important&quot;&gt;
-IMPORTANT: &lt;code&gt;self&lt;/code&gt; is just a name we give to the first parameter. It could be any name our fantasy suggest 
-    and the program would behave exactly the same! &lt;br/&gt;&lt;br/&gt;
-    
-    If the editor you are using will evidence it in some special color, it is because it is aware of the convention
-but &lt;i&gt;not&lt;/i&gt; because &lt;code&gt;self&lt;/code&gt; is some special Python keyword. 
-    
-&lt;/p&gt;
-
-&lt;p class=&quot;algolab-important&quot;&gt;
-IMPORTANT: In general, any of the &lt;code&gt;__init__&lt;/code&gt; parameters can have completely arbitrary names, so for example the following code snippet 
-would work exactly the same as the initial definition:
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-warn">
-WARNING: There can be only one constructor method per class, and MUST be named <code>__init__</code> 
-</p>
-
-<p class="algolab-warn">
-WARNING: <code>__init__</code> MUST take at least one parameter, by convention it is usually named <code>self</code>
-</p>
-
-<p class="algolab-important">
-IMPORTANT: <code>self</code> is just a name we give to the first parameter. It could be any name our fantasy suggest 
-    and the program would behave exactly the same! <br/><br/>
-    
-    If the editor you are using will evidence it in some special color, it is because it is aware of the convention
-but <i>not</i> because <code>self</code> is some special Python keyword. 
-    
-</p>
-
-<p class="algolab-important">
-IMPORTANT: In general, any of the <code>__init__</code> parameters can have completely arbitrary names, so for example the following code snippet 
-would work exactly the same as the initial definition:
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">class</span> <span class="nc">ComplexNumber</span><span class="p">:</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">donald_duck</span><span class="p">,</span> <span class="n">mickey_mouse</span><span class="p">,</span> <span class="n">goofy</span><span class="p">):</span>
-        <span class="n">donald_duck</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">mickey_mouse</span>
-        <span class="n">donald_duck</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">goofy</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Once the <code>__init__</code> method is defined, we can create a specific <code>ComplexNumber</code> <em>instance</em> with a call like this:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">c</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;__main__.ComplexNumber instance at 0x7f9452bd0a70&gt;
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>What happend here?</p>
-<p><strong>init 2.2.1)</strong> We told Python we want to create a new particular <em>instance</em> of the template defined by <em>class</em> <code>ComplexNumber</code>. As parameters for the instance we indicated <code>3.0</code> and <code>5.0</code>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: to create the instance, we used the name of the class `ComplexNumber` following it
-    by an open round parenthesis and parameters like a function call:
-        &lt;code&gt;c=ComplexNumber(3.0,5.0)&lt;/code&gt;
-        &lt;br/&gt; &lt;br/&gt;Writing just: 
-    &lt;code&gt;c = ComplexNumber&lt;/code&gt; would &lt;i&gt;NOT&lt;/i&gt; instantiate anything and we would end up messing with 
-    the &lt;i&gt;template &lt;code&gt;ComplexNumber&lt;/code&gt; &lt;/i&gt;, which is a collection of functions for complex numbers.
-&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-warn">
-WARNING: to create the instance, we used the name of the class `ComplexNumber` following it
-    by an open round parenthesis and parameters like a function call:
-        <code>c=ComplexNumber(3.0,5.0)</code>
-        <br/> <br/>Writing just: 
-    <code>c = ComplexNumber</code> would <i>NOT</i> instantiate anything and we would end up messing with 
-    the <i>template <code>ComplexNumber</code> </i>, which is a collection of functions for complex numbers.
-</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>init 2.2.2)</strong> Python created a new special dictionary for the instance</p>
-<p><strong>init 2.2.3)</strong> Python passed the special dictionary as first parameter of the method <code>__init__</code>, so it will be bound to parameter <code>self</code>. As second and third arguments passed <em>3.0</em> and <em>5.0</em>, which will be bound respectively to parameters <code>real</code> and <code>imaginary</code></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: When instantiating an object with a  call like &lt;code&gt;c=ComplexNumber(3.0,5.0)&lt;/code&gt;  you  &lt;i&gt;don&#39;t&lt;/i&gt;
-need to pass a dictionary as first parameter! Python will implicitly create it and pass it as first parameter to &lt;code&gt;__init__&lt;/code&gt;
-&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-warn">
-WARNING: When instantiating an object with a  call like <code>c=ComplexNumber(3.0,5.0)</code>  you  <i>don't</i>
-need to pass a dictionary as first parameter! Python will implicitly create it and pass it as first parameter to <code>__init__</code>
-</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>init 2.2.4)</strong> In the <code>__init__</code> method,  the instructions</p>
-<div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
-</pre></div>
-<p>first create a key in the dictionary called <code>real</code> associating to the key the value of the parameter <code>real</code> (in the call is <em>3.0</em>). Then  the value <em>5.0</em> is bound to the key <code>imaginary</code>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-important&quot;&gt;
-IMPORTANT:  we said Python provides &lt;code&gt;__init__&lt;/code&gt; with a special kind of dictionary as first parameter.
-    One of the reason it is special is that you can access keys using the dot like &lt;code&gt;self.my_key&lt;/code&gt;.
-    With ordinary dictionaries you would have to write the brackets like &lt;code&gt;self[&quot;my_key&quot;]&lt;/code&gt;
-&lt;/p&gt;
-
-&lt;p class=&quot;algolab-important&quot;&gt;
-IMPORTANT:  like with dictionaries, we can arbitrarily choose the name of the keys, and which
-    values to associate to them.     
-&lt;/p&gt;
-
-&lt;p class=&quot;algolab-important&quot;&gt;
-IMPORTANT:  In the following, we will often refer to keys of the &lt;code&gt;self&lt;/code&gt; dictionary with 
-    the terms &lt;i&gt;field&lt;/i&gt;, and/or &lt;i&gt; attribute&lt;/i&gt;.
-&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-important">
-IMPORTANT:  we said Python provides <code>__init__</code> with a special kind of dictionary as first parameter.
-    One of the reason it is special is that you can access keys using the dot like <code>self.my_key</code>.
-    With ordinary dictionaries you would have to write the brackets like <code>self["my_key"]</code>
-</p>
-
-<p class="algolab-important">
-IMPORTANT:  like with dictionaries, we can arbitrarily choose the name of the keys, and which
-    values to associate to them.     
-</p>
-
-<p class="algolab-important">
-IMPORTANT:  In the following, we will often refer to keys of the <code>self</code> dictionary with 
-    the terms <i>field</i>, and/or <i> attribute</i>.
-</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now one important word of wisdom:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span> 
-
-&lt;p class=&quot;algolab-important&quot;&gt;
-!!!!!!  COMMANDMENT:  NEVER EVER REASSIGN &lt;code&gt;self&lt;/code&gt; !!!!!!! :    
-&lt;p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-important">
-!!!!!!  COMMANDMENT:  NEVER EVER REASSIGN <code>self</code> !!!!!!! :    
-<p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Since self is a kind of dictionary, you might be tempted to do like this:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">class</span> <span class="nc">EvilComplexNumber</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>        
-        <span class="bp">self</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;real&#39;</span><span class="p">:</span><span class="n">real</span><span class="p">,</span> <span class="s1">&#39;imaginary&#39;</span><span class="p">:</span><span class="n">imaginary</span><span class="p">}</span>  
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>but to the outside world this will bring no effect. For example, let's say somebody from outside makes a call like this:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ce</span> <span class="o">=</span> <span class="n">EvilComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>At the first attempt of accessing any field, you would get an error because after the initalization <code>c</code> will point to the yet untouched <code>self</code> created by Python, and not to your dictionary (which at this point will be simply lost):</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">print</span> <span class="n">ce</span><span class="o">.</span><span class="n">real</span>
-</pre></div>
-<p>AttributeError: EvilComplexNumber instance has no attribute 'real'</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In general, you <em>DO NOT</em> reassign <code>self</code> to anything. Here are other example <em>DON'Ts</em>:</p>
-<div class="highlight"><pre><span></span><span class="bp">self</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;666&#39;</span><span class="p">]</span>  <span class="c1"># self is only supposed to be a sort of dictionary which is passed by Python</span>
-<span class="bp">self</span> <span class="o">=</span> <span class="mi">6</span>        <span class="c1"># self is only supposed to be a sort of dictionary which is passed by Python&lt;/p&gt;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>init 2.2.5)</strong> Python automatically returns from <code>__init__</code> the special dictionary <code>self</code></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: &lt;code&gt;__init__&lt;/code&gt; must &lt;i&gt;*NOT*&lt;/i&gt; have a &lt;code&gt;return&lt;/code&gt; statement !
-Python will implicitly return &lt;code&gt; self&lt;/code&gt; !
-&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-warn">
-WARNING: <code>__init__</code> must <i>*NOT*</i> have a <code>return</code> statement !
-Python will implicitly return <code> self</code> !
-</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>init 2.2.6)</strong> The result of the call (so the special dictionary) is bound to external variable 'c`:</p>
-<div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
-</pre></div>
-<p><strong>init 2.2.7)</strong> You can then start using <code>c</code> as any variable</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">c</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;__main__.ComplexNumber instance at 0x7f9452bd0a70&gt;
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>From the output, you see we have indeed an <em>instance</em> of the <em>class</em> <code>ComplexNumber</code>. To see the difference between <em>instance</em> and <em>class</em>, you can try printing the <em>class</em> instead:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">ComplexNumber</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>__main__.ComplexNumber
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-important&quot;&gt;
-IMPORTANT: You can create an infinite number of different &lt;i&gt;instances&lt;/i&gt; (i.e.  
-&lt;code&gt;ComplexNumber(1.0, 1.0)&lt;/code&gt;, &lt;code&gt;ComplexNumber(2.0, 2.0)&lt;/code&gt;, &lt;code&gt;ComplexNumber(3.0, 3.0)&lt;/code&gt;, ... ), but you 
-    will have only one &lt;i&gt;class&lt;/i&gt; definition for them (&lt;code&gt;ComplexNumber&lt;/code&gt;).
-&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-important">
-IMPORTANT: You can create an infinite number of different <i>instances</i> (i.e.  
-<code>ComplexNumber(1.0, 1.0)</code>, <code>ComplexNumber(2.0, 2.0)</code>, <code>ComplexNumber(3.0, 3.0)</code>, ... ), but you 
-    will have only one <i>class</i> definition for them (<code>ComplexNumber</code>).
-</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can now access the fields of the special dictionary by using the dot notation as we were doing with the 'self`:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">c</span><span class="o">.</span><span class="n">real</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>3.0
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">c</span><span class="o">.</span><span class="n">imaginary</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>5.0
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If we want, we can also change them:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="mf">6.0</span>
-<span class="k">print</span> <span class="n">c</span><span class="o">.</span><span class="n">real</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>6.0
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.3.-Defining-methods">2.3. Defining methods<a class="anchor-link" href="#2.3.-Defining-methods">&#182;</a></h3><p>Let's make our class more interesting by adding the method <code>phase(self)</code> to operate on the complex number:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">import</span> <span class="nn">math</span>
-
-<span class="k">class</span> <span class="nc">ComplexNumber</span><span class="p">:</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
-
-    <span class="k">def</span> <span class="nf">phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns a float which is the phase (that is, the vector angle) of the complex number </span>
-<span class="sd">        </span>
-<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
-<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>  
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The method takes as first parameter <code>self</code> which again is a special dictionary. We expect the dictionary to have already been initialized with some values for <code>real</code> and <code>imaginary</code> fields. We can access them with the dot notation as we did before:</p>
-<div class="highlight"><pre><span></span><span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
-</pre></div>
-<p>How can we call the method on instances of complex numbers? We can access the method name from an instance using the dot notation as we did with other keys:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">c</span><span class="o">.</span><span class="n">phase</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1.03037682652
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>What happens here?</p>
-<p>By writing <code>c.phase()</code> , we call the method <code>phase(self)</code> which we just defined. The method expects as first parameter <code>self</code> a class instance, but in the call <code>c.phase()</code> apparently we don't provide any parameter. Here some magic is going on, and Python implicitly is passing as first parameter the special dictionary bound to <code>c</code>. Then it executes the method and returns the desired float.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: when &lt;i&gt;calling&lt;/i&gt; a method, you MUST put the round parenthesis after the method name 
-    like in &lt;code&gt; c.phase&lt;i&gt;()&lt;/i&gt; &lt;/code&gt;! &lt;br/&gt;&lt;br/&gt;
-    If you just write &lt;code&gt;c.phase&lt;/code&gt; without parenthesis you will get back an address to the physical location of the 
-    method code: &lt;br/&gt;
-    
-    
-    &lt;code&gt;
-    &amp;gt;&amp;gt;&amp;gt; c.phase&lt;br&gt;
-    &amp;lt;bound method ComplexNumber.phase of &amp;lt;__main__.ComplexNumber instance at 0xb465a4cc&amp;gt;&amp;gt;&lt;/code&gt;
-&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-warn">
-WARNING: when <i>calling</i> a method, you MUST put the round parenthesis after the method name 
-    like in <code> c.phase<i>()</i> </code>! <br/><br/>
-    If you just write <code>c.phase</code> without parenthesis you will get back an address to the physical location of the 
-    method code: <br/>
-    
-    
-    <code>
-    &gt;&gt;&gt; c.phase<br>
-    &lt;bound method ComplexNumber.phase of &lt;__main__.ComplexNumber instance at 0xb465a4cc&gt;&gt;</code>
-</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can also define methods that take more than one parameter, and also that create and return <code>ComplexNumber</code> instances, like for example the method <code>log(self, base)</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-
-<span class="k">class</span> <span class="nc">ComplexNumber</span><span class="p">:</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
-
-    <span class="k">def</span> <span class="nf">phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns a float which is the phase (that is, the vector angle) of the complex number </span>
-<span class="sd">        </span>
-<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
-<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>    
-    
-    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns another ComplexNumber which is the logarithm of this complex number </span>
-<span class="sd">            </span>
-<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
-<span class="sd">            (accomodated for generic base b)</span>
-<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Natural_logarithm</span>
-<span class="sd">        &quot;&quot;&quot;</span>      
-        <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">phase</span><span class="p">()</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">))</span> 
- 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span> 
-
-&lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: &lt;i&gt;ALL&lt;/i&gt; METHODS MUST HAVE AT LEAST ONE PARAMETER, WHICH BY CONVENTION IS NAMED &lt;code&gt;self&lt;/code&gt; !
-&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-warn">
-WARNING: <i>ALL</i> METHODS MUST HAVE AT LEAST ONE PARAMETER, WHICH BY CONVENTION IS NAMED <code>self</code> !
-</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To call <code>log</code>, you can do as with <code>phase</code> but this time you will need also to pass one parameter for the <code>base</code> parameter, in this case we use the exponential <code>math.e</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
-<span class="n">logarithm</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span> 
-
-&lt;p class=&quot;algolab-warn&quot;&gt;
-WARNING: As before for &lt;code&gt;phase&lt;/code&gt;, notice we didn&#39;t pass any dictionary as first parameter!  Python will implicitly pass as first argument the instance &lt;code&gt;c&lt;/code&gt;  as &lt;code&gt;self&lt;/code&gt;, and &lt;code&gt;math.e&lt;/code&gt; as &lt;code&gt;base&lt;/code&gt;
-&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-warn">
-WARNING: As before for <code>phase</code>, notice we didn't pass any dictionary as first parameter!  Python will implicitly pass as first argument the instance <code>c</code>  as <code>self</code>, and <code>math.e</code> as <code>base</code>
-</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">logarithm</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;__main__.ComplexNumber instance at 0x7f94742aa368&gt;
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To see if the method worked and we got back  we got back a different complex number, we can print the single 
-fields:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">logarithm</span><span class="o">.</span><span class="n">real</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1.09861228867
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">logarithm</span><span class="o">.</span><span class="n">imaginary</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1.03037682652
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.4.-A-better-print-with-__str__">2.4. A better print with <code>__str__</code><a class="anchor-link" href="#2.4.-A-better-print-with-__str__">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As we said, printing is not so informative:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;__main__.ComplexNumber instance at 0x7f9452bd6e18&gt;
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>It would be nice to instruct Python to express the number like <em>"3.0 + 5.0i"</em> whenever we want to see
-the <code>ComplexNumber</code> represented as a string. How can we do it? Luckily for us, defining the <code>__str__(self) method</code>
-will do the magic (see bottom of class definition):</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-
-<span class="k">class</span> <span class="nc">ComplexNumber</span><span class="p">:</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
-
-    <span class="k">def</span> <span class="nf">phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns a float which is the phase (that is, the vector angle) of the complex number </span>
-<span class="sd">        </span>
-<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
-<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>    
-    
-    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns another ComplexNumber which is the logarithm of this complex number </span>
-<span class="sd">            </span>
-<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
-<span class="sd">            (accomodated for generic base b)</span>
-<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Natural_logarithm</span>
-<span class="sd">        &quot;&quot;&quot;</span>      
-        <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">phase</span><span class="p">()</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">))</span> 
-
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; + &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;i&quot;</span>
- 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-important&quot;&gt;
-
-IMPORTANT: all methods starting and ending with a double underscore &lt;code&gt;__&lt;/code&gt; have a special meaning in Python:
-        depending on their name, they override some default behaviour. In this case, with &lt;code&gt;__str__&lt;/code&gt;
-        we are overriding how Python represents a &lt;code&gt;ComplexNumber&lt;/code&gt; instance into a string.
-&lt;/p&gt;
-
-&lt;p class=&quot;algolab-warn&quot;&gt;
-
-WARNING: Since we are overriding Python default behaviour, it is very important that we follow the specs of the method
-we are overriding &lt;i&gt;to the letter&lt;/i&gt;. In our case,   
-&lt;a href=&quot;https://docs.python.org/2/reference/datamodel.html#object.__str__&quot;&gt;the specs for __str__&lt;/a&gt; obviously
- state you MUST return a string.
-    
-&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-important">
-
-IMPORTANT: all methods starting and ending with a double underscore <code>__</code> have a special meaning in Python:
-        depending on their name, they override some default behaviour. In this case, with <code>__str__</code>
-        we are overriding how Python represents a <code>ComplexNumber</code> instance into a string.
-</p>
-
-<p class="algolab-warn">
-
-WARNING: Since we are overriding Python default behaviour, it is very important that we follow the specs of the method
-we are overriding <i>to the letter</i>. In our case,   
-<a href="https://docs.python.org/2/reference/datamodel.html#object.__str__">the specs for __str__</a> obviously
- state you MUST return a string.
-    
-</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can also pretty print the whole complex number. Internally, <code>print</code> function will look if the class <code>ComplexNumber</code> has defined a method named <code>__str__</code>. If so, it will pass to the method the instance <code>c</code> as the first argument, which in our methods will end up in the  <code>self</code> parameter:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">c</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>3.0 + 5.0i
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">c</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1.58496250072 + 1.48651953787i
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.5.-ComplexNumber-code-skeleton">2.5. ComplexNumber code skeleton<a class="anchor-link" href="#2.5.-ComplexNumber-code-skeleton">&#182;</a></h3><p>We are now ready to write methods on our own. Create a new file and copy paste the following skeleton, including the tests, then proceed doing the exercises.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">import</span> <span class="nn">math</span>
-
-<span class="k">class</span> <span class="nc">ComplexNumber</span><span class="p">:</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
-
-    <span class="k">def</span> <span class="nf">phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns a float which is the phase (that is, the vector angle) of the complex number </span>
-<span class="sd">        </span>
-<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
-<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>    
-    
-    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns another ComplexNumber which is the logarithm of this complex number </span>
-<span class="sd">            </span>
-<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
-<span class="sd">            (accomodated for generic base b)</span>
-<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Natural_logarithm</span>
-<span class="sd">        &quot;&quot;&quot;</span>      
-        <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">phase</span><span class="p">()</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">))</span> 
-
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; + &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;i&quot;</span>
-    
-
-<span class="k">class</span> <span class="nc">ComplexNumberTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-
-    <span class="sd">&quot;&quot;&quot; Test cases for ComplexNumber</span>
-
-<span class="sd">         Note this is a *completely* separated class from ComplexNumber and</span>
-<span class="sd">         we declare it here just for testing purposes!</span>
-<span class="sd">         The &#39;self&#39; you see here have nothing to do with the selfs from the</span>
-<span class="sd">         ComplexNumber methods!        </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-        
-    <span class="k">def</span> <span class="nf">test_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">test_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; </span>
-<span class="sd">            NOTE: we can&#39;t use assertEqual, as the result of phase() is a </span>
-<span class="sd">            float number which may have floating point rounding errors. So it&#39;s</span>
-<span class="sd">            necessary to use assertAlmostEqual</span>
-<span class="sd">            As an option with the delta you can declare the precision you require.</span>
-<span class="sd">            For more info see Python docs: </span>
-<span class="sd">            https://docs.python.org/2/library/unittest.html#unittest.TestCase.assertAlmostEqual</span>
-<span class="sd">            </span>
-<span class="sd">            NOTE: assertEqual might still work on your machine but just DO NOT use it </span>
-<span class="sd">            for float numbers!!!</span>
-<span class="sd">        &quot;&quot;&quot;</span>       
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">phase</span><span class="p">(),</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">test_str</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span> <span class="s2">&quot;1 + 2i&quot;</span><span class="p">)</span>        
-        <span class="c1">#self.assertEqual(str(ComplexNumber(1,0)), &quot;1&quot;)</span>
-        <span class="c1">#self.assertEqual(str(ComplexNumber(1.0,0)), &quot;1.0&quot;)</span>
-        <span class="c1">#self.assertEqual(str(ComplexNumber(0,1)), &quot;i&quot;)</span>
-        <span class="c1">#self.assertEqual(str(ComplexNumber(0,0)), &quot;0&quot;) </span>
-
-        
-    <span class="k">def</span> <span class="nf">test_log</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
-        <span class="n">l</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">phase</span><span class="p">(),</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.6.-Complex-numbers-magnitude">2.6. Complex numbers magnitude<a class="anchor-link" href="#2.6.-Complex-numbers-magnitude">&#182;</a></h3><p><img src="img/complex-numbers-magnitude-1.png">
-<img src="img/complex-numbers-magnitude-2.png"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Implement the <code>magnitude</code> method, using this signature:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns a float which is the magnitude (that is, the absolute value) of the complex number </span>
-
-<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
-<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>
-</pre></div>
-<p>To test it, add this test case to <code>ComplexNumberTest</code> class (notice the <code>almost</code> in <code>assertAlmostEquals</code> !!!):</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(),</span><span class="mi">5</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.7.-Complex-numbers-equality">2.7. Complex numbers equality<a class="anchor-link" href="#2.7.-Complex-numbers-equality">&#182;</a></h3><p>Here we will try to give you a glimpse of some aspects related to Python equality, and trying to respect interfaces when overriding methods. Equality can be a nasty subject, here we will treat it in a simplified form.</p>
-<p><img src="img/complex-numbers-equality.png"></p>
-<ul>
-<li><p>Implement equality for <code>ComplexNumber</code> more or less as it was done for <code>Fraction</code></p>
-<p>Use this method signature:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-</pre></div>
-</li>
-</ul>
-<p>and use this simple test case to check for equality:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_integer_equality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Note all other tests depend on this test !</span>
-
-<span class="sd">            We want also to test the constructor, so in c we set stuff by hand    </span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="mi">1</span>       
-        <span class="n">c</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="mi">2</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-</pre></div>
-<ul>
-<li>Beware  'equality' is tricky in Python for float numbers! Rule of thumb: when overriding <code>__eq__</code>, use 'dumb' equality, two things are the same only if their parts are literally equal    </li>
-<li>If instead you need to determine if two objects are similar, define other 'closeness' functions.</li>
-<li>(Non mandatory read) if you are interested in the gory details of equality, see<ul>
-<li><a href="http://jcalderone.livejournal.com/32837.html" target="_blank">How to Override comparison operators in Python</a></li>
-<li><a href="http://www.asmeurer.com/blog/posts/what-happens-when-you-mess-with-hashing-in-python/" target="_blank">Messing with hashing </a></li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.8.-Complex-numbers-isclose">2.8. Complex numbers isclose<a class="anchor-link" href="#2.8.-Complex-numbers-isclose">&#182;</a></h3><p>Complex numbers can be represented as vectors, so intuitively we can determine if a complex number is close to another by checking that the distance between its vector tip and the the other tip is less than a given delta. There are more precise ways to calculate it, but here we prefer keeping the example simple.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Given two complex numbers</p>
-$$z_1 = a + bi$$<p>and</p>
-$$z_2 = c + di$$<p>We can consider them as close if they satisfy this condition:
-$$\sqrt{(a-c)^2 + (b-d)^2} < delta$$</p>
-<ul>
-<li>Implement the method, adding it to <code>ComplexNumber</code> class:</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns True if the complex number is within a delta distance from complex number c.                                </span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
-</pre></div>
-<p>and add this test case to <code>ComplexNumberTest</code> class:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;  Notice we use `assertTrue` because we expect `isclose` to return a `bool` value, and </span>
-<span class="sd">             we also test a case where we expect `False`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">HTML</span>
-
-&lt;p class=&quot;algolab-important&quot;&gt;
-REMEMBER: Equality with &lt;code&gt;__eq__&lt;/code&gt; and closeness functions like &lt;code&gt;isclose&lt;/code&gt; 
-are very different things. Equality should check if two objects have the same memory address or, alternatively, 
-if they contain the same things, while closeness functions 
-should check if two objects are similar. You should never use functions like &lt;code&gt;isclose&lt;/code&gt; inside
-&lt;code&gt;__eq__&lt;/code&gt; methods, unless you really know what you&#39;re doing.
-&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-
-<div class="output_html rendered_html output_subarea ">
-
-<p class="algolab-important">
-REMEMBER: Equality with <code>__eq__</code> and closeness functions like <code>isclose</code> 
-are very different things. Equality should check if two objects have the same memory address or, alternatively, 
-if they contain the same things, while closeness functions 
-should check if two objects are similar. You should never use functions like <code>isclose</code> inside
-<code>__eq__</code> methods, unless you really know what you're doing.
-</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.9.-Complex-numbers-addition">2.9. Complex numbers addition<a class="anchor-link" href="#2.9.-Complex-numbers-addition">&#182;</a></h3><p><img src="img/complex-numbers-addition.png"></p>
-<ul>
-<li><code>a</code> and <code>c</code> correspond to <code>real</code>, <code>b</code> and <code>d</code> correspond to <code>imaginary</code></li>
-<li>implement addition for <code>ComplexNumber</code> more or less as it was done for <code>Fraction</code> in theory slides</li>
-<li>write some tests as well!</li>
-</ul>
-<p>Use this definition:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>
-</pre></div>
-<p>And add this to the <code>ComplexNumberTest</code> class:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_add_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
-
-    <span class="k">def</span> <span class="nf">test_add_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.10.-Adding-a-scalar">2.10. Adding a scalar<a class="anchor-link" href="#2.10.-Adding-a-scalar">&#182;</a></h3><p>We defined addition among ComplexNumbers,  but what about addition among a ComplexNumber and an <code>int</code> or a <code>float</code>?</p>
-<p>Will this work?</p>
-<div class="highlight"><pre><span></span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span>
-</pre></div>
-<p>What about this?</p>
-<div class="highlight"><pre><span></span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mf">5.0</span>
-</pre></div>
-<p>Try to add the following method to your class, and check if it does work with the scalar:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span> 
-         <span class="c1"># checks other object is instance of the class ComplexNumber</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">):</span> 
-            <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span>
-        
-        <span class="c1"># else checks the basic type of other is int or float </span>
-        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>  
-            <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span>
-        
-        <span class="c1"># other is of some type we don&#39;t know how to process. </span>
-        <span class="c1"># In this case the Python specs say we MUST return &#39;NotImplemented&#39;</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">NotImplemented</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Hopefully now you have a better add. But what about this? Will this work?</p>
-<div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
-</pre></div>
-<p>Answer: it won't, Python needs further instructions. Usually Python tries to see if the class of the object on left of the expression defines addition for operands <em>to the right</em> of it. In this case on the left we have a <code>float</code> number, and float numbers don't define any way to deal to the right with your very own <code>ComplexNumber</code> class. So as a last resort Python tries to see if your <code>ComplexNumber</code> class has defined also a way to deal with operands <em>to the left</em> of the <code>ComplexNumber</code>, by looking for the method  <code>__radd__</code> , which means <em>reverse addition</em> . Here we implement it :</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns the result of expressions like    other + self      &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">NotImplemented</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To check it is working and everything is in order for addition, add these test cases:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_add_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
-
-    <span class="k">def</span> <span class="nf">test_add_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>        
-
-    <span class="k">def</span> <span class="nf">test_add_scalar_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>        
-
-    <span class="k">def</span> <span class="nf">test_add_scalar_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>        
-
-    <span class="k">def</span> <span class="nf">test_add_negative</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.11.-Complex-numbers-multiplication">2.11. Complex numbers multiplication<a class="anchor-link" href="#2.11.-Complex-numbers-multiplication">&#182;</a></h3><p><img src="img/complex-numbers-multiplication.png"></p>
-<ul>
-<li>Implement multiplication for <code>ComplexNumber</code>, taking inspiration from previous <code>__add__</code> implementation</li>
-<li>Can you extend multiplication to work with scalars (both left and right) as well?</li>
-</ul>
-<p>To implement <code>__mul__</code>, copy this definition into <code>ComplexNumber</code> class:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
-</pre></div>
-<p>and add test cases to <code>ComplexNumberTest</code> class:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_mul_by_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
-
-    <span class="k">def</span> <span class="nf">test_mul_just_real</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
-
-    <span class="k">def</span> <span class="nf">test_mul_just_imaginary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>        
-
-    <span class="k">def</span> <span class="nf">test_mul_scalar_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>
-
-    <span class="k">def</span> <span class="nf">test_mul_scalar_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="3.-Solutions">3. Solutions<a class="anchor-link" href="#3.-Solutions">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="3.1.-ComplexNumber-Solution">3.1. ComplexNumber Solution<a class="anchor-link" href="#3.1.-ComplexNumber-Solution">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">import</span> <span class="nn">math</span>
-
-<span class="k">class</span> <span class="nc">ComplexNumber</span><span class="p">:</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
-
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; + &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;i&quot;</span>
-
-    <span class="k">def</span> <span class="nf">phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns a float which is the phase (that is, the vector angle) of the complex number </span>
-<span class="sd">        </span>
-<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
-<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>    
-    
-    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns another ComplexNumber which is the logarithm of this complex number </span>
-<span class="sd">            </span>
-<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
-<span class="sd">            (accomodated for generic base b)</span>
-<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Natural_logarithm</span>
-<span class="sd">        &quot;&quot;&quot;</span>      
-        <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">phase</span><span class="p">()</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">))</span> 
-    
-    
-    <span class="k">def</span> <span class="nf">magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns a float which is the magnitude (that is, the absolute value) of the complex number </span>
-<span class="sd">        </span>
-<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
-<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    
-    
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span> 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">real</span>  <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">imaginary</span>
-
-    <span class="k">def</span> <span class="nf">isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns True if the complex number is within a delta distance from complex number c.                                </span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="o">-</span><span class="n">c</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="o">-</span><span class="n">c</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">delta</span>
-    
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span> 
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">):</span> 
-            <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">NotImplemented</span>
-        
-
-    <span class="k">def</span> <span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span> 
-        <span class="k">if</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">NotImplemented</span>
-    
-    
-    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span> 
-        
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">):</span> 
-            <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">real</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span>
-                                 <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">*</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">NotImplemented</span>
-
-    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">*</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">NotImplemented</span>
-                                
-
-<span class="k">class</span> <span class="nc">ComplexNumberTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-
-    <span class="sd">&quot;&quot;&quot; Test cases for ComplexNumber</span>
-
-<span class="sd">         Note this is a *completely* separated class from ComplexNumber and</span>
-<span class="sd">         we declare it here just for testing purposes!</span>
-<span class="sd">         The &#39;self&#39; you see here have nothing to do with the selfs from the</span>
-<span class="sd">         ComplexNumber methods!        </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-        
-    <span class="k">def</span> <span class="nf">test_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">test_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; </span>
-<span class="sd">            NOTE: we can&#39;t use assertEqual, as the result of phase() is a </span>
-<span class="sd">            float number which may have floating point rounding errors. So it&#39;s</span>
-<span class="sd">            necessary to use assertAlmostEqual</span>
-<span class="sd">            As an option with the delta you can declare the precision you require.</span>
-<span class="sd">            For more info see Python docs: </span>
-<span class="sd">            https://docs.python.org/2/library/unittest.html#unittest.TestCase.assertAlmostEqual</span>
-<span class="sd">            </span>
-<span class="sd">            NOTE: assertEqual might still work on your machine but just DO NOT use it </span>
-<span class="sd">            for float numbers!!!</span>
-<span class="sd">        &quot;&quot;&quot;</span>       
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">phase</span><span class="p">(),</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">test_str</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span> <span class="s2">&quot;1 + 2i&quot;</span><span class="p">)</span>        
-        <span class="c1">#self.assertEqual(str(ComplexNumber(1,0)), &quot;1&quot;)</span>
-        <span class="c1">#self.assertEqual(str(ComplexNumber(1.0,0)), &quot;1.0&quot;)</span>
-        <span class="c1">#self.assertEqual(str(ComplexNumber(0,1)), &quot;i&quot;)</span>
-        <span class="c1">#self.assertEqual(str(ComplexNumber(0,0)), &quot;0&quot;) </span>
-
-        
-    <span class="k">def</span> <span class="nf">test_log</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
-        <span class="n">l</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">phase</span><span class="p">(),</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
-        
-    
-    <span class="k">def</span> <span class="nf">test_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(),</span><span class="mi">5</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>                
-        
-    <span class="k">def</span> <span class="nf">test_integer_equality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Note all other tests depend on this test !</span>
-<span class="sd">            </span>
-<span class="sd">            We want also to test the constructor, so in c we set stuff by hand    </span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="mi">1</span>       
-        <span class="n">c</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="mi">2</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>    
-        
-    <span class="k">def</span> <span class="nf">test_isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;  Notice we use `assertTrue` because we expect `isclose` to return a `bool` value, and </span>
-<span class="sd">             we also test a case where we expect `False`</span>
-<span class="sd">        &quot;&quot;&quot;</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>
-        
-    <span class="k">def</span> <span class="nf">test_add_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
-        
-    <span class="k">def</span> <span class="nf">test_add_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>        
-
-    <span class="k">def</span> <span class="nf">test_add_scalar_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>        
-
-    <span class="k">def</span> <span class="nf">test_add_scalar_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>        
-        
-    <span class="k">def</span> <span class="nf">test_add_negative</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
-
-    <span class="k">def</span> <span class="nf">test_mul_by_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
-        
-    <span class="k">def</span> <span class="nf">test_mul_just_real</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
-
-    <span class="k">def</span> <span class="nf">test_mul_just_imaginary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>        
-
-    <span class="k">def</span> <span class="nf">test_mul_scalar_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>
-
-    <span class="k">def</span> <span class="nf">test_mul_scalar_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>        
-
-        
-    
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ComplexNumberTest</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">EnvWorkingTest</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -14759,9 +12479,362 @@ should check if two objects are similar. You should never use functions like <co
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>.................
+<pre>.
 ----------------------------------------------------------------------
-Ran 17 tests in 0.010s
+Ran 1 test in 0.004s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.1)-__init__,-add-and-get">1.1) <code>__init__</code>, <code>add</code> and <code>get</code><a class="anchor-link" href="#1.1)-__init__,-add-and-get">&#182;</a></h2><p>Now implement <em>all</em> of the following methods: <code>__init__</code>,  <code>add</code> and <code>get</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Initializes the MultiSet as empty.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !!!&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">el</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Adds one instance of element el to the multiset </span>
+
+<span class="sd">            NOTE: MUST work in O(1)        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !!!&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">el</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the multiplicity of element el in the multiset. </span>
+
+<span class="sd">            If no instance of el is present, return 0.</span>
+
+<span class="sd">            NOTE: MUST work in O(1)        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !!!&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong>Testing</strong></p>
+<p>Once done, running this will run only the tests in <code>AddGetTest</code> class and hopefully they will pass.</p>
+<p><strong>Notice that  <code>exercise1</code> is followed by a dot and test class name <code>.AddGetTest</code> : </strong></p>
+<div class="highlight"><pre><span></span>python -m unittest exercise1.AddGetTest
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">AddGetTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>...
+----------------------------------------------------------------------
+Ran 3 tests in 0.011s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.2)-removen">1.2) <code>removen</code><a class="anchor-link" href="#1.2)-removen">&#182;</a></h2><p>Implement the following <code>removen</code> method:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">removen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">el</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Removes n instances of element el from the multiset (that is, reduces el multiplicity by n)</span>
+
+<span class="sd">            If n is negative, raises ValueError.            </span>
+<span class="sd">            If n represents a multiplicity bigger than the current multiplicity, raises LookupError</span>
+
+<span class="sd">            NOTE: multiset multiplicities are never negative</span>
+<span class="sd">            NOTE: MUST work in O(1)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong>Testing</strong>: <code>python -m unittest exercise1.RemovenTest</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">RemovenTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>....
+----------------------------------------------------------------------
+Ran 4 tests in 0.006s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="2)-UnorderedList">2) UnorderedList<a class="anchor-link" href="#2)-UnorderedList">&#182;</a></h1><p>Start editing file <code>exercise2.py</code>, which contains a simplified versioned of the <code>UnorderedList</code> we saw in the labs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">exercise2_solution</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.1)-find_couple">2.1) <code>find_couple</code><a class="anchor-link" href="#2.1)-find_couple">&#182;</a></h2><p>Implement following <code>find_couple</code> method.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_couple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Search the list for the first two consecutive elements having data equal to </span>
+<span class="sd">            provided a and b, respectively. If such elements are found, the position</span>
+<span class="sd">            of the first one is returned, otherwise raises LookupError.</span>
+
+<span class="sd">            - MUST run in O(n), where n is the size of the list.</span>
+<span class="sd">            - Returned index start from 0 included</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>                
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong>Testing:</strong> <code>python -m unittest exercise2.FindCoupleTest</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">FindCoupleTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>......
+----------------------------------------------------------------------
+Ran 6 tests in 0.012s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.2)-swap">2.2) <code>swap</code><a class="anchor-link" href="#2.2)-swap">&#182;</a></h2><p>Implement the method <code>swap</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">swap</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Swap the data of nodes at index i and j. Indeces start from 0 included.</span>
+<span class="sd">            If any of the indeces is out of bounds, rises IndexError.</span>
+
+<span class="sd">            NOTE: You MUST implement this function with a single scan of the list.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong>Testing:</strong> <code>python -m unittest exercise2.NorepTest</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">SwapTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.010s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="3)-GenericTree">3) GenericTree<a class="anchor-link" href="#3)-GenericTree">&#182;</a></h1><p>Start editing file <code>exercise3.py</code>, which contains a simplified versioned of the <code>GenericTree</code> we saw in the labs.</p>
+<p><img src="img/generic-tree-labeled.png"/></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">exercise3_solution</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.1)-mirror">3.1) mirror<a class="anchor-link" href="#3.1)-mirror">&#182;</a></h2><p>Implement the method <code>mirror</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mirror</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Modifies this tree by mirroring it, that is, reverses the order</span>
+<span class="sd">            of all children of this node and of all its descendants</span>
+
+<span class="sd">            - MUST work in O(n) where n is the number of nodes</span>
+<span class="sd">            - MUST change the order of nodes, NOT the data (so don&#39;t touch the data !)</span>
+<span class="sd">            - DON&#39;T create new nodes            </span>
+<span class="sd">            - It is acceptable to use a recursive method.</span>
+
+
+<span class="sd">            Example:</span>
+
+<span class="sd">            a     &lt;-    Becomes:    a</span>
+<span class="sd">            |-b                     |-i</span>
+<span class="sd">            | |-c                   |-e</span>
+<span class="sd">            | \-d                   | |-h</span>
+<span class="sd">            |-e                     | |-g</span>
+<span class="sd">            | |-f                   | \-f </span>
+<span class="sd">            | |-g                   |-b</span>
+<span class="sd">            | \-h                     |-d</span>
+<span class="sd">            \-i                       \-c</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong> Testing: </strong> <code>python -m unittest exercise3.MirrorTest</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">GenericTreeTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>...
+----------------------------------------------------------------------
+Ran 3 tests in 0.005s
 
 OK
 </pre>
@@ -14774,13 +12847,87 @@ OK
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">MirrorTest</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.008s
+
+OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.2)-clone">3.2) clone<a class="anchor-link" href="#3.2)-clone">&#182;</a></h2><p>Implement the method <code>clone</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Clones this tree, by returning an *entirely* new tree which is an </span>
+<span class="sd">            exact copy of this tree (so returned node and *all* its descendants must be new). </span>
+
+<span class="sd">            - MUST run in O(n) where n is the number of nodes</span>
+<span class="sd">            - a recursive method is acceptable.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !&quot;</span><span class="p">)</span>
+</pre></div>
+<p><strong> Testing: </strong> <code>python -m unittest exercise3.CloneTest</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">algolab</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">CloneTest</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>...
+----------------------------------------------------------------------
+Ran 3 tests in 0.005s
+
+OK
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 

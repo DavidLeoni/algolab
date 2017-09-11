@@ -11976,9 +11976,18 @@ var algolab = {
         
         Renamed in 0.19
     */    
-    hideCell : function(prefix){
+    hideCell : function(prefixOrRegex){
+        
         $('.border-box-sizing .code_cell pre').filter(function() { 
-                return $(this).text().indexOf(prefix) === 0; 
+                var t = $(this).text();
+                if (typeof prefixOrRegex == "string"){
+                    return t.indexOf(prefixOrRegex) === 0;
+                } else if ( prefixOrRegex instanceof RegExp){
+                    return t.match(prefixOrRegex);
+                } else {
+                    console.error("Invalid argument:", prefixOrRegex);
+                    throw new Error("Invalid argument!");
+                }
             }).parents('div .cell .input').hide();        
     },
     /**
@@ -12023,7 +12032,10 @@ var algolab = {
                      
        
        algolab.hideCell("%%HTML");
-       algolab.hideCell("import algolab");      
+       algolab.hideCell("import algolab");   
+       
+        // TODO this is a bit too hacky   
+       algolab.hideCell(/from exercise(.+)_solution import \*/)
        
        algolab.hideCell("algolab.init()"); 
        algolab.hideCell("algolab.show_run(");
@@ -12854,7 +12866,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>........
 ----------------------------------------------------------------------
-Ran 8 tests in 0.005s
+Ran 8 tests in 0.009s
 
 OK
 </pre>
@@ -12998,7 +13010,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.........
 ----------------------------------------------------------------------
-Ran 9 tests in 0.005s
+Ran 9 tests in 0.006s
 
 OK
 </pre>
@@ -13016,16 +13028,6 @@ OK
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="3)-GenericTree">3) GenericTree<a class="anchor-link" href="#3)-GenericTree">&#182;</a></h1><p>Start editing file <code>exercise3.py</code>, which contains a simplified versioned of the <code>GenericTree</code> we saw in the labs.</p>
 <p><img src="img/generic-tree-labeled.png"/></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Start editing file <code>exercise3.py</code></p>
 
 </div>
 </div>
@@ -13090,7 +13092,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>...
 ----------------------------------------------------------------------
-Ran 3 tests in 0.004s
+Ran 3 tests in 0.003s
 
 OK
 </pre>
@@ -13123,7 +13125,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>....
 ----------------------------------------------------------------------
-Ran 4 tests in 0.003s
+Ran 4 tests in 0.002s
 
 OK
 </pre>
@@ -13186,7 +13188,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.....
 ----------------------------------------------------------------------
-Ran 5 tests in 0.006s
+Ran 5 tests in 0.003s
 
 OK
 </pre>
@@ -13249,7 +13251,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>......
 ----------------------------------------------------------------------
-Ran 6 tests in 0.018s
+Ran 6 tests in 0.016s
 
 OK
 </pre>

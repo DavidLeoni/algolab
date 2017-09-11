@@ -11972,9 +11972,18 @@ var algolab = {
         
         Renamed in 0.19
     */    
-    hideCell : function(prefix){
+    hideCell : function(prefixOrRegex){
+        
         $('.border-box-sizing .code_cell pre').filter(function() { 
-                return $(this).text().indexOf(prefix) === 0; 
+                var t = $(this).text();
+                if (typeof prefixOrRegex == "string"){
+                    return t.indexOf(prefixOrRegex) === 0;
+                } else if ( prefixOrRegex instanceof RegExp){
+                    return t.match(prefixOrRegex);
+                } else {
+                    console.error("Invalid argument:", prefixOrRegex);
+                    throw new Error("Invalid argument!");
+                }
             }).parents('div .cell .input').hide();        
     },
     /**
@@ -12019,7 +12028,10 @@ var algolab = {
                      
        
        algolab.hideCell("%%HTML");
-       algolab.hideCell("import algolab");      
+       algolab.hideCell("import algolab");   
+       
+        // TODO this is a bit too hacky   
+       algolab.hideCell(/from exercise(.+)_solution import \*/)
        
        algolab.hideCell("algolab.init()"); 
        algolab.hideCell("algolab.show_run(");
@@ -12105,7 +12117,18 @@ $(document).ready(algolab.init);
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As the course is still experimental, actual exams may differ in format from past ones.</p>
-<h3 id="2017-06-08">2017-06-08<a class="anchor-link" href="#2017-06-08">&#182;</a></h3><ul>
+<h3 id="2017-09-04">2017-09-04<a class="anchor-link" href="#2017-09-04">&#182;</a></h3><ul>
+<li><a href="exam-2017-09-04.html" target="_blank">online</a> </li>
+<li><a href="pdf/exam-2017-09-04.pdf" target="_blank">pdf</a> </li>
+</ul>
+<br/>
+Solutions:
+<ul>
+<li><a href="past-exams/2017-09-04.zip" target="_blank">All (zipped)</a></li>
+<li><a href="past-exams/2017-09-04/solutions/exercise1_solution.py" target="_blank">Exercise 1</a></li>
+<li><a href="past-exams/2017-09-04/solutions/exercise2_solution.py" target="_blank">Exercise 2</a></li>
+<li><a href="past-exams/2017-09-04/solutions/exercise3_solution.py" target="_blank">Exercise 3</a></li>
+</ul><h3 id="2017-06-08">2017-06-08<a class="anchor-link" href="#2017-06-08">&#182;</a></h3><ul>
 <li><a href="exam-2017-06-08.html" target="_blank">online</a> </li>
 <li><a href="pdf/exam-2017-06-08.pdf" target="_blank">pdf</a> </li>
 </ul>
